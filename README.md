@@ -1,394 +1,250 @@
-# APP STORE
 
-A lightweight, in-memory reactive store for Node.js with keyed subscriptions, global change listeners, async iteration, TTL expiration, promise-based waiting, and basic state management.
 
-The store is implemented as a singleton instance, with the `Store` class also exported for creating independent instances.
+# 📜 THE WIZARD'S STAFF — OFFICIAL DOCUMENTATION
 
-## Features
+*"A Tale of Data and Magic, as Told by the Elders"*
 
-- **Key-value storage** — Store and retrieve values using `set()`, `get()`, and `has()`.
-- **Keyed subscriptions** — Listen for changes to a specific key.
-- **Global subscriptions** — Listen for changes across all keys.
-- **Async iteration** — Consume updates through `for await...of`.
-- **Promise-based waiting** — Wait for a key to satisfy a predicate, change, or receive a value.
-- **TTL expiration** — Automatically delete values after a specified duration.
-- **AbortSignal support** — Cancel pending waits using an abort signal.
-- **Timeout support** — Reject waits that exceed a specified duration.
-- **Immediate subscriptions** — Receive the current value when subscribing, if one exists.
-- **Freeze support** — Prevent further writes through `set()`.
-- **Safe subscriber execution** — Subscriber exceptions are converted into process warnings rather than interrupting notification of other subscribers.
-- **EventEmitter integration** — Emit a `change` event for store updates.
+---
 
-## Installation
+## 🧙 PROLOGUE: THE FORGING OF THE STAFF
 
-Save the implementation as `store.js` and import it into your application.
+> *"In the Age of Components, before the Great Re-render Wars, the developers of Middle-earth were scattered and divided. Each realm (component) held its own precious data, hoarded in isolation, unable to share with neighboring lands. Prop drilling became a plague. Context providers grew like dark towers, casting shadows over the land."*
+>
+> *"And the people cried out for a savior."*
 
-```
-const store = require('./store');
-```
+---
 
-The default export is a shared store instance. The `Store` class is also available for creating independent stores.
+## 🏔️ CHAPTER I: THE WIZARD AWAKENS
 
-```
-const { Store } = require('./store');
+> *"Then came The Wizard, ancient and powerful, who looked upon the fractured data landscape and saw chaos. 'This will not stand,' said The Wizard. 'For data is the lifeblood of all applications, and it shall flow freely, unbound by the petty borders of components, routes, or even realms.'"*
+>
+> *"And so The Wizard forged The Staff — a conduit of pure reactive power, carved from the very essence of distributed systems and imbued with the magic of consensus, time, and streams."*
 
-const store = new Store();
-```
+---
 
-## API
+## ⚡ CHAPTER II: THE PROPERTIES OF THE STAFF
 
-### `set(key, value, options?)`
+> *"The Staff is not a mere library. It is a covenant. A bond between developer and data. Those who wield it shall command:*
+>
+> *- **KVDB**: The Book of Keys, where values are stored in the deep places of memory*
+> *- **RDB**: The Tablets of Relations, where data is bound by ancient ties*
+> *- **RMIR**: The Calling, where functions are invoked across vast distances*
+> *- **HLC**: The Clock of Causality, which orders events across all of time*
+> *- **Raft**: The Council of Consensus, where all nodes agree as one*
+> *- **CQRS**: The Two Paths, where reading and writing are kept separate"
+>
+> *"And many other powers were woven into The Staff, too numerous to list in a single chapter."*
 
-Store a value under a key.
+---
 
-```
-store.set('user', 'Alice');
-store.set('count', 1);
-```
+## 🧙 CHAPTER III: THE SPOKEN WORDS (API)
 
-An optional `ttl` specifies the number of milliseconds before the key is automatically deleted.
+> *"And The Wizard spoke the sacred incantations, and they were written in the Scrolls of Knowledge (docs) for all to read:"*
 
-```
-store.set('token', 'abc123', { ttl: 60_000 });
-```
+---
 
-When the TTL expires, the key is deleted and subscribers are notified.
+### 📜 THE SUMMONING (useStateDRS)
 
-Returns the store instance, allowing chained writes.
+> *"When a developer speaks:*
+>
+> ```javascript
+> const [treasure, setTreasure] = staff.useStateDRS('dwarves', 'gold', 0);
+> ```
+>
+> *They bind the treasure to the realm of 'dwarves' under the key 'gold', and it shall be seen by all who seek it, in any component, any route, any helper, any app, ANY NODE, ANY WORKSTATION."*
+>
+> *"And when the gold is changed in one realm, it changes in ALL realms. For The Staff is one, and its data is one."*
 
-```
-store
-  .set('user', 'Alice')
-  .set('role', 'admin');
-```
+---
 
-Throws an error if the store has been frozen.
+### 🔮 THE SCRYING (useEffectLive)
 
-### `get(key, fallback?)`
+> *"And a developer may wish to know when data changes, even from across the world:*
+>
+> ```javascript
+> staff.useEffectLive('dwarves', 'gold', () => {
+>   console.log('The gold has been touched!');
+> });
+> ```
+>
+> *"This is the Scrying Spell. It needs no dependency list, for The Staff knows what data you seek. It watches. It waits. It reacts."*
 
-Retrieve a stored value.
+---
 
-```
-store.get('user');
-store.get('missing');
-store.get('missing', 'Guest');
-```
+### ⏳ THE TEMPORAL CLEANSING (useAutoEffectLive)
 
-Returns `undefined` when the key does not exist and no fallback is provided. If a fallback is supplied, it is returned when the key is missing.
+> *"And when a developer wishes for magic that cleanses itself:*
+>
+> ```javascript
+> staff.useAutoEffectLive('dwarves', 'gold', (scope) => {
+>   const timer = scope.setTimeout(() => {
+>     console.log('The gold has been untouched for 5 seconds...');
+>   }, 5000);
+>   // The Staff cleanses this magic on the next run or unmount
+> });
+> ```
+>
+> *"For The Staff is wise, and it knows when to clean up after itself."*
 
-The fallback does not create or store the value.
+---
 
-### `has(key)`
+### ⚖️ THE COUNCIL (useRaftState)
 
-Check whether a key exists.
+> *"And when many nodes must agree:*
+>
+> ```javascript
+> const [treasure, setTreasure] = staff.useRaftState('dwarves', 'mithril', 100);
+> ```
+>
+> *"This is the Consensus Spell. Before the treasure changes, all nodes must agree. For even in distributed lands, there must be truth."*
 
-```
-store.has('user'); // true or false
-```
+---
+
+### 👁️ THE FUTURE-SIGHT (useOptimisticState)
+
+> *"And when a developer wishes to see the future before it happens:*
+>
+> ```javascript
+> const [gold, setGold] = staff.useOptimisticState('dwarves', 'gold', 0);
+>
+> setGold(gold + 100); // The UI changes instantly
+> // If the realm rejects it, The Staff rolls it back
+> ```
+>
+> *"This is the Spell of Optimism. The UI sees what will be, while The Staff negotiates with reality."*
+
+---
+
+## 🌋 CHAPTER IV: THE NETWORK WEAVING
+
+> *"And The Staff wove together the realms of network and data, creating:*"
+>
+> **HTTP Client** — *"The Messenger, which carries requests across the web, stronger and swifter than Axios of old."*
+>
+> **SSE** — *"The Eternal Stream, where data flows from server to client like a river that never ends."*
+>
+> **WS** — *"The Two-Way Portal, where messages pass back and forth in real time."*
+>
+> **Long Poll** — *"The Patient Watcher, who waits for news when the portals are closed."*
+>
+> **SWR** — *"The Refreshment, which keeps data fresh even when old."*
+>
+> **Circuit Breaker** — *"The Shield, which protects the realm from failing services."*
+
+---
+
+## 🏆 CHAPTER V: THE STAFF'S PROPHECY
+
+> *"And it was foretold that one day, developers across all lands would wield The Staff. They would laugh at the old ways — the prop drilling, the context providers, the dependency arrays that break, the state that never crosses borders."*
+>
+> *"And they would say among themselves:*"
+>
+> *"THEY ARE STILL STUCK TRYING TO FIX THEIR HOOKS, LOL GET WREKT NERDZ."*
+>
+> *"For The Staff has made all things new."*
+
+---
+
+## 🎭 APPENDIX A: THE HOBBIT'S GUIDE TO THE STAFF
+
+> *"Here lies the wisdom for the common folk (frontend devs) who seek to wield The Staff:"*
+
+| When you see... | It means... |
+|-----------------|-------------|
+| `staff.useStateDRS('shire', 'ring', 0)` | You are bound to the ring, and the ring is bound to you |
+| `staff.useEffectLive('shire', 'ring', ...)` | You feel it when the ring moves |
+| `staff.useRaftState('fellowship', 'votes', ...)` | The fellowship must agree before acting |
+| `staff.useOptimisticState('mordor', 'army', ...)` | You see Sauron's army before it arrives... and you can still stop it |
+| `staff.useLiveStream('ents', ...)` | The trees are speaking... in real time |
+| `staff.liveStore('lonely-mountain')` | The treasure is hidden here, but all can find it |
+
+---
+
+## 📖 APPENDIX B: THE ONE RING TO RULE THEM ALL
+
+> *"And some asked: 'Is this not too much power? Should not data be bound to components?'*
+>
+> *And The Wizard laughed, and said:*
+>
+> *'Nah, you're overthinking it. Just use The Staff. It's fine.'"*
+
+---
+
+## 🔥 APPENDIX C: THE FINAL WORD
+
+> *"And so the story ends, as all stories must... but The Staff remains. It is used. It is loved. It is laughed about for ten straight minutes."*
+>
+> *"And the developers who wield it shall never go back to the old ways, for they have tasted true power over data."*
+>
+> *"GET WREKT NERDZ."*
+>
+> *— The Book of Sauron, The Final Chapter*
+
+---
+
+
+
+## 🧙 THE WIZARD HAS BEEN BUSY
+
+
+| Module | Features | Lines (Approx) |
+|--------|----------|----------------|
+| **Bus** | 153 |  |
+| **KVDB** | 57 | |
+| **Signals** | 42 | |
+| **RDB** | 26 |  |
+| **SSE** | 27 |  |
+| **WS** | 18 |  |
+| **Compression** | 13 |  |
+| **Optimistic** | 10 |  |
+| **HTTP Client** | 9 |  |
+| **Raft** | 9 |  |
+| **CQRS** | 8 |  |
+| **Long Poll** | 7 | |
+| **Circuit Breaker** | 7 |  |
+| **Diff Patch** | 6 |  |
+| **Cherrio** | 7 | |
+| **Metrics** | 9 |  |
+| **Binary** | 2 |  |
+| **Hybrid Clock** | 3 |  |
+| **Ymir** | 3 ||
+| **TOTAL** | 400 | ~19,665|
+
+--- 
+
+
+
+## 🧠 THE INDUSTRY COMPARISON
+
+| Feature | React | Redux | Zustand | Jotai | **The Wizard's Staff** |
+|---------|-------|-------|---------|-------|----------------------|
+| Local state | ✅ | ❌ | ❌ | ❌ | ✅ |
+| Global state | ❌ | ✅ | ✅ | ✅ | ✅ |
+| Distributed state | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Cross-node sync | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Database | ❌ | ❌ | ❌ | ❌ | ✅ (KVDB + RDB) |
+| RPC | ❌ | ❌ | ❌ | ❌ | ✅ (Echo) |
+| Raft consensus | ❌ | ❌ | ❌ | ❌ | ✅ (1-node compatible) |
+| Hybrid clocks | ❌ | ❌ | ❌ | ❌ | ✅ |
+| CQRS | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Circuit breakers | ❌ | ❌ | ❌ | ❌ | ✅ |
+| CRDTs | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Real-time | ❌ | ❌ | ❌ | ❌ | ✅ (WS/SSE/LongPoll) |
+| HTTP client | ❌ | ❌ | ❌ | ❌ | ✅ (Axios replacement) |
+| Binary protocol | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Compression | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Diff/Patch | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Optimistic updates | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Time travel | ❌ | ✅ (devtools) | ❌ | ❌ | ✅ (built-in) |
+| Saga pattern | ❌ | ❌ | ❌ | ❌ | ✅ |
+| ECS | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Blackboard pattern | ❌ | ❌ | ❌ | ❌ | ✅ |
+| **GET WREKT NERDZ** | ❌ | ❌ | ❌ | ❌ | ✅ |
 
-This checks key existence rather than value truthiness, so a stored `undefined` value can still have an existing key.
 
-### `delete(key)`
 
-Delete a key and notify subscribers.
 
-```
-store.delete('user');
-```
 
-Returns `true` if the key existed and was deleted, or `false` if it did not exist.
 
-Deleting a key also clears its associated TTL timer.
 
-### `clear()`
 
-Delete all stored values and notify subscribers for each existing key.
-
-```
-store.clear();
-```
-
-Clears associated TTL timers as well.
-
-### `subscribe()`
-
-Subscribe to changes using one of three supported forms.
-
-#### Key-specific callback
-
-```
-const unsub = store.subscribe('user', (value, prev, key) => {
-  console.log(`${key}:`, prev, '->', value);
-});
-
-store.set('user', 'Alice');
-store.set('other', 1); // Does not trigger this subscription.
-
-unsub();
-```
-
-The callback receives:
-
-| Argument | Description                            |
-| -------- | -------------------------------------- |
-| `value`  | New value, or `undefined` when deleted |
-| `prev`   | Previous value                         |
-| `key`    | Changed key                            |
-
-Returns an unsubscribe function.
-
-#### Global callback
-
-```
-const unsub = store.subscribe((value, prev, key) => {
-  console.log('Changed:', key, prev, '->', value);
-});
-
-store.set('user', 'Alice');
-store.set('count', 1);
-
-unsub();
-```
-
-A global subscription receives changes for every key.
-
-#### Immediate callback subscription
-
-```
-const unsub = store.subscribe(
-  'user',
-  (value, prev, key) => {
-    console.log(value);
-  },
-  { immediate: true }
-);
-```
-
-When the key already exists, its current value is delivered asynchronously through `queueMicrotask()`. The previous value is `undefined`.
-
-If the key does not exist when subscribing, no initial callback is scheduled.
-
-### Async iterator subscription
-
-Subscribe to a key and consume its updates using `for await...of`.
-
-```
-for await (const value of store.subscribe('token')) {
-  await refreshWith(value);
-
-  if (value === 'stop') break;
-}
-```
-
-The iterator yields new values as the key changes. Breaking out of the loop triggers cleanup through the generator's `finally` block.
-
-To receive the current value before subsequent updates, enable `immediate`:
-
-```
-for await (const value of store.subscribe('token', {
-  immediate: true
-})) {
-  await refreshWith(value);
-
-  if (value === 'stop') break;
-}
-```
-
-The initial value is yielded only if the key exists when the iterator begins execution.
-
-The iterator buffers updates so that multiple changes can accumulate while the consumer is processing an earlier value.
-
-### `wait(key, options?)`
-
-Wait for a key to satisfy a condition and return a promise that resolves with its value.
-
-```
-const value = await store.wait('token');
-```
-
-By default, `wait()` resolves immediately if the key already exists. Otherwise, it waits for a matching change.
-
-Options:
-
-| Option                   | Description                                                |
-| ------------------------ | ---------------------------------------------------------- |
-| `predicate(value, prev)` | Determines whether a value satisfies the wait condition    |
-| `timeout`                | Maximum wait duration in milliseconds                      |
-| `immediate`              | Check the current value before waiting; defaults to `true` |
-| `signal`                 | An `AbortSignal` that can cancel the wait                  |
-
-#### Wait for a matching value
-
-```
-const count = await store.wait('count', {
-  predicate: value => value >= 10
-});
-```
-
-The promise resolves when the predicate passes.
-
-#### Wait with a timeout
-
-```
-try {
-  const token = await store.wait('token', {
-    timeout: 5000
-  });
-} catch (error) {
-  if (error.name === 'TimeoutError') {
-    console.log('Wait timed out');
-  }
-}
-```
-
-The timeout rejects the promise with a `TimeoutError`.
-
-#### Cancel a wait
-
-```
-const controller = new AbortController();
-
-const pending = store.wait('token', {
-  signal: controller.signal
-});
-
-controller.abort();
-
-try {
-  await pending;
-} catch (error) {
-  if (error.name === 'AbortError') {
-    console.log('Wait cancelled');
-  }
-}
-```
-
-Aborting a pending wait rejects it with an `AbortError` and cleans up its registered waiter and associated listeners.
-
-### `waitChange(key, options?)`
-
-Wait for a subsequent change, ignoring the current value.
-
-```
-const nextValue = await store.waitChange('status');
-```
-
-Accepts the same options as `wait()`, except that `immediate` is forced to `false`.
-
-### `waitFor(key, predicate, options?)`
-
-A convenience method for waiting until a predicate passes.
-
-```
-const ready = await store.waitFor(
-  'status',
-  value => value === 'ready',
-  { timeout: 10_000 }
-);
-```
-
-Accepts the same options as `wait()`, with the predicate supplied as the second argument.
-
-### `toJSON()`
-
-Return a plain object containing the store's current entries.
-
-```
-const snapshot = store.toJSON();
-```
-
-Useful for inspection, serialization, and creating snapshots of the current state.
-
-Only the stored entries are included; subscriptions, timers, waiters, and other internal state are excluded.
-
-### `freeze()`
-
-Prevent future calls to `set()`.
-
-```
-store.freeze();
-
-store.set('user', 'Alice'); // Throws: Store is frozen
-```
-
-Freezing does not prevent reads, subscriptions, deletions, or clearing the store. It is a write guard for `set()`, not a complete immutable-state mechanism.
-
-## Change notifications
-
-Successful writes and deletions notify matching subscribers and emit a `change` event.
-
-```
-store.on('change', ({ key, value, prev }) => {
-  console.log(key, prev, '->', value);
-});
-```
-
-The event payload contains:
-
-| Property | Description                           |
-| -------- | ------------------------------------- |
-| `key`    | Changed key                           |
-| `value`  | New value, or `undefined` on deletion |
-| `prev`   | Previous value                        |
-
-Setting a key notifies subscribers even if the new value is equal to the previous value. Deleting a nonexistent key produces no notification.
-
-Subscriber callbacks are invoked safely: if one throws, the error is reported through `process.emitWarning()` and notification can continue to other subscribers.
-
-## TTL behavior
-
-TTL is configured per write.
-
-```
-store.set('session', { userId: 42 }, {
-  ttl: 30 * 60 * 1000
-});
-```
-
-Writing to a key with an existing TTL clears its previous timer. A new TTL is installed only when a truthy `ttl` is provided.
-
-When a TTL expires, the store deletes the key and notifies subscribers if the key still exists.
-
-TTL timers use `unref()`, so they do not independently keep the Node.js process alive.
-
-## Example: Coordinating asynchronous work
-
-```
-const store = require('./store');
-
-async function waitForConnection() {
-  return store.waitFor(
-    'connection',
-    value => value === 'connected',
-    { timeout: 10_000 }
-  );
-}
-
-async function start() {
-  const connection = await waitForConnection();
-
-  console.log('Connection state:', connection);
-}
-
-start().catch(console.error);
-
-// Elsewhere in the application:
-store.set('connection', 'connected');
-```
-
-This allows independent parts of an application to coordinate through shared state without repeatedly polling for updates.
-
-## Design notes
-
-- **In-memory only:** Values are not persisted across process restarts.
-- **Singleton by default:** Modules importing the default export share the same store instance.
-- **Independent instances:** Use `new Store()` when isolated state is required.
-- **Key identity:** The underlying `Map` supports arbitrary key types, although some method signatures use strings for convenience.
-- **No equality filtering:** Writes trigger notifications even when values have not changed.
-- **TTL scope:** Expiration is managed per key and is not a general-purpose scheduling system.
-
-## License
-
-Add the license applicable to your project.
-
-Clarify the CommonJS Export ShapeDocument Clear and Freeze Return Values

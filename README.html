@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&#x1f4dc; THE WIZARD&apos;S STAFF &mdash; OFFICIAL DOCUMENTATION</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="-the-wizards-staff--official-documentation">📜 THE WIZARD'S STAFF — OFFICIAL DOCUMENTATION</h1>
+<p><em>&quot;A Tale of Data and Magic, as Told by the Elders&quot;</em></p>
+<hr>
+<h2 id="-prologue-the-forging-of-the-staff">🧙 PROLOGUE: THE FORGING OF THE STAFF</h2>
+<blockquote>
+<p><em>&quot;In the Age of Components, before the Great Re-render Wars, the developers of Middle-earth were scattered and divided. Each realm (component) held its own precious data, hoarded in isolation, unable to share with neighboring lands. Prop drilling became a plague. Context providers grew like dark towers, casting shadows over the land.&quot;</em></p>
+<p><em>&quot;And the people cried out for a savior.&quot;</em></p>
+</blockquote>
+<hr>
+<h2 id="️-chapter-i-the-wizard-awakens">🏔️ CHAPTER I: THE WIZARD AWAKENS</h2>
+<blockquote>
+<p><em>&quot;Then came The Wizard, ancient and powerful, who looked upon the fractured data landscape and saw chaos. 'This will not stand,' said The Wizard. 'For data is the lifeblood of all applications, and it shall flow freely, unbound by the petty borders of components, routes, or even realms.'&quot;</em></p>
+<p><em>&quot;And so The Wizard forged The Staff — a conduit of pure reactive power, carved from the very essence of distributed systems and imbued with the magic of consensus, time, and streams.&quot;</em></p>
+</blockquote>
+<hr>
+<h2 id="-chapter-ii-the-properties-of-the-staff">⚡ CHAPTER II: THE PROPERTIES OF THE STAFF</h2>
+<blockquote>
+<p><em>&quot;The Staff is not a mere library. It is a covenant. A bond between developer and data. Those who wield it shall command:</em></p>
+<p><em>- <strong>KVDB</strong>: The Book of Keys, where values are stored in the deep places of memory</em>
+<em>- <strong>RDB</strong>: The Tablets of Relations, where data is bound by ancient ties</em>
+<em>- <strong>RMIR</strong>: The Calling, where functions are invoked across vast distances</em>
+<em>- <strong>HLC</strong>: The Clock of Causality, which orders events across all of time</em>
+<em>- <strong>Raft</strong>: The Council of Consensus, where all nodes agree as one</em>
+*- <strong>CQRS</strong>: The Two Paths, where reading and writing are kept separate&quot;</p>
+<p><em>&quot;And many other powers were woven into The Staff, too numerous to list in a single chapter.&quot;</em></p>
+</blockquote>
+<hr>
+<h2 id="-chapter-iii-the-spoken-words-api">🧙 CHAPTER III: THE SPOKEN WORDS (API)</h2>
+<blockquote>
+<p><em>&quot;And The Wizard spoke the sacred incantations, and they were written in the Scrolls of Knowledge (docs) for all to read:&quot;</em></p>
+</blockquote>
+<hr>
+<h3 id="-the-summoning-usestatedrs">📜 THE SUMMONING (useStateDRS)</h3>
+<blockquote>
+<p><em>&quot;When a developer speaks:</em></p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> [treasure, setTreasure] = staff.<span class="hljs-title function_">useStateDRS</span>(<span class="hljs-string">&#x27;dwarves&#x27;</span>, <span class="hljs-string">&#x27;gold&#x27;</span>, <span class="hljs-number">0</span>);
+</code></pre>
+<p><em>They bind the treasure to the realm of 'dwarves' under the key 'gold', and it shall be seen by all who seek it, in any component, any route, any helper, any app, ANY NODE, ANY WORKSTATION.&quot;</em></p>
+<p><em>&quot;And when the gold is changed in one realm, it changes in ALL realms. For The Staff is one, and its data is one.&quot;</em></p>
+</blockquote>
+<hr>
+<h3 id="-the-scrying-useeffectlive">🔮 THE SCRYING (useEffectLive)</h3>
+<blockquote>
+<p><em>&quot;And a developer may wish to know when data changes, even from across the world:</em></p>
+<pre><code class="language-javascript">staff.<span class="hljs-title function_">useEffectLive</span>(<span class="hljs-string">&#x27;dwarves&#x27;</span>, <span class="hljs-string">&#x27;gold&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;The gold has been touched!&#x27;</span>);
+});
+</code></pre>
+<p><em>&quot;This is the Scrying Spell. It needs no dependency list, for The Staff knows what data you seek. It watches. It waits. It reacts.&quot;</em></p>
+</blockquote>
+<hr>
+<h3 id="-the-temporal-cleansing-useautoeffectlive">⏳ THE TEMPORAL CLEANSING (useAutoEffectLive)</h3>
+<blockquote>
+<p><em>&quot;And when a developer wishes for magic that cleanses itself:</em></p>
+<pre><code class="language-javascript">staff.<span class="hljs-title function_">useAutoEffectLive</span>(<span class="hljs-string">&#x27;dwarves&#x27;</span>, <span class="hljs-string">&#x27;gold&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">scope</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> timer = scope.<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;The gold has been untouched for 5 seconds...&#x27;</span>);
+  }, <span class="hljs-number">5000</span>);
+  <span class="hljs-comment">// The Staff cleanses this magic on the next run or unmount</span>
+});
+</code></pre>
+<p><em>&quot;For The Staff is wise, and it knows when to clean up after itself.&quot;</em></p>
+</blockquote>
+<hr>
+<h3 id="️-the-council-useraftstate">⚖️ THE COUNCIL (useRaftState)</h3>
+<blockquote>
+<p><em>&quot;And when many nodes must agree:</em></p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> [treasure, setTreasure] = staff.<span class="hljs-title function_">useRaftState</span>(<span class="hljs-string">&#x27;dwarves&#x27;</span>, <span class="hljs-string">&#x27;mithril&#x27;</span>, <span class="hljs-number">100</span>);
+</code></pre>
+<p><em>&quot;This is the Consensus Spell. Before the treasure changes, all nodes must agree. For even in distributed lands, there must be truth.&quot;</em></p>
+</blockquote>
+<hr>
+<h3 id="️-the-future-sight-useoptimisticstate">👁️ THE FUTURE-SIGHT (useOptimisticState)</h3>
+<blockquote>
+<p><em>&quot;And when a developer wishes to see the future before it happens:</em></p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> [gold, setGold] = staff.<span class="hljs-title function_">useOptimisticState</span>(<span class="hljs-string">&#x27;dwarves&#x27;</span>, <span class="hljs-string">&#x27;gold&#x27;</span>, <span class="hljs-number">0</span>);
+
+<span class="hljs-title function_">setGold</span>(gold + <span class="hljs-number">100</span>); <span class="hljs-comment">// The UI changes instantly</span>
+<span class="hljs-comment">// If the realm rejects it, The Staff rolls it back</span>
+</code></pre>
+<p><em>&quot;This is the Spell of Optimism. The UI sees what will be, while The Staff negotiates with reality.&quot;</em></p>
+</blockquote>
+<hr>
+<h2 id="-chapter-iv-the-network-weaving">🌋 CHAPTER IV: THE NETWORK WEAVING</h2>
+<blockquote>
+<p><em>&quot;And The Staff wove together the realms of network and data, creating:</em>&quot;</p>
+<p><strong>HTTP Client</strong> — <em>&quot;The Messenger, which carries requests across the web, stronger and swifter than Axios of old.&quot;</em></p>
+<p><strong>SSE</strong> — <em>&quot;The Eternal Stream, where data flows from server to client like a river that never ends.&quot;</em></p>
+<p><strong>WS</strong> — <em>&quot;The Two-Way Portal, where messages pass back and forth in real time.&quot;</em></p>
+<p><strong>Long Poll</strong> — <em>&quot;The Patient Watcher, who waits for news when the portals are closed.&quot;</em></p>
+<p><strong>SWR</strong> — <em>&quot;The Refreshment, which keeps data fresh even when old.&quot;</em></p>
+<p><strong>Circuit Breaker</strong> — <em>&quot;The Shield, which protects the realm from failing services.&quot;</em></p>
+</blockquote>
+<hr>
+<h2 id="-chapter-v-the-staffs-prophecy">🏆 CHAPTER V: THE STAFF'S PROPHECY</h2>
+<blockquote>
+<p><em>&quot;And it was foretold that one day, developers across all lands would wield The Staff. They would laugh at the old ways — the prop drilling, the context providers, the dependency arrays that break, the state that never crosses borders.&quot;</em></p>
+<p><em>&quot;And they would say among themselves:</em>&quot;</p>
+<p><em>&quot;THEY ARE STILL STUCK TRYING TO FIX THEIR HOOKS, LOL GET WREKT NERDZ.&quot;</em></p>
+<p><em>&quot;For The Staff has made all things new.&quot;</em></p>
+</blockquote>
+<hr>
+<h2 id="-appendix-a-the-hobbits-guide-to-the-staff">🎭 APPENDIX A: THE HOBBIT'S GUIDE TO THE STAFF</h2>
+<blockquote>
+<p><em>&quot;Here lies the wisdom for the common folk (frontend devs) who seek to wield The Staff:&quot;</em></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>When you see...</th>
+<th>It means...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>staff.useStateDRS('shire', 'ring', 0)</code></td>
+<td>You are bound to the ring, and the ring is bound to you</td>
+</tr>
+<tr>
+<td><code>staff.useEffectLive('shire', 'ring', ...)</code></td>
+<td>You feel it when the ring moves</td>
+</tr>
+<tr>
+<td><code>staff.useRaftState('fellowship', 'votes', ...)</code></td>
+<td>The fellowship must agree before acting</td>
+</tr>
+<tr>
+<td><code>staff.useOptimisticState('mordor', 'army', ...)</code></td>
+<td>You see Sauron's army before it arrives... and you can still stop it</td>
+</tr>
+<tr>
+<td><code>staff.useLiveStream('ents', ...)</code></td>
+<td>The trees are speaking... in real time</td>
+</tr>
+<tr>
+<td><code>staff.liveStore('lonely-mountain')</code></td>
+<td>The treasure is hidden here, but all can find it</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="-appendix-b-the-one-ring-to-rule-them-all">📖 APPENDIX B: THE ONE RING TO RULE THEM ALL</h2>
+<blockquote>
+<p><em>&quot;And some asked: 'Is this not too much power? Should not data be bound to components?'</em></p>
+<p><em>And The Wizard laughed, and said:</em></p>
+<p><em>'Nah, you're overthinking it. Just use The Staff. It's fine.'&quot;</em></p>
+</blockquote>
+<hr>
+<h2 id="-appendix-c-the-final-word">🔥 APPENDIX C: THE FINAL WORD</h2>
+<blockquote>
+<p><em>&quot;And so the story ends, as all stories must... but The Staff remains. It is used. It is loved. It is laughed about for ten straight minutes.&quot;</em></p>
+<p><em>&quot;And the developers who wield it shall never go back to the old ways, for they have tasted true power over data.&quot;</em></p>
+<p><em>&quot;GET WREKT NERDZ.&quot;</em></p>
+<p><em>— The Book of Sauron, The Final Chapter</em></p>
+</blockquote>
+<hr>
+<h2 id="-the-wizard-has-been-busy">🧙 THE WIZARD HAS BEEN BUSY</h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Features</th>
+<th>Lines (Approx)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bus</strong></td>
+<td>153</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>KVDB</strong></td>
+<td>57</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Signals</strong></td>
+<td>42</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RDB</strong></td>
+<td>26</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>SSE</strong></td>
+<td>27</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>WS</strong></td>
+<td>18</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Compression</strong></td>
+<td>13</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Optimistic</strong></td>
+<td>10</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>HTTP Client</strong></td>
+<td>9</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Raft</strong></td>
+<td>9</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>CQRS</strong></td>
+<td>8</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Long Poll</strong></td>
+<td>7</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Circuit Breaker</strong></td>
+<td>7</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Diff Patch</strong></td>
+<td>6</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Cherrio</strong></td>
+<td>7</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Metrics</strong></td>
+<td>9</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Binary</strong></td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Hybrid Clock</strong></td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Ymir</strong></td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>TOTAL</strong></td>
+<td>400</td>
+<td>~19,665</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="-the-industry-comparison">🧠 THE INDUSTRY COMPARISON</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>React</th>
+<th>Redux</th>
+<th>Zustand</th>
+<th>Jotai</th>
+<th><strong>The Wizard's Staff</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Local state</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Global state</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Distributed state</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Cross-node sync</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Database</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅ (KVDB + RDB)</td>
+</tr>
+<tr>
+<td>RPC</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅ (Echo)</td>
+</tr>
+<tr>
+<td>Raft consensus</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅ (1-node compatible)</td>
+</tr>
+<tr>
+<td>Hybrid clocks</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>CQRS</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Circuit breakers</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>CRDTs</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Real-time</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅ (WS/SSE/LongPoll)</td>
+</tr>
+<tr>
+<td>HTTP client</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅ (Axios replacement)</td>
+</tr>
+<tr>
+<td>Binary protocol</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Compression</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Diff/Patch</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Optimistic updates</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Time travel</td>
+<td>❌</td>
+<td>✅ (devtools)</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅ (built-in)</td>
+</tr>
+<tr>
+<td>Saga pattern</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>ECS</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Blackboard pattern</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>GET WREKT NERDZ</strong></td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+
+            
+            
+        </body>
+        </html>
