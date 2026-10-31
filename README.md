@@ -208,9 +208,21 @@
 | **Binary** | 2 |  |
 | **Hybrid Clock** | 3 |  |
 | **Ymir** | 3 ||
-| **TOTAL** | 400 | ~19,665|
+| **TOTAL** | 400 | 1,847,467 + 197,081 + 91,412 + 2,528,597 + 5,633,745 = 10.3 million lines |
 
+
+> Just ran the powershell cmd, truly do not know how long it will take to get the actual figure... holy fuck... soo this figure does not include node modules. In order as to which they were written:
+> - platform codebase
+> - platform modules
+> - baldr: icons
+> - ui comps library thats included with the platform
+> - workbench distribution 
+>
+> Also the figure given for amount features... I have no idea if that's right. Given the amount of lines of code... ya I doubt it's currently sitting at 400.
+>
+> Kinda speechless, as that is truly insane... Was not expecting that.
 --- 
+
 
 
 
