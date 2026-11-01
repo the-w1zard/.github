@@ -1,9 +1,9 @@
 
 
 <div align="left" style="position: relative;">
-<img src="../icons/gandalf.png" align="right" width="30%" style="margin: -20px 0 0 20px;">
+<img src="./icons/gandalf.png" align="right" width="30%" style="margin: -20px 0 0 20px;">
 
-<h1>The Wizard's Staff<span style="font-size:18px;" > — OFFICIAL DOCUMENTATION</span></h1>
+<span style="font-size:26px;" > The Wizard's Staff — <span style="font-size:16px;" > OFFICIAL DOCUMENTATION</span></span>
 <p align="left"><em>A Tale of Data and Magic, as Told by the Elders</em></p>
 <p align="left"><em>The most opinionated platform... ever.</em></p>
 <p align="left"><em>Trust me... I'm a fucking wizard... 🧙</em></p>
