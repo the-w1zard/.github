@@ -1,7 +1,7 @@
 
 
 <div align="left" style="position: relative;">
-<img src="./icons/gandalf.png" align="right" width="30%" style="margin: -20px 0 0 20px;">
+<img src="../icons/gandalf.png" align="right" width="30%" style="margin: -20px 0 0 20px;">
 
 <h1>The Wizard's Staff<span style="font-size:18px;" > — OFFICIAL DOCUMENTATION</span></h1>
 <p align="left"><em>A Tale of Data and Magic, as Told by the Elders</em></p>
