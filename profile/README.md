@@ -4,9 +4,16 @@
 <img src="../icons/gandalf.png" align="right" width="30%" style="margin: -20px 0 0 20px;">
 
 <h3 style="font-size:26px;" > The Wizard's Staff — <span style="font-size:16px;" > OFFICIAL DOCUMENTATION</span></h3>
-<p align="left"><em>A Tale of Data and Magic, as Told by the Elders</em></p>
 <p align="left"><em>The most opinionated platform... ever.</em></p>
 <p align="left"><em>Trust me... I'm a fucking wizard... 🧙</em></p>
+<p align="left">Platforms stats:</p>
+<p align="left">
+<img src="https://img.shields.io/badge/LINES OF CODE- 10,300,000-95ED27?style=flat">
+<img src="https://img.shields.io/badge/FEATURES- UNKNOWN-95ED27?style=flat">
+<img src="https://img.shields.io/badge/REACTS RULES ON HOOKS- 0-95ED27?style=flat">
+<img src="https://img.shields.io/badge/DISRUPTORS- 18+-95ED27?style=flat">
+<img src="https://img.shields.io/badge/MESSAGE QUEUES- 5-95ED27?style=flat">
+</p>
 <p align="left">VSCode ext:</p>
 <p align="left">
 <img src="https://img.shields.io/badge/THEMES- 251-95ED27?style=flat">
@@ -19,17 +26,17 @@
 <p align="left">Small but powerful repos worth checking out:</p>
 <p align="left">
 
-<a href="https://github.com/the-w1zard/app_store"><img src="https://img.shields.io/badge/Store / Maelstrom-000000.svg?style=flat&logo=JetBrains&logoColor=white" alt="JetBrains"></a>
-<a href="https://github.com/the-w1zard/dx"><img src="https://img.shields.io/badge/UX /DX-34A853.svg?style=flat&logo=Android&logoColor=white" alt="Android"></a>
-<a href="https://github.com/the-w1zard/temporal_shift"><img src="https://img.shields.io/badge/Temporal Shift-77AA99.svg?style=flat&logo=Org&logoColor=white" alt="Org"></a>
-<a href="https://github.com/the-w1zard/the_cloud"><img src="https://img.shields.io/badge/The Cloud-02303A.svg?style=flat&logo=Gradle&logoColor=white" alt="Gradle"></a>
-<a href="https://github.com/the-w1zard/signals"><img src="https://img.shields.io/badge/Signals-02303A.svg?style=flat&logo=Gradle&logoColor=white" alt="Gradle"></a>
-<img src="https://img.shields.io/badge/Sometimes, my genius... It generates gravity.-4285F4.svg?style=flat&logo=🧙&logoColor=white" alt="Google">
-<a href="https://github.com/the-w1zard"><img src="https://img.shields.io/badge/Coming Soon: The Wizard Platform-7F52FF.svg?style=flat&logo=Kotlin&logoColor=white" alt="Kotlin"></a>
-<a href="https://github.com/the-w1zard"><img src="https://img.shields.io/badge/Coming Soon: Hadron Particle Disruptor-%23ED8B00.svg?style=flat&logo=openjdk&logoColor=white" alt="java"></a>
+- [![🧙 Alias Types](https://img.shields.io/badge/Alias%20Types-000000.svg?style=flat&logo=typescript&logoColor=white)](https://github.com/the-w1zard/alias_types) <a href="https://www.npmjs.com/package/@the-w1zard/alias_types"><img src="../icons/npm.png" alt="alias_types" width="20" height="20"></a>
+- [![🧙 The Cloud](https://img.shields.io/badge/%F0%9F%A7%99%20App%20Store-000000.svg?style=flat)](https://github.com/the-w1zard/app_store)  <a href="https://www.npmjs.com/package/@the-w1zard/store"><img src="../icons/npm.png" alt="app_store" width="20" height="20"></a>
+- [![🧙 The Cloud](https://img.shields.io/badge/%F0%9F%A7%99%20DX-95ED27.svg?style=flat)](https://github.com/the-w1zard/dx) <a href="https://www.npmjs.com/package/@the-w1zard/dx"><img src="../icons/npm.png" alt="dx" width="20" height="20"></a>
+- [![🧙 The Cloud](https://img.shields.io/badge/%F0%9F%A7%99%20Temporal%20Shift-77AA99.svg?style=flat)](https://github.com/the-w1zard/temporal_shift) <a href="https://www.npmjs.com/package/@the-w1zard/temporal_shift"><img src="../icons/npm.png" alt="temporal_shift" width="20" height="20"></a>
+- [![🧙 The Cloud](https://img.shields.io/badge/%F0%9F%A7%99%20The%20Cloud-02303A.svg?style=flat)](https://github.com/the-w1zard/the_cloud)  <a href="https://www.npmjs.com/package/@the-w1zard/the-cloud"><img src="../icons/npm.png" alt="app_store" width="20" height="20"></a>
+- [![🧙 SINGULARITY](https://img.shields.io/badge/%F0%9F%A7%99%20SINGULARITY-02303A.svg?style=flat)](https://github.com/the-w1zard)  
+- [![🧙 Sometimes,%20my%20genius...%20It%20generates%20gravity.](https://img.shields.io/badge/%F0%9F%A7%99%20Sometimes,%20my%20genius...%20It%20generates%20gravity.-4285F4.svg?style=flat)](https://github.com/the-w1zard)  
+- [![🧙 The Wizard](https://img.shields.io/badge/%F0%9F%A7%99%20Coming%20Soon:%20The%20Wizard%20Ed.-7F52FF.svg?style=flat)](https://github.com/the-w1zard)  
+- [![🧙 Hadron Particle Disruptor](https://img.shields.io/badge/%F0%9F%A7%99%20Coming%20Soon:%20Hadron%20Particle%20Disruptor-23ED8B00.svg?style=flat)](https://github.com/the-w1zard)  
 </p>
-<p align="left">The goal? To remove all friction... from everything.</p>
-
+<p align="left">The goal? To remove all friction, from everything.</p>
 </div>
 <br clear="right">
 
@@ -288,7 +295,25 @@
 | **GET WREKT NERDZ** | ❌ | ❌ | ❌ | ❌ | ✅ |
 
 
-
+> [!IMPORTANT]
+> 
+> All jokes aside... this will actually be the most opinionated platform... I genuinely beleive that you will have within your grasp in your lifetime. 
+> 
+> Not that, its because I don't think anyone can do this... THEY CAN. But woooooulld they?... No.
+>
+> This coming from the same person who made the worlds first workbench distribution. 
+>
+> When your looking at this... 10.3 mil lines of code... AND COUNTING mind you, because I'm not done yet. That number is insane for a single dev.
+>
+> The reason for it is though, I transitioned careers and coming from a very hordcore sales career to this... My extreme motivation, which is what propelled me to the top in my previous career, I have carried over. I work more than... anyone I know anyways.
+>
+> Coupled with... A unrelenting attitude with a very low threshhold for bullshit of any kind... Not to mention, being results driven... then... ceremony driven, which I absolutely hate. 
+>
+> THAT'S how this came to be. This paticular platform started as a joke, really. 'Yo man, you know how cool it would be if the dev server... ran off of a gpu instead...' 
+>
+> But, the real 'being anal to the last character typed' is how everything is shaped. The 100+ platform primitives that are, literally, all the same shape but could not be any different from one... to the next... Point at any other project that even does 2... 
+>
+> Not to mention, not a single line of this was planned. And I know there will only be a single person who ever reads this that will actually beleive that but, trust me... If there was an actual great platform out there that did just go, 'Hey fucker... heres our platform **plops a fucking rats nest in my lap**... ya good luck configuring and setting that piece of shit up... because we barely had any idea what was going on... so we're leaving the rest up to you!' Theres a reason why it is supposed to be called... a 'solution' not a fucking headache, not a problem... but a solution to said things...
 
 
 
