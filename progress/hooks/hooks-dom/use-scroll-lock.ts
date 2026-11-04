@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from '#sauron'
-import { cn } from 'utils'
+import  { useEffect, useRef, useState } from '#sauron'
 
 type UseScrollLockOptions = {
   autoLock?: boolean
