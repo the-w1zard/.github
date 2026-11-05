@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;tap&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="tap"><code>tap</code></h1>
+<blockquote>
+<p>Run a side effect on a value, return the value unchanged. The value goes in, the effect runs, the same value comes out. Nothing is transformed, nothing is copied, nothing is wrapped.</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> user = <span class="hljs-title function_">tap</span>(<span class="hljs-title function_">fetchUser</span>(id), <span class="hljs-function"><span class="hljs-params">u</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;loaded&quot;</span>, u.<span class="hljs-property">id</span>))
+<span class="hljs-comment">// → logs &quot;loaded 42&quot;, returns the user</span>
+</code></pre>
+<p>The point: inject a side effect into an expression without breaking the chain. Logging, asserting, emitting events, mutating a cache — anything that needs to happen <em>to</em> a value without changing it.</p>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { tap } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+<span class="hljs-keyword">const</span> x = <span class="hljs-title function_">tap</span>(<span class="hljs-title function_">compute</span>(), <span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(v))
+<span class="hljs-comment">// x is exactly what compute() returned</span>
+</code></pre>
+<p>That's it. You're done. You now know how to use <code>tap</code>.</p>
+<p>It's <code>console.log</code> for people who don't want to break the expression. Pass a value and a function; the function sees the value, the value comes back unchanged.</p>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="signature">Signature</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> tap&lt;T&gt;(<span class="hljs-attr">value</span>: T, <span class="hljs-attr">fn</span>: <span class="hljs-function">(<span class="hljs-params">value: T</span>) =&gt;</span> <span class="hljs-built_in">any</span>): T
+</code></pre>
+<ul>
+<li><code>value</code> — anything. Object, primitive, promise, whatever.</li>
+<li><code>fn</code> — a function called with <code>value</code>. Its return is discarded.</li>
+<li>Returns <code>value</code>. The identical reference (for objects) or identical value (for primitives).</li>
+</ul>
+<h4 id="how-it-works">How it works</h4>
+<pre><code class="language-ts"><span class="hljs-title function_">fn</span>(value)
+<span class="hljs-keyword">return</span> value
+</code></pre>
+<p>Two lines. <code>fn</code> runs for its side effect; its return value is ignored. <code>value</code> is returned as-is.</p>
+<p>The <code>any</code> return type on <code>fn</code> is deliberate — it says &quot;you can return whatever, I don't care.&quot; This lets you pass <code>console.log</code> (returns <code>void</code>), an arrow that returns a boolean (assertions), or anything else, without the compiler complaining.</p>
+<h4 id="why-its-useful">Why it's useful</h4>
+<p>The pattern it solves is: <strong>you have a value, you want to do something with it, and you don't want to introduce a variable or a statement.</strong></p>
+<p>Without <code>tap</code>:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> user = <span class="hljs-title function_">fetchUser</span>(id)
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;loaded&quot;</span>, user.<span class="hljs-property">id</span>)
+<span class="hljs-keyword">return</span> user
+</code></pre>
+<p>With <code>tap</code>:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">return</span> <span class="hljs-title function_">tap</span>(<span class="hljs-title function_">fetchUser</span>(id), <span class="hljs-function"><span class="hljs-params">u</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;loaded&quot;</span>, u.<span class="hljs-property">id</span>))
+</code></pre>
+<p>Same behavior, one expression, no intermediate variable. This matters most in pipelines:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">return</span> <span class="hljs-title function_">tap</span>(
+  <span class="hljs-title function_">tap</span>(
+    <span class="hljs-title function_">fetchUser</span>(id),
+    <span class="hljs-function"><span class="hljs-params">u</span> =&gt;</span> log.<span class="hljs-title function_">info</span>(<span class="hljs-string">&quot;fetched&quot;</span>, u.<span class="hljs-property">id</span>),
+  ),
+  <span class="hljs-function"><span class="hljs-params">u</span> =&gt;</span> metrics.<span class="hljs-title function_">increment</span>(<span class="hljs-string">&quot;user.loaded&quot;</span>),
+)
+</code></pre>
+<p>Ugly when nested like that — but in a fluent chain or a call to a higher-order function, <code>tap</code> is the clean way to slip a side effect in.</p>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Logging without a statement</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> result = <span class="hljs-title function_">tap</span>(<span class="hljs-title function_">compute</span>(), <span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;compute →&quot;</span>, v))
+</code></pre>
+<p><strong>Asserting mid-pipeline</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> parsed = <span class="hljs-title function_">tap</span>(<span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(raw), <span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> {
+  <span class="hljs-keyword">if</span> (!v.<span class="hljs-property">id</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;missing id&quot;</span>)
+})
+</code></pre>
+<p><strong>Emitting events</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> user = <span class="hljs-title function_">tap</span>(<span class="hljs-title function_">createUser</span>(data), <span class="hljs-function"><span class="hljs-params">u</span> =&gt;</span> bus.<span class="hljs-title function_">emit</span>(<span class="hljs-string">&quot;user.created&quot;</span>, u))
+</code></pre>
+<p><strong>Cache writes</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> value = <span class="hljs-title function_">tap</span>(<span class="hljs-title function_">expensiveCompute</span>(), <span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> cache.<span class="hljs-title function_">set</span>(key, v))
+</code></pre>
+<p><strong>Debug breaks</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> x = <span class="hljs-title function_">tap</span>(intermediate, <span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> { <span class="hljs-keyword">debugger</span> })
+</code></pre>
+<p><strong>Chained in a pipeline</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">return</span> <span class="hljs-title function_">pipe</span>(
+  <span class="hljs-title function_">fetchUser</span>(id),
+  <span class="hljs-function"><span class="hljs-params">u</span> =&gt;</span> <span class="hljs-title function_">tap</span>(u, log),
+  <span class="hljs-function"><span class="hljs-params">u</span> =&gt;</span> <span class="hljs-title function_">tap</span>(u, validate),
+  <span class="hljs-function"><span class="hljs-params">u</span> =&gt;</span> <span class="hljs-title function_">transform</span>(u),
+)
+</code></pre>
+<h4 id="behavior">Behavior</h4>
+<ul>
+<li><strong>Same reference for objects.</strong> <code>tap(obj, fn) === obj</code>. Not a copy, not a clone, not a proxy.</li>
+<li><strong>Same value for primitives.</strong> <code>tap(42, fn) === 42</code>.</li>
+<li><strong><code>fn</code> runs synchronously.</strong> <code>tap</code> is not async. If <code>fn</code> returns a promise, it's discarded and the promise floats — potentially unhandled.</li>
+<li><strong><code>fn</code>'s return is discarded.</strong> If you need to transform, use <code>map</code>-style code, not <code>tap</code>.</li>
+<li><strong><code>fn</code> receives the exact value passed in.</strong> No wrapping, no unwrapping. If <code>value</code> is a promise, <code>fn</code> sees the promise.</li>
+<li><strong>If <code>fn</code> throws, <code>tap</code> throws.</strong> No swallowing. The value never gets returned. This is often desirable — assertions in <code>tap</code> are a legitimate pattern.</li>
+</ul>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li><strong>Async <code>fn</code> is dangerous.</strong> <code>tap(x, async v =&gt; { throw new Error() })</code> returns <code>x</code> immediately, but the async function's rejection becomes an unhandled rejection. Use <code>tap</code> only with synchronous side effects, or explicitly handle the promise inside.</li>
+<li><strong>Order of arguments.</strong> Value first, function second. This is different from lodash's <code>_.tap(value, interceptor)</code> — which happens to be the same order, so no gotcha there. But it's different from <code>pipe</code>-style utilities where the function comes first. Read the signature.</li>
+<li><strong>Return type is <code>T</code>, not <code>any</code>.</strong> The compiler will treat the result as the original type, which is correct — <code>tap</code> truly is identity at runtime. But if you were hoping to fool the type system into thinking <code>fn</code> transformed the value, it doesn't.</li>
+<li><strong><code>fn</code> is <code>(value: T) =&gt; any</code>, not <code>(value: T) =&gt; void</code>.</strong> <code>void</code> would be stricter and more accurate, but <code>any</code> is more permissive — it lets you pass functions that return values without TypeScript complaining. The tradeoff is a slightly weaker contract.</li>
+<li><strong>Not lazy.</strong> <code>tap</code> runs the side effect immediately. It's not a deferred hook.</li>
+<li><strong>Not a debugger.</strong> It doesn't know when to skip the side effect based on environment. Wrap your <code>fn</code> in a check if you only want logging in dev.</li>
+</ul>
+<h4 id="relationship-to-other-utilities">Relationship to other utilities</h4>
+<p><strong><code>tap</code> in a <code>Chain</code></strong></p>
+<p>Both <code>Chain</code> and <code>ReChain</code> have a <code>.tap(fn)</code> method that works the same way — side effect in, same chain out. The standalone <code>tap</code> function is the point-free version. Use the method when you're already in a chain; use the function when you're not.</p>
+<p><strong><code>tap</code> vs <code>map</code></strong></p>
+<p><code>map</code> transforms. <code>tap</code> observes. If <code>fn</code> returns a value you care about, you wanted <code>map</code>. If <code>fn</code> returns something you don't care about, you wanted <code>tap</code>. The names are the difference.</p>
+<p><strong><code>tap</code> vs <code>if</code></strong></p>
+<p><code>tap</code> is not conditional. If you need the side effect only when a condition holds, either wrap the <code>fn</code>:</p>
+<pre><code class="language-ts"><span class="hljs-title function_">tap</span>(x, <span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> { <span class="hljs-keyword">if</span> (cond) <span class="hljs-title function_">log</span>(v) })
+</code></pre>
+<p>Or use a conditional.</p>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not a debug logger. It's a mechanism, not a logger.</li>
+<li>Not a transformation. It never changes the value.</li>
+<li>Not async-aware. Promises and async side effects need explicit handling.</li>
+<li>Not error-catching. <code>fn</code> throwing propagates.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p>A side effect is a statement in a world of expressions. <code>tap</code> is how you smuggle one into a pipeline without breaking the shape: value in, effect runs, value out. Identity with a witness.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            
+            
+        </body>
+        </html>

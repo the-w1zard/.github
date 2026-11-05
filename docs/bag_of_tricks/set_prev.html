@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;setPrev&DiacriticalGrave; &sol; &DiacriticalGrave;setPrevB&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="setprev--setprevb"><code>setPrev</code> / <code>setPrevB</code></h1>
+<blockquote>
+<p>Functional state setters for React-style <code>useState</code>. Give them a setter, give them a value, and they update based on the previous state without you having to write <code>setX(prev =&gt; …)</code> inline every time.</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hljs-title function_">setPrev</span>(setUser, <span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-string">&quot;name&quot;</span>)   <span class="hljs-comment">// setUser(prev =&gt; ({ ...prev, name: &quot;Alice&quot; }))</span>
+<span class="hljs-title function_">setPrev</span>(setUser, { <span class="hljs-attr">age</span>: <span class="hljs-number">30</span> })       <span class="hljs-comment">// setUser(prev =&gt; ({ ...prev, age: 30 }))</span>
+<span class="hljs-title function_">setPrevB</span>(setOpen)                   <span class="hljs-comment">// setOpen(prev =&gt; !prev)</span>
+</code></pre>
+<p>Two shapes: <code>setPrev</code> for object state with a single key or a merge, <code>setPrevB</code> for boolean toggles.</p>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { setPrev, setPrevB } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+<span class="hljs-comment">// Toggle a boolean</span>
+<span class="hljs-title function_">setPrevB</span>(setOpen)
+
+<span class="hljs-comment">// Set one key on an object</span>
+<span class="hljs-title function_">setPrev</span>(setForm, <span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-string">&quot;name&quot;</span>)
+
+<span class="hljs-comment">// Merge several keys</span>
+<span class="hljs-title function_">setPrev</span>(setForm, { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">30</span> })
+</code></pre>
+<p>That's it. You're done. You now know how to use both.</p>
+<p>They exist because <code>setState(prev =&gt; ({ ...prev, key: value }))</code> is the same boilerplate every time, and the form with the spread is where people accidentally write <code>setState({ ...state, ... })</code> and use a stale <code>state</code>. These helpers force the functional form, so you can't reference stale state by accident.</p>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="signatures">Signatures</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> setPrev&lt;T = <span class="hljs-built_in">any</span>&gt;(<span class="hljs-attr">setter</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">v</span>: <span class="hljs-built_in">any</span>, k?: <span class="hljs-built_in">any</span>): <span class="hljs-built_in">void</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">setPrevB</span>(<span class="hljs-params">setter: <span class="hljs-built_in">any</span></span>): <span class="hljs-built_in">void</span>
+</code></pre>
+<ul>
+<li><code>setter</code> — a React-style state setter (<code>Dispatch&lt;SetStateAction&lt;S&gt;&gt;</code>).</li>
+<li><code>v</code> — the value to set. With <code>k</code> provided, this is the value for that key. Without <code>k</code>, this is an object to spread-merge into <code>prev</code>.</li>
+<li><code>k</code> — optional key. If provided, only that key is updated.</li>
+<li><code>setPrevB</code> toggles a boolean via <code>!prev</code>.</li>
+</ul>
+<p>Both return <code>void</code>. They call the setter with a functional updater and don't return anything.</p>
+<h4 id="what-setprev-does">What <code>setPrev</code> does</h4>
+<pre><code class="language-ts"><span class="hljs-title function_">setPrev</span>(setter, v, k?)
+</code></pre>
+<p>Two modes, chosen by whether <code>k</code> is <code>undefined</code>:</p>
+<p><strong>With <code>k</code> — single-key update:</strong></p>
+<pre><code class="language-ts"><span class="hljs-title function_">setter</span>(<span class="hljs-function">(<span class="hljs-params">prev</span>) =&gt;</span> ({ ...prev, [k]: v }))
+</code></pre>
+<p>Clone the previous object, replace one key, hand the clone to the setter. The <code>prev</code> is never mutated.</p>
+<p><strong>Without <code>k</code> — object merge:</strong></p>
+<pre><code class="language-ts"><span class="hljs-title function_">setter</span>(<span class="hljs-function">(<span class="hljs-params">prev</span>) =&gt;</span> ({ ...prev, ...(v <span class="hljs-keyword">as</span> <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-built_in">any</span>&gt;) }))
+</code></pre>
+<p>Clone the previous object, spread the new object over it, hand the clone to the setter. Useful for multi-field updates:</p>
+<pre><code class="language-ts"><span class="hljs-title function_">setPrev</span>(setForm, { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">30</span> })
+</code></pre>
+<p>Both modes rely on <code>prev</code> being an object. If <code>prev</code> is a primitive, the spread produces a weird result — see gotchas.</p>
+<h4 id="what-setprevb-does">What <code>setPrevB</code> does</h4>
+<pre><code class="language-ts"><span class="hljs-title function_">setter</span>(<span class="hljs-function">(<span class="hljs-params">prev</span>) =&gt;</span> !prev)
+</code></pre>
+<p>Toggles. <code>true</code> becomes <code>false</code>, everything truthy becomes <code>false</code>, everything falsy becomes <code>true</code>. Named <code>B</code> for boolean, but the implementation is a plain logical-not, so it works on any value with a boolean interpretation. The common case is a <code>useState&lt;boolean&gt;</code>.</p>
+<h4 id="why-the-functional-form-matters">Why the functional form matters</h4>
+<p>The bug <code>setPrev</code> prevents is subtle:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// ❌ uses `state` from the render closure — stale if the setter is called</span>
+<span class="hljs-comment">//    twice in the same tick, or after an async boundary</span>
+<span class="hljs-title function_">setUser</span>({ ...user, <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Alice&quot;</span> })
+
+<span class="hljs-comment">// ✅ uses the latest state, always</span>
+<span class="hljs-title function_">setUser</span>(<span class="hljs-function"><span class="hljs-params">prev</span> =&gt;</span> ({ ...prev, <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Alice&quot;</span> }))
+</code></pre>
+<p>The functional form is correct. The direct-object form is a footgun that works in tests and breaks in production. <code>setPrev</code> and <code>setPrevB</code> make the correct form the only form. You can't accidentally reach for stale state because the helper never gives you a way to.</p>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Controlled form fields</strong></p>
+<pre><code class="language-tsx">&lt;input onChange={<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> <span class="hljs-title function_">setPrev</span>(setForm, e.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>, <span class="hljs-string">&quot;name&quot;</span>)} /&gt;
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> setPrev(setForm, e.target.value, &quot;email&quot;)} /&gt;</span>
+</code></pre>
+<p><strong>Multi-field updates</strong></p>
+<pre><code class="language-ts"><span class="hljs-title function_">setPrev</span>(setForm, { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-attr">email</span>: <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-attr">submitted</span>: <span class="hljs-literal">true</span> })
+</code></pre>
+<p><strong>Toggle UI state</strong></p>
+<pre><code class="language-tsx">&lt;button onClick={<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">setPrevB</span>(setOpen)}&gt;<span class="hljs-title class_">Toggle</span>&lt;/button&gt;
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> setPrevB(setLoading)}&gt;Loading<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+</code></pre>
+<p><strong>Reset a field</strong></p>
+<pre><code class="language-ts"><span class="hljs-title function_">setPrev</span>(setForm, <span class="hljs-literal">undefined</span>, <span class="hljs-string">&quot;error&quot;</span>)
+</code></pre>
+<p><strong>Clear a form</strong></p>
+<pre><code class="language-ts"><span class="hljs-title function_">setPrev</span>(setForm, { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-attr">email</span>: <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-attr">error</span>: <span class="hljs-literal">undefined</span> })
+</code></pre>
+<h4 id="behavioral-notes">Behavioral notes</h4>
+<ul>
+<li><strong>Never mutates <code>prev</code>.</strong> Both modes spread into a new object. The setter receives a fresh reference.</li>
+<li><strong>Synchronous call to the setter.</strong> The helper builds the functional updater and calls it. React schedules the actual state update.</li>
+<li><strong>Idempotent within a tick.</strong> Calling <code>setPrev(setter, &quot;a&quot;, &quot;x&quot;)</code> twice in the same render queues two updaters, each applied to the result of the previous. Both are correct.</li>
+<li><strong><code>prev</code> is captured by the closure.</strong> The updater reads <code>prev</code> at the moment React invokes it, not at the moment the helper was called. That's the whole point.</li>
+</ul>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li><strong><code>setPrev</code> requires <code>prev</code> to be an object.</strong> If <code>prev</code> is a number, string, or <code>null</code>, <code>{ ...prev }</code> produces something surprising. <code>{ ...42 }</code> is <code>{}</code>, <code>{ ...null }</code> is <code>{}</code>. The helper does not check; it assumes object state.</li>
+<li><strong>Setting a key to <code>undefined</code> still sets it.</strong> <code>setPrev(setForm, undefined, &quot;error&quot;)</code> produces <code>{ ...prev, error: undefined }</code>. The key exists with value <code>undefined</code>. This matters for <code>Object.keys</code> and <code>JSON.stringify</code> (which drops <code>undefined</code> values — inconsistent).</li>
+<li><strong>The <code>k !== undefined</code> check means you can't set a key named <code>undefined</code>.</strong> If you somehow have <code>k</code> as <code>undefined</code> because you actually wanted the merge branch, fine. But if you intended to set a property and accidentally passed <code>undefined</code>, you get a merge with <code>v</code> instead. Watch your call sites.</li>
+<li><strong><code>setPrev</code> with <code>k</code> is a shallow merge.</strong> Nested objects at <code>prev[k]</code> are replaced, not merged. If you need deep updates, do them inside the value or use a different helper.</li>
+<li><strong><code>setPrevB</code> toggles everything truthy to <code>false</code>.</strong> If <code>prev</code> is <code>&quot;yes&quot;</code>, <code>setPrevB</code> sets it to <code>false</code>. If <code>prev</code> is <code>1</code>, it sets it to <code>false</code>. If <code>prev</code> is <code>0</code>, it sets it to <code>true</code>. The behavior is logical-not, not a strict boolean toggle. Only use it when <code>prev</code> is genuinely <code>boolean</code>.</li>
+<li><strong>Types are loose on purpose.</strong> <code>setter: any</code>, <code>v: any</code>, <code>k: any</code>, <code>T = any</code>. TypeScript won't catch a mismatch between the setter's state shape and what you're passing. It trusts the caller. If you want tighter types, wrap these in a typed helper for each store.</li>
+<li><strong><code>v as T[XS]</code> references an <code>XS</code> type.</strong> That's a project-level type alias. If you're vendoring this, either define <code>XS</code> in your own module or replace <code>T[XS]</code> with <code>T</code> (or just drop the cast — it's erased at runtime).</li>
+<li><strong>No return value.</strong> You can't chain <code>setPrev</code> calls. Each call is a statement.</li>
+</ul>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not a reducer. It updates one field or merges an object. For complex state transitions, use <code>useReducer</code>.</li>
+<li>Not immer. No structural sharing beyond the top level. Every update creates a new object at the top.</li>
+<li>Not async-aware. It calls the setter synchronously; if you need to react to the new state, use <code>useEffect</code> on the state variable.</li>
+<li>Not a general-purpose <code>setState</code> wrapper. It's specifically for object state (or boolean, for <code>setPrevB</code>).</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p><code>setState(prev =&gt; ({ ...prev, [k]: v }))</code> is the correct pattern and nobody wants to type it. <code>setPrev</code> and <code>setPrevB</code> are the two most common shapes of it — set a key, merge an object, toggle a boolean — with the functional form baked in so stale-closure bugs can't happen. Small helpers; outsized footgun removal.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            
+            
+        </body>
+        </html>

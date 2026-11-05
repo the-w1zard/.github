@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;callIf&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="callif"><code>callIf</code></h1>
+<blockquote>
+<p>Call a function only if a condition is truthy. Return the result, or <code>undefined</code>. That's the whole thing.</p>
+</blockquote>
+<p>A tiny utility for the extremely common pattern of &quot;evaluate this expression only if this other thing is true.&quot; Instead of writing <code>cond ? fn() : undefined</code> inline — which is fine but noisy, gets nested badly, and evaluates the condition twice if you're not careful — you write <code>callIf(cond, fn)</code>. It's the smallest possible ternary helper, and it composes.</p>
+<hr>
+<h2 id="install">Install</h2>
+<pre><code class="language-bash">npm install call-if
+</code></pre>
+<p>Or copy the function into your codebase. It's one line and has zero dependencies. This is a legitimate way to use it.</p>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<p>The absolute minimum to get this working in under 5 minutes:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { callIf } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;call-if&quot;</span>
+
+<span class="hljs-title function_">callIf</span>(<span class="hljs-literal">true</span>,  <span class="hljs-function">() =&gt;</span> <span class="hljs-string">&quot;yes&quot;</span>)   <span class="hljs-comment">// &quot;yes&quot;</span>
+<span class="hljs-title function_">callIf</span>(<span class="hljs-literal">false</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-string">&quot;yes&quot;</span>)   <span class="hljs-comment">// undefined</span>
+<span class="hljs-title function_">callIf</span>(<span class="hljs-number">0</span>,     <span class="hljs-function">() =&gt;</span> <span class="hljs-string">&quot;yes&quot;</span>)   <span class="hljs-comment">// undefined (falsy)</span>
+<span class="hljs-title function_">callIf</span>(<span class="hljs-string">&quot;x&quot;</span>,   <span class="hljs-function">() =&gt;</span> <span class="hljs-string">&quot;yes&quot;</span>)   <span class="hljs-comment">// &quot;yes&quot;   (truthy)</span>
+</code></pre>
+<p>That's it. You're done. You now know how to use <code>callIf</code>.</p>
+<p>If you want the real-world version, here it is:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { callIf } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;call-if&quot;</span>
+
+<span class="hljs-keyword">const</span> user = <span class="hljs-title function_">getUser</span>()
+<span class="hljs-keyword">const</span> greeting = <span class="hljs-title function_">callIf</span>(user?.<span class="hljs-property">isActive</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-string">`Welcome back, <span class="hljs-subst">${user.name}</span>!`</span>)
+</code></pre>
+<p>When the user is active, you get the greeting. When they're not, you get <code>undefined</code> and never touch <code>user.name</code> — which matters if <code>user</code> is <code>null</code>.</p>
+<h3 id="-everyone-else--the-full-picture">🔵 Everyone else — the full picture</h3>
+<h4 id="the-api">The API</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> callIf&lt;T&gt;(<span class="hljs-attr">condition</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">fn</span>: <span class="hljs-function">() =&gt;</span> T): T | <span class="hljs-literal">undefined</span>
+</code></pre>
+<ul>
+<li><strong><code>condition</code></strong> — any value. Evaluated for truthiness with standard JS semantics (<code>false</code>, <code>0</code>, <code>&quot;&quot;</code>, <code>null</code>, <code>undefined</code>, <code>NaN</code> are falsy; everything else is truthy). Typed as <code>any</code> on purpose so you can pass optional chains, boolean expressions, nullable values, whatever — without fighting the compiler.</li>
+<li><strong><code>fn</code></strong> — a thunk. A zero-argument function that computes the value. It is only invoked if <code>condition</code> is truthy.</li>
+<li><strong>Returns</strong> — the result of <code>fn()</code> if <code>condition</code> is truthy, otherwise <code>undefined</code>. The return type is <code>T | undefined</code>.</li>
+</ul>
+<h4 id="why-a-thunk-not-a-value">Why a thunk, not a value</h4>
+<p>You pass <code>() =&gt; computeTheThing()</code>, not <code>computeTheThing()</code>. This is the entire point. The function body is never evaluated unless the condition passes. If you pass a value, you've already paid the cost — including any side effects, null derefs, or expensive computation — before <code>callIf</code> even runs.</p>
+<pre><code class="language-ts"><span class="hljs-comment">// ✅ lazy — fn() only runs when user is non-null</span>
+<span class="hljs-title function_">callIf</span>(user, <span class="hljs-function">() =&gt;</span> user.<span class="hljs-property">name</span>)
+
+<span class="hljs-comment">// ❌ eager — this throws before callIf sees it</span>
+<span class="hljs-title function_">callIf</span>(user, user.<span class="hljs-property">name</span>)  <span class="hljs-comment">// not even valid; user.name evaluated up front</span>
+</code></pre>
+<h4 id="narrowing-doesnt-happen--plan-for-it">Narrowing doesn't happen — plan for it</h4>
+<p>TypeScript cannot narrow types through <code>callIf</code>. The signature takes <code>condition: any</code> and returns <code>T | undefined</code>, so the compiler does not know that inside <code>fn</code>, the condition was true. If you need narrowing, do it yourself:</p>
+<pre><code class="language-ts"><span class="hljs-title function_">callIf</span>(user, <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-comment">// user is still `User | null` here as far as TS is concerned</span>
+  <span class="hljs-keyword">return</span> user!.<span class="hljs-property">name</span>
+})
+</code></pre>
+<p>For cases where narrowing matters more than terseness, a plain <code>if</code> is still the right tool. <code>callIf</code> is for when the result <em>is</em> the point, not the narrowing.</p>
+<h4 id="comparisons">Comparisons</h4>
+<pre><code class="language-ts"><span class="hljs-comment">// Ternary</span>
+cond ? <span class="hljs-title function_">fn</span>() : <span class="hljs-literal">undefined</span>
+
+<span class="hljs-comment">// Boolean AND</span>
+cond &amp;&amp; <span class="hljs-title function_">fn</span>()   <span class="hljs-comment">// ← returns `false` / `0` / `&quot;&quot;` when cond is falsy, not `undefined`</span>
+
+<span class="hljs-comment">// callIf</span>
+<span class="hljs-title function_">callIf</span>(cond, fn)
+</code></pre>
+<p>The difference between <code>callIf</code> and <code>&amp;&amp;</code> is the falsy return value. <code>false &amp;&amp; x()</code> gives you <code>false</code>; <code>callIf(false, x)</code> gives you <code>undefined</code>. When you're building an object or JSON payload, <code>undefined</code> disappears during serialization while <code>false</code> does not. That difference bites people in real code.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> payload = {
+  <span class="hljs-attr">name</span>: user.<span class="hljs-property">name</span>,
+  <span class="hljs-attr">nickname</span>: <span class="hljs-title function_">callIf</span>(user.<span class="hljs-property">hasNickname</span>, <span class="hljs-function">() =&gt;</span> user.<span class="hljs-property">nickname</span>),
+}
+<span class="hljs-comment">// JSON.stringify drops `nickname` entirely when the condition is false.</span>
+<span class="hljs-comment">// With `&amp;&amp;` you&#x27;d get `&quot;nickname&quot;: false` in your payload. Oops.</span>
+</code></pre>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Optional fields in an object literal</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> options = {
+  <span class="hljs-attr">retries</span>: <span class="hljs-title function_">callIf</span>(config.<span class="hljs-property">retries</span>, <span class="hljs-function">() =&gt;</span> config.<span class="hljs-property">retries</span>),
+  <span class="hljs-attr">timeout</span>: <span class="hljs-title function_">callIf</span>(config.<span class="hljs-property">timeout</span>, <span class="hljs-function">() =&gt;</span> config.<span class="hljs-property">timeout</span>),
+}
+</code></pre>
+<p><strong>Conditional rendering in a React-ish render function</strong></p>
+<pre><code class="language-tsx">{<span class="hljs-title function_">callIf</span>(user.<span class="hljs-property">isAdmin</span>, <span class="hljs-function">() =&gt;</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">AdminPanel</span> /&gt;</span></span>)}
+</code></pre>
+<p><strong>Guard against null deref without an early return</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> name = <span class="hljs-title function_">callIf</span>(session?.<span class="hljs-property">user</span>, <span class="hljs-function">() =&gt;</span> session.<span class="hljs-property">user</span>.<span class="hljs-property">profile</span>.<span class="hljs-property">displayName</span>)
+</code></pre>
+<p><strong>Chain of optional values</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> label = <span class="hljs-title function_">callIf</span>(row, <span class="hljs-function">() =&gt;</span>
+  <span class="hljs-title function_">callIf</span>(row.<span class="hljs-property">cell</span>, <span class="hljs-function">() =&gt;</span>
+    row.<span class="hljs-property">cell</span>.<span class="hljs-property">text</span>
+  )
+)
+</code></pre>
+<p>(The nesting is ugly here, but the point is each level only evaluates if the previous one passed.)</p>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li><strong><code>fn</code> is not async-aware.</strong> If <code>fn</code> returns a Promise, you get <code>Promise&lt;T&gt; | undefined</code>, which is awkward to await. Wrap it: <code>await callIf(cond, async () =&gt; ...)</code> gives you <code>T | undefined</code> but the top-level <code>await</code> on a possibly-<code>undefined</code> value still needs a guard. There's no <code>callIfAsync</code> here by design — compose it yourself.</li>
+<li><strong>Truthiness is JS truthiness.</strong> <code>callIf([], fn)</code> runs <code>fn</code>, because <code>[]</code> is truthy. <code>callIf(&quot;0&quot;, fn)</code> runs <code>fn</code>. If you want a strict boolean, pass one: <code>callIf(Boolean(cond), fn)</code>.</li>
+<li><strong><code>condition: any</code> will let you write things TypeScript wouldn't normally allow.</strong> That's the tradeoff. It's on you to make sure the condition is actually meaningful.</li>
+<li><strong>Zero is falsy.</strong> <code>callIf(0, () =&gt; &quot;zero&quot;)</code> returns <code>undefined</code>. If <code>0</code> is a valid trigger value, this is the wrong tool.</li>
+</ul>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not <code>lodash.get</code>. It doesn't walk paths; it just gates a thunk.</li>
+<li>Not <code>optional-chaining</code>. <code>user?.name</code> is a language feature and handles a narrow case. <code>callIf</code> handles arbitrary conditions and lazy computation.</li>
+<li>Not a control-flow tool. If you have side effects you care about, use <code>if</code>. <code>callIf</code> is for producing a value, not for orchestrating behavior.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p><code>cond ? fn() : undefined</code> is a perfectly good expression. <code>callIf</code> just gives it a name, so the intent is visible at the call site and the condition is evaluated exactly once. Use it wherever you'd otherwise reach for <code>&amp;&amp;</code> and then have to explain why the falsy branch isn't what you expected.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>

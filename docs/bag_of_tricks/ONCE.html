@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;once&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="once"><code>once</code></h1>
+<blockquote>
+<p>Wrap a function so it only ever runs the first time it's called. Every call after returns the first call's result. Same function, same arguments — but the body executes exactly once, ever.</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> init = <span class="hljs-title function_">once</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">connectToDatabase</span>())
+
+<span class="hljs-title function_">init</span>()   <span class="hljs-comment">// runs connectToDatabase()</span>
+<span class="hljs-title function_">init</span>()   <span class="hljs-comment">// returns the same connection</span>
+<span class="hljs-title function_">init</span>()   <span class="hljs-comment">// returns the same connection</span>
+</code></pre>
+<p>Two variants ship together: <code>once</code> for zero-argument factories, <code>onceB</code> for functions with arguments that need to preserve their signature. Both are cached-forever wrappers.</p>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { once } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+<span class="hljs-keyword">const</span> getConfig = <span class="hljs-title function_">once</span>(<span class="hljs-function">() =&gt;</span> ({
+  <span class="hljs-attr">env</span>: process.<span class="hljs-property">env</span>.<span class="hljs-property">NODE_ENV</span>,
+  <span class="hljs-attr">started</span>: <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>(),
+}))
+
+<span class="hljs-title function_">getConfig</span>()   <span class="hljs-comment">// builds the object</span>
+<span class="hljs-title function_">getConfig</span>()   <span class="hljs-comment">// same object, same timestamp</span>
+</code></pre>
+<p>That's it. You're done. You now know how to use <code>once</code>.</p>
+<p>The short version: <strong>wrap a function, call it as many times as you want, the body only runs on the first call.</strong> Every call returns the same result.</p>
+<p>With arguments, use <code>onceB</code>:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> parse = <span class="hljs-title function_">onceB</span>(<span class="hljs-function">(<span class="hljs-params">json: <span class="hljs-built_in">string</span></span>) =&gt;</span> <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(json))
+
+<span class="hljs-title function_">parse</span>(<span class="hljs-string">&#x27;{&quot;a&quot;:1}&#x27;</span>)   <span class="hljs-comment">// parses, returns { a: 1 }</span>
+<span class="hljs-title function_">parse</span>(<span class="hljs-string">&#x27;{&quot;b&quot;:2}&#x27;</span>)   <span class="hljs-comment">// returns { a: 1 } — arguments ignored after the first call</span>
+</code></pre>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="the-two-variants">The two variants</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> once&lt;T&gt;(<span class="hljs-attr">fn</span>: <span class="hljs-function">() =&gt;</span> T): <span class="hljs-function">() =&gt;</span> T
+<span class="hljs-keyword">function</span> onceB&lt;F <span class="hljs-keyword">extends</span> (...<span class="hljs-attr">args</span>: <span class="hljs-built_in">any</span>[]) =&gt; <span class="hljs-built_in">any</span>&gt;(<span class="hljs-attr">fn</span>: F): F
+</code></pre>
+<ul>
+<li><strong><code>once(fn)</code></strong> — takes a zero-argument factory, returns a zero-argument function. Cleanest signature, no <code>args</code> machinery.</li>
+<li><strong><code>onceB(fn)</code></strong> — takes any function, returns the same signature. Arguments are accepted on every call but <strong>only used on the first one.</strong> After that, the arguments are discarded and the cached result is returned.</li>
+</ul>
+<p>The <code>B</code> suffix is for &quot;bound&quot; or &quot;blind&quot; — it preserves the type signature of the wrapped function. Pick <code>once</code> when you have a factory with no parameters. Pick <code>onceB</code> when you want to wrap an existing function and keep its type.</p>
+<h4 id="how-they-work">How they work</h4>
+<p>Both use the same pattern: a <code>done</code>/<code>called</code> boolean and a cached value.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">let</span> <span class="hljs-attr">cached</span>: T
+<span class="hljs-keyword">let</span> done = <span class="hljs-literal">false</span>
+<span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">if</span> (!done) {
+    cached = <span class="hljs-title function_">fn</span>()
+    done = <span class="hljs-literal">true</span>
+  }
+  <span class="hljs-keyword">return</span> cached
+}
+</code></pre>
+<ul>
+<li>First call: flag is <code>false</code>, <code>fn</code> runs, result cached, flag set, result returned.</li>
+<li>Every subsequent call: flag is <code>true</code>, <code>fn</code> is skipped, cached result returned.</li>
+<li>The flag is set <strong>after</strong> <code>fn</code> returns. If <code>fn</code> throws, the flag stays <code>false</code> and the next call retries. Same semantics as <code>Lazy</code>.</li>
+</ul>
+<p><code>onceB</code> is identical except it spreads <code>...args</code> into the first <code>fn</code> call and ignores them after.</p>
+<h4 id="why-two-functions-instead-of-one">Why two functions instead of one</h4>
+<p><code>once</code> has a tight, precise signature: <code>() =&gt; T</code>. No <code>any</code>, no generic function type, no <code>as F</code> cast.</p>
+<p><code>onceB</code> needs <code>F extends (...args: any[]) =&gt; any</code> to accept any function shape and <code>as F</code> on the return to hand the signature back. That's the cost of generality. If you have a zero-arg factory, <code>once</code> is strictly better — no casts, no spread, no <code>any</code>.</p>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Idempotent initialization</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> ensureInit = <span class="hljs-title function_">once</span>(<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-title function_">registerHandlers</span>()
+  <span class="hljs-title function_">startTelemetry</span>()
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+})
+
+<span class="hljs-title function_">ensureInit</span>()   <span class="hljs-comment">// runs the setup</span>
+<span class="hljs-title function_">ensureInit</span>()   <span class="hljs-comment">// no-op</span>
+</code></pre>
+<p><strong>Module-level singleton</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> getPool = <span class="hljs-title function_">once</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConnectionPool</span>(config))
+</code></pre>
+<p><strong>Expensive parse, called from many places</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> schema = <span class="hljs-title function_">onceB</span>(<span class="hljs-function">(<span class="hljs-params">raw: <span class="hljs-built_in">string</span></span>) =&gt;</span> <span class="hljs-title function_">compileSchema</span>(raw))
+
+<span class="hljs-comment">// first caller&#x27;s input wins — subsequent callers get the first schema</span>
+<span class="hljs-keyword">const</span> s1 = <span class="hljs-title function_">schema</span>(inputA)
+<span class="hljs-keyword">const</span> s2 = <span class="hljs-title function_">schema</span>(inputB)   <span class="hljs-comment">// returns s1</span>
+</code></pre>
+<p><strong>Guarding against double-registration</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> register = <span class="hljs-title function_">onceB</span>(<span class="hljs-function">(<span class="hljs-params">name: <span class="hljs-built_in">string</span></span>) =&gt;</span> registry.<span class="hljs-title function_">add</span>(name))
+<span class="hljs-title function_">register</span>(<span class="hljs-string">&quot;a&quot;</span>)   <span class="hljs-comment">// adds &quot;a&quot;</span>
+<span class="hljs-title function_">register</span>(<span class="hljs-string">&quot;b&quot;</span>)   <span class="hljs-comment">// no-op, returns the result of the first call</span>
+</code></pre>
+<p><strong>Deferred work that may never fire</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> flush = <span class="hljs-title function_">once</span>(<span class="hljs-function">() =&gt;</span> queue.<span class="hljs-title function_">drain</span>())
+<span class="hljs-comment">// call flush() from every exit path; only the first one actually flushes</span>
+</code></pre>
+<h4 id="behavioral-guarantees">Behavioral guarantees</h4>
+<ul>
+<li><strong>At most once.</strong> The wrapped function runs on the first call and never again.</li>
+<li><strong>Same return value, always.</strong> Every call returns the identical reference (or primitive) from the first call.</li>
+<li><strong>Arguments ignored after the first call</strong> in <code>onceB</code>. No memoization per argument set — it's a single-shot cache, not a keyed cache.</li>
+<li><strong>Synchronous.</strong> <code>once</code> doesn't await, doesn't unwrap promises. If <code>fn</code> returns a <code>Promise&lt;T&gt;</code>, the wrapper returns that same promise on every call — which is usually the right behavior for async singletons.</li>
+<li><strong>Throws propagate.</strong> If <code>fn</code> throws on the first call, the error propagates and the wrapper is <em>not</em> marked done. The next call retries.</li>
+</ul>
+<h4 id="once-vs-lazy"><code>once</code> vs <code>Lazy</code></h4>
+<p>Both cache a single value forever. The difference is shape:</p>
+<ul>
+<li><strong><code>Lazy&lt;T&gt;</code></strong> wraps a factory and exposes <code>.value</code> (a property) plus <code>.isValueCreated</code> (inspect without triggering).</li>
+<li><strong><code>once(fn)</code></strong> wraps a function and returns a function. No <code>.isValueCreated</code>, no property access — you call it.</li>
+</ul>
+<p>Use <code>Lazy</code> when you want to pass the <em>value slot</em> around. Use <code>once</code> when you want to pass a <em>callable</em> around.</p>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li><strong><code>onceB</code> discards arguments silently after the first call.</strong> If callers pass different arguments expecting different results, you're using the wrong tool. That's a memoization problem, not a <code>once</code> problem.</li>
+<li><strong>A throwing <code>fn</code> retries on the next call.</strong> Deliberate — a transient failure doesn't poison the wrapper — but a deterministic throw means the body runs every call. Same tradeoff as <code>Lazy</code>.</li>
+<li><strong><code>cached</code> is typed <code>T</code> but not initialized.</strong> Before the first call, <code>cached</code> is <code>undefined</code> at runtime despite the type. The wrapper never returns it in that state, but <code>strict</code> mode users may want to silence the TS complaint with a <code>!</code> if their config is aggressive.</li>
+<li><strong><code>onceB</code> returns <code>F</code>, so callers see the original signature.</strong> That includes all argument types. The wrapper accepts them, ignores them after the first call, but the type system doesn't know that.</li>
+<li><strong>Not resettable.</strong> No <code>.clear()</code>, no way to re-run the factory. Create a new wrapper if you need a new run.</li>
+</ul>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not memoization. Memoization caches per-input; <code>once</code> caches the first call only.</li>
+<li>Not a debounce or throttle. It doesn't care about timing.</li>
+<li>Not async-aware. It caches whatever <code>fn</code> returns, including promises, without awaiting.</li>
+<li>Not thread-safe in the traditional sense — but JS is single-threaded, so two callers in the same tick can't race. The first one wins; the second sees the cached value.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p>Some work should happen exactly once and it shouldn't matter how many times you call the thing that does it. <code>once</code> makes that a property of the function instead of a property of every call site. Call it as often as you like; the body runs one time.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            
+            
+        </body>
+        </html>

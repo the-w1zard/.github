@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;gate&DiacriticalGrave; &sol; &DiacriticalGrave;reGate&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="gate--regate"><code>gate</code> / <code>reGate</code></h1>
+<blockquote>
+<p>A promise you open manually. <code>gate</code> is one-shot — you hold the <code>promise</code>, you call <code>open(value)</code> when the thing is ready. <code>reGate</code> is the resettable version — you can close it back up and reuse it for the next round.</p>
+</blockquote>
+<p>There is no rejection. There is no failure. A gate opens or it doesn't, and the waiter decides how long they're willing to wait.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> g = <span class="hljs-title function_">gate</span>()
+ready.<span class="hljs-title function_">once</span>(<span class="hljs-string">&quot;load&quot;</span>, <span class="hljs-function">() =&gt;</span> g.<span class="hljs-title function_">open</span>())
+<span class="hljs-keyword">await</span> g.<span class="hljs-property">promise</span>   <span class="hljs-comment">// resolves when ready fires &quot;load&quot;</span>
+</code></pre>
+<p>The point: separate <em>when the thing is ready</em> from <em>how long the waiter is willing to wait.</em> The gate has no opinion about time. <code>wait(ms)</code> on the caller's side does. <code>gate</code> is timeless; the wait has a time.</p>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { gate, reGate } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+<span class="hljs-keyword">const</span> g = <span class="hljs-title function_">gate</span>()
+
+<span class="hljs-comment">// somewhere else — maybe another file, another tick, another module</span>
+g.<span class="hljs-title function_">open</span>()
+
+<span class="hljs-comment">// wherever you need to wait</span>
+<span class="hljs-keyword">await</span> g.<span class="hljs-property">promise</span>
+</code></pre>
+<p>That's it. You're done. You now know how to use <code>gate</code>.</p>
+<p>The <code>promise</code> resolves when someone calls <code>open()</code>. If nobody ever does, it never resolves — no rejection, no error, just a pending promise. If you want a timeout, race it with your own:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">race</span>([g.<span class="hljs-property">promise</span>, <span class="hljs-title function_">timedPromise</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">() =&gt;</span> {}), <span class="hljs-number">5000</span>)])
+</code></pre>
+<p>Or use the platform's <code>wait(ms)</code> if it ships one. The gate doesn't know about the timeout. The waiter does. That asymmetry is the design.</p>
+<p>For the reusable version:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { reGate } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+<span class="hljs-keyword">const</span> g = reGate&lt;<span class="hljs-built_in">number</span>&gt;()
+
+<span class="hljs-keyword">const</span> first = g.<span class="hljs-property">promise</span>
+g.<span class="hljs-title function_">open</span>(<span class="hljs-number">1</span>)
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">await</span> first)   <span class="hljs-comment">// 1</span>
+
+g.<span class="hljs-title function_">reset</span>()                  <span class="hljs-comment">// ready for the next round</span>
+
+<span class="hljs-keyword">const</span> second = g.<span class="hljs-property">promise</span>
+g.<span class="hljs-title function_">open</span>(<span class="hljs-number">2</span>)
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">await</span> second)  <span class="hljs-comment">// 2</span>
+</code></pre>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="signatures">Signatures</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> gate&lt;T = <span class="hljs-built_in">void</span>&gt;(): {
+  <span class="hljs-attr">promise</span>: <span class="hljs-title class_">Promise</span>&lt;T&gt;
+  <span class="hljs-attr">open</span>: <span class="hljs-function">(<span class="hljs-params">v: T</span>) =&gt;</span> <span class="hljs-built_in">void</span>
+}
+
+<span class="hljs-keyword">function</span> reGate&lt;T = <span class="hljs-built_in">void</span>&gt;(): {
+  <span class="hljs-keyword">readonly</span> <span class="hljs-attr">promise</span>: <span class="hljs-title class_">Promise</span>&lt;T&gt;
+  <span class="hljs-keyword">readonly</span> <span class="hljs-attr">opened</span>: <span class="hljs-built_in">boolean</span>
+  <span class="hljs-attr">open</span>: <span class="hljs-function">(<span class="hljs-params">v: T | PromiseLike&lt;T&gt;</span>) =&gt;</span> <span class="hljs-built_in">void</span>
+  <span class="hljs-attr">reset</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">void</span>
+}
+</code></pre>
+<h4 id="gate--the-one-shot"><code>gate</code> — the one-shot</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> gate&lt;T = <span class="hljs-built_in">void</span>&gt;() {
+  <span class="hljs-keyword">let</span> resolve!: <span class="hljs-function">(<span class="hljs-params">v: T</span>) =&gt;</span> <span class="hljs-built_in">void</span>
+  <span class="hljs-keyword">const</span> promise = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>&lt;T&gt;(<span class="hljs-function"><span class="hljs-params">r</span> =&gt;</span> { resolve = r })
+  <span class="hljs-keyword">return</span> { promise, <span class="hljs-attr">open</span>: resolve }
+}
+</code></pre>
+<p>Three lines of logic:</p>
+<ol>
+<li>Create a promise whose <code>resolve</code> function is captured in a local.</li>
+<li>Return <code>{ promise, open }</code> where <code>open</code> is the captured <code>resolve</code>.</li>
+<li>Call <code>open(value)</code> to resolve <code>promise</code> with <code>value</code>.</li>
+</ol>
+<p><code>gate</code> is <code>Promise.withResolvers</code> with a smaller name and a default of <code>void</code>. That's the entire implementation.</p>
+<h4 id="why-no-reject">Why no reject</h4>
+<p>The doc comment says it: <strong>&quot;It's deferred minus the failure case.&quot;</strong> A <code>Deferred</code> has both <code>resolve</code> and <code>reject</code>. <code>gate</code> deliberately drops <code>reject</code>. The justification:</p>
+<blockquote>
+<p><em>&quot;Wait for this thing to be ready&quot; is not a thing that fails. It just takes longer than you're willing to wait.</em></p>
+</blockquote>
+<p>Readiness is not a failure mode. There's no &quot;the thing became un-ready.&quot; There's no &quot;the ready event threw.&quot; The gate opens, or it stays closed. If a caller decides they've waited too long, that's the <em>caller's</em> decision, and it's a decision about the <em>wait</em>, not about the gate.</p>
+<h4 id="why-the-timeout-is-the-callers-job">Why the timeout is the caller's job</h4>
+<p><code>gate</code> has no <code>wait(ms)</code> method. No timeout, no cancellation, no abort. The gate is timeless. The caller brings the bound:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> g = <span class="hljs-title function_">gate</span>()
+<span class="hljs-comment">// ... later ...</span>
+<span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">race</span>([g.<span class="hljs-property">promise</span>, <span class="hljs-title function_">sleep</span>(<span class="hljs-number">5000</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> { <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;timeout&quot;</span>) })])
+</code></pre>
+<p>Or, if the platform ships a <code>wait(ms)</code> that wraps a gate with a timeout, use that. <code>wait(0)</code> means &quot;wait forever&quot; (no timeout); <code>wait(5000)</code> means &quot;give up at 5s.&quot; Both are correct because the <em>wait</em> has a time, and the <em>gate</em> doesn't.</p>
+<p>This is the asymmetry the design is built on. A gate that had a built-in timeout would be making a policy decision on behalf of every waiter. Two waiters with different tolerances would fight over the same timeout. By pushing the timeout to the caller, each waiter chooses their own.</p>
+<h4 id="regate--the-resettable-version"><code>reGate</code> — the resettable version</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> reGate&lt;T = <span class="hljs-built_in">void</span>&gt;() {
+  <span class="hljs-keyword">let</span> open!: <span class="hljs-function">(<span class="hljs-params">v: T | PromiseLike&lt;T&gt;</span>) =&gt;</span> <span class="hljs-built_in">void</span>
+  <span class="hljs-keyword">let</span> <span class="hljs-attr">promise</span>: <span class="hljs-title class_">Promise</span>&lt;T&gt;
+  <span class="hljs-keyword">let</span> opened = <span class="hljs-literal">false</span>
+
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">reset</span> = (<span class="hljs-params"></span>) =&gt; {
+    opened = <span class="hljs-literal">false</span>
+    promise = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>&lt;T&gt;(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> open = resolve)
+  }
+
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">release</span> = (<span class="hljs-params">v: T | PromiseLike&lt;T&gt;</span>) =&gt; {
+    <span class="hljs-keyword">if</span> (opened) <span class="hljs-keyword">return</span>
+    opened = <span class="hljs-literal">true</span>
+    <span class="hljs-title function_">open</span>(v)
+  }
+
+  <span class="hljs-title function_">reset</span>()
+
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-keyword">get</span> <span class="hljs-title function_">promise</span>() { <span class="hljs-keyword">return</span> promise },
+    <span class="hljs-keyword">get</span> <span class="hljs-title function_">opened</span>() { <span class="hljs-keyword">return</span> opened },
+    <span class="hljs-attr">open</span>: release,
+    reset,
+  }
+}
+</code></pre>
+<p>Same shape as <code>gate</code>, plus two things:</p>
+<ul>
+<li><strong><code>reset()</code></strong> — closes the gate and creates a fresh promise. The old promise is abandoned (it will never resolve if it hadn't already). Callers who captured the old <code>.promise</code> are stuck with it; callers who re-read <code>.promise</code> get the new one.</li>
+<li><strong><code>opened</code></strong> — a getter that reports whether the gate has been opened since the last reset. Useful for &quot;did anything already happen while I was setting up?&quot;</li>
+</ul>
+<p>Three details matter:</p>
+<ol>
+<li><strong><code>promise</code> is a getter, not a field.</strong> Every access reads the current inner promise. After a <code>reset()</code>, <code>g.promise</code> is a <em>different</em> promise. Callers must re-read it if they want the latest.</li>
+<li><strong><code>release</code> is idempotent per cycle.</strong> Once <code>open(v)</code> is called, <code>opened = true</code> and further <code>open</code> calls are no-ops. The <code>if (opened) return</code> guard ensures the same promise is never resolved twice with different values.</li>
+<li><strong><code>reset</code> sets <code>opened = false</code> before creating the new promise.</strong> Order matters — the new promise's resolve function is assigned inside the constructor, which runs synchronously, so by the time <code>reset()</code> returns, <code>open</code> is bound to the fresh resolve.</li>
+</ol>
+<h4 id="the-openv-signature--t--promiseliket">The <code>open(v)</code> signature — <code>T | PromiseLike&lt;T&gt;</code></h4>
+<p>In <code>reGate</code>, <code>open</code> accepts a value or a thenable. This means you can open with a promise and the gate's promise will adopt it:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> g = reGate&lt;<span class="hljs-title class_">User</span>&gt;()
+g.<span class="hljs-title function_">open</span>(<span class="hljs-title function_">fetchUser</span>())   <span class="hljs-comment">// g.promise resolves with the user, once fetchUser settles</span>
+<span class="hljs-keyword">await</span> g.<span class="hljs-property">promise</span>
+</code></pre>
+<p>Same semantics as resolving a promise with another promise. <code>gate</code> is typed <code>(v: T) =&gt; void</code> but <code>T</code> could itself be a promise — the signature is stricter but functionally similar if you type <code>gate&lt;Promise&lt;User&gt;&gt;()</code>.</p>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Wait for a subsystem to become ready</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> ready = <span class="hljs-title function_">gate</span>()
+bus.<span class="hljs-title function_">once</span>(<span class="hljs-string">&quot;subsystem:ready&quot;</span>, <span class="hljs-function">() =&gt;</span> ready.<span class="hljs-title function_">open</span>())
+<span class="hljs-keyword">await</span> ready.<span class="hljs-property">promise</span>
+</code></pre>
+<p><strong>One-shot handoff between async contexts</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">let</span> handoff = gate&lt;<span class="hljs-built_in">string</span>&gt;()
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">producer</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> <span class="hljs-title function_">compute</span>()
+  handoff.<span class="hljs-title function_">open</span>(result)
+}
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">consumer</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> value = <span class="hljs-keyword">await</span> handoff.<span class="hljs-property">promise</span>
+}
+</code></pre>
+<p><strong>Ready-then-go barrier with a per-call timeout</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">waitForReady</span>(<span class="hljs-params">ms: <span class="hljs-built_in">number</span></span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">race</span>([
+    ready.<span class="hljs-property">promise</span>,
+    <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">_, reject</span>) =&gt;</span>
+      <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;timeout&quot;</span>)), ms)
+    ),
+  ])
+}
+</code></pre>
+<p><strong>Reusable cycle in a game loop</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> frame = reGate&lt;<span class="hljs-built_in">void</span>&gt;()
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">tick</span>(<span class="hljs-params"></span>) {
+  frame.<span class="hljs-title function_">reset</span>()
+  <span class="hljs-title function_">render</span>()
+  frame.<span class="hljs-title function_">open</span>()   <span class="hljs-comment">// signals end of frame</span>
+}
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">waitForFrame</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">return</span> frame.<span class="hljs-property">promise</span>
+}
+</code></pre>
+<p><strong>Inspect whether a gate fired without blocking</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">if</span> (g.<span class="hljs-property">opened</span>) {
+  <span class="hljs-comment">// already fired — reading g.promise will resolve</span>
+}
+</code></pre>
+<p>For <code>gate</code> (one-shot) there's no equivalent — you'd need to track readiness separately.</p>
+<h4 id="behavior">Behavior</h4>
+<p><strong><code>gate</code>:</strong></p>
+<ul>
+<li><code>open(v)</code> resolves the promise with <code>v</code>.</li>
+<li>Calling <code>open</code> more than once is harmless — the promise is already resolved.</li>
+<li>Calling <code>open</code> before anyone awaits is fine — the promise is resolved, and any future <code>await</code> sees the resolved value.</li>
+<li>The promise never rejects.</li>
+</ul>
+<p><strong><code>reGate</code>:</strong></p>
+<ul>
+<li><code>open(v)</code> resolves the current promise with <code>v</code>, sets <code>opened = true</code>.</li>
+<li>Calling <code>open</code> again without <code>reset</code> is a no-op.</li>
+<li><code>reset()</code> abandons the current promise and creates a new one. Any <code>await</code> on the old promise hangs forever.</li>
+<li><code>opened</code> reflects the state of the <em>current</em> cycle.</li>
+<li><code>promise</code> is a getter — re-read it after <code>reset</code> to get the new one.</li>
+</ul>
+<h4 id="gotchas">Gotchas</h4>
+<p><strong><code>gate</code></strong></p>
+<ul>
+<li><strong>No timeout, no abort.</strong> Callers who don't wrap with their own race will hang forever if the gate never opens. That's the design — but it means every call site needs a timeout policy if there's any chance the open will never happen.</li>
+<li><strong>No <code>reject</code>.</strong> If the underlying process fails, the gate won't know. You'll need to resolve it with an error value or design the gate's consumer to handle the failure path elsewhere.</li>
+<li><strong><code>open</code> is just <code>resolve</code>.</strong> Not &quot;resolve if not already resolved.&quot; Calling <code>open</code> twice with different values is a no-op the second time; the first value wins. <code>Promise.resolve</code> semantics.</li>
+<li><strong><code>T = void</code> default.</strong> <code>gate()</code> is <code>gate&lt;void&gt;()</code> — <code>open()</code> takes no arguments, and the promise resolves with <code>undefined</code>. Convenient for &quot;just tell me when ready.&quot;</li>
+</ul>
+<p><strong><code>reGate</code></strong></p>
+<ul>
+<li><strong>Old promises are abandoned on <code>reset</code>, not rejected.</strong> If a caller captured <code>g.promise</code> before a reset and awaits it, they hang forever. This is the biggest footgun. Anyone using <code>reGate</code> must re-read <code>.promise</code> after each reset, or the abstraction leaks.</li>
+<li><strong><code>open</code> guard checks <code>opened</code>.</strong> Once set, additional <code>open</code> calls are dropped. If two producers race to open, only the first one's value wins. That's usually what you want — but if you wanted the second to be a no-op on the <em>promise</em> but still observable, <code>opened</code> is the only signal you get.</li>
+<li><strong><code>opened</code> is a getter.</strong> The object literal uses <code>get opened() { return opened }</code>, so reading it reflects the current state. If you destructure <code>const { opened } = reGate()</code>, you capture a snapshot and lose the reactivity. Don't destructure; call <code>g.opened</code> each time.</li>
+<li><strong><code>promise</code> is a getter too.</strong> Same advice: <code>g.promise</code>, not <code>const { promise } = reGate()</code>.</li>
+<li><strong><code>reset()</code> in the middle of a cycle drops the current waiters.</strong> No warning, no rejection. If you need to signal cancellation to old waiters, that's a different tool.</li>
+<li><strong>The first <code>reset()</code> happens in the constructor.</strong> So <code>reGate()</code> returns an already-initialized gate. You don't need to call <code>reset</code> before the first use.</li>
+</ul>
+<h4 id="gate-vs-regate-vs-deferred-vs-lazy"><code>gate</code> vs <code>reGate</code> vs <code>Deferred</code> vs <code>Lazy</code></h4>
+<ul>
+<li><strong><code>gate</code></strong> — one-shot promise opener, no reject, no timeout. The value is whatever <code>open</code> is called with.</li>
+<li><strong><code>reGate</code></strong> — same, but resettable for cyclic use. Old promises are abandoned on reset.</li>
+<li><strong><code>Deferred</code></strong> — one-shot promise with both <code>resolve</code> and <code>reject</code>. The failure case exists.</li>
+<li><strong><code>Lazy</code></strong> — deferred <em>computation</em>, not deferred <em>signal</em>. The value comes from a factory, not from an external opener.</li>
+</ul>
+<p>Pick the one whose failure model matches the domain. Ready signals don't fail → <code>gate</code>. Computations fail → <code>Deferred</code> or <code>Lazy</code>. Cyclic ready signals → <code>reGate</code>.</p>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not a latch, semaphore, or barrier. It opens once (per cycle) and stays open.</li>
+<li>Not cancellable. If a caller gives up, the gate is unaffected.</li>
+<li>Not observable beyond <code>.promise</code> and <code>.opened</code>. No events, no callbacks.</li>
+<li>Not a queue. Multiple waiters on the same <code>.promise</code> all resolve together when opened.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p>Wait-for-ready is not an operation that fails. It's an operation that takes as long as it takes, and the waiter decides when &quot;long enough&quot; becomes &quot;too long.&quot; A gate that carried a timeout would make that decision for every waiter; a gate that carried a <code>reject</code> would pretend readiness has a failure mode. So the gate stays timeless and failureless. The caller brings the clock and the policy. The gate just opens.</p>
+<p><code>reGate</code> extends the same idea to cyclic use — with the caveat that resetting abandons the previous promise rather than resolving it, because a gate that's been reset is no longer the gate you were waiting on.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            
+            
+        </body>
+        </html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;Finally&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="finally"><code>Finally</code></h1>
+<blockquote>
+<p>Run a function for its side effect, return the value unchanged. Same shape as <code>tap</code>, but named for the intent: &quot;do this cleanup / teardown / bookkeeping in passing, and hand the value back.&quot;</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hljs-keyword">return</span> <span class="hljs-title class_">Finally</span>(<span class="hljs-title function_">computeResult</span>(), <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">cleanup</span>())
+<span class="hljs-comment">// → cleanup runs, computeResult()&#x27;s value is returned</span>
+</code></pre>
+<p>The point: inject a &quot;finally&quot; into an expression. Where a <code>try</code> / <code>finally</code> block would run <code>fn</code> before returning, <code>Finally(value, fn)</code> runs <code>fn</code> before returning the value — inside a single expression, no statement, no variable.</p>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Finally</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+<span class="hljs-keyword">const</span> x = <span class="hljs-title class_">Finally</span>(<span class="hljs-title function_">doWork</span>(), <span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;done&quot;</span>))
+<span class="hljs-comment">// logs &quot;done&quot;, x is whatever doWork() returned</span>
+</code></pre>
+<p>That's it. You're done. You now know how to use <code>Finally</code>.</p>
+<p>It's <code>fn()</code> then <code>return value</code>. The value goes through; the function runs on the way.</p>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="signature">Signature</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title class_">Finally</span>&lt;T&gt;(<span class="hljs-attr">value</span>: T, <span class="hljs-attr">fn</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">any</span>): T
+</code></pre>
+<ul>
+<li><code>value</code> — anything. Object, primitive, promise, whatever.</li>
+<li><code>fn</code> — a function called with no arguments. Its return is discarded.</li>
+<li>Returns <code>value</code>. The same reference for objects, the same value for primitives.</li>
+</ul>
+<h4 id="how-it-works">How it works</h4>
+<pre><code class="language-ts"><span class="hljs-title function_">fn</span>()
+<span class="hljs-keyword">return</span> value
+</code></pre>
+<p>Two lines. <code>fn</code> runs for its side effect; its return value is ignored. <code>value</code> is returned as-is.</p>
+<h4 id="relationship-to-tap">Relationship to <code>tap</code></h4>
+<p><code>Finally</code> is <code>tap</code> with the arguments flipped into a different shape and the name changed. Both do the same thing mechanically:</p>
+<pre><code class="language-ts"><span class="hljs-title function_">tap</span>(value, fn)         <span class="hljs-comment">// run fn(value), return value</span>
+<span class="hljs-title class_">Finally</span>(value, fn)     <span class="hljs-comment">// run fn(),      return value</span>
+</code></pre>
+<p>The differences:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>tap</code></th>
+<th><code>Finally</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Passes value to <code>fn</code></td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>fn</code> signature</td>
+<td><code>(value: T) =&gt; any</code></td>
+<td><code>() =&gt; any</code></td>
+</tr>
+<tr>
+<td>Name connotes</td>
+<td>observing a value</td>
+<td>running cleanup</td>
+</tr>
+</tbody>
+</table>
+<p>If <code>fn</code> needs the value (logging it, asserting on it, emitting it as a payload), use <code>tap</code>. If <code>fn</code> just needs to run — cleanup, bookkeeping, closing a handle — use <code>Finally</code>.</p>
+<p>Neither function is <em>more correct</em>. They're the same trick with different ergonomics. Pick by what reads better at the call site.</p>
+<h4 id="why-the-name">Why the name</h4>
+<p>&quot;Finally&quot; is borrowed from <code>try</code> / <code>finally</code>. In a <code>try</code> block:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">try</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-title function_">compute</span>()
+} <span class="hljs-keyword">finally</span> {
+  <span class="hljs-title function_">cleanup</span>()
+}
+</code></pre>
+<p>The <code>finally</code> runs after the <code>try</code> body, on the way out. <code>Finally(value, fn)</code> is the expression form of the same idea: <code>fn</code> runs after <code>value</code> is produced, on the way to being returned.</p>
+<p>The capital <code>F</code> distinguishes it from the keyword and from <code>Promise.prototype.finally</code>. It's a function, not a control structure — but the name signals the same intent.</p>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Cleanup on the way out</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">return</span> <span class="hljs-title class_">Finally</span>(result, <span class="hljs-function">() =&gt;</span> tempFile.<span class="hljs-title function_">delete</span>())
+</code></pre>
+<p><strong>Bookkeeping after a computation</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">return</span> <span class="hljs-title class_">Finally</span>(<span class="hljs-title function_">compute</span>(), <span class="hljs-function">() =&gt;</span> metrics.<span class="hljs-title function_">increment</span>(<span class="hljs-string">&quot;compute.done&quot;</span>))
+</code></pre>
+<p><strong>Closing a handle</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">return</span> <span class="hljs-title class_">Finally</span>(<span class="hljs-title function_">readFile</span>(path), <span class="hljs-function">() =&gt;</span> handle.<span class="hljs-title function_">close</span>())
+</code></pre>
+<p><strong>Committing a transaction</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">return</span> <span class="hljs-title class_">Finally</span>(<span class="hljs-title function_">applyChanges</span>(tx), <span class="hljs-function">() =&gt;</span> tx.<span class="hljs-title function_">commit</span>())
+</code></pre>
+<p><strong>Logging a boundary</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">return</span> <span class="hljs-title class_">Finally</span>(result, <span class="hljs-function">() =&gt;</span> log.<span class="hljs-title function_">info</span>(<span class="hljs-string">&quot;operation complete&quot;</span>))
+</code></pre>
+<p><strong>Composing with other helpers</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">return</span> <span class="hljs-title class_">Finally</span>(
+  <span class="hljs-title function_">orDefault</span>(response.<span class="hljs-property">data</span>, {}),
+  <span class="hljs-function">() =&gt;</span> cache.<span class="hljs-title function_">set</span>(key, response.<span class="hljs-property">data</span>),
+)
+</code></pre>
+<h4 id="behavior">Behavior</h4>
+<ul>
+<li><strong>Same reference for objects.</strong> <code>Finally(obj, fn) === obj</code>. Not a copy, not a clone.</li>
+<li><strong>Same value for primitives.</strong> <code>Finally(42, fn) === 42</code>.</li>
+<li><strong><code>fn</code> runs before the return.</strong> If <code>fn</code> throws, <code>Finally</code> throws and the value is not returned.</li>
+<li><strong><code>fn</code> is synchronous.</strong> No awaiting, no deferral. If <code>fn</code> returns a promise, the promise floats — potentially unhandled.</li>
+<li><strong><code>fn</code> takes no arguments.</strong> Unlike <code>tap</code>, it doesn't receive the value. If you need it, use <code>tap</code>.</li>
+<li><strong><code>fn</code>'s return is discarded.</strong> Whatever <code>fn</code> returns has no effect on the result.</li>
+<li><strong><code>fn</code> is called exactly once.</strong> No retry, no reentrancy protection. Called once, per call to <code>Finally</code>.</li>
+</ul>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li>
+<p><strong>Async <code>fn</code> is dangerous.</strong> Same caveat as <code>tap</code>. <code>Finally(value, async () =&gt; { throw new Error() })</code> returns <code>value</code> immediately, but the async function's rejection becomes an unhandled rejection. Only use <code>Finally</code> with synchronous side effects, or handle the promise inside.</p>
+</li>
+<li>
+<p><strong>Doesn't actually wrap a <code>try</code>.</strong> If <code>value</code> is produced by an expression that throws, <code>Finally</code> never runs — because <code>value</code> never gets evaluated as an argument. It's not a substitute for a real <code>try</code> / <code>finally</code>; it's an expression-level side effect on an already-computed value. If you want guaranteed cleanup around a computation that might throw, use a real <code>try</code> block.</p>
+<pre><code class="language-ts"><span class="hljs-comment">// ❌ cleanup doesn&#x27;t run if risky() throws</span>
+<span class="hljs-keyword">return</span> <span class="hljs-title class_">Finally</span>(<span class="hljs-title function_">risky</span>(), <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">cleanup</span>())
+
+<span class="hljs-comment">// ✅ cleanup always runs</span>
+<span class="hljs-keyword">try</span> { <span class="hljs-keyword">return</span> <span class="hljs-title function_">risky</span>() } <span class="hljs-keyword">finally</span> { <span class="hljs-title function_">cleanup</span>() }
+</code></pre>
+<p>This is the biggest gotcha. <code>Finally</code> looks like <code>finally</code> but doesn't have the exception-safety of one.</p>
+</li>
+<li>
+<p><strong>The capital <code>F</code> matters.</strong> Lowercase <code>finally</code> is a reserved word — you can't name a function <code>finally</code> in the same scope without conflict. <code>Finally</code> sidesteps that.</p>
+</li>
+<li>
+<p><strong>Passes no value to <code>fn</code>.</strong> If you're used to <code>tap</code> and reach for <code>Finally</code> expecting <code>fn</code> to see the value, you'll be surprised. <code>fn</code> is called with zero arguments.</p>
+</li>
+<li>
+<p><strong>No return-value transformation.</strong> <code>fn</code>'s return is thrown away. <code>Finally</code> is identity at runtime. If you need <code>fn</code>'s result, call it separately.</p>
+</li>
+<li>
+<p><strong>One-liner is deceptive.</strong> The name suggests &quot;guaranteed teardown,&quot; which it isn't (see the <code>try</code> gotcha above). The semantics are strictly sequential: compute value, run fn, return value. If either step throws, the rest doesn't happen.</p>
+</li>
+</ul>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not a <code>try</code> / <code>finally</code> replacement. Doesn't handle exceptions thrown while producing <code>value</code>.</li>
+<li>Not a <code>tap</code>. <code>tap</code> passes the value; <code>Finally</code> doesn't.</li>
+<li>Not a cleanup guard. If you want &quot;always run this regardless of how the function exits,&quot; you need a real <code>try</code> block or a wrapper like <code>tryCatch</code>.</li>
+<li>Not async-aware. Promises returned from <code>fn</code> float; use with sync side effects only.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p><code>try</code> / <code>finally</code> is a statement. <code>Finally(value, fn)</code> is the expression form: value in, side effect on the way out, value returned. It doesn't have the exception-safety of the keyword — it's a sequential two-step, not a guaranteed cleanup. Read it as &quot;run this, then hand back the value,&quot; and it does exactly that.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            
+            
+        </body>
+        </html>

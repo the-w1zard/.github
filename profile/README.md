@@ -314,6 +314,24 @@
 > But, the real 'being anal to the last character typed' is how everything is shaped. The 100+ platform primitives that are, literally, all the same shape but could not be any different from one... to the next... Point at any other project that even does 2... 
 >
 > Not to mention, not a single line of this was planned. And I know there will only be a single person who ever reads this that will actually beleive that but, trust me... If there was an actual great platform out there that did just go, 'Hey fucker... heres our platform **plops a fucking rats nest in my lap**... ya good luck configuring and setting that piece of shit up... because we barely had any idea what was going on... so we're leaving the rest up to you!' Theres a reason why it is supposed to be called... a 'solution' not a fucking headache, not a problem... but a solution to said things...
+> 
+> Then you have to go fucking learn a million and one things... and fuck any type of compatibility in any direction... because why the fuck we would make that easy on you?... huh?... THATS YOUR JOB...
+>
+> Mean while... Despite the actual surface area in both width and depth, if we forget about the 75+ solutions that are tacked on, the 3 ui comps libs totaling well over 3000 ui comps... if we JUST look at the platform... theres basically 2 things, really. You have the platform primitives, where when you learn one... You basically learned them all, because they are all the same shape. The second is the bus/message queue. 
+> 
+> There are no rules for your app folder, so go nuts.
+>
+> I have brought down, every single wall I could think of... warlock mode is where things get real spicy, in terms of... the file and folder structure, not even being a thing anymore in terms of how fns and comps can be accessible to one another... NOT TO MENTION... theres fucking venom, LOL. 
+>
+> No one... no one... has venom, I promise you that. Yes... literally, as close to venom, from the comics, as you can get in the form of code. The platform primitive starts life... with the ability to do... ABSOLUTELY NOTHING. Only, and only... through the act of CONSUMING other platform primitives, THEN and only then does it gain the ability to do anything, and even build up ontop of, whatever it is that it has consumed. It can consume as many or as little primitives as you want. And as cool as that arc is... it solves one of the largest problems we face as devs, in the real world...
+>
+> There is also not a single other platform in front end that uses a disruptor in some fashion in their app. Meanwhile... While I cannot confirm the actual number you will end up with, because that entirely depends on you. But what I can state as a fact is that there are... 18 disruptors, at the time of writing. haha...
+> 
+> The only distributed reactive state solution that... for some reason ships whole. Dafuq it that about?
+>
+> The only platform with real hooks that does not abide by reacts rules on hooks... c'mon guys, ITS BEEN 30 FUCKING YEARS... fix it already. CALL ME EVEN, I'LL FUCKING WALK YOU THROUGH IT. That one, truly blows my mind.
+>
+> Oh... last but not least, a signals solution that you have yet to see. It couldn't be anymore different than every other single solution out currently. It has the hottest path, and the most complex configurable path... all in the same solution.
 
 
 

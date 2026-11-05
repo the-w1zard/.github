@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;setKey&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="setkey"><code>setKey</code></h1>
+<blockquote>
+<p>Set a single key on object state via a React-style setter. Always uses the functional updater, so the previous state is never read from a stale closure.</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hljs-title function_">setKey</span>(setUser, <span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;Alice&quot;</span>)
+<span class="hljs-comment">// → setUser(prev =&gt; ({ ...prev, name: &quot;Alice&quot; }))</span>
+</code></pre>
+<p>One key, one value, one call. It's the typed, single-purpose version of <code>setPrev</code>'s key-branch.</p>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { setKey } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+<span class="hljs-title function_">setKey</span>(setForm, <span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;Alice&quot;</span>)
+<span class="hljs-title function_">setKey</span>(setForm, <span class="hljs-string">&quot;age&quot;</span>, <span class="hljs-number">30</span>)
+<span class="hljs-title function_">setKey</span>(setForm, <span class="hljs-string">&quot;submitted&quot;</span>, <span class="hljs-literal">true</span>)
+</code></pre>
+<p>That's it. You're done. You now know how to use <code>setKey</code>.</p>
+<p>It's the same as writing <code>setForm(prev =&gt; ({ ...prev, name: &quot;Alice&quot; }))</code>, but the key and value are typed against the state shape — so TypeScript catches typos in the key and wrong-typed values before you run the code.</p>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="signature">Signature</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> setKey&lt;T <span class="hljs-keyword">extends</span> <span class="hljs-built_in">object</span>, K <span class="hljs-keyword">extends</span> keyof T&gt;(
+  <span class="hljs-attr">setState</span>: <span class="hljs-built_in">any</span>,
+  <span class="hljs-attr">key</span>: K,
+  <span class="hljs-attr">value</span>: T[K],
+): <span class="hljs-built_in">void</span>
+</code></pre>
+<ul>
+<li><code>setState</code> — a React-style setter. Typed <code>any</code> here because React's <code>Dispatch&lt;SetStateAction&lt;T&gt;&gt;</code> doesn't compose nicely with the generic constraints, and the runtime doesn't need it.</li>
+<li><code>key</code> — must be a key of <code>T</code>.</li>
+<li><code>value</code> — must match the type of <code>T[K]</code>, i.e. the type of that specific key.</li>
+<li>Returns <code>void</code>.</li>
+</ul>
+<p>The <code>T</code> is inferred from the setter at the call site — but since <code>setState</code> is <code>any</code>, inference falls back to <code>T</code> being inferred from <code>key</code> and <code>value</code> in practice. In tightly-typed codebases, you may need to annotate:</p>
+<pre><code class="language-ts">setKey&lt;<span class="hljs-title class_">User</span>, <span class="hljs-string">&quot;name&quot;</span>&gt;(setUser, <span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;Alice&quot;</span>)
+</code></pre>
+<p>or supply a typed wrapper. See gotchas.</p>
+<h4 id="how-it-works">How it works</h4>
+<pre><code class="language-ts"><span class="hljs-title function_">setState</span>(<span class="hljs-function">(<span class="hljs-params">prev: <span class="hljs-built_in">any</span></span>) =&gt;</span> ({ ...prev, [key]: value }))
+</code></pre>
+<p>One line. It builds the functional updater and hands it to the setter. <code>prev</code> is whatever the latest state is when React applies the update — never a captured value from the render closure.</p>
+<p>The result is a shallow clone of <code>prev</code> with one key replaced. Nested objects are shared by reference, which is exactly what you want for a state update.</p>
+<h4 id="the-point-of-the-types">The point of the types</h4>
+<p>The value of <code>setKey</code> over just writing <code>setState(prev =&gt; ({ ...prev, [key]: value }))</code> inline is the type signature:</p>
+<ul>
+<li><code>key: K extends keyof T</code> — the key must exist on the state type. Typo a key and the compiler complains.</li>
+<li><code>value: T[K]</code> — the value must match the type at that key. Assign a string to a numeric field and the compiler complains.</li>
+</ul>
+<p>Neither check is enforced at runtime — the helper does the same thing regardless. But the editor catches errors before you hit save.</p>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Controlled inputs</strong></p>
+<pre><code class="language-tsx">&lt;input
+  value={form.<span class="hljs-property">name</span>}
+  onChange={<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> <span class="hljs-title function_">setKey</span>(setForm, <span class="hljs-string">&quot;name&quot;</span>, e.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>)}
+/&gt;
+</code></pre>
+<p><strong>Clearing a single field</strong></p>
+<pre><code class="language-ts"><span class="hljs-title function_">setKey</span>(setForm, <span class="hljs-string">&quot;error&quot;</span>, <span class="hljs-literal">undefined</span>)
+</code></pre>
+<p><strong>Setting a boolean flag</strong></p>
+<pre><code class="language-ts"><span class="hljs-title function_">setKey</span>(setUi, <span class="hljs-string">&quot;loading&quot;</span>, <span class="hljs-literal">true</span>)
+</code></pre>
+<p><strong>Factory for field handlers</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> bind = &lt;K <span class="hljs-keyword">extends</span> keyof <span class="hljs-title class_">Form</span>&gt;<span class="hljs-function">(<span class="hljs-params">key: K</span>) =&gt;</span>
+  <span class="hljs-function">(<span class="hljs-params">value: Form[K]</span>) =&gt;</span> <span class="hljs-title function_">setKey</span>(setForm, key, value)
+
+<span class="hljs-keyword">const</span> setName = <span class="hljs-title function_">bind</span>(<span class="hljs-string">&quot;name&quot;</span>)
+<span class="hljs-keyword">const</span> setAge = <span class="hljs-title function_">bind</span>(<span class="hljs-string">&quot;age&quot;</span>)
+</code></pre>
+<h4 id="behavior">Behavior</h4>
+<ul>
+<li><strong>Shallow clone.</strong> <code>{ ...prev, [key]: value }</code> creates a new object at the top level. Nested objects are the same references as before.</li>
+<li><strong>Functional updater.</strong> Always reads the latest <code>prev</code>. Safe to call multiple times in the same tick, safe after an <code>await</code>.</li>
+<li><strong>Never mutates <code>prev</code>.</strong> A fresh object is handed to the setter.</li>
+<li><strong>Key stays present even when value is <code>undefined</code>.</strong> <code>setKey(setForm, &quot;error&quot;, undefined)</code> produces <code>{ ...prev, error: undefined }</code> — the key exists with an <code>undefined</code> value. This matters for <code>Object.keys</code> and iterating over the object.</li>
+</ul>
+<h4 id="differences-from-setprev">Differences from <code>setPrev</code></h4>
+<p><code>setPrev</code> does two things:</p>
+<ol>
+<li>Single-key update with <code>k</code> provided.</li>
+<li>Object merge when <code>k</code> is omitted.</li>
+</ol>
+<p><code>setKey</code> does only the first, with the key and value properly typed against the state shape. If you're reaching for <code>setPrev</code> with a key every time, use <code>setKey</code> instead — you get the same behavior with better types and a clearer name.</p>
+<p>Use <code>setPrev</code> when you're doing a merge (no key). Use <code>setKey</code> when you're setting exactly one field.</p>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li>
+<p><strong><code>setState</code> is typed <code>any</code>.</strong> The generic <code>T</code> isn't inferred from the setter's own type — it's inferred from <code>key</code> and <code>value</code>. In many cases TypeScript will infer <code>T</code> as the object that would make <code>key</code> valid but give it <code>any</code>-ish shape, which weakens the <code>value: T[K]</code> check. If the type errors aren't firing, annotate <code>T</code> explicitly:</p>
+<pre><code class="language-ts">setKey&lt;<span class="hljs-title class_">Form</span>, <span class="hljs-string">&quot;name&quot;</span>&gt;(setForm, <span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;Alice&quot;</span>)
+</code></pre>
+<p>Or wrap it per-store:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> setFormKey = &lt;K <span class="hljs-keyword">extends</span> keyof <span class="hljs-title class_">Form</span>&gt;<span class="hljs-function">(<span class="hljs-params">k: K, v: Form[K]</span>) =&gt;</span>
+  setKey&lt;<span class="hljs-title class_">Form</span>, K&gt;(setForm, k, v)
+</code></pre>
+</li>
+<li>
+<p><strong>Setting a key to <code>undefined</code> keeps the key.</strong> If you want to <em>delete</em> a key, this won't do it. Spread-merge can't remove keys.</p>
+</li>
+<li>
+<p><strong>Shallow only.</strong> Nested updates require either building the full nested object or a dedicated helper. <code>setKey(setState, &quot;a&quot;, { ...prev.a, b: 2 })</code> reads <code>prev.a</code> from the closure — which is the stale-closure bug this helper is supposed to prevent, sneaking back in through the value. For nested updates, use a reducer or immer.</p>
+</li>
+<li>
+<p><strong>Key must be a string or number literal type.</strong> <code>keyof T</code> is fine, but computed keys (<code>getKey()</code>) will lose the literal type and break inference. Pass a literal or a <code>const</code>-typed variable.</p>
+</li>
+<li>
+<p><strong>No return.</strong> You can't chain. Each <code>setKey</code> is a statement.</p>
+</li>
+</ul>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not a reducer. Use <code>useReducer</code> for multi-step state transitions.</li>
+<li>Not immer. No structural sharing beyond the top level.</li>
+<li>Not a delete helper. It sets, it doesn't remove.</li>
+<li>Not async-aware. It calls the setter synchronously; observe the new state via <code>useEffect</code> or the next render.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p><code>setState(prev =&gt; ({ ...prev, [k]: v }))</code> is the correct pattern. <code>setKey</code> gives it a name and a type signature, so the key is checked against the state type and the value is checked against the key's type — and the functional form is baked in, so stale-closure bugs can't happen. One field, one call.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            
+            
+        </body>
+        </html>

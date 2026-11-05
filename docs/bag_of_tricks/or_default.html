@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;orDefault&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="ordefault"><code>orDefault</code></h1>
+<blockquote>
+<p>Return the value if it's neither <code>null</code> nor <code>undefined</code>. Otherwise return the fallback. One line, one operator, no ceremony.</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hljs-title function_">orDefault</span>(user?.<span class="hljs-property">name</span>, <span class="hljs-string">&quot;Anonymous&quot;</span>)    <span class="hljs-comment">// &quot;Anonymous&quot; if name is nullish</span>
+<span class="hljs-title function_">orDefault</span>(count, <span class="hljs-number">0</span>)                    <span class="hljs-comment">// 0 if count is nullish</span>
+<span class="hljs-title function_">orDefault</span>(config, defaults)            <span class="hljs-comment">// defaults if config is nullish</span>
+</code></pre>
+<p>The point: collapse the nullish check and the fallback into a single expression that names itself at the call site.</p>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { orDefault } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+<span class="hljs-keyword">const</span> name = <span class="hljs-title function_">orDefault</span>(input.<span class="hljs-property">name</span>, <span class="hljs-string">&quot;Anonymous&quot;</span>)
+<span class="hljs-keyword">const</span> count = <span class="hljs-title function_">orDefault</span>(input.<span class="hljs-property">count</span>, <span class="hljs-number">0</span>)
+</code></pre>
+<p>That's it. You're done. You now know how to use <code>orDefault</code>.</p>
+<p>It's <code>??</code> with a name. Pass a value and a fallback; you get the value if it exists, the fallback if it doesn't. <code>null</code> and <code>undefined</code> are the only triggers.</p>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="signature">Signature</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> orDefault = &lt;T&gt;(<span class="hljs-attr">value</span>: T | <span class="hljs-literal">null</span> | <span class="hljs-literal">undefined</span>, <span class="hljs-attr">fallback</span>: T): T
+</code></pre>
+<ul>
+<li><code>value</code> — the value to check. May be <code>T</code>, <code>null</code>, or <code>undefined</code>.</li>
+<li><code>fallback</code> — what to return if <code>value</code> is nullish. Must be a <code>T</code>.</li>
+<li>Returns <code>T</code>. Never <code>null</code>, never <code>undefined</code>.</li>
+</ul>
+<p>The two <code>T</code>s are the same type. The fallback is not a different shape — it's the same shape, chosen to stand in when the value is missing.</p>
+<h4 id="how-it-works">How it works</h4>
+<pre><code class="language-ts">value ?? fallback
+</code></pre>
+<p><code>??</code> (nullish coalescing) returns the left side unless it's <code>null</code> or <code>undefined</code>, in which case it returns the right side. It's exactly the semantics of the function. The function exists to give the operator a name and a place in the codebase.</p>
+<h4 id="why-a-name-at-all">Why a name at all</h4>
+<p><code>??</code> is a fine operator. The reasons to wrap it:</p>
+<ul>
+<li><strong>Readability at the call site.</strong> <code>orDefault(x, fallback)</code> reads like what it does. <code>x ?? fallback</code> is fine, but the named version composes better with other helpers and reads as intent, not syntax.</li>
+<li><strong>One spelling.</strong> If you want to change the fallback policy across the codebase — say, to also treat empty strings as missing — you change one function.</li>
+<li><strong>Composition.</strong> <code>orDefault</code> slots into pipelines and higher-order utilities where <code>??</code> can't (it's an operator, not a value).</li>
+<li><strong>Type narrowing in complex cases.</strong> Occasionally the compiler needs the explicit signature to infer <code>T</code> correctly, especially with union types.</li>
+</ul>
+<p>None of these is a huge win. The function is convenience, not necessity. That's fine — the same is true of <code>isDefined</code> over <code>x != null</code>, and we ship that too.</p>
+<h4 id="behavior">Behavior</h4>
+<ul>
+<li><strong><code>null</code> → fallback.</strong></li>
+<li><strong><code>undefined</code> → fallback.</strong></li>
+<li><strong>Everything else → the value itself.</strong> Including <code>0</code>, <code>&quot;&quot;</code>, <code>false</code>, <code>NaN</code>, <code>[]</code>, <code>{}</code>.</li>
+<li><strong>Fallback is returned by reference.</strong> If the fallback is an object, callers get the same object every time. No cloning.</li>
+</ul>
+<p>The last point matters. Unlike <code>||</code>, <code>??</code> (and therefore <code>orDefault</code>) does not treat falsy values as missing:</p>
+<pre><code class="language-ts"><span class="hljs-title function_">orDefault</span>(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>)         <span class="hljs-comment">// 0</span>
+<span class="hljs-title function_">orDefault</span>(<span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;default&quot;</span>) <span class="hljs-comment">// &quot;&quot;</span>
+<span class="hljs-title function_">orDefault</span>(<span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>)   <span class="hljs-comment">// false</span>
+<span class="hljs-title function_">orDefault</span>(<span class="hljs-title class_">NaN</span>, <span class="hljs-number">42</span>)       <span class="hljs-comment">// NaN</span>
+</code></pre>
+<p>If you wanted the <code>||</code> behavior — treat any falsy as missing — you want a different function. This one is nullish-only, on purpose.</p>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Optional config with defaults</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> timeout = <span class="hljs-title function_">orDefault</span>(options.<span class="hljs-property">timeout</span>, <span class="hljs-number">5000</span>)
+<span class="hljs-keyword">const</span> retries = <span class="hljs-title function_">orDefault</span>(options.<span class="hljs-property">retries</span>, <span class="hljs-number">3</span>)
+</code></pre>
+<p><strong>Display fallbacks</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> displayName = <span class="hljs-title function_">orDefault</span>(user.<span class="hljs-property">nickname</span>, user.<span class="hljs-property">email</span>)
+</code></pre>
+<p><strong>Filling in arrays or objects</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> items = <span class="hljs-title function_">orDefault</span>(response.<span class="hljs-property">items</span>, [])
+<span class="hljs-keyword">const</span> meta = <span class="hljs-title function_">orDefault</span>(response.<span class="hljs-property">meta</span>, {})
+</code></pre>
+<p><strong>Chained defaults</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> port = <span class="hljs-title function_">orDefault</span>(env.<span class="hljs-property">PORT</span>, <span class="hljs-title function_">orDefault</span>(config.<span class="hljs-property">port</span>, <span class="hljs-number">3000</span>))
+</code></pre>
+<p><strong>Inside a <code>Chain</code> or <code>ReChain</code> pipeline</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">new</span> <span class="hljs-title class_">ReChain</span>(input).<span class="hljs-title function_">set</span>(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-title function_">orDefault</span>(input.<span class="hljs-property">name</span>, <span class="hljs-string">&quot;Anonymous&quot;</span>)).<span class="hljs-title function_">done</span>()
+</code></pre>
+<p><strong>Converting possibly-nullish to definite</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">process</span>(<span class="hljs-params">input: <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span> | <span class="hljs-literal">undefined</span></span>) {
+  <span class="hljs-keyword">const</span> s = <span class="hljs-title function_">orDefault</span>(input, <span class="hljs-string">&quot;&quot;</span>)
+  <span class="hljs-keyword">return</span> s.<span class="hljs-title function_">toUpperCase</span>()   <span class="hljs-comment">// s is string, no null check needed</span>
+}
+</code></pre>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li>
+<p><strong>Nullish-only, not falsy.</strong> <code>orDefault(0, 5)</code> returns <code>0</code>. <code>orDefault(&quot;&quot;, &quot;x&quot;)</code> returns <code>&quot;&quot;</code>. <code>orDefault(false, true)</code> returns <code>false</code>. This is intentional and matches <code>??</code>, but it surprises people coming from <code>||</code>-based defaults.</p>
+</li>
+<li>
+<p><strong>Fallback is required, not optional.</strong> You can't call <code>orDefault(x)</code> and get a default <code>&quot;&quot;</code> or <code>0</code>. The compiler will complain. This is by design — the function doesn't guess what &quot;missing&quot; should become.</p>
+</li>
+<li>
+<p><strong>Same type on both sides.</strong> <code>orDefault(x, fallback)</code> requires <code>fallback</code> to be the same type as <code>x</code> (minus nullish). If you want to return a different shape, that's a different function:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// not what this does</span>
+<span class="hljs-title function_">orDefault</span>(user, { <span class="hljs-attr">guest</span>: <span class="hljs-literal">true</span> })
+</code></pre>
+<p>If <code>user</code> is <code>User | null</code> and you want <code>{ guest: true }</code> as the fallback, the fallback has to be a <code>User</code> — or you need a union type.</p>
+</li>
+<li>
+<p><strong>No transformation of the fallback.</strong> It's returned as-is. No function call, no lazy evaluation. <code>orDefault(x, expensiveCompute())</code> runs <code>expensiveCompute()</code> unconditionally, even when <code>x</code> is defined. If you want laziness, wrap the fallback in a thunk and call it yourself.</p>
+</li>
+<li>
+<p><strong>Returns the fallback reference.</strong> If the fallback is a mutable object, every call that hits the fallback returns the same object. Mutating it mutates the shared fallback. Use a factory if you need a fresh instance per call:</p>
+<pre><code class="language-ts"><span class="hljs-title function_">orDefault</span>(config, <span class="hljs-title function_">getDefaultConfig</span>())   <span class="hljs-comment">// same reference every call</span>
+</code></pre>
+</li>
+<li>
+<p><strong>No support for &quot;empty&quot; as missing.</strong> <code>[]</code> is not nullish. <code>{}</code> is not nullish. If you want empty-as-missing, you'd need a different predicate, and this function isn't it.</p>
+</li>
+</ul>
+<h4 id="ordefault-vs-alternatives"><code>orDefault</code> vs alternatives</h4>
+<p><strong><code>??</code> directly</strong></p>
+<p>Identical behavior. <code>orDefault(x, y)</code> is <code>x ?? y</code>. The function is a name for the operator.</p>
+<p><strong><code>||</code></strong></p>
+<p>Different. <code>||</code> treats every falsy value as missing, <code>??</code> only treats <code>null</code> and <code>undefined</code>. If your values can legitimately be <code>0</code>, <code>&quot;&quot;</code>, or <code>false</code>, use <code>orDefault</code>. If not, either works, but <code>orDefault</code> is safer against future values.</p>
+<p><strong><code>isDefined</code> + ternary</strong></p>
+<pre><code class="language-ts"><span class="hljs-title function_">isDefined</span>(x) ? x : fallback
+</code></pre>
+<p>Same behavior, more syntax. <code>orDefault</code> is the value-producing version; <code>isDefined</code> is the guard version.</p>
+<p><strong><code>MaybePromise</code></strong></p>
+<p>Different job. <code>MaybePromise</code> is about sync/async uniformity. <code>orDefault</code> is about nullish replacement. They compose well:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> x = <span class="hljs-keyword">await</span> <span class="hljs-title class_">MaybePromise</span>(<span class="hljs-title function_">orDefault</span>(maybeValue, <span class="hljs-keyword">default</span>))
+</code></pre>
+<p><strong><code>Lazy</code></strong></p>
+<p>Different job. <code>Lazy</code> is about deferring computation. <code>orDefault</code> is about picking between two existing values.</p>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not a validator. It doesn't check whether the fallback is &quot;valid&quot; or &quot;meaningful.&quot;</li>
+<li>Not a lazy default. The fallback expression is evaluated before the call.</li>
+<li>Not a shallow-copy. The fallback reference is returned directly.</li>
+<li>Not a deep-default. It doesn't fill in nested nullish fields, only the top-level value.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p><code>??</code> is correct but nameless. <code>orDefault</code> gives it a name, pins the semantics to nullish-only (not falsy), and gives the codebase one place to change the policy if the definition of &quot;missing&quot; ever evolves. Same one-line implementation, better call site.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            
+            
+        </body>
+        </html>

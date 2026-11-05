@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;Lazy&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="lazy"><code>Lazy</code></h1>
+<blockquote>
+<p>Deferred initialization. Wrap a factory, get a <code>.value</code> getter that runs the factory on first access and caches the result forever after. Between the first read and every read after, <code>.value</code> is a plain property access — no check, no branch, no function call.</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> config = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Lazy</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">parseConfig</span>(<span class="hljs-title function_">readFileSync</span>(<span class="hljs-string">&quot;config.json&quot;</span>)))
+
+config.<span class="hljs-property">isValueCreated</span>   <span class="hljs-comment">// false</span>
+config.<span class="hljs-property">value</span>            <span class="hljs-comment">// runs the factory once</span>
+config.<span class="hljs-property">isValueCreated</span>   <span class="hljs-comment">// true</span>
+config.<span class="hljs-property">value</span>            <span class="hljs-comment">// returns the cached value</span>
+</code></pre>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Lazy</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+<span class="hljs-keyword">const</span> db = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Lazy</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">connectToDatabase</span>())
+
+<span class="hljs-comment">// nothing has happened yet — no connection, no cost</span>
+
+db.<span class="hljs-property">value</span>   <span class="hljs-comment">// connects now, once</span>
+db.<span class="hljs-property">value</span>   <span class="hljs-comment">// same connection, no reconnect</span>
+</code></pre>
+<p>That's it. You're done. You now know how to use <code>Lazy</code>.</p>
+<p>The point: expensive work that you <em>might</em> need but don't want to pay for unless you actually do. Pass the <code>Lazy</code> around instead of the connection. It sits inert until someone touches <code>.value</code>.</p>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="the-interface">The interface</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">ILazy</span>&lt;T&gt; {
+  <span class="hljs-keyword">readonly</span> <span class="hljs-attr">isValueCreated</span>: <span class="hljs-built_in">boolean</span>
+  <span class="hljs-keyword">readonly</span> <span class="hljs-attr">value</span>: T
+}
+</code></pre>
+<p>Two members. <code>.value</code> is the lazy slot. <code>.isValueCreated</code> tells you whether the factory has run yet, without triggering it.</p>
+<h4 id="the-class">The class</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Lazy</span>&lt;T&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title class_">ILazy</span>&lt;T&gt; {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">factory: () =&gt; T</span>)
+  <span class="hljs-keyword">get</span> <span class="hljs-title function_">isValueCreated</span>(): <span class="hljs-built_in">boolean</span>
+  <span class="hljs-keyword">get</span> <span class="hljs-title function_">value</span>(): T
+}
+</code></pre>
+<p>The constructor takes a <strong>factory</strong> — a zero-argument function. Not a value. That's the whole contract: <code>Lazy</code> never runs the factory until <code>.value</code> is read, and never runs it more than once.</p>
+<h4 id="how-it-works">How it works</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">get</span> <span class="hljs-title function_">value</span>(): T {
+  <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">this</span>.<span class="hljs-property">_isValueCreated</span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">_value</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">_factory</span>()
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">_isValueCreated</span> = <span class="hljs-literal">true</span>
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">_value</span>!
+}
+</code></pre>
+<ul>
+<li>First <code>.value</code> read: flag is <code>false</code>, factory runs, result is cached, flag is set, result returned.</li>
+<li>Every subsequent read: flag is <code>true</code>, branch is skipped, cached value returned.</li>
+<li><code>_isValueCreated</code> is set <strong>after</strong> the factory returns, so a factory that throws leaves the lazy uninitialized and the <em>next</em> read will try again. This is a design choice — see gotchas.</li>
+<li><code>_value</code> is typed <code>T | null</code> internally and asserted <code>!</code> on the return path. The <code>!</code> is safe because the branch guarantees it was just set.</li>
+</ul>
+<h4 id="isvaluecreated--the-point-of-the-interface"><code>isValueCreated</code> — the point of the interface</h4>
+<p>Reading <code>.value</code> always runs the factory if it hasn't run yet. Sometimes you want to <em>ask</em> whether the work has been done without doing it. That's what <code>.isValueCreated</code> is for:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">if</span> (lazy.<span class="hljs-property">isValueCreated</span>) {
+  <span class="hljs-comment">// safe to read .value without triggering the factory</span>
+  <span class="hljs-keyword">const</span> v = lazy.<span class="hljs-property">value</span>
+}
+</code></pre>
+<p>This is why <code>Lazy</code> exposes an interface at all — you can hand a consumer an <code>ILazy&lt;T&gt;</code> and let them decide whether to pay the cost. Same value either way, but the consumer can make the call.</p>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Dependency slots</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Service</span> {
+  <span class="hljs-keyword">private</span> _db = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Lazy</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">openDb</span>(config.<span class="hljs-property">connectionString</span>))
+  <span class="hljs-keyword">get</span> <span class="hljs-title function_">db</span>() { <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">_db</span>.<span class="hljs-property">value</span> }
+}
+</code></pre>
+<p>The service can be constructed without a database. The first thing that touches <code>.db</code> pays the connection cost. Nothing else does.</p>
+<p><strong>Module-level singletons</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> registry = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Lazy</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">buildRegistry</span>())
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">getRegistry</span> = (<span class="hljs-params"></span>) =&gt; registry.<span class="hljs-property">value</span>
+</code></pre>
+<p><strong>Circular dependency breaks</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> a = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Lazy</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">A</span>(b.<span class="hljs-property">value</span>))
+<span class="hljs-keyword">const</span> b = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Lazy</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">B</span>(a.<span class="hljs-property">value</span>))
+</code></pre>
+<p>Neither constructor runs until <code>.value</code> is read, at which point both resolve.</p>
+<p><strong>Conditional expensive work</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> preview = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Lazy</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">renderFullPreview</span>(doc))
+
+<span class="hljs-keyword">if</span> (userWantsPreview) {
+  <span class="hljs-keyword">return</span> preview.<span class="hljs-property">value</span>   <span class="hljs-comment">// pays the cost</span>
+}
+<span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>              <span class="hljs-comment">// never pays</span>
+</code></pre>
+<h4 id="behavioral-guarantees">Behavioral guarantees</h4>
+<ul>
+<li><strong>At most once.</strong> The factory runs on the first <code>.value</code> read and never again, even across many readers.</li>
+<li><strong>Synchronous.</strong> The factory is called synchronously on the read. If the factory does async work, <code>.value</code> will be a <code>Promise&lt;T&gt;</code>, not <code>T</code> — <code>Lazy</code> does not unwrap promises.</li>
+<li><strong>Not thread-safe in the traditional sense</strong> — but JS is single-threaded, so concurrent readers can't race. Two readers in the same tick will both see the same result; whichever reads first pays the cost.</li>
+<li><strong>No reset.</strong> Once initialized, there's no way to clear the cache. Create a new <code>Lazy</code> if you need a new value.</li>
+</ul>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li><strong>A throwing factory re-runs on the next read.</strong> If <code>_factory()</code> throws, <code>_isValueCreated</code> is never set to <code>true</code>. The next <code>.value</code> access retries the factory. This is deliberate — a transient failure doesn't poison the lazy — but if your factory throws deterministically, you'll pay the cost every read.</li>
+<li><strong><code>null</code> is not a valid cached value from the type system's perspective.</strong> The internal field is <code>T | null</code>, and the return is asserted. If <code>T</code> itself includes <code>null</code>, it works, but the assertion becomes misleading. In practice, don't use <code>null</code> as a factory result.</li>
+<li><strong>Reentrancy will stack-overflow.</strong> If the factory reads <code>.value</code> of the same lazy, you get infinite recursion. The flag is not set before the factory runs.</li>
+<li><strong>No async support.</strong> <code>.value</code> is <code>T</code>, not <code>Promise&lt;T&gt;</code>. If your factory returns a promise, you get the promise once and share it — which is often what you want, but <code>Lazy</code> doesn't know or care.</li>
+<li><strong><code>isValueCreated</code> is <code>false</code> during the first factory call.</strong> If the factory inspects <code>this.isValueCreated</code>, it sees <code>false</code>. The flag flips only after the factory returns.</li>
+</ul>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not a memoization decorator. It caches one result for one factory, with no argument tracking.</li>
+<li>Not <code>Promise</code>-aware. It doesn't await, unwrap, or coordinate async initialization.</li>
+<li>Not resettable. No <code>.clear()</code>, no <code>.reset()</code>.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p>The cost of a value and the moment you pay it should be independent decisions. <code>Lazy</code> separates them: construction is free, the factory runs on first read, and <code>isValueCreated</code> lets a caller ask whether the cost has already been paid without forcing it to be.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            
+            
+        </body>
+        </html>

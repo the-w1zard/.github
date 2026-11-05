@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;toPromise&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="topromise"><code>toPromise</code></h1>
+<blockquote>
+<p>Lift any value into a Promise. Same behavior as <code>Promise.resolve</code>, but with a name that says what the call site means: &quot;turn this into a promise.&quot;</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hljs-title function_">toPromise</span>(<span class="hljs-number">42</span>)          <span class="hljs-comment">// Promise&lt;42&gt;</span>
+<span class="hljs-title function_">toPromise</span>(<span class="hljs-title function_">fetchUser</span>()) <span class="hljs-comment">// passes the promise through</span>
+<span class="hljs-title function_">toPromise</span>(<span class="hljs-literal">undefined</span>)   <span class="hljs-comment">// Promise&lt;undefined&gt;</span>
+</code></pre>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { toPromise } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+<span class="hljs-keyword">const</span> p = <span class="hljs-title function_">toPromise</span>(maybeValueOrPromise)
+<span class="hljs-keyword">const</span> v = <span class="hljs-keyword">await</span> p
+</code></pre>
+<p>That's it. You're done. You now know how to use <code>toPromise</code>.</p>
+<p>Whatever you give it — a number, a string, an object, an existing promise — you get a promise back. <code>await</code> it and you get the original value. If you passed a promise, it isn't double-wrapped; it passes through.</p>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="signature">Signature</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> toPromise = &lt;T&gt;(<span class="hljs-attr">value</span>: T | <span class="hljs-title class_">PromiseLike</span>&lt;T&gt;): <span class="hljs-title class_">Promise</span>&lt;T&gt;
+</code></pre>
+<ul>
+<li>Accepts a plain <code>T</code> or anything promise-like (<code>PromiseLike&lt;T&gt;</code> — anything with a <code>.then</code>).</li>
+<li>Returns <code>Promise&lt;T&gt;</code>.</li>
+<li>Delegates directly to <code>Promise.resolve(value)</code>.</li>
+</ul>
+<p>That last line is the whole implementation. <code>toPromise</code> is <code>Promise.resolve</code> with a different name.</p>
+<h4 id="why-it-exists">Why it exists</h4>
+<p><code>Promise.resolve</code> has a name that's about <em>promises</em>. <code>toPromise</code> has a name that's about <em>conversion</em>. The two are the same operation, but they read differently at a call site:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// &quot;resolve this promise&quot;</span>
+<span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(x)
+
+<span class="hljs-comment">// &quot;convert this value to a promise&quot;</span>
+<span class="hljs-title function_">toPromise</span>(x)
+</code></pre>
+<p>When you're writing a function that accepts <code>T | Promise&lt;T&gt;</code> and need to guarantee a <code>Promise&lt;T&gt;</code> out the other side, <code>toPromise(x)</code> documents <em>why</em> you're calling it. <code>Promise.resolve(x)</code> works identically but leaves the reader to guess the intent.</p>
+<h4 id="behavior">Behavior</h4>
+<ul>
+<li><strong>Plain value</strong> → wrapped in a resolved <code>Promise&lt;T&gt;</code>.</li>
+<li><strong>Promise</strong> → passed through as-is (not re-wrapped).</li>
+<li><strong>Thenable</strong> (non-Promise object with <code>.then</code>) → adopted; the result of <code>Promise.resolve</code> on a thenable is a real <code>Promise&lt;T&gt;</code> that follows the thenable's behavior.</li>
+<li><strong>Promise subclass</strong> → returns a real <code>Promise</code>, not the subclass. (Standard <code>Promise.resolve</code> semantics.)</li>
+<li><strong><code>undefined</code> and <code>null</code></strong> → both produce resolved promises. <code>toPromise(undefined)</code> is <code>Promise&lt;undefined&gt;</code>. Unlike <code>MaybePromise</code>, there's no special-casing.</li>
+</ul>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Function that returns either sync or async</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">get</span>(<span class="hljs-params">id: <span class="hljs-built_in">string</span></span>): <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-title class_">User</span>&gt; {
+  <span class="hljs-keyword">const</span> cached = cache.<span class="hljs-title function_">get</span>(id)
+  <span class="hljs-keyword">if</span> (cached) <span class="hljs-keyword">return</span> <span class="hljs-title function_">toPromise</span>(cached)   <span class="hljs-comment">// sync hit, promoted to promise</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-title function_">fetchUser</span>(id)                   <span class="hljs-comment">// async miss</span>
+}
+</code></pre>
+<p><strong>Normalizing input</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">handle</span>(<span class="hljs-params">input: T | <span class="hljs-built_in">Promise</span>&lt;T&gt;</span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-title function_">toPromise</span>(input).<span class="hljs-title function_">then</span>(process)
+}
+</code></pre>
+<p><strong>Forcing a promise boundary</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> results = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>(items.<span class="hljs-title function_">map</span>(toPromise))
+</code></pre>
+<p><strong>Adapting a thenable</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> p = <span class="hljs-title function_">toPromise</span>(customThenable)
+<span class="hljs-comment">// p is a real Promise, not the thenable</span>
+</code></pre>
+<h4 id="topromise-vs-maybepromise"><code>toPromise</code> vs <code>MaybePromise</code></h4>
+<p>Different jobs, same neighborhood:</p>
+<ul>
+<li><strong><code>toPromise(x)</code></strong> — always returns <code>Promise&lt;T&gt;</code>. Wrap unconditionally. Use when the caller needs a promise.</li>
+<li><strong><code>MaybePromise(x)</code></strong> — returns <code>x</code> unless <code>x</code> is <code>undefined</code>, in which case it returns a resolved promise. Use when you want to <em>skip</em> the promise when the value is already there.</li>
+</ul>
+<p><code>toPromise</code> is the honest, always-async version. <code>MaybePromise</code> is the chameleon that preserves sync identity when it can.</p>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li><strong>Thenables are adopted, not wrapped.</strong> <code>toPromise(someThenable)</code> returns a Promise that resolves to whatever the thenable's <code>.then</code> calls resolve with. If the thenable misbehaves, you inherit the misbehavior.</li>
+<li><strong>Promise subclasses lose their identity.</strong> <code>toPromise(myPromiseSubclass)</code> returns a plain <code>Promise</code>. This is standard <code>Promise.resolve</code> behavior and usually desirable, but worth knowing if you rely on subclass methods.</li>
+<li><strong>Already-resolved promises are not re-wrapped, but the identity is still a new promise in some engines.</strong> Per spec, <code>Promise.resolve(p)</code> returns <code>p</code> if <code>p</code> is a native <code>Promise</code> and the constructor matches. If you've subclassed or polyfilled, you may get a new promise. Don't rely on <code>===</code> identity across <code>toPromise</code> calls.</li>
+<li><strong>No timeout, no cancellation.</strong> <code>toPromise</code> doesn't do anything beyond conversion. If you want a bound, wrap with <code>timedPromise</code>.</li>
+</ul>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not <code>await</code>. <code>await x</code> is not equivalent — it suspends, unpacks, and only works inside an async context. <code>toPromise(x)</code> is a pure value-to-promise lift.</li>
+<li>Not a lazy wrapper. <code>toPromise(() =&gt; x)</code> returns a promise of the <em>function</em>, not of <code>x</code>. It does not call the function.</li>
+<li>Not a replacement for <code>MaybePromise</code> in code that cares about sync identity.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p><code>Promise.resolve</code> is correct but reads as &quot;resolve,&quot; which is about promises, not values. <code>toPromise</code> names the conversion at the call site: whatever you have, it becomes a promise. Same one-line implementation, clearer intent.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            
+            
+        </body>
+        </html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;invoke&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="invoke"><code>invoke</code></h1>
+<blockquote>
+<p>Wrap a function so it can be used as an event handler. The wrapped function ignores whatever argument it's called with and invokes the original.</p>
+</blockquote>
+<pre><code class="language-ts">&lt;button onClick={<span class="hljs-title function_">invoke</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">setOpen</span>(<span class="hljs-literal">true</span>))}&gt;<span class="hljs-title class_">Open</span>&lt;/button&gt;
+</code></pre>
+<p>The point: React (and DOM, and most event systems) pass an event object to every handler. When you don't care about the event — which is most of the time — <code>invoke</code> gives you a wrapper that swallows the argument and calls your function with no arguments.</p>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { invoke } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+&lt;button onClick={<span class="hljs-title function_">invoke</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">doThing</span>())}&gt;
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{invoke(handleClick)}</span>&gt;</span>
+</span></code></pre>
+<p>That's it. You're done. You now know how to use <code>invoke</code>.</p>
+<p>Instead of <code>onClick={() =&gt; doThing()}</code> — a thunk that ignores the event — you write <code>onClick={invoke(doThing)}</code>. Same behavior, but the intent is in the name: this handler ignores its argument.</p>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="signature">Signature</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> invoke = &lt;T&gt;<span class="hljs-function">(<span class="hljs-params">fn: () =&gt; T</span>) =&gt;</span> <span class="hljs-function">(<span class="hljs-params">_event?: <span class="hljs-built_in">unknown</span></span>) =&gt;</span> <span class="hljs-title function_">fn</span>()
+</code></pre>
+<p>Two functions. The outer takes your function, the inner is the event handler.</p>
+<ul>
+<li><code>invoke(fn)</code> returns <code>(_event?) =&gt; fn()</code>.</li>
+<li>The returned handler accepts an optional event and ignores it.</li>
+<li>Calling the handler calls <code>fn()</code> with no arguments and returns whatever <code>fn</code> returns.</li>
+</ul>
+<h4 id="why-youd-want-this">Why you'd want this</h4>
+<p>In React (and most event-driven APIs), handlers receive an event as their first argument:</p>
+<pre><code class="language-tsx">&lt;button onClick={<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> ...}&gt;
+</code></pre>
+<p>If you don't need the event, you have two options:</p>
+<pre><code class="language-tsx"><span class="hljs-comment">// inline thunk — the event is right there, ignored</span>
+&lt;button onClick={<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">setOpen</span>(<span class="hljs-literal">true</span>)}&gt;
+
+<span class="hljs-comment">// invoke — the event is explicitly ignored by the helper</span>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{invoke(()</span> =&gt;</span> setOpen(true))}&gt;
+</span></code></pre>
+<p>Both work. The second makes the intent explicit at the call site: &quot;this handler does not use its event.&quot; It also composes when you want to pass a named function rather than an inline arrow:</p>
+<pre><code class="language-tsx">&lt;button onClick={<span class="hljs-title function_">invoke</span>(handleClick)}&gt;
+
+<span class="hljs-comment">// vs.</span>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> handleClick()}&gt;
+</span></code></pre>
+<p>With <code>invoke</code>, <code>handleClick</code> keeps its zero-argument signature. Without it, you write the wrapper inline every time.</p>
+<h4 id="behavior">Behavior</h4>
+<ul>
+<li><strong>The event is discarded.</strong> Not logged, not forwarded, not inspected. Whatever the caller passes is ignored.</li>
+<li><strong>The inner function takes an optional parameter.</strong> Typed <code>_event?: unknown</code>, so it works with handlers that pass an event, handlers that pass nothing, and handlers that pass something else.</li>
+<li><strong>Returns whatever <code>fn()</code> returns.</strong> If <code>fn</code> returns a value, the handler does too. If <code>fn</code> returns <code>void</code>, the handler returns <code>void</code>.</li>
+<li><strong>Creates a new handler on each call to <code>invoke</code>.</strong> <code>invoke(fn) !== invoke(fn)</code>. This is the usual gotcha for React reconciliation — see below.</li>
+</ul>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>React event handlers that ignore the event</strong></p>
+<pre><code class="language-tsx">&lt;button onClick={<span class="hljs-title function_">invoke</span>(toggle)}&gt;<span class="hljs-title class_">Toggle</span>&lt;/button&gt;
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{invoke(reset)}</span>&gt;</span>Reset<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{invoke(handleChange)}</span> /&gt;</span></span>
+</code></pre>
+<p><strong>Passing a handler to an event prop that requires arguments</strong></p>
+<p>Some libraries type their event props as <code>(e: Event) =&gt; void</code>. Passing a zero-arg function is a type error, but wrapping with <code>invoke</code> is fine because <code>invoke</code> accepts the event parameter and ignores it.</p>
+<pre><code class="language-tsx">&lt;<span class="hljs-title class_">CustomButton</span> onClick={<span class="hljs-title function_">invoke</span>(handleClick)} /&gt;
+</code></pre>
+<p><strong>Event handlers in non-React contexts</strong></p>
+<pre><code class="language-ts">element.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-title function_">invoke</span>(handleClick))
+</code></pre>
+<p><strong>Composing with a store or bus</strong></p>
+<pre><code class="language-ts">bus.<span class="hljs-title function_">on</span>(<span class="hljs-string">&quot;ready&quot;</span>, <span class="hljs-title function_">invoke</span>(onReady))
+bus.<span class="hljs-title function_">on</span>(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs-title function_">invoke</span>(onError))
+</code></pre>
+<p><strong>Multiple named handlers with different arities</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> handlers = {
+  <span class="hljs-attr">open</span>: <span class="hljs-title function_">invoke</span>(openModal),
+  <span class="hljs-attr">close</span>: <span class="hljs-title function_">invoke</span>(closeModal),
+  <span class="hljs-attr">reset</span>: <span class="hljs-title function_">invoke</span>(clearForm),
+}
+</code></pre>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li>
+<p><strong>New reference per call.</strong> <code>invoke(fn)</code> returns a new function every time. In React, if you write <code>onClick={invoke(fn)}</code> inline, the handler identity changes every render, which can defeat memoization in child components. The usual fix is to either wrap in <code>useCallback</code> or define the wrapped handler outside the render:</p>
+<pre><code class="language-tsx"><span class="hljs-comment">// ❌ new handler every render — child&#x27;s React.memo is defeated</span>
+&lt;<span class="hljs-title class_">Child</span> onClick={<span class="hljs-title function_">invoke</span>(handle)} /&gt;
+
+<span class="hljs-comment">// ✅ stable identity via useCallback</span>
+<span class="hljs-keyword">const</span> onClick = <span class="hljs-title function_">useCallback</span>(<span class="hljs-title function_">invoke</span>(handle), [handle])
+&lt;<span class="hljs-title class_">Child</span> onClick={onClick} /&gt;
+
+<span class="hljs-comment">// ✅ or hoist the wrapping</span>
+<span class="hljs-keyword">const</span> onClick = <span class="hljs-title function_">invoke</span>(handle)   <span class="hljs-comment">// module scope</span>
+&lt;<span class="hljs-title class_">Child</span> onClick={onClick} /&gt;
+</code></pre>
+<p>Same tradeoff as any inline arrow in JSX. <code>invoke</code> doesn't cause it — it just doesn't hide it either.</p>
+</li>
+<li>
+<p><strong>The event isn't passed through.</strong> If <code>fn</code> expects an event, this is the wrong tool. Use <code>fn</code> directly or an inline arrow that forwards the event.</p>
+</li>
+<li>
+<p><strong><code>T</code> is inferred from <code>fn</code>'s return type.</strong> If <code>fn</code> returns <code>void</code>, the handler returns <code>void</code>. If it returns a value, the handler does too. Usually doesn't matter for event handlers, but worth knowing.</p>
+</li>
+<li>
+<p><strong>The event parameter is <code>optional</code> and <code>unknown</code>.</strong> This means the handler is assignable to most event prop types, which is the intent. If a library's event prop type requires a specific event shape, this still works — <code>unknown</code> accepts any argument.</p>
+</li>
+<li>
+<p><strong>Not curried the other way.</strong> <code>invoke(fn)(event)</code> ignores <code>event</code>, but there's no <code>invoke(fn, event)</code> single-call form. It's always two calls: create the handler, then call it.</p>
+</li>
+<li>
+<p><strong>The wrapped function receives no arguments.</strong> Even if <code>fn</code> is defined to take parameters, <code>invoke</code> calls it with none. The parameters will be <code>undefined</code> at runtime and TypeScript will not complain (because <code>fn</code> is typed <code>() =&gt; T</code>). If <code>fn</code> requires arguments, this is the wrong tool.</p>
+</li>
+</ul>
+<h4 id="when-to-reach-for-invoke-vs-an-inline-arrow">When to reach for <code>invoke</code> vs an inline arrow</h4>
+<p><strong>Use <code>invoke(fn)</code> when:</strong></p>
+<ul>
+<li>The function has a natural zero-argument signature and you want to keep it that way.</li>
+<li>You want the call site to read as &quot;this handler ignores the event.&quot;</li>
+<li>You're passing the handler around (to <code>addEventListener</code>, a bus, a config object).</li>
+</ul>
+<p><strong>Use <code>() =&gt; fn()</code> when:</strong></p>
+<ul>
+<li>It's inline and obvious from context.</li>
+<li>The zero-arg-ness is incidental and not worth naming.</li>
+</ul>
+<p>Both are correct. <code>invoke</code> is a name for the pattern, not a new pattern.</p>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not a debounce or throttle. No timing behavior.</li>
+<li>Not a <code>useCallback</code>. It doesn't memoize. Wrap it with <code>useCallback</code> if you need a stable identity.</li>
+<li>Not an event adapter. It doesn't reshape, forward, or inspect events — it discards them.</li>
+<li>Not a partial-application helper. <code>invoke</code> fixes the argument list to <code>[]</code>; it doesn't bind or reorder anything.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p>Most event handlers ignore their event. React, the DOM, and every pub/sub library pass one anyway. <code>invoke</code> is the name for &quot;I don't use the argument&quot; — a one-line wrapper that makes the intent explicit and lets the wrapped function keep its natural shape.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            
+            
+        </body>
+        </html>

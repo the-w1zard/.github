@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;isDefined&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="isdefined"><code>isDefined</code></h1>
+<blockquote>
+<p>A type guard that answers one question: is this thing neither <code>null</code> nor <code>undefined</code>? If yes, TypeScript narrows the type to remove both.</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> <span class="hljs-attr">xs</span>: (<span class="hljs-built_in">number</span> | <span class="hljs-literal">null</span> | <span class="hljs-literal">undefined</span>)[] = [<span class="hljs-number">1</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>, <span class="hljs-literal">undefined</span>, <span class="hljs-number">3</span>]
+<span class="hljs-keyword">const</span> defined = xs.<span class="hljs-title function_">filter</span>(isDefined)   <span class="hljs-comment">// number[]</span>
+</code></pre>
+<p>That's the whole thing. It's the predicate you reach for when you want <code>.filter(Boolean)</code> but with correct types.</p>
+<hr>
+<h2 id="install">Install</h2>
+<pre><code class="language-bash">npm install is-defined
+</code></pre>
+<p>Or copy the one line. Zero dependencies.</p>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { isDefined } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;is-defined&quot;</span>
+
+<span class="hljs-title function_">isDefined</span>(<span class="hljs-number">0</span>)          <span class="hljs-comment">// true</span>
+<span class="hljs-title function_">isDefined</span>(<span class="hljs-string">&quot;&quot;</span>)         <span class="hljs-comment">// true</span>
+<span class="hljs-title function_">isDefined</span>(<span class="hljs-literal">false</span>)      <span class="hljs-comment">// true</span>
+<span class="hljs-title function_">isDefined</span>(<span class="hljs-literal">null</span>)       <span class="hljs-comment">// false</span>
+<span class="hljs-title function_">isDefined</span>(<span class="hljs-literal">undefined</span>)  <span class="hljs-comment">// false</span>
+</code></pre>
+<p>That's it. You're done. You now know how to use <code>isDefined</code>.</p>
+<p>The reason you'd use it instead of writing <code>x != null</code> inline is the filter case:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> values = [<span class="hljs-number">1</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>, <span class="hljs-literal">undefined</span>, <span class="hljs-number">3</span>].<span class="hljs-title function_">filter</span>(isDefined)
+<span class="hljs-comment">// values: number[]</span>
+</code></pre>
+<p>Without the type guard, TypeScript would keep <code>null | undefined</code> in the element type and you'd be stuck asserting.</p>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="signature">Signature</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> isDefined = &lt;T&gt;(<span class="hljs-attr">x</span>: T | <span class="hljs-literal">null</span> | <span class="hljs-literal">undefined</span>): x is T
+</code></pre>
+<p>It's a <strong>type predicate</strong> — <code>x is T</code> — which tells the compiler that a truthy return narrows <code>x</code> from <code>T | null | undefined</code> to just <code>T</code>. That narrowing is what makes <code>.filter(isDefined)</code> produce <code>T[]</code> instead of <code>(T | null | undefined)[]</code>.</p>
+<h4 id="why-x--null-and-not-x--null--x--undefined">Why <code>x != null</code> and not <code>x !== null &amp;&amp; x !== undefined</code></h4>
+<p><code>!=</code> with <code>null</code> matches <strong>both</strong> <code>null</code> and <code>undefined</code> in one comparison. It's the only place in JS where loose equality is the correct, idiomatic choice — and linters that flag it universally are wrong about this specific case.</p>
+<pre><code class="language-ts"><span class="hljs-literal">null</span>      != <span class="hljs-literal">null</span>   <span class="hljs-comment">// false</span>
+<span class="hljs-literal">undefined</span> != <span class="hljs-literal">null</span>   <span class="hljs-comment">// false</span>
+<span class="hljs-number">0</span>         != <span class="hljs-literal">null</span>   <span class="hljs-comment">// true</span>
+<span class="hljs-string">&quot;&quot;</span>        != <span class="hljs-literal">null</span>   <span class="hljs-comment">// true</span>
+<span class="hljs-literal">false</span>     != <span class="hljs-literal">null</span>   <span class="hljs-comment">// true</span>
+<span class="hljs-title class_">NaN</span>       != <span class="hljs-literal">null</span>   <span class="hljs-comment">// true</span>
+</code></pre>
+<p>So the predicate is <code>true</code> for every value that isn't <code>null</code> or <code>undefined</code>, including all the falsy-but-real values.</p>
+<h4 id="why-not-filterboolean">Why not <code>.filter(Boolean)</code></h4>
+<p><code>Boolean</code> is a valid filter predicate at runtime but it has no narrowing type signature. TypeScript sees <code>.filter(Boolean)</code> and keeps the original element type — you still have <code>null | undefined</code> in the array as far as the compiler is concerned. <code>isDefined</code> exists precisely to fix that.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> xs = [<span class="hljs-number">1</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>, <span class="hljs-literal">undefined</span>, <span class="hljs-number">3</span>]
+
+xs.<span class="hljs-title function_">filter</span>(<span class="hljs-title class_">Boolean</span>)     <span class="hljs-comment">// (number | null | undefined)[]  ← compiler disagrees with reality</span>
+xs.<span class="hljs-title function_">filter</span>(isDefined)   <span class="hljs-comment">// number[]                        ← correct</span>
+</code></pre>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Cleaning up arrays</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> users = raw.<span class="hljs-title function_">map</span>(parseUser).<span class="hljs-title function_">filter</span>(isDefined)
+</code></pre>
+<p><strong>Guard before a deref</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">if</span> (<span class="hljs-title function_">isDefined</span>(maybeConfig)) {
+  <span class="hljs-keyword">return</span> maybeConfig.<span class="hljs-property">timeout</span>   <span class="hljs-comment">// narrowed — no `?.`, no `!`</span>
+}
+</code></pre>
+<p><strong>Object entries where values may be missing</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> entries = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">entries</span>(map).<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">[, v]</span>) =&gt;</span> <span class="hljs-title function_">isDefined</span>(v))
+</code></pre>
+<p><strong>Type guard in a union check</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">process</span>(<span class="hljs-params">x: <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span> | <span class="hljs-literal">undefined</span></span>) {
+  <span class="hljs-keyword">if</span> (!<span class="hljs-title function_">isDefined</span>(x)) <span class="hljs-keyword">return</span>
+  <span class="hljs-comment">// x: string</span>
+}
+</code></pre>
+<h4 id="what-it-accepts">What it accepts</h4>
+<ul>
+<li><code>null</code> → <code>false</code></li>
+<li><code>undefined</code> → <code>false</code></li>
+<li><code>0</code>, <code>&quot;&quot;</code>, <code>false</code>, <code>NaN</code> → <code>true</code> (these are values, not absences)</li>
+<li>anything else → <code>true</code></li>
+</ul>
+<p>The distinction that matters: <code>isDefined</code> is about <em>presence</em>, not <em>truthiness</em>. <code>0</code> is defined. <code>&quot;&quot;</code> is defined. Empty arrays are defined. Only the two nullish sentinels are &quot;not defined.&quot;</p>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li><strong>Doesn't check properties.</strong> <code>isDefined({ a: null })</code> is <code>true</code>. It's a top-level null check only.</li>
+<li><strong><code>NaN</code> counts as defined.</strong> If you want &quot;not NaN,&quot; that's a different predicate.</li>
+<li><strong>Only useful with strict null checks on.</strong> With <code>strictNullChecks: false</code>, the narrowing is a no-op and this is just <code>x != null</code>.</li>
+<li><strong>Narrowing requires a fresh binding in some cases.</strong> <code>if (isDefined(obj.prop))</code> narrows <code>obj.prop</code> correctly in modern TS, but if <code>obj</code> is reassignable or <code>prop</code> is a getter, the narrowing won't hold. Bind to a local if the compiler complains.</li>
+</ul>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not <code>isTruthy</code>. <code>isDefined(0)</code> is <code>true</code>; <code>isTruthy(0)</code> would be <code>false</code>.</li>
+<li>Not <code>isNotNull</code> — that name would be misleading, since <code>undefined</code> also returns <code>false</code>.</li>
+<li>Not a deep check. It's exactly <code>x != null</code> with a type predicate attached.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p><code>.filter(Boolean)</code> has lied to TypeScript since the day it was written. <code>isDefined</code> is the one-line fix: same runtime behavior for the nullish case, correct types at the filter site, and a name that says what it actually checks — presence, not truthiness.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            
+            
+        </body>
+        </html>

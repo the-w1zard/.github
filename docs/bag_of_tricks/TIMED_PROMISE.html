@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;timedPromise&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="timedpromise"><code>timedPromise</code></h1>
+<blockquote>
+<p>Race a promise against a timeout. If the promise settles first, you get its result. If the timeout fires first, you get a rejection with a clear message. The timer is always cleared, so a fast resolve doesn't leave a dangling <code>setTimeout</code> keeping the process alive.</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hljs-keyword">await</span> <span class="hljs-title function_">timedPromise</span>(<span class="hljs-title function_">fetchUser</span>(id), <span class="hljs-number">5000</span>)
+<span class="hljs-comment">// → resolves with the user, or rejects with &quot;[rift] wait() timed out after 5000ms&quot;</span>
+</code></pre>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { timedPromise } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+<span class="hljs-keyword">const</span> user = <span class="hljs-keyword">await</span> <span class="hljs-title function_">timedPromise</span>(<span class="hljs-title function_">fetchUser</span>(id), <span class="hljs-number">5000</span>)
+</code></pre>
+<p>That's it. You're done. You now know how to use <code>timedPromise</code>.</p>
+<p>It's <code>await</code> on the promise, except if it takes longer than <code>timeoutMs</code>, you get a rejection instead of waiting forever. The rejection is a regular <code>Error</code> — catch it like any other.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">try</span> {
+  <span class="hljs-keyword">const</span> user = <span class="hljs-keyword">await</span> <span class="hljs-title function_">timedPromise</span>(<span class="hljs-title function_">fetchUser</span>(id), <span class="hljs-number">5000</span>)
+} <span class="hljs-keyword">catch</span> (e) {
+  <span class="hljs-comment">// either fetchUser rejected, or it took longer than 5s</span>
+}
+</code></pre>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="signature">Signature</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> timedPromise&lt;T&gt;(<span class="hljs-attr">gate</span>: <span class="hljs-title class_">Promise</span>&lt;T&gt;, <span class="hljs-attr">timeoutMs</span>: <span class="hljs-built_in">number</span>): <span class="hljs-title class_">Promise</span>&lt;T&gt;
+</code></pre>
+<ul>
+<li><code>gate</code> — the promise you actually care about.</li>
+<li><code>timeoutMs</code> — how long to wait, in milliseconds.</li>
+<li>Returns a <code>Promise&lt;T&gt;</code> that resolves with <code>gate</code>'s value, rejects with <code>gate</code>'s rejection, or rejects with a timeout error if <code>timeoutMs</code> elapses first.</li>
+</ul>
+<h4 id="how-it-works">How it works</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">let</span> timer!: <span class="hljs-title class_">ReturnType</span>&lt;<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">setTimeout</span>&gt;
+<span class="hljs-keyword">const</span> timeout = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>&lt;T&gt;(<span class="hljs-function">(<span class="hljs-params">_, reject</span>) =&gt;</span> {
+  timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">`[rift] wait() timed out after <span class="hljs-subst">${timeoutMs}</span>ms`</span>)), timeoutMs)
+})
+<span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">race</span>([gate, timeout]).<span class="hljs-title function_">finally</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">clearTimeout</span>(timer))
+</code></pre>
+<p>Three parts:</p>
+<ol>
+<li><strong>A timeout promise</strong> is created that rejects after <code>timeoutMs</code>. The timer handle is captured in <code>timer</code> so it can be cleared later.</li>
+<li><strong><code>Promise.race</code></strong> resolves or rejects with whichever of <code>gate</code> or <code>timeout</code> settles first.</li>
+<li><strong><code>.finally</code></strong> clears the timer regardless of which side won — so a fast <code>gate</code> resolve doesn't leave a stray <code>setTimeout</code> on the event loop.</li>
+</ol>
+<p>The <code>!</code> on <code>timer</code> is a TypeScript assertion: the executor runs synchronously, so by the time the line <code>timer = setTimeout(...)</code> finishes, the assignment has happened. There is no window where <code>timer</code> is uninitialized when <code>.finally</code> runs.</p>
+<h4 id="why-the-timer-is-cleared">Why the timer is cleared</h4>
+<p>A <code>setTimeout</code> that hasn't fired yet is a live event-loop handle. If you don't clear it, a process that calls <code>timedPromise</code> many times will accumulate pending timers, and a Node process with pending timers won't exit on its own. The <code>.finally</code> guarantees the cleanup fires on <strong>both</strong> branches:</p>
+<ul>
+<li><strong>Gate wins</strong> → <code>.finally</code> runs → timer cleared → no pending handle.</li>
+<li><strong>Timeout wins</strong> → <code>.finally</code> runs → timer cleared (already fired, so clearing is a no-op, but it's harmless and correct).</li>
+</ul>
+<p>Clearing a fired timer is safe in Node and in browsers. So this works uniformly without a branch.</p>
+<h4 id="behavior">Behavior</h4>
+<ul>
+<li><strong>Fast resolve</strong> → <code>T</code>, timer cleared, no rejection.</li>
+<li><strong>Fast reject</strong> → <code>gate</code>'s rejection, timer cleared.</li>
+<li><strong>Slow resolve</strong> → <code>Error(&quot;[rift] wait() timed out after Nms&quot;)</code> after <code>timeoutMs</code>.</li>
+<li><strong>Slow reject</strong> → the timeout error wins the race; <code>gate</code>'s eventual rejection is swallowed by <code>Promise.race</code>.</li>
+<li><strong><code>timeoutMs: 0</code></strong> → the timeout fires on the next tick. Usually the gate loses. Rarely useful, occasionally useful for &quot;must already be resolved.&quot;</li>
+<li><strong>Negative or <code>NaN</code> <code>timeoutMs</code></strong> → <code>setTimeout</code> coerces to <code>0</code>. Same as above.</li>
+</ul>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Bounding an unreliable call</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">timedPromise</span>(<span class="hljs-title function_">fetch</span>(url), <span class="hljs-number">10_000</span>)
+</code></pre>
+<p><strong>Bounding an internal operation</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> <span class="hljs-title function_">timedPromise</span>(<span class="hljs-title function_">runJob</span>(job), <span class="hljs-number">30_000</span>)
+</code></pre>
+<p><strong>Composing with retry</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++) {
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> <span class="hljs-title function_">timedPromise</span>(<span class="hljs-title function_">fetchUser</span>(id), <span class="hljs-number">2_000</span>)
+  } <span class="hljs-keyword">catch</span> (e) {
+    <span class="hljs-keyword">if</span> (i === <span class="hljs-number">2</span>) <span class="hljs-keyword">throw</span> e
+  }
+}
+</code></pre>
+<p><strong>Detecting a timeout specifically</strong></p>
+<p>The rejection is a plain <code>Error</code> with a recognizable message prefix (<code>[rift]</code>). If you need to distinguish timeouts from real failures, check the message, or wrap the whole thing:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">try</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> <span class="hljs-title function_">timedPromise</span>(gate, ms)
+} <span class="hljs-keyword">catch</span> (e) {
+  <span class="hljs-keyword">if</span> (e <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Error</span> &amp;&amp; e.<span class="hljs-property">message</span>.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&quot;[rift] wait()&quot;</span>)) {
+    <span class="hljs-comment">// it timed out</span>
+  }
+  <span class="hljs-keyword">throw</span> e
+}
+</code></pre>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li><strong>The losing promise is not cancelled.</strong> <code>timedPromise</code> rejects on timeout, but the original <code>gate</code> keeps running. If <code>gate</code> is a <code>fetch</code>, the request is still in flight. If <code>gate</code> is a long computation, it continues to burn CPU. JS has no way to abort a generic promise; use <code>AbortController</code> with APIs that support it if you need real cancellation.</li>
+<li><strong>The message says <code>[rift] wait()</code>.</strong> It's hardcoded to the <code>rift</code> subsystem. If you're vendoring this, change the prefix so your logs don't lie.</li>
+<li><strong>The rejection is a plain <code>Error</code>, not a distinct class.</strong> You can't <code>instanceof TimeoutError</code> against it. If you need that, wrap or replace the rejection.</li>
+<li><strong><code>Promise.race</code> swallows the loser.</strong> If <code>gate</code> rejects <em>after</em> the timeout fired, that rejection is unhandled — it goes nowhere. In Node, that can trigger an unhandled-rejection warning if the rejection wasn't attached to anything. The <code>.finally</code> chain doesn't catch it. If <code>gate</code> is a promise that can reject late, attach a <code>.catch(() =&gt; {})</code> to it before passing it in, or pass a thunk and create the promise inside.</li>
+<li><strong>No <code>AbortSignal</code> parameter.</strong> This races; it doesn't cancel. If you want cooperative cancellation, thread a signal through <code>gate</code>'s own implementation.</li>
+<li><strong>Zero is a valid timeout.</strong> It fires on the next tick and will almost always win. Intended only for &quot;must already be settled&quot; checks.</li>
+</ul>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not cancellation. The losing side keeps running.</li>
+<li>Not a retry. One shot, one race.</li>
+<li>Not a debounce or throttle. It doesn't touch how often <code>gate</code> runs.</li>
+<li>Not a replacement for <code>AbortSignal.timeout</code>. <code>AbortSignal.timeout</code> is the platform's built-in version of this and integrates with <code>fetch</code> and anything else that accepts a signal. Use that when you can; use <code>timedPromise</code> when you can't.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p>A promise that never settles is a worse failure than a promise that fails. <code>timedPromise</code> makes the never-settles case into a rejection with a clear message, and clears its own timer on every path so it leaves no trace on the event loop. Race and clean up. That's the whole contract.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>

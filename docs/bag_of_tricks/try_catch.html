@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;tryCatch&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="trycatch"><code>tryCatch</code></h1>
+<blockquote>
+<p>Run a function, get back a tuple. Either <code>[undefined, value]</code> on success or <code>[error, undefined]</code> on failure. No thrown exceptions escape. Ever.</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> [err, user] = <span class="hljs-keyword">await</span> <span class="hljs-title function_">tryCatch</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">fetchUser</span>(id))
+
+<span class="hljs-keyword">if</span> (err) {
+  <span class="hljs-comment">// handle the error</span>
+} <span class="hljs-keyword">else</span> {
+  <span class="hljs-comment">// user is T</span>
+}
+</code></pre>
+<p>The point: turn the <code>try</code> / <code>catch</code> statement into a value you can pass around, store, branch on, or return. Errors become data instead of control flow.</p>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { tryCatch } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+<span class="hljs-keyword">const</span> [err, data] = <span class="hljs-keyword">await</span> <span class="hljs-title function_">tryCatch</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">riskyOperation</span>())
+
+<span class="hljs-keyword">if</span> (err) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(err)
+} <span class="hljs-keyword">else</span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data)
+}
+</code></pre>
+<p>That's it. You're done. You now know how to use <code>tryCatch</code>.</p>
+<p>The rule is one sentence: <strong>one side of the tuple is always <code>undefined</code>.</strong> If the call succeeded, <code>err</code> is <code>undefined</code> and <code>data</code> holds the value. If it failed, <code>data</code> is <code>undefined</code> and <code>err</code> holds the <code>Error</code>. You check one, you know the other.</p>
+<p>It always returns a <code>Promise</code> — even if <code>fn</code> is synchronous — so the call site is <code>await</code> in both cases.</p>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="signature">Signature</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> tryCatch&lt;T&gt;(
+  <span class="hljs-attr">fn</span>: <span class="hljs-function">() =&gt;</span> T | <span class="hljs-title class_">Promise</span>&lt;T&gt;
+): <span class="hljs-title class_">Promise</span>&lt;[<span class="hljs-title class_">Error</span>, <span class="hljs-literal">undefined</span>] | [<span class="hljs-literal">undefined</span>, T]&gt;
+</code></pre>
+<ul>
+<li><code>fn</code> — a zero-argument function. May be sync or async. May throw or reject.</li>
+<li>Returns a <code>Promise</code> that always resolves. Never rejects.</li>
+<li>The tuple is discriminated by which slot is <code>undefined</code>: <code>[Error, undefined]</code> on failure, <code>[undefined, T]</code> on success.</li>
+</ul>
+<p>TypeScript narrows automatically on the <code>if (err)</code> check, so inside the <code>else</code> branch <code>data</code> is typed <code>T</code> — no cast needed.</p>
+<h4 id="how-it-works">How it works</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">try</span> { <span class="hljs-keyword">return</span> [<span class="hljs-literal">undefined</span>, <span class="hljs-keyword">await</span> <span class="hljs-title function_">fn</span>()] }
+<span class="hljs-keyword">catch</span> (e) { <span class="hljs-keyword">return</span> [e <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Error</span> ? e : <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-title class_">String</span>(e)), <span class="hljs-literal">undefined</span>] }
+</code></pre>
+<ul>
+<li><code>fn()</code> is invoked inside a <code>try</code>. The result is awaited.</li>
+<li>On success, <code>[undefined, value]</code> is returned.</li>
+<li>On throw (sync or async), the error is caught, coerced to an <code>Error</code> if necessary, and returned as <code>[error, undefined]</code>.</li>
+</ul>
+<p>Because the function is <code>async</code>, both return paths produce a resolved promise. The caller can't get an unhandled rejection out of this — the only ways to get a rejection would be for the tuple construction itself to throw, which it doesn't.</p>
+<h4 id="the-two-tuple-shape">The two-tuple shape</h4>
+<p>The <code>[error, value]</code> order follows the Go and Node convention (and the original <code>await-to-js</code> style). Error first, value second. The asymmetry — one slot is <code>undefined</code> when the other is populated — is what makes narrowing work in TypeScript:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> [err, v] = <span class="hljs-keyword">await</span> <span class="hljs-title function_">tryCatch</span>(fn)
+<span class="hljs-keyword">if</span> (err) {
+  <span class="hljs-comment">// v is undefined</span>
+} <span class="hljs-keyword">else</span> {
+  <span class="hljs-comment">// v is T</span>
+}
+</code></pre>
+<p>If both were always <code>T | undefined</code>, you'd have to assert. The tuple union gives you discrimination for free.</p>
+<h4 id="error-coercion">Error coercion</h4>
+<pre><code class="language-ts">e <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Error</span> ? e : <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-title class_">String</span>(e))
+</code></pre>
+<p>If <code>fn</code> throws an <code>Error</code>, you get it back untouched. If <code>fn</code> throws a string, a number, <code>null</code>, or anything else, it's wrapped in a fresh <code>Error</code> with <code>String(e)</code> as the message. The contract is: <strong>the first slot is always an <code>Error</code></strong>, never a raw throw value.</p>
+<p>This matters because <code>throw &quot;oops&quot;</code> and <code>throw { code: 42 }</code> are legal in JS. Callers shouldn't have to defensively check. <code>tryCatch</code> normalizes.</p>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Error-first call sites without a <code>try</code> block</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> [err, config] = <span class="hljs-keyword">await</span> <span class="hljs-title function_">tryCatch</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">loadConfig</span>(path))
+<span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> defaultConfig
+<span class="hljs-keyword">return</span> config
+</code></pre>
+<p><strong>Collecting results from a batch</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> results = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>(
+  items.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">i</span> =&gt;</span> <span class="hljs-title function_">tryCatch</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">process</span>(i)))
+)
+
+<span class="hljs-keyword">const</span> errors = results.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">[e]</span>) =&gt;</span> e).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">[e]</span>) =&gt;</span> e)
+<span class="hljs-keyword">const</span> values = results.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">[, v]</span>) =&gt;</span> v !== <span class="hljs-literal">undefined</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">[, v]</span>) =&gt;</span> v)
+</code></pre>
+<p><strong>Pipeline composition</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> [e1, parsed] = <span class="hljs-keyword">await</span> <span class="hljs-title function_">tryCatch</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(raw))
+<span class="hljs-keyword">if</span> (e1) <span class="hljs-keyword">return</span> e1
+
+<span class="hljs-keyword">const</span> [e2, validated] = <span class="hljs-keyword">await</span> <span class="hljs-title function_">tryCatch</span>(<span class="hljs-function">() =&gt;</span> schema.<span class="hljs-title function_">parse</span>(parsed))
+<span class="hljs-keyword">if</span> (e2) <span class="hljs-keyword">return</span> e2
+
+<span class="hljs-keyword">return</span> validated
+</code></pre>
+<p><strong>Passing an error upward as a value</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">handle</span>(<span class="hljs-params"></span>): <span class="hljs-title class_">Result</span>&lt;<span class="hljs-title class_">User</span>&gt; {
+  <span class="hljs-keyword">const</span> [err, user] = <span class="hljs-keyword">await</span> <span class="hljs-title function_">tryCatch</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">fetchUser</span>(id))
+  <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> { <span class="hljs-attr">ok</span>: <span class="hljs-literal">false</span>, <span class="hljs-attr">error</span>: err }
+  <span class="hljs-keyword">return</span> { <span class="hljs-attr">ok</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">value</span>: user }
+}
+</code></pre>
+<p><strong>Retry loops that don't need <code>try</code> syntax</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++) {
+  <span class="hljs-keyword">const</span> [err, v] = <span class="hljs-keyword">await</span> <span class="hljs-title function_">tryCatch</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">attempt</span>())
+  <span class="hljs-keyword">if</span> (!err) <span class="hljs-keyword">return</span> v
+}
+<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;all attempts failed&quot;</span>)
+</code></pre>
+<h4 id="sync-and-async-same-call-site">Sync and async, same call site</h4>
+<p>Because <code>fn</code> can be <code>() =&gt; T</code> or <code>() =&gt; Promise&lt;T&gt;</code>, and the wrapper always returns a promise, the caller writes <code>await</code> unconditionally:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> [e1, a] = <span class="hljs-keyword">await</span> <span class="hljs-title function_">tryCatch</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-number">42</span>)              <span class="hljs-comment">// sync fn</span>
+<span class="hljs-keyword">const</span> [e2, b] = <span class="hljs-keyword">await</span> <span class="hljs-title function_">tryCatch</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&quot;/x&quot;</span>))     <span class="hljs-comment">// async fn</span>
+</code></pre>
+<p>No branching on which kind <code>fn</code> is. This is the same uniformity <code>MaybePromise</code> gives on the value side, applied to error capture.</p>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li><strong>Every call allocates a tuple and a promise.</strong> For hot loops, this is measurable. If the inner work is already a promise and you don't need error-as-value, <code>await fn()</code> inside a normal <code>try</code> is cheaper.</li>
+<li><strong><code>fn</code> must be a thunk.</strong> Pass <code>() =&gt; risky()</code>, not <code>risky()</code>. If you pass a value, <code>tryCatch</code> will try to call it and throw <code>TypeError: fn is not a function</code> — which then becomes the caught error. Technically still works, but not what you wanted.</li>
+<li><strong>Only catches what <code>fn</code> throws synchronously or rejects with.</strong> If <code>fn</code> spawns a background task that rejects later, that rejection is not captured. <code>tryCatch</code> waits for <code>fn</code>'s returned promise; anything after that is outside its scope.</li>
+<li><strong>The <code>data</code> slot is <code>undefined</code> on failure, not <code>null</code>.</strong> Code that distinguishes &quot;no value&quot; from &quot;error&quot; by checking for <code>null</code> will misread the tuple. Always check <code>err</code> first.</li>
+<li><strong>Non-<code>Error</code> throws are wrapped.</strong> If you threw an object with fields you cared about (<code>throw { code: 'ENOENT' }</code>), those fields are lost — the wrapper keeps only <code>String(e)</code>. If you need the original throw, catch manually.</li>
+<li><strong>Errors thrown inside the <code>catch</code> block are not caught.</strong> The coercion <code>new Error(String(e))</code> can theoretically throw if <code>String(e)</code> throws (rare, but possible with adversarial <code>toString</code> implementations). This is not defended against.</li>
+<li><strong>One tuple, one error.</strong> If <code>fn</code> throws, you get exactly one <code>Error</code>. If you need an array of errors from a multi-step process, collect them yourself.</li>
+</ul>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not a <code>Result</code> type with methods. It's a plain tuple. <code>[err, value]</code>, discriminated by <code>undefined</code>.</li>
+<li>Not a retry or timeout. Wrap with your own loop or <code>timedPromise</code>.</li>
+<li>Not a replacement for <code>try</code>/<code>catch</code> when you need <code>finally</code>. There's no cleanup hook here. Run cleanup after the <code>await</code> if you need it.</li>
+<li>Not async-aware of cancellation. If <code>fn</code>'s promise never settles, <code>tryCatch</code> never resolves. Pair with <code>timedPromise</code> if you need a bound.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p><code>try</code>/<code>catch</code> is control flow. Errors are data. <code>tryCatch</code> converts one into the other: what would have been a jump becomes a value, what would have been a stack unwind becomes a tuple. You get error-first handling without the syntax, error composition without the ceremony, and a type system that knows which branch is which.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            
+            
+        </body>
+        </html>

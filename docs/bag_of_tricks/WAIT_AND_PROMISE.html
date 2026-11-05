@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;wait&lowbar;and&lowbar;promise&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="wait_and_promise"><code>wait_and_promise</code></h1>
+<blockquote>
+<p>Subscribe to a key, then check whether the condition is already true. If it is, resolve immediately with the current value. If not, wait for the subscription to fire. If neither happens before <code>timeoutMs</code>, reject.</p>
+</blockquote>
+<p>The ordering — <strong>subscribe first, then re-check</strong> — is the entire point. It closes the race window where the thing you're waiting for fires between your early-return check and your subscription.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> value = <span class="hljs-keyword">await</span> <span class="hljs-title function_">wait_and_promise</span>(<span class="hljs-number">5000</span>, key, <span class="hljs-title function_">isOpen</span>(), currentValue)
+<span class="hljs-comment">// → resolves with next.value when the subscription fires with opened: true</span>
+<span class="hljs-comment">// → resolves immediately with currentValue if isOpen was already true</span>
+<span class="hljs-comment">// → rejects after 5000ms if neither happened</span>
+</code></pre>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { wait_and_promise } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+<span class="hljs-keyword">const</span> value = <span class="hljs-keyword">await</span> <span class="hljs-title function_">wait_and_promise</span>(
+  <span class="hljs-number">5000</span>,           <span class="hljs-comment">// timeout in ms (0 or falsy = no timeout)</span>
+  myKey,          <span class="hljs-comment">// subscription key</span>
+  <span class="hljs-title function_">isOpen</span>(),       <span class="hljs-comment">// is the thing already open right now?</span>
+  currentValue,   <span class="hljs-comment">// value to resolve with if it&#x27;s already open</span>
+)
+</code></pre>
+<p>That's it. You're done. You now know how to use <code>wait_and_promise</code>.</p>
+<p>Three possible outcomes:</p>
+<ol>
+<li>It's already open → resolves <strong>immediately</strong> with <code>currentValue</code>.</li>
+<li>It opens while you're waiting → resolves with the new value.</li>
+<li>It never opens → rejects after <code>timeoutMs</code> with a timeout error.</li>
+</ol>
+<p>Pass <code>0</code> (or any falsy value) as <code>timeoutMs</code> to wait forever with no timeout.</p>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="signature">Signature</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> wait_and_promise&lt;T = A&gt;(
+  <span class="hljs-attr">timeoutMs</span>: <span class="hljs-built_in">number</span>,
+  <span class="hljs-attr">key</span>: A,
+  <span class="hljs-attr">isOpen</span>: A,
+  <span class="hljs-attr">current</span>: A,
+): <span class="hljs-title class_">Promise</span>&lt;T&gt;
+</code></pre>
+<ul>
+<li><code>timeoutMs</code> — milliseconds before rejection. <code>0</code> or falsy disables the timeout entirely.</li>
+<li><code>key</code> — the subscription key passed to <code>sub</code>.</li>
+<li><code>isOpen</code> — a truthy value if the condition is already satisfied. Checked <em>after</em> subscribing.</li>
+<li><code>current</code> — the value to resolve with if <code>isOpen</code> is truthy.</li>
+<li>Returns <code>Promise&lt;T&gt;</code>.</li>
+</ul>
+<h4 id="why-subscribe-before-checking">Why subscribe before checking</h4>
+<p>The naive version is:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">if</span> (isOpen) <span class="hljs-keyword">return</span> current          <span class="hljs-comment">// check</span>
+<span class="hljs-keyword">const</span> unsub = <span class="hljs-title function_">sub</span>(key, handler)     <span class="hljs-comment">// then subscribe</span>
+</code></pre>
+<p>The gap between those two lines is a race. If the condition flips to open <em>between</em> the check and the subscribe, the subscription never sees the transition (because it happened before the subscription existed), and the check already returned false. The caller hangs until timeout even though the condition was true.</p>
+<p>The correct order is the opposite:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> unsub = <span class="hljs-title function_">sub</span>(key, handler)     <span class="hljs-comment">// subscribe first</span>
+<span class="hljs-keyword">if</span> (isOpen) { <span class="hljs-title function_">unsub</span>(); <span class="hljs-title function_">resolve</span>(current); <span class="hljs-keyword">return</span> }   <span class="hljs-comment">// then check</span>
+</code></pre>
+<p>Now the two cases are:</p>
+<ol>
+<li><strong>Condition was already open before subscribe</strong> → the check catches it. Resolve with <code>current</code>.</li>
+<li><strong>Condition opens after subscribe</strong> → the handler catches it. Resolve with <code>next.value</code>.</li>
+</ol>
+<p>There is no third case where the transition happens between the check and the subscribe, because the subscribe already happened. The handler fires, the check is redundant but harmless, and the promise settles.</p>
+<p>The cost of this correctness is one line: the <code>if (timer) clearTimeout(timer)</code> and <code>unsub()</code> must run on both paths, so the subscription is never leaked.</p>
+<h4 id="how-it-works-line-by-line">How it works, line by line</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>&lt;T&gt;(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+  <span class="hljs-keyword">let</span> <span class="hljs-attr">timer</span>: <span class="hljs-title class_">ReturnType</span>&lt;<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">setTimeout</span>&gt; | <span class="hljs-literal">undefined</span>;
+
+  <span class="hljs-keyword">const</span> unsub = <span class="hljs-title function_">sub</span>(key, <span class="hljs-function">(<span class="hljs-params">next</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (next?.<span class="hljs-property">opened</span>) {
+      <span class="hljs-keyword">if</span> (timer) <span class="hljs-built_in">clearTimeout</span>(timer);
+      <span class="hljs-title function_">unsub</span>();
+      <span class="hljs-title function_">resolve</span>(next.<span class="hljs-property">value</span> <span class="hljs-keyword">as</span> T);
+    }
+  });
+
+  <span class="hljs-keyword">if</span> (isOpen) {
+    <span class="hljs-keyword">if</span> (timer) <span class="hljs-built_in">clearTimeout</span>(timer);
+    <span class="hljs-title function_">unsub</span>();
+    <span class="hljs-title function_">resolve</span>(current <span class="hljs-keyword">as</span> T);
+    <span class="hljs-keyword">return</span>;
+  }
+
+  <span class="hljs-keyword">if</span> (timeoutMs) {
+    timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-title function_">unsub</span>();
+      <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">`[rift] wait() timed out after <span class="hljs-subst">${timeoutMs}</span>ms`</span>));
+    }, timeoutMs);
+  }
+});
+</code></pre>
+<ol>
+<li><strong><code>sub(key, handler)</code></strong> registers the subscription. The handler is called whenever the value at <code>key</code> changes.</li>
+<li><strong>Handler</strong> checks <code>next?.opened</code>. If truthy, it clears the timer (if one exists), unsubscribes, and resolves with <code>next.value</code>. The <code>next?.</code> optional chain guards against a <code>null</code> / <code>undefined</code> payload.</li>
+<li><strong><code>if (isOpen)</code></strong> — after subscribing, check whether the condition is <em>already</em> satisfied. If so, clear timer, unsubscribe, resolve with <code>current</code>. The <code>return</code> prevents falling through to the timer setup.</li>
+<li><strong><code>if (timeoutMs)</code></strong> — only arm a timer if a timeout was requested. <code>0</code> (or any falsy value) means &quot;wait forever.&quot; The timer callback unsubscribes and rejects.</li>
+</ol>
+<p><strong>Order of cleanup</strong> on every exit path: clear the timer first (if set), then unsubscribe, then resolve or reject. Clearing the timer before unsubscribing is not strictly required, but it prevents the timer callback from running <code>unsub()</code> a second time if there's any interleaving.</p>
+<h4 id="two-ways-to-resolve-one-way-to-reject">Two ways to resolve, one way to reject</h4>
+<p>The promise resolves through exactly two channels:</p>
+<ul>
+<li>The <strong>subscription handler</strong> — <code>next.value</code> when the subscription fires with <code>opened: true</code>.</li>
+<li>The <strong>immediate check</strong> — <code>current</code> when <code>isOpen</code> is truthy at subscribe time.</li>
+</ul>
+<p>It rejects through exactly one:</p>
+<ul>
+<li>The <strong>timer</strong> — when <code>timeoutMs</code> elapses without either resolve path firing.</li>
+</ul>
+<p><code>resolve</code> and <code>reject</code> are idempotent in JavaScript — the first call wins, subsequent calls are no-ops. So even if the handler fires <em>and</em> the timer would have fired <em>and</em> the check runs, only the first <code>resolve</code> or <code>reject</code> has any effect. The explicit cleanup exists to prevent leaks, not to prevent double-settling.</p>
+<h4 id="the-race-this-closes">The race this closes</h4>
+<p>Imagine the state flips from closed to open exactly once, in this timeline:</p>
+<pre><code>t0: caller checks isOpen → false
+t1: state flips to open (fires subscription handlers)
+t2: caller subscribes
+</code></pre>
+<p>Naive version: <code>isOpen</code> check at t0 was false, subscribe at t2 missed the transition. Caller waits forever (or until timeout).</p>
+<p>This version:</p>
+<pre><code>t0: caller subscribes
+t1: state flips to open → handler fires → resolve
+t2: (unreachable — promise is settled)
+</code></pre>
+<p>Or:</p>
+<pre><code>t0: caller subscribes
+t1: caller checks isOpen → true (state already flipped before t0)
+t2: resolve immediately
+</code></pre>
+<p>Both cases resolve. Neither hangs.</p>
+<p>The tradeoff is that <code>isOpen</code> and <code>current</code> must be captured <em>before</em> the call — they're arguments, not re-read inside the promise. If the state changes between the caller's <code>isOpen()</code> and the <code>sub()</code> inside <code>wait_and_promise</code>, the immediate check might be stale. But the subscription will still fire if the state changes <em>again</em>, and if the state is already open at check time, <code>current</code> is what the caller passed. The contract is: <code>isOpen</code> and <code>current</code> should be read from the same source at the same moment.</p>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Wait for a specific state to open</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> conn = <span class="hljs-keyword">await</span> <span class="hljs-title function_">wait_and_promise</span>(
+  <span class="hljs-number">10_000</span>,
+  <span class="hljs-string">`conn:<span class="hljs-subst">${id}</span>`</span>,
+  pool.<span class="hljs-title function_">isOpen</span>(id),
+  pool.<span class="hljs-title function_">get</span>(id),
+)
+</code></pre>
+<p><strong>Wait forever, no timeout</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">await</span> <span class="hljs-title function_">wait_and_promise</span>(<span class="hljs-number">0</span>, key, isOpen, current)
+</code></pre>
+<p><strong>Wait with a short bound, on a hot path</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> value = <span class="hljs-keyword">await</span> <span class="hljs-title function_">wait_and_promise</span>(<span class="hljs-number">250</span>, key, isOpen, current)
+</code></pre>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li><strong><code>next?.opened</code> requires the payload to have an <code>opened</code> field.</strong> If the subscription fires with a payload that doesn't have <code>opened</code> truthy, the handler does nothing — the subscription stays alive, and the promise stays pending. Whatever <code>sub</code> emits for non-open transitions is silently ignored.</li>
+<li><strong><code>next.value</code> is cast to <code>T</code>.</strong> If the payload doesn't have a <code>value</code> field or it's the wrong type, you get it anyway. The cast is a promise to the type system, not a runtime check.</li>
+<li><strong><code>current</code> is cast to <code>T</code>.</strong> Same contract. The caller is trusted to pass a <code>current</code> that matches <code>T</code>.</li>
+<li><strong>Falsy <code>timeoutMs</code> means no timeout, not a zero timeout.</strong> <code>0</code>, <code>null</code>, <code>undefined</code>, <code>NaN</code>, <code>&quot;&quot;</code> all disable the timer. If you meant &quot;time out immediately,&quot; pass a small positive number like <code>1</code>.</li>
+<li><strong><code>sub</code> must return an unsubscribe function.</strong> If it returns anything else, calling <code>unsub()</code> will throw. The contract is assumed, not checked.</li>
+<li><strong>No <code>AbortSignal</code> support.</strong> There's no way to cancel from outside. The only ways to settle are the subscription, the immediate check, or the timeout. If you need external cancellation, wrap this in another promise and race.</li>
+<li><strong>The <code>[rift]</code> prefix is hardcoded.</strong> Same as <code>timedPromise</code>. Vendor and rename if the prefix doesn't match your subsystem.</li>
+<li><strong>No <code>finally</code>.</strong> If the promise rejects on timeout, the subscription is cleaned up inside the timer callback. If the promise resolves, it's cleaned up in the resolve path. There's no path where the subscription leaks — but there's also no external hook if you need to observe the cleanup.</li>
+<li><strong>The <code>A</code> type parameter in <code>T = A</code> refers to a module-scoped <code>A</code>.</strong> This is a project convention, not a standard generic. If you copy the function into a codebase without <code>A</code>, replace the default or remove it.</li>
+</ul>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not a general-purpose pub/sub subscription. It resolves once and unsubscribes. If you need ongoing subscription, use <code>sub</code> directly.</li>
+<li>Not a state observer. It watches for one specific transition (<code>opened</code> becoming truthy) and then stops.</li>
+<li>Not a polling mechanism. It relies on <code>sub</code> pushing updates. If <code>sub</code> never fires and the timeout is disabled, the promise never settles.</li>
+<li>Not a <code>Promise.race</code> — there's no second promise running in parallel. The subscription and the timer are managed explicitly with cleanup on every path.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p>Subscribe first, then check. Any code that does it the other way has a race window where the event you're waiting for fires in the gap, and the caller hangs forever. The fix costs one extra line of cleanup and closes the window entirely. Wait on the subscription; verify the state after. Resolve on whichever fires first.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;isNotDefined&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="isnotdefined"><code>isNotDefined</code></h1>
+<blockquote>
+<p>Type guard for the nullish check. <code>false</code> when the value is neither <code>null</code> nor <code>undefined</code>; <code>true</code> when it's one of them. Pairs with <code>isDefined</code> as the inverted predicate.</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> <span class="hljs-attr">xs</span>: (<span class="hljs-built_in">number</span> | <span class="hljs-literal">null</span> | <span class="hljs-literal">undefined</span>)[] = [<span class="hljs-number">1</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>, <span class="hljs-literal">undefined</span>, <span class="hljs-number">3</span>]
+<span class="hljs-keyword">const</span> missing = xs.<span class="hljs-title function_">filter</span>(isNotDefined)   <span class="hljs-comment">// (null | undefined)[]</span>
+</code></pre>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { isNotDefined } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+<span class="hljs-title function_">isNotDefined</span>(<span class="hljs-number">0</span>)          <span class="hljs-comment">// false</span>
+<span class="hljs-title function_">isNotDefined</span>(<span class="hljs-string">&quot;&quot;</span>)         <span class="hljs-comment">// false</span>
+<span class="hljs-title function_">isNotDefined</span>(<span class="hljs-literal">false</span>)      <span class="hljs-comment">// false</span>
+<span class="hljs-title function_">isNotDefined</span>(<span class="hljs-literal">null</span>)       <span class="hljs-comment">// true</span>
+<span class="hljs-title function_">isNotDefined</span>(<span class="hljs-literal">undefined</span>)  <span class="hljs-comment">// true</span>
+</code></pre>
+<p>That's it. You're done.</p>
+<p>The reason to use it instead of <code>x == null</code> inline is the filter case:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> missing = [<span class="hljs-number">1</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>, <span class="hljs-literal">undefined</span>, <span class="hljs-number">3</span>].<span class="hljs-title function_">filter</span>(isNotDefined)
+<span class="hljs-comment">// missing: (null | undefined)[]</span>
+</code></pre>
+<p>TypeScript keeps the narrowed element type instead of collapsing it, which is what you want when the nulls <em>are</em> the thing you're collecting.</p>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="signature">Signature</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> isNotDefined = &lt;T&gt;(<span class="hljs-attr">v</span>: T | <span class="hljs-literal">null</span> | <span class="hljs-literal">undefined</span>): v is T
+</code></pre>
+<p>A type predicate. Truthy return narrows the <em>positive</em> branch — but note the semantics are inverted from <code>isDefined</code>: this returns <code>true</code> when the value <strong>is</strong> nullish. The <code>v is T</code> predicate is what TypeScript attaches to the truthy case, which for this function is the &quot;value is nullish&quot; case. In practice you use it in <code>.filter</code> and in <code>if (!isNotDefined(x))</code> guards, where the narrowing lands where you want it.</p>
+<h4 id="why-v--undefined-and-not-v--undefined--v--null">Why <code>v != undefined</code> and not <code>v !== undefined &amp;&amp; v !== null</code></h4>
+<p>Same reason as <code>isDefined</code>: loose <code>!=</code> against either nullish sentinel matches both. <code>v != undefined</code> is <code>false</code> for every non-nullish value and <code>true</code> for <code>null</code> and <code>undefined</code>. One comparison, both cases.</p>
+<pre><code class="language-ts"><span class="hljs-literal">null</span>      != <span class="hljs-literal">undefined</span>   <span class="hljs-comment">// false  → isNotDefined(null) === true</span>
+<span class="hljs-literal">undefined</span> != <span class="hljs-literal">undefined</span>   <span class="hljs-comment">// false  → isNotDefined(undefined) === true</span>
+<span class="hljs-number">0</span>         != <span class="hljs-literal">undefined</span>   <span class="hljs-comment">// true   → isNotDefined(0) === false</span>
+<span class="hljs-string">&quot;&quot;</span>        != <span class="hljs-literal">undefined</span>   <span class="hljs-comment">// true   → isNotDefined(&quot;&quot;) === false</span>
+<span class="hljs-literal">false</span>     != <span class="hljs-literal">undefined</span>   <span class="hljs-comment">// true   → isNotDefined(false) === false</span>
+<span class="hljs-title class_">NaN</span>       != <span class="hljs-literal">undefined</span>   <span class="hljs-comment">// true   → isNotDefined(NaN) === false</span>
+</code></pre>
+<p>Falsy-but-real values (<code>0</code>, <code>&quot;&quot;</code>, <code>false</code>, <code>NaN</code>) are <strong>defined</strong>. Only the two sentinels are &quot;not defined.&quot;</p>
+<h4 id="isdefined-vs-isnotdefined"><code>isDefined</code> vs <code>isNotDefined</code></h4>
+<p>They're exact inverses. Both do the same nullish check; they differ only in which side of the branch they return <code>true</code> on.</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th><code>isDefined</code></th>
+<th><code>isNotDefined</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>null</code></td>
+<td><code>false</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>undefined</code></td>
+<td><code>false</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td><code>true</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>&quot;&quot;</code></td>
+<td><code>true</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>false</code></td>
+<td><code>true</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>NaN</code></td>
+<td><code>true</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>{}</code></td>
+<td><code>true</code></td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<p>Pick by what you're collecting or guarding against. <code>filter(isDefined)</code> keeps the real values. <code>filter(isNotDefined)</code> keeps the holes.</p>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Collect the missing entries</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> missingKeys = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">entries</span>(map)
+  .<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">[, v]</span>) =&gt;</span> <span class="hljs-title function_">isNotDefined</span>(v))
+  .<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">[k]</span>) =&gt;</span> k)
+</code></pre>
+<p><strong>Guard against absence with an early return</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">handle</span>(<span class="hljs-params">x: <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span> | <span class="hljs-literal">undefined</span></span>) {
+  <span class="hljs-keyword">if</span> (<span class="hljs-title function_">isNotDefined</span>(x)) <span class="hljs-keyword">return</span>
+  <span class="hljs-comment">// x: string</span>
+}
+</code></pre>
+<p><strong>Inverse filter for validation</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> invalid = rows.<span class="hljs-title function_">filter</span>(<span class="hljs-function"><span class="hljs-params">r</span> =&gt;</span> <span class="hljs-title function_">isNotDefined</span>(r.<span class="hljs-property">id</span>))
+</code></pre>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li><strong>The name reads backwards from the return value</strong> if you're not used to it. <code>isNotDefined(x) === true</code> means <code>x</code> <em>is</em> nullish. It's &quot;is not-defined,&quot; not &quot;is not undefined.&quot; Read it as a single phrase.</li>
+<li><strong>Only top-level.</strong> <code>isNotDefined({ a: null })</code> is <code>false</code>. The object is defined; a property isn't.</li>
+<li><strong>Only useful with <code>strictNullChecks</code> on.</strong> Otherwise the narrowing is a no-op and this is just <code>v != undefined</code>.</li>
+<li><strong>Not a truthiness check.</strong> <code>isNotDefined(0)</code> is <code>false</code>. If you meant &quot;is falsy,&quot; that's a different predicate.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p>Presence, not truthiness. <code>isNotDefined</code> and <code>isDefined</code> are the two directions of the same one-line nullish test, and between them they cover every place you'd otherwise write <code>x == null</code> and lose the type narrowing.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            
+            
+        </body>
+        </html>

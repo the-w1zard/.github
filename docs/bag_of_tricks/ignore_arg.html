@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;ignoreArg&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="ignorearg"><code>ignoreArg</code></h1>
+<blockquote>
+<p>Adapt a zero-argument callback to an API that passes an argument. Wraps your function, discards whatever the caller sends, and invokes your function with no arguments.</p>
+</blockquote>
+<pre><code class="language-tsx">&lt;button onClick={<span class="hljs-title function_">ignoreArg</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">setOpen</span>(<span class="hljs-literal">true</span>))}&gt;<span class="hljs-title class_">Open</span>&lt;/button&gt;
+</code></pre>
+<p>The point: React, the DOM, and most event systems hand every handler an event object. When your callback doesn't take arguments — which is most of the time — <code>ignoreArg</code> bridges the two shapes so the handler slot accepts a function the API would otherwise reject or that would force you to write <code>() =&gt;</code> inline.</p>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { ignoreArg } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+&lt;button onClick={<span class="hljs-title function_">ignoreArg</span>(toggle)}&gt;
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{ignoreArg(handleReset)}</span>&gt;</span>
+</span></code></pre>
+<p>That's it. You're done. You now know how to use <code>ignoreArg</code>.</p>
+<p>The API passes an event, your function doesn't take one, <code>ignoreArg</code> drops the event and calls your function. That's the whole contract.</p>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="signature">Signature</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> ignoreArg = &lt;T&gt;<span class="hljs-function">(<span class="hljs-params">fn: () =&gt; T</span>) =&gt;</span> <span class="hljs-function">(<span class="hljs-params">_arg?: <span class="hljs-built_in">unknown</span></span>) =&gt;</span> <span class="hljs-title function_">fn</span>()
+</code></pre>
+<p>Two functions. Outer takes your callback; the returned function is the adapter that accepts any argument and ignores it.</p>
+<ul>
+<li><code>ignoreArg(fn)</code> returns <code>(_arg?) =&gt; fn()</code>.</li>
+<li>The adapter accepts an optional argument of any shape and discards it.</li>
+<li>Calling the adapter calls <code>fn()</code> with no arguments and returns whatever <code>fn</code> returns.</li>
+</ul>
+<h4 id="when-to-use-it">When to use it</h4>
+<p>The use case is narrow and specific: <strong>the caller passes an argument, the callee doesn't accept one, and the type signatures are incompatible without a wrapper.</strong></p>
+<p>Common situations:</p>
+<ul>
+<li><strong>React event handlers typed as <code>(e: Event) =&gt; void</code>.</strong> Passing a <code>() =&gt; void</code> function directly is a type error in strict configs. <code>ignoreArg</code> bridges it.</li>
+<li><strong><code>addEventListener</code> callbacks.</strong> The DOM passes an event; your callback doesn't take one.</li>
+<li><strong>Pub/sub bus handlers.</strong> The bus invokes with a payload; your handler ignores it.</li>
+<li><strong>Third-party UI libraries</strong> whose prop types require an argument where you don't need one.</li>
+</ul>
+<pre><code class="language-ts">element.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-title function_">ignoreArg</span>(handleClick))
+</code></pre>
+<h4 id="ignorearg-vs-an-inline-arrow"><code>ignoreArg</code> vs an inline arrow</h4>
+<p>Both do the same thing:</p>
+<pre><code class="language-tsx">onClick={<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">toggle</span>()}          <span class="hljs-comment">// inline arrow ignores the event</span>
+onClick={<span class="hljs-title function_">ignoreArg</span>(toggle)}       <span class="hljs-comment">// adapter ignores the event</span>
+</code></pre>
+<p>Pick <code>ignoreArg</code> when:</p>
+<ul>
+<li>You want the call site to read as &quot;the argument is intentionally dropped.&quot;</li>
+<li>You're passing a named function you'd rather not wrap inline.</li>
+<li>You're producing handlers that will be stored, passed, or reused (bus handlers, config objects).</li>
+</ul>
+<p>Pick the inline arrow when:</p>
+<ul>
+<li>It's obvious from context that the argument doesn't matter.</li>
+<li>You're already in an expression and another function call adds noise.</li>
+</ul>
+<p>Neither is more correct. <code>ignoreArg</code> names the intent; the arrow just performs it.</p>
+<h4 id="behavior">Behavior</h4>
+<ul>
+<li><strong>The argument is discarded.</strong> Not logged, not forwarded, not inspected. Whatever the caller sends is dropped on the floor.</li>
+<li><strong><code>fn</code> is called with no arguments.</strong> Even if <code>fn</code> is defined to accept parameters, they arrive as <code>undefined</code>. TypeScript accepts this because <code>fn</code> is typed <code>() =&gt; T</code>.</li>
+<li><strong>Return value passes through.</strong> If <code>fn</code> returns a value, the adapter does too.</li>
+<li><strong>New adapter per call.</strong> <code>ignoreArg(fn) !== ignoreArg(fn)</code>. See gotchas for the React identity implications.</li>
+<li><strong>Synchronous.</strong> The adapter is not async; it doesn't await, wrap, or defer. Whatever <code>fn</code> returns is whatever the adapter returns.</li>
+</ul>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>React handlers that don't need the event</strong></p>
+<pre><code class="language-tsx">&lt;button onClick={<span class="hljs-title function_">ignoreArg</span>(toggle)}&gt;<span class="hljs-title class_">Toggle</span>&lt;/button&gt;
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{ignoreArg(reset)}</span>&gt;</span>Reset<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+</code></pre>
+<p><strong>DOM listeners</strong></p>
+<pre><code class="language-ts">element.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-title function_">ignoreArg</span>(handleClick))
+element.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;focus&quot;</span>, <span class="hljs-title function_">ignoreArg</span>(handleFocus))
+</code></pre>
+<p><strong>Pub/sub</strong></p>
+<pre><code class="language-ts">bus.<span class="hljs-title function_">on</span>(<span class="hljs-string">&quot;ready&quot;</span>, <span class="hljs-title function_">ignoreArg</span>(onReady))
+bus.<span class="hljs-title function_">on</span>(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs-title function_">ignoreArg</span>(onError))
+</code></pre>
+<p><strong>Third-party components with strict prop types</strong></p>
+<pre><code class="language-tsx">&lt;<span class="hljs-title class_">CustomInput</span> onChange={<span class="hljs-title function_">ignoreArg</span>(onChange)} /&gt;
+</code></pre>
+<p><strong>A map of handlers</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> handlers = {
+  <span class="hljs-attr">open</span>: <span class="hljs-title function_">ignoreArg</span>(openModal),
+  <span class="hljs-attr">close</span>: <span class="hljs-title function_">ignoreArg</span>(closeModal),
+  <span class="hljs-attr">reset</span>: <span class="hljs-title function_">ignoreArg</span>(clearForm),
+}
+</code></pre>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li>
+<p><strong>New function identity per call.</strong> <code>ignoreArg(fn)</code> creates a new function every time. In React, writing <code>onClick={ignoreArg(fn)}</code> inline produces a new handler on every render. If the child is memoized, this defeats the memo. The fix is the same as for any inline arrow:</p>
+<pre><code class="language-tsx"><span class="hljs-comment">// stable identity via useCallback</span>
+<span class="hljs-keyword">const</span> onClick = <span class="hljs-title function_">useCallback</span>(<span class="hljs-title function_">ignoreArg</span>(handle), [handle])
+
+<span class="hljs-comment">// or hoist to module scope</span>
+<span class="hljs-keyword">const</span> onClick = <span class="hljs-title function_">ignoreArg</span>(handle)
+</code></pre>
+<p>Not a bug in <code>ignoreArg</code> — the same cost as writing <code>() =&gt; handle()</code> inline — but worth knowing.</p>
+</li>
+<li>
+<p><strong>The argument is truly dropped.</strong> If <code>fn</code> expects to receive an event someday, this is the wrong adapter. Use the function directly or forward the event explicitly.</p>
+</li>
+<li>
+<p><strong><code>T</code> comes from <code>fn</code>'s return type.</strong> If <code>fn</code> returns <code>void</code>, so does the adapter. If it returns a value, the adapter does too. Usually irrelevant for handlers, but available if you need it.</p>
+</li>
+<li>
+<p><strong>Parameter is optional and <code>unknown</code>.</strong> This is what lets the adapter satisfy event prop types across libraries — the type accepts any argument. If a library requires a specific event shape on the callback, this still works, because the shape is ignored.</p>
+</li>
+<li>
+<p><strong>The wrapped function has no access to the argument.</strong> There's no way to opt in to receiving it through <code>ignoreArg</code>. If you need the event sometimes, don't use this.</p>
+</li>
+</ul>
+<h4 id="ignorearg-vs-invoke"><code>ignoreArg</code> vs <code>invoke</code></h4>
+<p>You'll notice the implementations are identical:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> invoke =     &lt;T&gt;<span class="hljs-function">(<span class="hljs-params">fn: () =&gt; T</span>) =&gt;</span> <span class="hljs-function">(<span class="hljs-params">_event?: <span class="hljs-built_in">unknown</span></span>) =&gt;</span> <span class="hljs-title function_">fn</span>()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> ignoreArg =  &lt;T&gt;<span class="hljs-function">(<span class="hljs-params">fn: () =&gt; T</span>) =&gt;</span> <span class="hljs-function">(<span class="hljs-params">_arg?:   <span class="hljs-built_in">unknown</span></span>) =&gt;</span> <span class="hljs-title function_">fn</span>()
+</code></pre>
+<p>Same code. Different names. The names encode different framings:</p>
+<ul>
+<li><strong><code>invoke</code></strong> — &quot;make a handler that invokes this function.&quot; Reads well at a React call site: <code>onClick={invoke(toggle)}</code>.</li>
+<li><strong><code>ignoreArg</code></strong> — &quot;adapt this callback to an API that passes an argument.&quot; Reads well when bridging type mismatches: <code>addEventListener(&quot;click&quot;, ignoreArg(handleClick))</code>.</li>
+</ul>
+<p>Both exist because the <em>reason</em> you reach for the helper varies, and the name should match the reason. Pick whichever fits the call site. If you find yourself wanting both in the same file, they're the same function with two names — that's fine.</p>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not <code>useCallback</code>. It doesn't memoize. Wrap with <code>useCallback</code> if you need a stable identity across renders.</li>
+<li>Not a debounce or throttle. No timing behavior.</li>
+<li>Not an event transformer. It doesn't reshape, forward, or inspect the argument — it discards it.</li>
+<li>Not a partial application helper. It fixes the argument list to <code>[]</code>; it doesn't bind or reorder anything.</li>
+<li>Not a general-purpose adapter. It only works for the specific case where the callee takes no arguments.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p>Event APIs pass arguments. Most handlers don't take any. <code>ignoreArg</code> is the name for that mismatch — a one-line adapter that says &quot;the argument is not part of this callback's contract&quot; and bridges the two signatures. Same code as <code>invoke</code>; different reason, different name.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            
+            
+        </body>
+        </html>

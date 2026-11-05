@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;deferred&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="deferred"><code>deferred</code></h1>
+<blockquote>
+<p>A promise you settle from the outside. Create one, hand the <code>promise</code> to whoever is waiting, and call <code>resolve</code> or <code>reject</code> whenever you're ready.</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> d = deferred&lt;<span class="hljs-built_in">string</span>&gt;()
+
+d.<span class="hljs-property">promise</span>.<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(v))   <span class="hljs-comment">// not yet</span>
+
+d.<span class="hljs-title function_">resolve</span>(<span class="hljs-string">&quot;hello&quot;</span>)                     <span class="hljs-comment">// logs &quot;hello&quot;</span>
+</code></pre>
+<p>The point: separate <em>creation</em> of the promise from <em>completion</em> of it. The code that resolves and the code that awaits don't have to know about each other.</p>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { deferred } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+<span class="hljs-keyword">const</span> d = deferred&lt;<span class="hljs-title class_">User</span>&gt;()
+
+<span class="hljs-comment">// somewhere else — different function, different tick, different module</span>
+d.<span class="hljs-title function_">resolve</span>(user)
+<span class="hljs-comment">// or</span>
+d.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;failed&quot;</span>))
+
+<span class="hljs-comment">// wherever you need to wait</span>
+<span class="hljs-keyword">const</span> user = <span class="hljs-keyword">await</span> d.<span class="hljs-property">promise</span>
+</code></pre>
+<p>That's it. You're done. You now know how to use <code>deferred</code>.</p>
+<p>The <code>promise</code> is a normal promise. The <code>resolve</code> and <code>reject</code> are the normal settle functions. The only thing <code>deferred</code> does is let you keep them in separate scopes.</p>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="signature">Signature</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> deferred&lt;T&gt;(): {
+  <span class="hljs-attr">promise</span>: <span class="hljs-title class_">Promise</span>&lt;T&gt;
+  <span class="hljs-attr">resolve</span>: <span class="hljs-function">(<span class="hljs-params">value: T</span>) =&gt;</span> <span class="hljs-built_in">void</span>
+  <span class="hljs-attr">reject</span>: <span class="hljs-function">(<span class="hljs-params">reason?: <span class="hljs-built_in">any</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>
+}
+</code></pre>
+<ul>
+<li><strong><code>promise</code></strong> — the pending promise. Hand it to anyone who needs to wait.</li>
+<li><strong><code>resolve(value)</code></strong> — settle the promise successfully with <code>value</code>.</li>
+<li><strong><code>reject(reason)</code></strong> — settle the promise with a rejection. <code>reason</code> can be anything; convention is an <code>Error</code>.</li>
+</ul>
+<p>Both <code>resolve</code> and <code>reject</code> are the raw <code>Promise</code> executor callbacks. Only the first call to either has any effect; subsequent calls are no-ops. That's standard promise semantics, not a special guard in <code>deferred</code>.</p>
+<h4 id="how-it-works">How it works</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">let</span> resolve!: <span class="hljs-function">(<span class="hljs-params">value: T</span>) =&gt;</span> <span class="hljs-built_in">void</span>
+<span class="hljs-keyword">let</span> reject!: <span class="hljs-function">(<span class="hljs-params">reason?: <span class="hljs-built_in">any</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>
+<span class="hljs-keyword">const</span> promise = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>&lt;T&gt;(<span class="hljs-function">(<span class="hljs-params">res, rej</span>) =&gt;</span> { resolve = res; reject = rej })
+<span class="hljs-keyword">return</span> { promise, resolve, reject }
+</code></pre>
+<p>Three lines of logic:</p>
+<ol>
+<li>Declare <code>resolve</code> and <code>reject</code> with definite-assignment assertions (<code>!</code>) — they'll be set synchronously inside the executor.</li>
+<li>Create the promise. The executor runs synchronously, so <code>res</code> and <code>rej</code> are captured into the outer variables before the constructor returns.</li>
+<li>Return the promise and the two callbacks as a single object.</li>
+</ol>
+<p>There's no other state. No <code>settled</code> flag, no value cache, no guard. The promise machinery is the state.</p>
+<h4 id="why-youd-want-this">Why you'd want this</h4>
+<p>The normal way to create a promise is to write the executor at the same place the promise is used:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-title class_">Value</span>&gt;(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+  <span class="hljs-comment">// resolve/reject are only reachable inside this callback</span>
+})
+</code></pre>
+<p>The executor is a &quot;resolver scope.&quot; Any code that needs to call <code>resolve</code> has to live inside it, or be wired up through a callback that is. That's fine when the resolution happens in the same logical place — a <code>fetch</code> callback, a <code>setTimeout</code>, an event handler.</p>
+<p>It's awkward when the code that will resolve the promise lives <em>elsewhere</em> — a different module, a different function, a registry of pending operations. <code>deferred</code> extracts <code>resolve</code> and <code>reject</code> into a return value so you can hand them around.</p>
+<p>Common situations where this matters:</p>
+<ul>
+<li><strong>A queue of pending requests</strong> that resolves each one when a response arrives.</li>
+<li><strong>A registry of waiters</strong> keyed by id — someone calls <code>register(id)</code>, the deferred goes into a map, a response comes in, the deferred for that id is resolved.</li>
+<li><strong>Bridging callback APIs to promise APIs</strong> — pass <code>resolve</code> and <code>reject</code> where the callback API expects them.</li>
+<li><strong>Manually controlled test promises</strong> — resolve at a specific moment.</li>
+<li><strong>Promise-based handoffs</strong> where the resolver is determined after the promise is created.</li>
+</ul>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Bridging a callback API</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">readAsync</span>(<span class="hljs-params">path: <span class="hljs-built_in">string</span></span>) {
+  <span class="hljs-keyword">const</span> d = deferred&lt;<span class="hljs-title class_">Buffer</span>&gt;()
+  fs.<span class="hljs-title function_">readFile</span>(path, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (err) d.<span class="hljs-title function_">reject</span>(err)
+    <span class="hljs-keyword">else</span> d.<span class="hljs-title function_">resolve</span>(data)
+  })
+  <span class="hljs-keyword">return</span> d.<span class="hljs-property">promise</span>
+}
+</code></pre>
+<p>This is what <code>new Promise</code> does internally. <code>deferred</code> just makes the intermediate explicit.</p>
+<p><strong>Waiter registry</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> waiters = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-title class_">ReturnType</span>&lt;<span class="hljs-keyword">typeof</span> deferred&lt;<span class="hljs-title class_">Response</span>&gt;&gt;&gt;()
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">expect</span>(<span class="hljs-params">id: <span class="hljs-built_in">string</span></span>) {
+  <span class="hljs-keyword">const</span> d = deferred&lt;<span class="hljs-title class_">Response</span>&gt;()
+  waiters.<span class="hljs-title function_">set</span>(id, d)
+  <span class="hljs-keyword">return</span> d.<span class="hljs-property">promise</span>
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">deliver</span>(<span class="hljs-params">id: <span class="hljs-built_in">string</span>, res: Response</span>) {
+  <span class="hljs-keyword">const</span> d = waiters.<span class="hljs-title function_">get</span>(id)
+  waiters.<span class="hljs-title function_">delete</span>(id)
+  d?.<span class="hljs-title function_">resolve</span>(res)
+}
+</code></pre>
+<p><code>expect(id)</code> returns a promise. <code>deliver(id, res)</code> resolves it. Neither one has to know about the other's call site.</p>
+<p><strong>Manually controlled promise in tests</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> gate = deferred&lt;<span class="hljs-built_in">void</span>&gt;()
+fetchMock.<span class="hljs-title function_">mockImplementationOnce</span>(<span class="hljs-function">() =&gt;</span> gate.<span class="hljs-property">promise</span>)
+
+<span class="hljs-keyword">const</span> call = <span class="hljs-title function_">fetchUser</span>(id)
+<span class="hljs-comment">// ... assert on intermediate state ...</span>
+gate.<span class="hljs-title function_">resolve</span>()
+
+<span class="hljs-keyword">await</span> call
+</code></pre>
+<p><strong>Coordinating between async branches</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> connected = deferred&lt;<span class="hljs-built_in">void</span>&gt;()
+
+client.<span class="hljs-title function_">on</span>(<span class="hljs-string">&quot;connect&quot;</span>, <span class="hljs-function">() =&gt;</span> connected.<span class="hljs-title function_">resolve</span>())
+client.<span class="hljs-title function_">on</span>(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> connected.<span class="hljs-title function_">reject</span>(e))
+
+<span class="hljs-keyword">await</span> connected.<span class="hljs-property">promise</span>
+</code></pre>
+<h4 id="behavior">Behavior</h4>
+<ul>
+<li><strong><code>resolve(value)</code> settles the promise with <code>value</code>.</strong> If <code>value</code> is a promise or thenable, the outer promise adopts it — same as <code>Promise.resolve</code>.</li>
+<li><strong><code>reject(reason)</code> settles the promise with a rejection.</strong> <code>reason</code> can be anything; it's not coerced.</li>
+<li><strong>First call wins.</strong> Calling <code>resolve</code> twice is a no-op the second time. Calling <code>resolve</code> after <code>reject</code> is a no-op. Standard promise semantics.</li>
+<li><strong>No <code>settled</code> flag.</strong> The type doesn't expose whether the deferred has been settled. If you need that, track it separately or check <code>await Promise.race([d.promise.then(() =&gt; &quot;resolved&quot;, () =&gt; &quot;rejected&quot;), Promise.resolve(&quot;pending&quot;)])</code>.</li>
+<li><strong>The promise starts pending.</strong> If you never call <code>resolve</code> or <code>reject</code>, it stays pending forever. No timeout, no auto-settle.</li>
+<li><strong><code>resolve</code> and <code>reject</code> are the raw executor callbacks.</strong> They don't return anything, don't throw if called late, and don't validate their argument.</li>
+</ul>
+<h4 id="deferred-vs-gate"><code>deferred</code> vs <code>gate</code></h4>
+<p>Sibling primitives with different failure models:</p>
+<ul>
+<li><strong><code>deferred&lt;T&gt;</code></strong> — both <code>resolve</code> and <code>reject</code>. The failure case exists.</li>
+<li><strong><code>gate&lt;T&gt;</code></strong> — only <code>open</code>. No rejection. Readiness has no failure mode.</li>
+</ul>
+<p>Pick by the domain. &quot;Did the request succeed?&quot; → <code>deferred</code>. &quot;Is the subsystem ready?&quot; → <code>gate</code>.</p>
+<p>The other difference: <code>gate</code> names its resolve <code>open</code>, which reads as a signal rather than a completion. <code>deferred</code> uses the standard <code>resolve</code> / <code>reject</code> names, matching the promise executor.</p>
+<h4 id="deferred-vs-promisewithresolvers"><code>deferred</code> vs <code>Promise.withResolvers</code></h4>
+<p><code>Promise.withResolvers&lt;T&gt;()</code> is the native version of the same thing. Same shape, same semantics:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> { promise, resolve, reject } = <span class="hljs-title class_">Promise</span>.<span class="hljs-property">withResolvers</span>&lt;T&gt;()
+</code></pre>
+<p><code>deferred</code> predates it or backfills it for environments where <code>Promise.withResolvers</code> isn't available. If your runtime has <code>Promise.withResolvers</code>, either one works — <code>deferred</code> has the advantage of being a single import that works everywhere.</p>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li><strong>Handing out <code>resolve</code> / <code>reject</code> is handing out control.</strong> Anyone with a reference can settle the promise. If that's not what you want, keep the deferred in the enclosing scope and expose only <code>.promise</code>.</li>
+<li><strong>No protection against double-settle.</strong> First call wins silently. If two producers race to resolve, whichever runs first is what the waiter sees; the second's value is dropped without a warning.</li>
+<li><strong>No protection against late settle.</strong> Calling <code>resolve</code> after the promise was already rejected is a no-op. There's no way to detect that from inside <code>deferred</code>.</li>
+<li><strong>Rejection with a non-Error is allowed.</strong> <code>d.reject(&quot;oops&quot;)</code> is valid; the promise rejects with the string. Consumers expecting <code>Error</code> will need to handle it. Convention is to always reject with <code>Error</code> instances.</li>
+<li><strong>Memory: the promise holds a reference.</strong> A deferred that is never settled and never awaited still holds the promise object, and if consumers added <code>.then</code> callbacks, those callbacks are never invoked and their closures stay alive. Watch for leaked deferreds in registries.</li>
+<li><strong>No cancellation.</strong> Once created, the deferred exists until settled or garbage collected. There's no <code>cancel()</code> method. If you need cancellation, wrap the promise with <code>AbortSignal</code> on the consumer side, or design your registry to remove entries.</li>
+<li><strong>The <code>!</code> on <code>resolve</code> and <code>reject</code></strong> is a TypeScript definite-assignment assertion. It tells the compiler &quot;these will be set before use.&quot; The promise executor runs synchronously, so they are. Don't move the promise construction after the return and expect this to still hold.</li>
+</ul>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not a <code>Deferred</code> with a <code>.resolve()</code> method. It's a plain object with three fields. Call <code>d.resolve(x)</code>, not <code>d.resolve()(x)</code>.</li>
+<li>Not cancellable, resettable, or observable. It's a one-shot.</li>
+<li>Not a queue. It resolves one thing.</li>
+<li>Not a thenable itself. The <code>deferred</code> object isn't a promise; its <code>.promise</code> field is. Don't <code>await d</code>, <code>await d.promise</code>.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p><code>new Promise</code> ties the resolver to the executor scope. That's usually fine and occasionally awkward. <code>deferred</code> pulls the resolver out into a value so it can be handed to whoever needs it — a registry, a callback adapter, another module. Three lines, no state beyond what the promise machinery provides, the same failure model as the promise executor itself.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            
+            
+        </body>
+        </html>

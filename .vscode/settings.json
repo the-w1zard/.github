@@ -1,0 +1,5 @@
+{
+    "editor.defaultFormatter": "vscode.markdown-language-features",
+    "workbench.editor.markdownDefaultEditorInAgentsWindow": false,
+    "markdown.math.enabled": false
+}

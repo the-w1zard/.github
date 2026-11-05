@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&lt;span style&equals;&quot;font-size&colon; 20px&semi; font-family&colon; monospace&quot;&gt;&lbrack;TOC&rbrack;&lt;&sol;span&gt;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h2 id="toc"><span style="font-size: 20px; font-family: monospace">[TOC]</span></h2>
+<details><summary><strong><span style="font-size: 16px; font-family: monospace">[DATABASES]</span> </strong></summary>
+<p><a href="../databases/BDB.html#BDB">BDB</a>
+<a href="../databases/BINARY.html#BINARY">BINARY</a>
+<a href="../databases/COOKIE.html#COOKIE">COOKIE</a>
+<a href="../databases/GDB.html#GDB">GDB</a>
+<a href="../databases/GT.html#GT">GT</a>
+<a href="../databases/HADRON_COLLIDER.html#HADRON_COLLIDER">HADRON_COLLIDER</a>
+<a href="../databases/IDB_HADRON_COLLIDER.html#IDB_HADRON_COLLIDER">IDB_HADRON_COLLIDER</a>
+<a href="../databases/IDB_HC_SINK.html#IDB_HC_SINK">IDB_HC_SINK</a>
+<a href="../databases/IDB_KVDB.html#IDB_KVDB">IDB_KVDB</a>
+<a href="../databases/IDB_RDB.html#IDB_RDB">IDB_RDB</a>
+<a href="../databases/KVDB.html#KVDB">KVDB</a>
+<a href="../databases/LS.html#LS">LS</a>
+<a href="../databases/MEMORY.html#MEMORY">MEMORY</a>
+<a href="../databases/RDB.html#RDB">RDB</a>
+<a href="../databases/REGISTRIES.html#REGISTRIES">REGISTRIES</a>
+<a href="../databases/SAURON.html#SAURON">SAURON</a>
+<a href="../databases/SECURE_COOKIE.html#SECURE_COOKIE">SECURE_COOKIE</a>
+<a href="../databases/SS.html#SS">SS</a>
+<a href="../databases/TDB.html#TDB">TDB</a>
+<a href="../databases/VDB.html#VDB">VDB</a></p>
+</details>
+<details><summary><strong><span style="font-size: 16px; font-family: monospace">[DEVTOOLS]</span> </strong></summary>
+<p><a href="../platform/ATOM.html#ATOM">ATOM</a>
+<a href="../platform/CONVERGENCE.html#CONVERGENCE">CONVERGENCE</a>
+<a href="../platform/FORMS.html#FORMS">FORMS</a>
+<a href="../platform/GLOBAL_QUAD_KEY_CONTEXT.html#GLOBAL_QUAD_KEY_CONTEXT">GLOBAL_QUAD_KEY_CONTEXT</a>
+<a href="../platform/PERFORMANCE_DIVISION.html#PERFORMANCE_DIVISION">PERFORMANCE_DIVISION</a>
+<a href="../platform/REACTIVITY.html#REACTIVITY">REACTIVITY</a>
+<a href="../platform/ROUTE_COMPONENTS.html#ROUTE_COMPONENTS">ROUTE_COMPONENTS</a>
+<a href="../platform/SAURON.html#SAURON">SAURON</a>
+<a href="../platform/SIGNALS.html#SIGNALS">SIGNALS</a>
+<a href="../platform/STAFF.html#STAFF">STAFF</a>
+<a href="../platform/THE_WARLOCK_MODE.html#THE_WARLOCK_MODE">THE_WARLOCK_MODE</a>
+<a href="../platform/THE_WIZARD_MODE.html#THE_WIZARD_MODE">THE_WIZARD_MODE</a></p>
+</details>
+<details><summary><strong><span style="font-size: 16px; font-family: monospace">[PLATFORM PRIMTIVES]</span> </strong></summary>
+<p><a href="../primitives/API_WARDS.html#API_WARDS">API_WARDS</a>
+<a href="../primitives/APPARATIONS_DQ,md#APPARATIONS_DQ">APPARATIONS_DQ</a>
+<a href="../primitives/ARCHETYPES.html#ARCHETYPES">ARCHETYPES</a>
+<a href="../primitives/BATCH.html#BATCH">BATCH</a>
+<a href="../primitives/BINARY.html#BINARY">BINARY</a>
+<a href="../primitives/CHAINS.html#CHAINS">CHAINS</a>
+<a href="../primitives/CHRONO_SHIFT.html#CHRONO_SHIFT">CHRONO_SHIFT</a>
+<a href="../primitives/CHRONOMANCER.html#CHRONOMANCER">CHRONOMANCER</a>
+<a href="../primitives/CONJURE_LIBRARIES.html#CONJURE_LIBRARIES">CONJURE_LIBRARIES</a>
+<a href="../primitives/CONJURE_MIMIC.html#CONJURE_MIMIC">CONJURE_MIMIC</a>
+<a href="../primitives/CRON.html#CRON">CRON</a>
+<a href="../primitives/DARK_PORTALS.html#DARK_PORTALS">DARK_PORTALS</a>
+<a href="../primitives/DUPLEX_STREAMS.html#DUPLEX_STREAMS">DUPLEX_STREAMS</a>
+<a href="../primitives/EMITTER.html#EMITTER">EMITTER</a>
+<a href="../primitives/EVOCATIONS.html#EVOCATIONS">EVOCATIONS</a>
+<a href="../primitives/EXECUTE_MASTER.html#EXECUTE_MASTER">EXECUTE_MASTER</a>
+<a href="../primitives/GATE_MASTER.html#GATE_MASTER">GATE_MASTER</a>
+<a href="../primitives/GATES.html#GATES">GATES</a>
+<a href="../primitives/GLYPH_BINDER.html#GLYPH_BINDER">GLYPH_BINDER</a>
+<a href="../primitives/GOLEMS.html#GOLEMS">GOLEMS</a>
+<a href="../primitives/GRIMOIRE.html#GRIMOIRE">GRIMOIRE</a>
+<a href="../primitives/ILLUSIONIST.html#ILLUSIONIST">ILLUSIONIST</a>
+<a href="../primitives/INCANTATIONS.html#INCANTATIONS">INCANTATIONS</a>
+<a href="../primitives/JOBS.html#JOBS">JOBS</a>
+<a href="../primitives/MACHINES_MACHINE.html#MACHINES_MACHINE">MACHINES_MACHINE</a>
+<a href="../primitives/MICROTASKS.html#MICROTASKS">MICROTASKS</a>
+<a href="../primitives/MSGS.html#MSGS">MSGS</a>
+<a href="../primitives/NO_NO_SQUARE_DQ.html#NO_NO_SQUARE_DQ">NO_NO_SQUARE_DQ</a>
+<a href="../primitives/PERFORMANCE_TIMER.html#PERFORMANCE_TIMER">PERFORMANCE_TIMER</a>
+<a href="../primitives/PLINKO_MASTER.html#PLINKO_MASTER">PLINKO_MASTER</a>
+<a href="../primitives/PRIORITY.html#PRIORITY">PRIORITY</a>
+<a href="../primitives/RDB.html#RDB">RDB</a>
+<a href="../primitives/RENDERIVITY_DQ.html#RENDERIVITY_DQ">RENDERIVITY_DQ</a>
+<a href="../primitives/RETRY_MASTER.html#RETRY_MASTER">RETRY_MASTER</a>
+<a href="../primitives/RUNE_HTTP.html#RUNE_HTTP">RUNE_HTTP</a>
+<a href="../primitives/S_CLASS.html#S_CLASS">S_CLASS</a>
+<a href="../primitives/SCHEDULER.html#SCHEDULER">SCHEDULER</a>
+<a href="../primitives/SENTINELmd#SENTINELmd">SENTINELmd</a>
+<a href="../primitives/SESSION_SIGIL.html#SESSION_SIGIL">SESSION_SIGIL</a>
+<a href="../primitives/SPEELBOOK.html#SPEELBOOK">SPEELBOOK</a>
+<a href="../primitives/TIERED_QUEUE.html#TIERED_QUEUE">TIERED_QUEUE</a>
+<a href="../primitives/TIME_MACHINE.html#TIME_MACHINE">TIME_MACHINE</a>
+<a href="../primitives/TOME_OF_SECRETS.html#TOME_OF_SECRETS">TOME_OF_SECRETS</a>
+<a href="../primitives/TRANSMOGRIFY.html#TRANSMOGRIFY">TRANSMOGRIFY</a>
+<a href="../primitives/TYPES_MACHINE.html#TYPES_MACHINE">TYPES_MACHINE</a>
+<a href="../primitives/TYR.html#TYR">TYR</a>
+<a href="../primitives/VAULTS.html#VAULTS">VAULTS</a>
+<a href="../primitives/VENOM.html#VENOM">VENOM</a>
+<a href="../primitives/WARDS.html#WARDS">WARDS</a>
+<a href="../primitives/WIZARD_KEEP.html#WIZARD_KEEP">WIZARD_KEEP</a>
+<a href="../primitives/WORKERS.html#WORKERS">WORKERS</a>
+<a href="../primitives/WORKFLOW.html#WORKFLOW">WORKFLOW</a></p>
+</details>
+<details><summary><strong><span style="font-size: 16px; font-family: monospace">[THE_WIZARDS_STAFF]</span> </strong></summary>
+<p><a href="../solutions/BATCH.html#BATCH">BATCH</a>
+<a href="../solutions/CELLS.html#CELLS">CELLS</a>
+<a href="../solutions/CHEERIO.html#CHEERIO">CHEERIO</a>
+<a href="../solutions/CIRCUIT_BREAKER.html#CIRCUIT_BREAKER">CIRCUIT_BREAKER</a>
+<a href="../solutions/COMPRESSION.html#COMPRESSION">COMPRESSION</a>
+<a href="../solutions/CONCURRENT.html#CONCURRENT">CONCURRENT</a>
+<a href="../solutions/CQRS.html#CQRS">CQRS</a>
+<a href="../solutions/DEBOUNCE.html#DEBOUNCE">DEBOUNCE</a>
+<a href="../solutions/DEFER.html#DEFER">DEFER</a>
+<a href="../solutions/DEV_TOOLS.html#DEV_TOOLS">DEV_TOOLS</a>
+<a href="../solutions/DIFFPATCH.html#DIFFPATCH">DIFFPATCH</a>
+<a href="../solutions/DISTRBUTED_EXE.html#DISTRBUTED_EXE">DISTRBUTED_EXE</a>
+<a href="../solutions/DISTRIBUTED_LOGIC_GATES.html#DISTRIBUTED_LOGIC_GATES">DISTRIBUTED_LOGIC_GATES</a>
+<a href="../solutions/DISTRIBUTED_PORTAL.html#DISTRIBUTED_PORTAL">DISTRIBUTED_PORTAL</a>
+<a href="../solutions/DISTRIBUTED_REACTIVE_STATE.html#DISTRIBUTED_REACTIVE_STATE">DISTRIBUTED_REACTIVE_STATE</a>
+<a href="../solutions/DRS.html#DRS">DRS</a>
+<a href="../solutions/EMPHEMRAL_STATE.html#EMPHEMRAL_STATE">EMPHEMRAL_STATE</a>
+<a href="../solutions/FULL_TEXT_SEARCH.html#FULL_TEXT_SEARCH">FULL_TEXT_SEARCH</a>
+<a href="../solutions/HTTP_CLIENT.html#HTTP_CLIENT">HTTP_CLIENT</a>
+<a href="../solutions/LOGIC_GATES.html#LOGIC_GATES">LOGIC_GATES</a>
+<a href="../solutions/LONGPOLL.html#LONGPOLL">LONGPOLL</a>
+<a href="../solutions/LWW.html#LWW">LWW</a>
+<a href="../solutions/MV.html#MV">MV</a>
+<a href="../solutions/OPTIMISTIC.html#OPTIMISTIC">OPTIMISTIC</a>
+<a href="../solutions/OR.html#OR">OR</a>
+<a href="../solutions/PERFORMANCE_TIMER.html#PERFORMANCE_TIMER">PERFORMANCE_TIMER</a>
+<a href="../solutions/PN.html#PN">PN</a>
+<a href="../solutions/QUEUE_TIERED.html#QUEUE_TIERED">QUEUE_TIERED</a>
+<a href="../solutions/RAFT.html#RAFT">RAFT</a>
+<a href="../solutions/RATE_LIMIT.html#RATE_LIMIT">RATE_LIMIT</a>
+<a href="../solutions/REACTIVE_CHAINS.html#REACTIVE_CHAINS">REACTIVE_CHAINS</a>
+<a href="../solutions/REVERSE_HEART_BEAT_MGR.html#REVERSE_HEART_BEAT_MGR">REVERSE_HEART_BEAT_MGR</a>
+<a href="../solutions/RIFTS.html#RIFTS">RIFTS</a>
+<a href="../solutions/SEMAPHORE.html#SEMAPHORE">SEMAPHORE</a>
+<a href="../solutions/SEND_SUB.html#SEND_SUB">SEND_SUB</a>
+<a href="../solutions/SIGNALS.html#SIGNALS">SIGNALS</a>
+<a href="../solutions/SPREADSHEET.html#SPREADSHEET">SPREADSHEET</a>
+<a href="../solutions/SSE.html#SSE">SSE</a>
+<a href="../solutions/STAFF.html#STAFF">STAFF</a>
+<a href="../solutions/STREAMS.html#STREAMS">STREAMS</a>
+<a href="../solutions/SWR.html#SWR">SWR</a>
+<a href="../solutions/TEMPORAL_SHIFT.html#TEMPORAL_SHIFT">TEMPORAL_SHIFT</a>
+<a href="../solutions/THROTTLE.html#THROTTLE">THROTTLE</a>
+<a href="../solutions/WIRE_TAPS.html#WIRE_TAPS">WIRE_TAPS</a>
+<a href="../solutions/WORKSPACE_GLOBAL.html#WORKSPACE_GLOBAL">WORKSPACE_GLOBAL</a>
+<a href="../solutions/WS.html#WS">WS</a>
+<a href="../solutions/XXSR.html#XXSR">XXSR</a>
+<a href="../solutions/YATA.html#YATA">YATA</a>
+<a href="../solutions/YIMIR.html#YIMIR">YIMIR</a></p>
+</details>
+<details><summary><strong><span style="font-size: 16px; font-family: monospace">[BAG OF TRICKS]</span> </strong></summary>
+<ul>
+<li><a href="../bag_of_tricks/BARRIER.html#BARRIER">BARRIER</a></li>
+<li><a href="../bag_of_tricks/CALL_IF.html#CALL_IF">CALL_IF</a></li>
+<li><a href="../bag_of_tricks/CHAIN_RECHAIN.html#CHAIN_RECHAIN">CHAIN_RECHAIN</a></li>
+<li><a href="../bag_of_tricks/chain.html#chain">chain</a></li>
+<li><a href="../bag_of_tricks/clamp.html#clamp">clamp</a></li>
+<li><a href="../bag_of_tricks/deferred.html#deferred">deferred</a></li>
+<li><a href="../bag_of_tricks/evaluator.html#evaluator">evaluator</a></li>
+<li><a href="../bag_of_tricks/finally.html#finally">finally</a></li>
+<li><a href="../bag_of_tricks/gate.html#gate">gate</a></li>
+<li><a href="../bag_of_tricks/ignore_arg.html#ignore_arg">ignore_arg</a></li>
+<li><a href="../bag_of_tricks/invoke.html#invoke">invoke</a></li>
+<li><a href="../bag_of_tricks/is_defined.html#is_defined">is_defined</a></li>
+<li><a href="../bag_of_tricks/is_not_defined.html#is_not_defined">is_not_defined</a></li>
+<li><a href="../bag_of_tricks/LAZY.html#LAZY">LAZY</a></li>
+<li><a href="../bag_of_tricks/MAYBE_PROMISE.html#MAYBE_PROMISE">MAYBE_PROMISE</a></li>
+<li><a href="../bag_of_tricks/maybe.html#maybe">maybe</a></li>
+<li><a href="../bag_of_tricks/mcr_combo.html#mcr_combo">mcr_combo</a></li>
+<li><a href="../bag_of_tricks/ONCE.html#ONCE">ONCE</a></li>
+<li><a href="../bag_of_tricks/or_default.html#or_default">or_default</a></li>
+<li><a href="../bag_of_tricks/patch_state.html#patch_state">patch_state</a></li>
+<li><a href="../bag_of_tricks/retry_with_backoff.html#retry_with_backoff">retry_with_backoff</a></li>
+<li><a href="../bag_of_tricks/run_with_retry.html#run_with_retry">run_with_retry</a></li>
+<li><a href="../bag_of_tricks/SERIAL_EXECUTOR.html#SERIAL_EXECUTOR">SERIAL_EXECUTOR</a></li>
+<li><a href="../bag_of_tricks/set_keys.html#set_keys">set_keys</a></li>
+<li><a href="../bag_of_tricks/set_prev.html#set_prev">set_prev</a></li>
+<li><a href="../bag_of_tricks/sleep.html#sleep">sleep</a></li>
+<li><a href="../bag_of_tricks/tap.html#tap">tap</a></li>
+<li><a href="../bag_of_tricks/thenable.html#thenable">thenable</a></li>
+<li><a href="../bag_of_tricks/TIMED_PROMISE.html#TIMED_PROMISE">TIMED_PROMISE</a></li>
+<li><a href="../bag_of_tricks/to_promise.html#to_promise">to_promise</a></li>
+<li><a href="../bag_of_tricks/try_catch.html#try_catch">try_catch</a></li>
+<li><a href="../bag_of_tricks/unreachable.html#unreachable">unreachable</a></li>
+<li><a href="../bag_of_tricks/WAIT_AND_PROMISE.html#WAIT_AND_PROMISE">WAIT_AND_PROMISE</a></li>
+</ul>
+</details>
+<details><summary><strong><span style="font-size: 16px; font-family: monospace">[TODO & IDEAS]</span> </strong></summary>
+<ul>
+<li><a href="TO_DO_AND_IDEAS.html#todo--ideas">TODO &amp; IDEAS</a>
+<ul>
+<li><a href="TO_DO_AND_IDEAS.html#the_wizard">[THE_WIZARD]</a> 🧙  <a href="TO_DO_AND_IDEAS.html#primitives">[PRIMITIVES]</a> 🧙  <a href="TO_DO_AND_IDEAS.html#next_level_ideas">[NEXT_LEVEL_IDEAS]</a> 🧙  <a href="TO_DO_AND_IDEAS.html#kvdb">KVDB</a> 🧙  <a href="TO_DO_AND_IDEAS.html#prxcdb">PRxCDB</a> 🧙  <a href="TO_DO_AND_IDEAS.html#staff">STAFF</a> 🧙 <a href="TO_DO_AND_IDEAS.html#--e--mc2--">❗ ──── E = mc^2 ──── ❗</a> 🧙 <a href="TO_DO_AND_IDEAS.html#native-custom-built-solutions">NATIVE, CUSTOM BUILT SOLUTIONS</a> 🧙 <a href="TO_DO_AND_IDEAS.html#storage-context">STORAGE CONTEXT</a> 🧙 <a href="TO_DO_AND_IDEAS.html#other">OTHER</a></li>
+</ul>
+</li>
+</ul>
+</details>
+<ul>
+<li>rdb_seed</li>
+</ul>
+<pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> midgardr_db_seed = <span class="hljs-title class_">Staff</span>_rdb_seed(<span class="hljs-string">&#x27;midgardr_db_seed&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">{ self, field }: any</span>) =&gt;</span> ({
+    <span class="hljs-attr">sdk</span>: [
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;MIÐGARÐR SDK&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;The Midgardr component SDK&#x27;</span> },
+    ],
+    <span class="hljs-attr">library</span>: [
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-midgardr-utils&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;MIÐGARÐR - UTILITIES&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-midgardr-services&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;MIÐGARÐR - SERVICES&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;MIÐGARÐR - COMPS&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-midgardr-sdk&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;MIÐGARÐR-SDK&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-quad-sidebar&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Quad Sidebar&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Four-panel sidebar layout component&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-dual-sidebar&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Dual Sidebar&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Two-panel collapsible sidebar system&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-sauron&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;SAURON&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;All-seeing monitoring and observation framework&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-staff-ngin&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;CSE/NGIN&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Customer service engine and ngin integration layer&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-rdb&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;VALHALLA&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Heroic component library for warrior-grade UIs&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-freyr&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;FREYR&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Prosperity and fertility UI component suite&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-freyr-stack&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;FREYR-STACK&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Full-stack Freyr component collection&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-calendar&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Calendar&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Base calendar and date display components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-calendar-appointment&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Calendar-Appointment&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Appointment scheduling and management&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-calendar-event&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Calendar-Event&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Event creation and tracking components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-calendar-scheduling&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Calendar-Scheduling&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Advanced scheduling algorithms and UI&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-calendar-service&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Calendar-Service&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Calendar service layer and API integration&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-chart&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Chart&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Data visualization and charting components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-dragster&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Dragster&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;High-performance drag and drop framework&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-finance-calculator&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Finance-Calculator&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Financial calculation and formula components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-md-renderer&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;MD-Renderer&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Markdown rendering and preview system&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-messenger&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Messenger&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Real-time messaging and chat interface&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-motion-ui-comps&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Motion-UI-Comps&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Animation and motion-enhanced components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-pdf&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;PDF&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;PDF generation, viewing, and annotation&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-pos&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;POS&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Point of sale terminal components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-positioner&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Positioner&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Dynamic positioning and floating UI utilities&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-time&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Time&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Time-based components and temporal utilities&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-primitives&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Primitives&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Low-level UI primitive components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-promotions&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Promotions&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Promotional banners and offer displays&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-rte&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;RTE&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Rich text editor with formatting toolbar&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-service-center&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Service-Center&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Customer service center dashboard&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-spreadsheet&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Spreadsheet&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Spreadsheet and data grid components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-table&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Table&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Advanced data table and grid system&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-workbench-editor&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Workbench-Editor&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Code and content workbench editor&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-workorder-issue-tracker&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Workorder-Issue-Tracker&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Work order and issue tracking system&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-virtual-list&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Virtual-List&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Virtualized list for large datasets&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-virtual-scroll-list&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Virtual-Scroll-List&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Virtualized scrolling list component&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-drag&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Drag&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Basic drag and drop utilities&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-x&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;X&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Experimental component library&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-signals-hooks&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Signals-Hooks&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Signals-based React hooks system&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-hooks-final-form&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;HOOKS: The Final Form&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Ultimate collection of React hooks&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-the-cloud&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;The-Cloud&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Cloud service integration components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-thanos&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;THANOS&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Balance and optimization framework&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-chrome-extensions&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Chrome-Extensions&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Chrome extension development helpers&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-background-jobs&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Background-Jobs&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Background job queue and processing&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-barcode-scanner&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Barcode-Scanner&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Barcode and QR code scanning&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-cron-jobs&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Cron-Jobs&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Cron job scheduler and management&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-staff&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;CSE&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Customer service engine core&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-form&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Form&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Form handling and validation system&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-performance&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Performance&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Performance monitoring and optimization&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-secrets&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Secrets&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Secret management and encryption&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-session-cookie&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Session-Cookie&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Session and cookie management&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-signals&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Signals&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Reactive signals system&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-sse&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;SSE&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Server-sent events implementation&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-storage-server-client&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Storage-Server-Client&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Client-server storage synchronization&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-swr&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;SWR&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Stale-while-revalidate data fetching&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-swr1&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;SWR1&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Enhanced SWR with caching strategies&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-tyr&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;TYR&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Justice and law component framework&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-yimir&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;YIMIR&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Foundation and primitive components library&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-platforms&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;PLATFORMS&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Multi-platform integration framework&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-kernel&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;KERNEL&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Core system kernel and low-level APIs&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;DevStack&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Development stack and tooling components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-toast&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Toast&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-navlist&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;NAV-LIST&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-filetree&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;FILE-TREE&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-baldr&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;BALDR-ICONS&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;lib-sauronbaldr&#x27;</span>, <span class="hljs-attr">sdkId</span>: <span class="hljs-string">&#x27;sdk-1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;SAURON-BALDR-ICONS&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+    ],
+    <span class="hljs-attr">category</span>: [
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-midgardr-sdk-devs-manifesto&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-sdk&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;DEVS MANIFESTO&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-midgardr-sdk-guides&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-sdk&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;GUIDES&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-midgardr-sdk-roadmap&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-sdk&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;ROADMAP&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-midgardr-sdk-built-in-libraries-and-utilties&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-sdk&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Built-In Libraries And Utilities&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-midgardr-sdk-platforms&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-sdk&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Platforms&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-midgardr-sdk-sdk-utilities&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-sdk&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;SDK Utilities&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-hooks-final-form-readme&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-hooks-final-form&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;README&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-hooks-final-form-hooks&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-hooks-final-form&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;HOOKS&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-baldr&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;BALDR&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-bifrost&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;BIFRÖST&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-brokkr&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;BROKKR&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-devshop&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;DEVSHOP&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Developer workspace &amp; productivity toolkit&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-freyr-dev&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;FREYR&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-heimdallr&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;HEIMDALLR&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-hermodr&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;HERMODR&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-huginn&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;HUGINN&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-loki&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;LOKI&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-markdown-dev&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;MARKDOWN&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;MDX documentation &amp; dev note components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-muninn&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;MUNINN&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-nemesis&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;NEMESIS&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-odin&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;ODIN&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-ratatoskr&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;RATATOSKR&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-regex&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;REGEX&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-runar&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;RUNAR&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-saga&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;SAGA&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-sauron-dev&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;SAURON&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-shadcn&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;SHADCN&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-siodebars&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Siodebars&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-tips&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;TIPS&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-tyr-dev&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;TYR&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-urdr&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;URDR&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-rdb-dev&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;VALHALLA&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-vidarr&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;VIDARR&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-volundr&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;VOLUNDR&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-volundr&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-devstack&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;GUIDES&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+
+      <span class="hljs-comment">// UTILITIES -  ROOT LEVEL</span>
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-authentication&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-utils&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Authentication&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Auth-related UI components and flows&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-cache&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-utils&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Cache&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Caching UI and indicators&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-client-server&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-utils&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Client-Server&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Client-server communication UI&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-css&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-utils&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;CSS&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-hooks&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-utils&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Hooks&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Base React hooks collection&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-hooks-async&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-utils&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Hooks-Async&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Async operation hooks&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-hooks-dom&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-utils&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Hooks-DOM&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;DOM interaction hooks&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-hooks-form&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-utils&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Hooks-Form&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Form management hooks&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-hooks-lifecycle&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-utils&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Hooks-Lifecycle&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Component lifecycle hooks&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-hooks-navigation&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-utils&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Hooks-Navigation&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Navigation and routing hooks&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-hooks-storage&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-utils&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Hooks-Storage&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Storage and persistence hooks&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-hooks-ui&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-utils&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Hooks-UI&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;UI state management hooks&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-renderers&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-utils&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Renderers&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Custom renderer components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-utils&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-utils&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Utils&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Utility components and helpers&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-rr-handling&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-utils&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;RR-Handling&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Request-response handling UI&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-promotions&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-utils&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Promotions&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-performance&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-utils&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Performance&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-react-api&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-utils&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;React API&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-dual-sidebar&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-utils&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Dual Sidebar&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-quad-sidebar&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-utils&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Quad Sidebar&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-storage&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-utils&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Storage&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-table&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-utils&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Table&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      <span class="hljs-comment">// SERVICES - ROOT LEVEL - external integrations/business logic</span>
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-api&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-services&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;API&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-database&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-services&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Database&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-email&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-services&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Email&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-payments&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-services&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;payments&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-analytics&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-services&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Analytics&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-pdf&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-services&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;PDF&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-transformers&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-services&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Transformers&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-validation&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-services&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Validation&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+      <span class="hljs-comment">// COMPS -  ROOT LEVEL</span>
+
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-primitives&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Primitives&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Low-level UI primitives&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-background&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Background&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Background effects and patterns&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-blocks&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Blocks&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Reusable content blocks&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-buttons&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Buttons&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Button variants and interactions&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-cards&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Cards&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Card layouts and containers&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-charts&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Charts&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Chart visualization components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-chat&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Chat&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Chat interface components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-checkout&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Checkout&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;E-commerce checkout flows&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-code&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Code&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Code display and editing&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-color&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Color&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Color pickers and themes&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-comboboxes&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Comboboxes&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Combobox and autocomplete inputs&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-commands&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Commands&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Command palette and shortcuts&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-content&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Content&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Content display components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-crm&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;CRM&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Customer relationship management UI&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-data-display&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Data-Display&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Data visualization and tables&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-date-and-time&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Date-And-Time&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Date and time pickers&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-demo&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Demo&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Demo and showcase components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-demo-data&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Demo-Data&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Mock data generators&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-devices&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Devices&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Device-specific UI components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-elements&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Elements&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Basic HTML element wrappers&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-feedback&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Feedback&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;User feedback and notifications&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-forms&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Forms&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Form controls and validation&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-headers&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Headers&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Page header components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-headings&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Headings&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Typography heading levels&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-heros&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Heros&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Hero section components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-inputs&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Inputs&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Form input components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-interactive&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Interactive&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Interactive UI elements&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-layout&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Layout&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Layout and spacing components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-lists&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Lists&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;List and menu components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-lo-fi&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;LO-FI&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Low-fidelity wireframe components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-media&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Media&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Image, video, and audio components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-modal&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Modal&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Modal dialog components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-modules&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Modules&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Modular component containers&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-navbars&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Navbars&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Navigation bar components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-ngins&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Ngins&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;NGIN integration components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-navigation&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Navigation&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Navigation and routing UI&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-order-history&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Order-History&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Order history display&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-overlay&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Overlay&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Overlay and layer components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-pages&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Pages&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Full page layouts&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-primitives-midgardr&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Primitives&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Core primitive components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-product-categories&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Product-Categories&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Product category displays&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-product-details&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Product-Details&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Product detail pages&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-progress&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Progress&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Progress indicators and loaders&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-prompt&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Prompt&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;User prompt and confirmation dialogs&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-roots&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Roots&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Application root components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-sections&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Sections&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Page section components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-shopping-carts&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Shopping-Carts&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Shopping cart components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-sidebar-comps&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Sidebar-Comps&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Sidebar components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-sliders&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Sliders&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Slider and range inputs&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-tools&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Tools&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Utility and tool components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-typography&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Typography&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Text and typography components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-webview-comps&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-midgardr-comps&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Webview-Comps&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Webview components&#x27;</span> },
+
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-order-66&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-platforms&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;ORDER-66&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Platform sunset and migration tools&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-order-67&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-platforms&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;ORDER-67&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Platform replacement framework&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-project-platform-killer&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-platforms&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;PROJECT-PLATFORM-KILLER&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Legacy platform deprecation system&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-project-webview-killer&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-platforms&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;PROJECT-WEBVIEW-KILLER&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Webview replacement framework&#x27;</span> },
+
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-sauron-auth&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-sauron&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;AUTH&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Authentication monitoring and security&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-sauron-components&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-sauron&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;COMPONENTS&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Sauron monitoring UI components&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-sauron-core&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-sauron&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;CORE&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Core Sauron framework&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-sauron-data&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-sauron&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;DATA&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Data collection and analysis&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-sauron-date-time&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-sauron&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;DATE-TIME&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Temporal monitoring utilities&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-sauron-dev&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-sauron&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;DEV&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Development and debugging tools&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-sauron-file-system&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-sauron&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;FILE-SYSTEM&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;File system monitoring&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-sauron-http&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-sauron&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;HTTP&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;HTTP request monitoring&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-sauron-modern-web&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-sauron&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;MODERN-WEB&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Modern web API monitoring&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-sauron-pwk&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-sauron&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;PWK&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Platform Web Killer integration&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-sauron-routing&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-sauron&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;ROUTING&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Route monitoring and analytics&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-sauron-utils&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-sauron&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;UTILS&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Sauron utility functions&#x27;</span> },
+      { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;cat-sauron-integrations&#x27;</span>, <span class="hljs-attr">libraryId</span>: <span class="hljs-string">&#x27;lib-sauron&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;INTEGRATIONS&#x27;</span>, <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Third-party monitoring integrations&#x27;</span> },
+    ],
+}))
+</code></pre>
+<ul>
+<li>rdb_schema</li>
+</ul>
+<pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> midgardr_db_seed = <span class="hljs-title class_">Staff</span>_rdb_schema(<span class="hljs-string">&#x27;midgardr_db_seed&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">{ self, field }: any</span>) =&gt;</span> ({
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;midgardr_db&#x27;</span>,
+    <span class="hljs-attr">dbType</span>: <span class="hljs-string">&#x27;sqlite&#x27;</span>,
+    <span class="hljs-attr">memory</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;./db.db&#x27;</span>,
+    <span class="hljs-attr">sdk</span>: {
+        <span class="hljs-attr">id</span>: field.<span class="hljs-title function_">uuid</span>().<span class="hljs-title function_">primaryKey</span>(),
+        <span class="hljs-attr">name</span>: field.<span class="hljs-title function_">string</span>().<span class="hljs-title function_">unique</span>(),
+        <span class="hljs-attr">description</span>: field.<span class="hljs-title function_">string</span>().<span class="hljs-title function_">nullable</span>(),
+    },
+    <span class="hljs-attr">library</span>: {
+        <span class="hljs-attr">id</span>: field.<span class="hljs-title function_">uuid</span>().<span class="hljs-title function_">primaryKey</span>(),
+        <span class="hljs-attr">sdkId</span>: field.<span class="hljs-title function_">uuid</span>(),
+        <span class="hljs-attr">name</span>: field.<span class="hljs-title function_">string</span>().<span class="hljs-title function_">unique</span>(),
+        <span class="hljs-attr">description</span>: field.<span class="hljs-title function_">string</span>().<span class="hljs-title function_">nullable</span>(),
+    }.<span class="hljs-title function_">oneToMany</span>(<span class="hljs-string">&#x27;sdkId&#x27;</span>, <span class="hljs-string">&#x27;sdk&#x27;</span>, <span class="hljs-string">&#x27;id&#x27;</span>),
+    <span class="hljs-attr">category</span>: {
+        <span class="hljs-attr">id</span>: field.<span class="hljs-title function_">uuid</span>().<span class="hljs-title function_">primaryKey</span>(),
+        <span class="hljs-attr">libraryId</span>: field.<span class="hljs-title function_">uuid</span>(),
+        <span class="hljs-attr">name</span>: field.<span class="hljs-title function_">string</span>(),
+        <span class="hljs-attr">description</span>: field.<span class="hljs-title function_">string</span>().<span class="hljs-title function_">nullable</span>(),
+    }.<span class="hljs-title function_">oneToMany</span>(<span class="hljs-string">&#x27;libraryId&#x27;</span>, <span class="hljs-string">&#x27;library&#x27;</span>, <span class="hljs-string">&#x27;id&#x27;</span>),
+    <span class="hljs-attr">component</span>: {
+        <span class="hljs-attr">id</span>: field.<span class="hljs-title function_">uuid</span>().<span class="hljs-title function_">primaryKey</span>(),
+        <span class="hljs-attr">categoryId</span>: field.<span class="hljs-title function_">uuid</span>(),
+        <span class="hljs-attr">name</span>: field.<span class="hljs-title function_">string</span>(),
+        <span class="hljs-attr">value</span>: field.<span class="hljs-title function_">string</span>().<span class="hljs-title function_">unique</span>(),
+        <span class="hljs-attr">importPath</span>: field.<span class="hljs-title function_">string</span>(),
+        <span class="hljs-attr">multiImport</span>: field.<span class="hljs-title function_">string</span>().<span class="hljs-title function_">nullable</span>(),
+        <span class="hljs-attr">path</span>: field.<span class="hljs-title function_">string</span>(),
+        <span class="hljs-attr">premium</span>: field.<span class="hljs-title function_">boolean</span>().<span class="hljs-title function_">default</span>(<span class="hljs-literal">false</span>),
+        <span class="hljs-attr">source</span>: field.<span class="hljs-title function_">string</span>().<span class="hljs-title function_">nullable</span>(),
+        <span class="hljs-attr">tags</span>: field.<span class="hljs-title function_">json</span>().<span class="hljs-title function_">nullable</span>(),
+        <span class="hljs-attr">features</span>: field.<span class="hljs-title function_">json</span>().<span class="hljs-title function_">nullable</span>(),
+        <span class="hljs-attr">dependencies</span>: field.<span class="hljs-title function_">json</span>().<span class="hljs-title function_">nullable</span>(),
+        <span class="hljs-attr">basicUsage</span>: field.<span class="hljs-title function_">string</span>().<span class="hljs-title function_">nullable</span>(),
+        <span class="hljs-attr">usage</span>: field.<span class="hljs-title function_">string</span>().<span class="hljs-title function_">nullable</span>(),
+        <span class="hljs-attr">props</span>: field.<span class="hljs-title function_">json</span>().<span class="hljs-title function_">nullable</span>(),
+        <span class="hljs-attr">description</span>: field.<span class="hljs-title function_">string</span>().<span class="hljs-title function_">nullable</span>(),
+        <span class="hljs-attr">status</span>: field.<span class="hljs-title function_">string</span>().<span class="hljs-title function_">nullable</span>(),
+        <span class="hljs-attr">lastUpdated</span>: field.<span class="hljs-title function_">timestamp</span>().<span class="hljs-title function_">nullable</span>(),
+    }.<span class="hljs-title function_">oneToMany</span>(<span class="hljs-string">&#x27;categoryId&#x27;</span>, <span class="hljs-string">&#x27;category&#x27;</span>, <span class="hljs-string">&#x27;id&#x27;</span>),
+    <span class="hljs-attr">doc</span>:  {
+        <span class="hljs-attr">id</span>: field.<span class="hljs-title function_">uuid</span>().<span class="hljs-title function_">primaryKey</span>(),
+        <span class="hljs-attr">categoryId</span>: field.<span class="hljs-title function_">uuid</span>(),
+        <span class="hljs-attr">componentId</span>: field.<span class="hljs-title function_">uuid</span>().<span class="hljs-title function_">nullable</span>(),
+        <span class="hljs-attr">title</span>: field.<span class="hljs-title function_">string</span>(),
+        <span class="hljs-attr">slug</span>: field.<span class="hljs-title function_">string</span>().<span class="hljs-title function_">unique</span>(),
+        <span class="hljs-attr">content</span>: field.<span class="hljs-title function_">string</span>(),
+        <span class="hljs-attr">tags</span>: field.<span class="hljs-title function_">json</span>().<span class="hljs-title function_">nullable</span>(),
+        <span class="hljs-attr">createdAt</span>: field.<span class="hljs-title function_">timestamp</span>().<span class="hljs-title function_">default</span>(<span class="hljs-string">&#x27;now&#x27;</span>),
+        <span class="hljs-attr">updatedAt</span>: field.<span class="hljs-title function_">timestamp</span>().<span class="hljs-title function_">default</span>(<span class="hljs-string">&#x27;now&#x27;</span>),
+    }.<span class="hljs-title function_">oneToMany</span>(<span class="hljs-string">&#x27;categoryId&#x27;</span>, <span class="hljs-string">&#x27;category&#x27;</span>, <span class="hljs-string">&#x27;id&#x27;</span>),
+}))
+
+</code></pre>
+
+            
+            
+        </body>
+        </html>

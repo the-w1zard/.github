@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&lt;span style&equals;&quot;font-size&colon; 20px&semi; font-family&colon; monospace&quot;&gt;&lbrack;TOC&rbrack;&lt;&sol;span&gt;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h2 id="toc"><span style="font-size: 20px; font-family: monospace">[TOC]</span></h2>
+<details><summary><strong><span style="font-size: 16px; font-family: monospace">[DATABASES]</span> </strong></summary>
+<p><a href="../databases/BDB.html#BDB">BDB</a>
+<a href="../databases/BINARY.html#BINARY">BINARY</a>
+<a href="../databases/COOKIE.html#COOKIE">COOKIE</a>
+<a href="../databases/GDB.html#GDB">GDB</a>
+<a href="../databases/GT.html#GT">GT</a>
+<a href="../databases/HADRON_COLLIDER.html#HADRON_COLLIDER">HADRON_COLLIDER</a>
+<a href="../databases/IDB_HADRON_COLLIDER.html#IDB_HADRON_COLLIDER">IDB_HADRON_COLLIDER</a>
+<a href="../databases/IDB_HC_SINK.html#IDB_HC_SINK">IDB_HC_SINK</a>
+<a href="../databases/IDB_KVDB.html#IDB_KVDB">IDB_KVDB</a>
+<a href="../databases/IDB_RDB.html#IDB_RDB">IDB_RDB</a>
+<a href="../databases/KVDB.html#KVDB">KVDB</a>
+<a href="../databases/LS.html#LS">LS</a>
+<a href="../databases/MEMORY.html#MEMORY">MEMORY</a>
+<a href="../databases/RDB.html#RDB">RDB</a>
+<a href="../databases/REGISTRIES.html#REGISTRIES">REGISTRIES</a>
+<a href="../databases/SAURON.html#SAURON">SAURON</a>
+<a href="../databases/SECURE_COOKIE.html#SECURE_COOKIE">SECURE_COOKIE</a>
+<a href="../databases/SS.html#SS">SS</a>
+<a href="../databases/TDB.html#TDB">TDB</a>
+<a href="../databases/VDB.html#VDB">VDB</a></p>
+</details>
+<details><summary><strong><span style="font-size: 16px; font-family: monospace">[DEVTOOLS]</span> </strong></summary>
+<p><a href="../platform/ATOM.html#ATOM">ATOM</a>
+<a href="../platform/CONVERGENCE.html#CONVERGENCE">CONVERGENCE</a>
+<a href="../platform/FORMS.html#FORMS">FORMS</a>
+<a href="../platform/GLOBAL_QUAD_KEY_CONTEXT.html#GLOBAL_QUAD_KEY_CONTEXT">GLOBAL_QUAD_KEY_CONTEXT</a>
+<a href="../platform/PERFORMANCE_DIVISION.html#PERFORMANCE_DIVISION">PERFORMANCE_DIVISION</a>
+<a href="../platform/REACTIVITY.html#REACTIVITY">REACTIVITY</a>
+<a href="../platform/ROUTE_COMPONENTS.html#ROUTE_COMPONENTS">ROUTE_COMPONENTS</a>
+<a href="../platform/SAURON.html#SAURON">SAURON</a>
+<a href="../platform/SIGNALS.html#SIGNALS">SIGNALS</a>
+<a href="../platform/STAFF.html#STAFF">STAFF</a>
+<a href="../platform/THE_WARLOCK_MODE.html#THE_WARLOCK_MODE">THE_WARLOCK_MODE</a>
+<a href="../platform/THE_WIZARD_MODE.html#THE_WIZARD_MODE">THE_WIZARD_MODE</a></p>
+</details>
+<details><summary><strong><span style="font-size: 16px; font-family: monospace">[PLATFORM PRIMTIVES]</span> </strong></summary>
+<p><a href="../primitives/API_WARDS.html#API_WARDS">API_WARDS</a>
+<a href="../primitives/APPARATIONS_DQ,md#APPARATIONS_DQ">APPARATIONS_DQ</a>
+<a href="../primitives/ARCHETYPES.html#ARCHETYPES">ARCHETYPES</a>
+<a href="../primitives/BATCH.html#BATCH">BATCH</a>
+<a href="../primitives/BINARY.html#BINARY">BINARY</a>
+<a href="../primitives/CHAINS.html#CHAINS">CHAINS</a>
+<a href="../primitives/CHRONO_SHIFT.html#CHRONO_SHIFT">CHRONO_SHIFT</a>
+<a href="../primitives/CHRONOMANCER.html#CHRONOMANCER">CHRONOMANCER</a>
+<a href="../primitives/CONJURE_LIBRARIES.html#CONJURE_LIBRARIES">CONJURE_LIBRARIES</a>
+<a href="../primitives/CONJURE_MIMIC.html#CONJURE_MIMIC">CONJURE_MIMIC</a>
+<a href="../primitives/CRON.html#CRON">CRON</a>
+<a href="../primitives/DARK_PORTALS.html#DARK_PORTALS">DARK_PORTALS</a>
+<a href="../primitives/DUPLEX_STREAMS.html#DUPLEX_STREAMS">DUPLEX_STREAMS</a>
+<a href="../primitives/EMITTER.html#EMITTER">EMITTER</a>
+<a href="../primitives/EVOCATIONS.html#EVOCATIONS">EVOCATIONS</a>
+<a href="../primitives/EXECUTE_MASTER.html#EXECUTE_MASTER">EXECUTE_MASTER</a>
+<a href="../primitives/GATE_MASTER.html#GATE_MASTER">GATE_MASTER</a>
+<a href="../primitives/GATES.html#GATES">GATES</a>
+<a href="../primitives/GLYPH_BINDER.html#GLYPH_BINDER">GLYPH_BINDER</a>
+<a href="../primitives/GOLEMS.html#GOLEMS">GOLEMS</a>
+<a href="../primitives/GRIMOIRE.html#GRIMOIRE">GRIMOIRE</a>
+<a href="../primitives/ILLUSIONIST.html#ILLUSIONIST">ILLUSIONIST</a>
+<a href="../primitives/INCANTATIONS.html#INCANTATIONS">INCANTATIONS</a>
+<a href="../primitives/JOBS.html#JOBS">JOBS</a>
+<a href="../primitives/MACHINES_MACHINE.html#MACHINES_MACHINE">MACHINES_MACHINE</a>
+<a href="../primitives/MICROTASKS.html#MICROTASKS">MICROTASKS</a>
+<a href="../primitives/MSGS.html#MSGS">MSGS</a>
+<a href="../primitives/NO_NO_SQUARE_DQ.html#NO_NO_SQUARE_DQ">NO_NO_SQUARE_DQ</a>
+<a href="../primitives/PERFORMANCE_TIMER.html#PERFORMANCE_TIMER">PERFORMANCE_TIMER</a>
+<a href="../primitives/PLINKO_MASTER.html#PLINKO_MASTER">PLINKO_MASTER</a>
+<a href="../primitives/PRIORITY.html#PRIORITY">PRIORITY</a>
+<a href="../primitives/RDB.html#RDB">RDB</a>
+<a href="../primitives/RENDERIVITY_DQ.html#RENDERIVITY_DQ">RENDERIVITY_DQ</a>
+<a href="../primitives/RETRY_MASTER.html#RETRY_MASTER">RETRY_MASTER</a>
+<a href="../primitives/RUNE_HTTP.html#RUNE_HTTP">RUNE_HTTP</a>
+<a href="../primitives/S_CLASS.html#S_CLASS">S_CLASS</a>
+<a href="../primitives/SCHEDULER.html#SCHEDULER">SCHEDULER</a>
+<a href="../primitives/SENTINELmd#SENTINELmd">SENTINELmd</a>
+<a href="../primitives/SESSION_SIGIL.html#SESSION_SIGIL">SESSION_SIGIL</a>
+<a href="../primitives/SPEELBOOK.html#SPEELBOOK">SPEELBOOK</a>
+<a href="../primitives/TIERED_QUEUE.html#TIERED_QUEUE">TIERED_QUEUE</a>
+<a href="../primitives/TIME_MACHINE.html#TIME_MACHINE">TIME_MACHINE</a>
+<a href="../primitives/TOME_OF_SECRETS.html#TOME_OF_SECRETS">TOME_OF_SECRETS</a>
+<a href="../primitives/TRANSMOGRIFY.html#TRANSMOGRIFY">TRANSMOGRIFY</a>
+<a href="../primitives/TYPES_MACHINE.html#TYPES_MACHINE">TYPES_MACHINE</a>
+<a href="../primitives/TYR.html#TYR">TYR</a>
+<a href="../primitives/VAULTS.html#VAULTS">VAULTS</a>
+<a href="../primitives/VENOM.html#VENOM">VENOM</a>
+<a href="../primitives/WARDS.html#WARDS">WARDS</a>
+<a href="../primitives/WIZARD_KEEP.html#WIZARD_KEEP">WIZARD_KEEP</a>
+<a href="../primitives/WORKERS.html#WORKERS">WORKERS</a>
+<a href="../primitives/WORKFLOW.html#WORKFLOW">WORKFLOW</a></p>
+</details>
+<details><summary><strong><span style="font-size: 16px; font-family: monospace">[THE_WIZARDS_STAFF]</span> </strong></summary>
+<p><a href="../solutions/BATCH.html#BATCH">BATCH</a>
+<a href="../solutions/CELLS.html#CELLS">CELLS</a>
+<a href="../solutions/CHEERIO.html#CHEERIO">CHEERIO</a>
+<a href="../solutions/CIRCUIT_BREAKER.html#CIRCUIT_BREAKER">CIRCUIT_BREAKER</a>
+<a href="../solutions/COMPRESSION.html#COMPRESSION">COMPRESSION</a>
+<a href="../solutions/CONCURRENT.html#CONCURRENT">CONCURRENT</a>
+<a href="../solutions/CQRS.html#CQRS">CQRS</a>
+<a href="../solutions/DEBOUNCE.html#DEBOUNCE">DEBOUNCE</a>
+<a href="../solutions/DEFER.html#DEFER">DEFER</a>
+<a href="../solutions/DEV_TOOLS.html#DEV_TOOLS">DEV_TOOLS</a>
+<a href="../solutions/DIFFPATCH.html#DIFFPATCH">DIFFPATCH</a>
+<a href="../solutions/DISTRBUTED_EXE.html#DISTRBUTED_EXE">DISTRBUTED_EXE</a>
+<a href="../solutions/DISTRIBUTED_LOGIC_GATES.html#DISTRIBUTED_LOGIC_GATES">DISTRIBUTED_LOGIC_GATES</a>
+<a href="../solutions/DISTRIBUTED_PORTAL.html#DISTRIBUTED_PORTAL">DISTRIBUTED_PORTAL</a>
+<a href="../solutions/DISTRIBUTED_REACTIVE_STATE.html#DISTRIBUTED_REACTIVE_STATE">DISTRIBUTED_REACTIVE_STATE</a>
+<a href="../solutions/DRS.html#DRS">DRS</a>
+<a href="../solutions/EMPHEMRAL_STATE.html#EMPHEMRAL_STATE">EMPHEMRAL_STATE</a>
+<a href="../solutions/FULL_TEXT_SEARCH.html#FULL_TEXT_SEARCH">FULL_TEXT_SEARCH</a>
+<a href="../solutions/HTTP_CLIENT.html#HTTP_CLIENT">HTTP_CLIENT</a>
+<a href="../solutions/LOGIC_GATES.html#LOGIC_GATES">LOGIC_GATES</a>
+<a href="../solutions/LONGPOLL.html#LONGPOLL">LONGPOLL</a>
+<a href="../solutions/LWW.html#LWW">LWW</a>
+<a href="../solutions/MV.html#MV">MV</a>
+<a href="../solutions/OPTIMISTIC.html#OPTIMISTIC">OPTIMISTIC</a>
+<a href="../solutions/OR.html#OR">OR</a>
+<a href="../solutions/PERFORMANCE_TIMER.html#PERFORMANCE_TIMER">PERFORMANCE_TIMER</a>
+<a href="../solutions/PN.html#PN">PN</a>
+<a href="../solutions/QUEUE_TIERED.html#QUEUE_TIERED">QUEUE_TIERED</a>
+<a href="../solutions/RAFT.html#RAFT">RAFT</a>
+<a href="../solutions/RATE_LIMIT.html#RATE_LIMIT">RATE_LIMIT</a>
+<a href="../solutions/REACTIVE_CHAINS.html#REACTIVE_CHAINS">REACTIVE_CHAINS</a>
+<a href="../solutions/REVERSE_HEART_BEAT_MGR.html#REVERSE_HEART_BEAT_MGR">REVERSE_HEART_BEAT_MGR</a>
+<a href="../solutions/RIFTS.html#RIFTS">RIFTS</a>
+<a href="../solutions/SEMAPHORE.html#SEMAPHORE">SEMAPHORE</a>
+<a href="../solutions/SEND_SUB.html#SEND_SUB">SEND_SUB</a>
+<a href="../solutions/SIGNALS.html#SIGNALS">SIGNALS</a>
+<a href="../solutions/SPREADSHEET.html#SPREADSHEET">SPREADSHEET</a>
+<a href="../solutions/SSE.html#SSE">SSE</a>
+<a href="../solutions/STAFF.html#STAFF">STAFF</a>
+<a href="../solutions/STREAMS.html#STREAMS">STREAMS</a>
+<a href="../solutions/SWR.html#SWR">SWR</a>
+<a href="../solutions/TEMPORAL_SHIFT.html#TEMPORAL_SHIFT">TEMPORAL_SHIFT</a>
+<a href="../solutions/THROTTLE.html#THROTTLE">THROTTLE</a>
+<a href="../solutions/WIRE_TAPS.html#WIRE_TAPS">WIRE_TAPS</a>
+<a href="../solutions/WORKSPACE_GLOBAL.html#WORKSPACE_GLOBAL">WORKSPACE_GLOBAL</a>
+<a href="../solutions/WS.html#WS">WS</a>
+<a href="../solutions/XXSR.html#XXSR">XXSR</a>
+<a href="../solutions/YATA.html#YATA">YATA</a>
+<a href="../solutions/YIMIR.html#YIMIR">YIMIR</a></p>
+</details>
+<details><summary><strong><span style="font-size: 16px; font-family: monospace">[BAG OF TRICKS]</span> </strong></summary>
+<ul>
+<li><a href="../bag_of_tricks/BARRIER.html#BARRIER">BARRIER</a></li>
+<li><a href="../bag_of_tricks/CALL_IF.html#CALL_IF">CALL_IF</a></li>
+<li><a href="../bag_of_tricks/CHAIN_RECHAIN.html#CHAIN_RECHAIN">CHAIN_RECHAIN</a></li>
+<li><a href="../bag_of_tricks/chain.html#chain">chain</a></li>
+<li><a href="../bag_of_tricks/clamp.html#clamp">clamp</a></li>
+<li><a href="../bag_of_tricks/deferred.html#deferred">deferred</a></li>
+<li><a href="../bag_of_tricks/evaluator.html#evaluator">evaluator</a></li>
+<li><a href="../bag_of_tricks/finally.html#finally">finally</a></li>
+<li><a href="../bag_of_tricks/gate.html#gate">gate</a></li>
+<li><a href="../bag_of_tricks/ignore_arg.html#ignore_arg">ignore_arg</a></li>
+<li><a href="../bag_of_tricks/invoke.html#invoke">invoke</a></li>
+<li><a href="../bag_of_tricks/is_defined.html#is_defined">is_defined</a></li>
+<li><a href="../bag_of_tricks/is_not_defined.html#is_not_defined">is_not_defined</a></li>
+<li><a href="../bag_of_tricks/LAZY.html#LAZY">LAZY</a></li>
+<li><a href="../bag_of_tricks/MAYBE_PROMISE.html#MAYBE_PROMISE">MAYBE_PROMISE</a></li>
+<li><a href="../bag_of_tricks/maybe.html#maybe">maybe</a></li>
+<li><a href="../bag_of_tricks/mcr_combo.html#mcr_combo">mcr_combo</a></li>
+<li><a href="../bag_of_tricks/ONCE.html#ONCE">ONCE</a></li>
+<li><a href="../bag_of_tricks/or_default.html#or_default">or_default</a></li>
+<li><a href="../bag_of_tricks/patch_state.html#patch_state">patch_state</a></li>
+<li><a href="../bag_of_tricks/retry_with_backoff.html#retry_with_backoff">retry_with_backoff</a></li>
+<li><a href="../bag_of_tricks/run_with_retry.html#run_with_retry">run_with_retry</a></li>
+<li><a href="../bag_of_tricks/SERIAL_EXECUTOR.html#SERIAL_EXECUTOR">SERIAL_EXECUTOR</a></li>
+<li><a href="../bag_of_tricks/set_keys.html#set_keys">set_keys</a></li>
+<li><a href="../bag_of_tricks/set_prev.html#set_prev">set_prev</a></li>
+<li><a href="../bag_of_tricks/sleep.html#sleep">sleep</a></li>
+<li><a href="../bag_of_tricks/tap.html#tap">tap</a></li>
+<li><a href="../bag_of_tricks/thenable.html#thenable">thenable</a></li>
+<li><a href="../bag_of_tricks/TIMED_PROMISE.html#TIMED_PROMISE">TIMED_PROMISE</a></li>
+<li><a href="../bag_of_tricks/to_promise.html#to_promise">to_promise</a></li>
+<li><a href="../bag_of_tricks/try_catch.html#try_catch">try_catch</a></li>
+<li><a href="../bag_of_tricks/unreachable.html#unreachable">unreachable</a></li>
+<li><a href="../bag_of_tricks/WAIT_AND_PROMISE.html#WAIT_AND_PROMISE">WAIT_AND_PROMISE</a></li>
+</ul>
+</details>
+<details><summary><strong><span style="font-size: 16px; font-family: monospace">[TODO & IDEAS]</span> </strong></summary>
+<ul>
+<li><a href="TO_DO_AND_IDEAS.html#todo--ideas">TODO &amp; IDEAS</a>
+<ul>
+<li><a href="TO_DO_AND_IDEAS.html#the_wizard">[THE_WIZARD]</a> 🧙  <a href="TO_DO_AND_IDEAS.html#primitives">[PRIMITIVES]</a> 🧙  <a href="TO_DO_AND_IDEAS.html#next_level_ideas">[NEXT_LEVEL_IDEAS]</a> 🧙  <a href="TO_DO_AND_IDEAS.html#kvdb">KVDB</a> 🧙  <a href="TO_DO_AND_IDEAS.html#prxcdb">PRxCDB</a> 🧙  <a href="TO_DO_AND_IDEAS.html#staff">STAFF</a> 🧙 <a href="TO_DO_AND_IDEAS.html#--e--mc2--">❗ ──── E = mc^2 ──── ❗</a> 🧙 <a href="TO_DO_AND_IDEAS.html#native-custom-built-solutions">NATIVE, CUSTOM BUILT SOLUTIONS</a> 🧙 <a href="TO_DO_AND_IDEAS.html#storage-context">STORAGE CONTEXT</a> 🧙 <a href="TO_DO_AND_IDEAS.html#other">OTHER</a></li>
+</ul>
+</li>
+</ul>
+</details>
+<h1 id="-the-wizards-staff--official-documentation">📜 THE WIZARD'S STAFF — OFFICIAL DOCUMENTATION</h1>
+<p><em>&quot;A Tale of Data and Magic, as Told by the Elders&quot;</em></p>
+<hr>
+<h2 id="-prologue-the-forging-of-the-staff">🧙 PROLOGUE: THE FORGING OF THE STAFF</h2>
+<blockquote>
+<p><em>&quot;In the Age of Components, before the Great Re-render Wars, the developers of Middle-earth were scattered and divided. Each realm (component) held its own precious data, hoarded in isolation, unable to share with neighboring lands. Prop drilling became a plague. Context providers grew like dark towers, casting shadows over the land.&quot;</em></p>
+<p><em>&quot;And the people cried out for a savior.&quot;</em></p>
+</blockquote>
+<hr>
+<h2 id="️-chapter-i-the-wizard-awakens">🏔️ CHAPTER I: THE WIZARD AWAKENS</h2>
+<blockquote>
+<p><em>&quot;Then came The Wizard, ancient and powerful, who looked upon the fractured data landscape and saw chaos. 'This will not stand,' said The Wizard. 'For data is the lifeblood of all applications, and it shall flow freely, unbound by the petty borders of components, routes, or even realms.'&quot;</em></p>
+<p><em>&quot;And so The Wizard forged The Staff — a conduit of pure reactive power, carved from the very essence of distributed systems and imbued with the magic of consensus, time, and streams.&quot;</em></p>
+</blockquote>
+<hr>
+<h2 id="-chapter-ii-the-properties-of-the-staff">⚡ CHAPTER II: THE PROPERTIES OF THE STAFF</h2>
+<blockquote>
+<p><em>&quot;The Staff is not a mere library. It is a covenant. A bond between developer and data. Those who wield it shall command:</em></p>
+<p><em>- <strong>KVDB</strong>: The Book of Keys, where values are stored in the deep places of memory</em>
+<em>- <strong>RDB</strong>: The Tablets of Relations, where data is bound by ancient ties</em>
+<em>- <strong>RMIR</strong>: The Calling, where functions are invoked across vast distances</em>
+<em>- <strong>HLC</strong>: The Clock of Causality, which orders events across all of time</em>
+<em>- <strong>Raft</strong>: The Council of Consensus, where all nodes agree as one</em>
+*- <strong>CQRS</strong>: The Two Paths, where reading and writing are kept separate&quot;</p>
+<p><em>&quot;And many other powers were woven into The Staff, too numerous to list in a single chapter.&quot;</em></p>
+</blockquote>
+<hr>
+<h2 id="-chapter-iii-the-spoken-words-api">🧙 CHAPTER III: THE SPOKEN WORDS (API)</h2>
+<blockquote>
+<p><em>&quot;And The Wizard spoke the sacred incantations, and they were written in the Scrolls of Knowledge (docs) for all to read:&quot;</em></p>
+</blockquote>
+<hr>
+<h3 id="-the-summoning-usestatedrs">📜 THE SUMMONING (useStateDRS)</h3>
+<blockquote>
+<p><em>&quot;When a developer speaks:</em></p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> [treasure, setTreasure] = staff.<span class="hljs-title function_">useStateDRS</span>(<span class="hljs-string">&#x27;dwarves&#x27;</span>, <span class="hljs-string">&#x27;gold&#x27;</span>, <span class="hljs-number">0</span>);
+</code></pre>
+<p><em>They bind the treasure to the realm of 'dwarves' under the key 'gold', and it shall be seen by all who seek it, in any component, any route, any helper, any app, ANY NODE, ANY WORKSTATION.&quot;</em></p>
+<p><em>&quot;And when the gold is changed in one realm, it changes in ALL realms. For The Staff is one, and its data is one.&quot;</em></p>
+</blockquote>
+<hr>
+<h3 id="-the-scrying-useeffectlive">🔮 THE SCRYING (useEffectLive)</h3>
+<blockquote>
+<p><em>&quot;And a developer may wish to know when data changes, even from across the world:</em></p>
+<pre><code class="language-javascript">staff.<span class="hljs-title function_">useEffectLive</span>(<span class="hljs-string">&#x27;dwarves&#x27;</span>, <span class="hljs-string">&#x27;gold&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;The gold has been touched!&#x27;</span>);
+});
+</code></pre>
+<p><em>&quot;This is the Scrying Spell. It needs no dependency list, for The Staff knows what data you seek. It watches. It waits. It reacts.&quot;</em></p>
+</blockquote>
+<hr>
+<h3 id="-the-temporal-cleansing-useautoeffectlive">⏳ THE TEMPORAL CLEANSING (useAutoEffectLive)</h3>
+<blockquote>
+<p><em>&quot;And when a developer wishes for magic that cleanses itself:</em></p>
+<pre><code class="language-javascript">staff.<span class="hljs-title function_">useAutoEffectLive</span>(<span class="hljs-string">&#x27;dwarves&#x27;</span>, <span class="hljs-string">&#x27;gold&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">scope</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> timer = scope.<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;The gold has been untouched for 5 seconds...&#x27;</span>);
+  }, <span class="hljs-number">5000</span>);
+  <span class="hljs-comment">// The Staff cleanses this magic on the next run or unmount</span>
+});
+</code></pre>
+<p><em>&quot;For The Staff is wise, and it knows when to clean up after itself.&quot;</em></p>
+</blockquote>
+<hr>
+<h3 id="️-the-council-useraftstate">⚖️ THE COUNCIL (useRaftState)</h3>
+<blockquote>
+<p><em>&quot;And when many nodes must agree:</em></p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> [treasure, setTreasure] = staff.<span class="hljs-title function_">useRaftState</span>(<span class="hljs-string">&#x27;dwarves&#x27;</span>, <span class="hljs-string">&#x27;mithril&#x27;</span>, <span class="hljs-number">100</span>);
+</code></pre>
+<p><em>&quot;This is the Consensus Spell. Before the treasure changes, all nodes must agree. For even in distributed lands, there must be truth.&quot;</em></p>
+</blockquote>
+<hr>
+<h3 id="️-the-future-sight-useoptimisticstate">👁️ THE FUTURE-SIGHT (useOptimisticState)</h3>
+<blockquote>
+<p><em>&quot;And when a developer wishes to see the future before it happens:</em></p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> [gold, setGold] = staff.<span class="hljs-title function_">useOptimisticState</span>(<span class="hljs-string">&#x27;dwarves&#x27;</span>, <span class="hljs-string">&#x27;gold&#x27;</span>, <span class="hljs-number">0</span>);
+
+<span class="hljs-title function_">setGold</span>(gold + <span class="hljs-number">100</span>); <span class="hljs-comment">// The UI changes instantly</span>
+<span class="hljs-comment">// If the realm rejects it, The Staff rolls it back</span>
+</code></pre>
+<p><em>&quot;This is the Spell of Optimism. The UI sees what will be, while The Staff negotiates with reality.&quot;</em></p>
+</blockquote>
+<hr>
+<h2 id="-chapter-iv-the-network-weaving">🌋 CHAPTER IV: THE NETWORK WEAVING</h2>
+<blockquote>
+<p><em>&quot;And The Staff wove together the realms of network and data, creating:</em>&quot;</p>
+<p><strong>HTTP Client</strong> — <em>&quot;The Messenger, which carries requests across the web, stronger and swifter than Axios of old.&quot;</em></p>
+<p><strong>SSE</strong> — <em>&quot;The Eternal Stream, where data flows from server to client like a river that never ends.&quot;</em></p>
+<p><strong>WS</strong> — <em>&quot;The Two-Way Portal, where messages pass back and forth in real time.&quot;</em></p>
+<p><strong>Long Poll</strong> — <em>&quot;The Patient Watcher, who waits for news when the portals are closed.&quot;</em></p>
+<p><strong>SWR</strong> — <em>&quot;The Refreshment, which keeps data fresh even when old.&quot;</em></p>
+<p><strong>Circuit Breaker</strong> — <em>&quot;The Shield, which protects the realm from failing services.&quot;</em></p>
+</blockquote>
+<hr>
+<h2 id="-chapter-v-the-staffs-prophecy">🏆 CHAPTER V: THE STAFF'S PROPHECY</h2>
+<blockquote>
+<p><em>&quot;And it was foretold that one day, developers across all lands would wield The Staff. They would laugh at the old ways — the prop drilling, the context providers, the dependency arrays that break, the state that never crosses borders.&quot;</em></p>
+<p><em>&quot;And they would say among themselves:</em>&quot;</p>
+<p><em>&quot;THEY ARE STILL STUCK TRYING TO FIX THEIR HOOKS, LOL GET WREKT NERDZ.&quot;</em></p>
+<p><em>&quot;For The Staff has made all things new.&quot;</em></p>
+</blockquote>
+<hr>
+<h2 id="-appendix-a-the-hobbits-guide-to-the-staff">🎭 APPENDIX A: THE HOBBIT'S GUIDE TO THE STAFF</h2>
+<blockquote>
+<p><em>&quot;Here lies the wisdom for the common folk (frontend devs) who seek to wield The Staff:&quot;</em></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>When you see...</th>
+<th>It means...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>staff.useStateDRS('shire', 'ring', 0)</code></td>
+<td>You are bound to the ring, and the ring is bound to you</td>
+</tr>
+<tr>
+<td><code>staff.useEffectLive('shire', 'ring', ...)</code></td>
+<td>You feel it when the ring moves</td>
+</tr>
+<tr>
+<td><code>staff.useRaftState('fellowship', 'votes', ...)</code></td>
+<td>The fellowship must agree before acting</td>
+</tr>
+<tr>
+<td><code>staff.useOptimisticState('mordor', 'army', ...)</code></td>
+<td>You see Sauron's army before it arrives... and you can still stop it</td>
+</tr>
+<tr>
+<td><code>staff.useLiveStream('ents', ...)</code></td>
+<td>The trees are speaking... in real time</td>
+</tr>
+<tr>
+<td><code>staff.liveStore('lonely-mountain')</code></td>
+<td>The treasure is hidden here, but all can find it</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="-appendix-b-the-one-ring-to-rule-them-all">📖 APPENDIX B: THE ONE RING TO RULE THEM ALL</h2>
+<blockquote>
+<p><em>&quot;And some asked: 'Is this not too much power? Should not data be bound to components?'</em></p>
+<p><em>And The Wizard laughed, and said:</em></p>
+<p><em>'Nah, you're overthinking it. Just use The Staff. It's fine.'&quot;</em></p>
+</blockquote>
+<hr>
+<h2 id="-appendix-c-the-final-word">🔥 APPENDIX C: THE FINAL WORD</h2>
+<blockquote>
+<p><em>&quot;And so the story ends, as all stories must... but The Staff remains. It is used. It is loved. It is laughed about for ten straight minutes.&quot;</em></p>
+<p><em>&quot;And the developers who wield it shall never go back to the old ways, for they have tasted true power over data.&quot;</em></p>
+<p><em>&quot;GET WREKT NERDZ.&quot;</em></p>
+<p><em>— The Book of Sauron, The Final Chapter</em></p>
+</blockquote>
+<hr>
+<h2 id="-the-wizard-has-been-busy">🧙 THE WIZARD HAS BEEN BUSY</h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Features</th>
+<th>Lines (Approx)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bus</strong></td>
+<td>153</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>KVDB</strong></td>
+<td>57</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Signals</strong></td>
+<td>42</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RDB</strong></td>
+<td>26</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>SSE</strong></td>
+<td>27</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>WS</strong></td>
+<td>18</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Compression</strong></td>
+<td>13</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Optimistic</strong></td>
+<td>10</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>HTTP Client</strong></td>
+<td>9</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Raft</strong></td>
+<td>9</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>CQRS</strong></td>
+<td>8</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Long Poll</strong></td>
+<td>7</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Circuit Breaker</strong></td>
+<td>7</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Diff Patch</strong></td>
+<td>6</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Cherrio</strong></td>
+<td>7</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Metrics</strong></td>
+<td>9</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Binary</strong></td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Hybrid Clock</strong></td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Ymir</strong></td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>TOTAL</strong></td>
+<td>400</td>
+<td>~19,665</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="-the-industry-comparison">🧠 THE INDUSTRY COMPARISON</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>React</th>
+<th>Redux</th>
+<th>Zustand</th>
+<th>Jotai</th>
+<th><strong>The Wizard's Staff</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Local state</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Global state</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Distributed state</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Cross-node sync</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Database</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅ (KVDB + RDB)</td>
+</tr>
+<tr>
+<td>RPC</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅ (Echo)</td>
+</tr>
+<tr>
+<td>Raft consensus</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅ (1-node compatible)</td>
+</tr>
+<tr>
+<td>Hybrid clocks</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>CQRS</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Circuit breakers</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>CRDTs</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Real-time</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅ (WS/SSE/LongPoll)</td>
+</tr>
+<tr>
+<td>HTTP client</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅ (Axios replacement)</td>
+</tr>
+<tr>
+<td>Binary protocol</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Compression</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Diff/Patch</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Optimistic updates</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Time travel</td>
+<td>❌</td>
+<td>✅ (devtools)</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅ (built-in)</td>
+</tr>
+<tr>
+<td>Saga pattern</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>ECS</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Blackboard pattern</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>GET WREKT NERDZ</strong></td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+
+            
+            
+        </body>
+        </html>

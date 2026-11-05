@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>FIRST STEPS</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="first-steps">FIRST STEPS</h1>
+<blockquote>
+<p>Before reading the following sections, nothing you will read about here will be required. Every topic gone over, is not mandatory.</p>
+<p>The entire platform goes to great lengths to breakiing down every wall that exists. While I will go over these points because I truly beleive they will make you a better dev... but if you wanted you can just skip this entire section if you wanted.</p>
+</blockquote>
+<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Types</p><p></p>
+<p>I've never shyed away from the fact that, this was built with a certain end user in mind. Some people will think of that as a disadvantage, while others like myself will beleive to be the exact opposite.</p>
+<p>With saying that, I am going to have to throw you into the deep end... right off the hop.</p>
+<h3 id="types">Types</h3>
+<p>You will see verrrryyy quickly, that types are done... drastically different here. While we will save the black magic for later on and start with the more obvious difference.</p>
+</div>
+<pre><code class="language-tsx">public <span class="hljs-keyword">async</span> <span class="hljs-title function_">send_particle</span>(<span class="hljs-attr">p</span>: U, <span class="hljs-attr">k</span>: A, <span class="hljs-attr">s</span>: S, <span class="hljs-attr">m</span>: S, <span class="hljs-attr">r</span>: S, ttl?: N): P&lt;U&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">disruptor</span>.<span class="hljs-title function_">send_particle</span>(p, k, s, m, r);
+}
+public <span class="hljs-title function_">sub_particle</span>(<span class="hljs-attr">handler</span>: <span class="hljs-title class_">CSEHandler</span>, <span class="hljs-attr">k</span>: A, <span class="hljs-attr">s</span>: S, <span class="hljs-attr">m</span>: S, <span class="hljs-attr">r</span>: S): <span class="hljs-function">() =&gt;</span> V {
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">disruptor</span>.<span class="hljs-title function_">sub_particle</span>(handler, k, s, m, r);
+}
+<span class="hljs-comment">// ── READ ─────────────────────────────────────────────</span>
+public <span class="hljs-title function_">get_particle</span>(<span class="hljs-attr">k</span>: A, <span class="hljs-attr">s</span>: S, <span class="hljs-attr">m</span>: S, <span class="hljs-attr">r</span>: S): U | <span class="hljs-variable constant_">UD</span> {
+    <span class="hljs-keyword">const</span> pid = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">pidIfExists</span>(k, s, m, r);
+    <span class="hljs-keyword">if</span> (pid &lt; <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">get</span>(pid);
+}
+public <span class="hljs-title function_">has_particle</span>(<span class="hljs-attr">k</span>: A, <span class="hljs-attr">s</span>: S, <span class="hljs-attr">m</span>: S, <span class="hljs-attr">r</span>: S): B {
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">pidIfExists</span>(k, s, m, r) &gt;= <span class="hljs-number">0</span>;
+}
+public <span class="hljs-title function_">getMany_particle</span>(<span class="hljs-attr">particles</span>: A[]): U[] {
+    <span class="hljs-keyword">return</span> particles.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">p</span>) =&gt;</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">get_particle</span>(p.<span class="hljs-property">k</span>, p.<span class="hljs-property">s</span>, p.<span class="hljs-property">m</span>, p.<span class="hljs-property">r</span>));
+}
+</code></pre>
+<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Types</p><p></p>
+<p>An alias system has been created and adopted platform wide. When creaing the alias I made sure that they all made sense when I basically went through the entire catalog of types that we can define.</p>
+<p>While at first, it will make you go slower... there is no going around that, but once you are used to it there is no going back. I do not see myself ever coding inside of an app without this being available.</p>
+<p>It takes, what used to be massive defined props tables, and compresses them to a single line. The first night I was experimenting with this, I had removed north of 200,000 characters within... about 30 minutes.</p>
+<p>Think about that though... with THAT amount of characters being removed each and every single time you have to go and type each one out, just for a single app that equates to a large amount of time wasted.</p>
+<p>I have also found, for me anyways, I'm also able to read the code a lot faster now. Seeing the benefits come so quickly in such large amounts, you can also see that I did not limiit that compression to just types in the platform.</p>
+<ul>
+<li>p: payload</li>
+<li>k: key</li>
+<li>s: slave channel</li>
+<li>m: master channel</li>
+<li>r: root channel</li>
+<li>and so on...</li>
+</ul>
+<p>Generics, were not forgotten about as each alias carries through whatever generics you pass on, just like it would without the system.</p>
+</div>
+<details><summary><strong><span style="font-size: 16px; font-family: monospace">[TYPESCRIPT ALIAS MAP]</span> </strong></summary>
+<pre><code class="language-tsx">type A = any
+type B&lt;T = A&gt; = boolean
+type D&lt;T = A&gt; = <span class="hljs-title class_">Date</span>
+type E&lt;T = A&gt; = <span class="hljs-title class_">Error</span>
+type F&lt;T = A&gt; = <span class="hljs-title class_">Function</span> | (<span class="hljs-function">() =&gt;</span> T);
+type I&lt;T = A&gt; = <span class="hljs-title class_">Iterable</span>&lt;T&gt;;
+type J&lt;T = A&gt; = <span class="hljs-title class_">JSON</span>
+type K = keyof A
+type M&lt;K = A, V = A&gt; = <span class="hljs-title class_">Map</span>&lt;K, V&gt;;
+type N&lt;T = A&gt; =number
+type O&lt;T = A&gt; = <span class="hljs-title class_">Object</span>&lt;T&gt;
+type P&lt;T = A&gt; = <span class="hljs-title class_">Promise</span>&lt;T&gt;;
+type <span class="hljs-variable constant_">AW</span>&lt;T = A&gt; = <span class="hljs-title class_">Awaited</span>&lt;T&gt;;
+type <span class="hljs-variable constant_">PL</span>&lt;T = A&gt; = <span class="hljs-title class_">PromiseLike</span>&lt;T&gt;
+type R&lt;K <span class="hljs-keyword">extends</span> <span class="hljs-title class_">PropertyKey</span> = A, V = A&gt; = <span class="hljs-title class_">Record</span>&lt;K, V&gt;;
+type S&lt;T = A&gt; = string
+type U&lt;T = A&gt; = unknown
+type V&lt;T = A&gt; = <span class="hljs-keyword">void</span>
+type W = <span class="hljs-string">&quot;*&quot;</span>;
+
+type <span class="hljs-variable constant_">ST</span>&lt;T = A&gt; = <span class="hljs-title class_">Set</span>&lt;T&gt;;
+type <span class="hljs-variable constant_">MP</span>&lt;K = A, V = A&gt; = <span class="hljs-title class_">Map</span>&lt;K, V&gt;;
+
+type <span class="hljs-variable constant_">AI</span>&lt;T = A&gt; = <span class="hljs-title class_">AsyncIterable</span>&lt;T&gt;
+type <span class="hljs-variable constant_">AR</span>&lt;T= A&gt; = <span class="hljs-title class_">Array</span>&lt;T&gt;
+type <span class="hljs-variable constant_">AB</span>&lt;T = A&gt; = <span class="hljs-title class_">ArrayBuffer</span>
+type <span class="hljs-variable constant_">AG</span>&lt;T = A, R = A, N = A&gt; = <span class="hljs-title class_">AsyncGenerator</span>&lt;T, R, N&gt;
+type <span class="hljs-variable constant_">AGE</span> = <span class="hljs-title class_">AggregateError</span>
+type <span class="hljs-variable constant_">ABC</span> = <span class="hljs-title class_">AbortController</span>
+type <span class="hljs-variable constant_">ABS</span> = <span class="hljs-title class_">AbortSignal</span>
+type <span class="hljs-variable constant_">ASF</span>&lt;T <span class="hljs-keyword">extends</span> (...<span class="hljs-attr">args</span>: A) =&gt; A&gt; = <span class="hljs-function">(<span class="hljs-params">...args: Parameters&lt;T&gt;</span>) =&gt;</span> <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-title class_">Awaited</span>&lt;<span class="hljs-title class_">ReturnType</span>&lt;T&gt;&gt;&gt;
+type <span class="hljs-variable constant_">BI</span>&lt;T = A&gt; = bigint
+type <span class="hljs-variable constant_">BIG</span>&lt;T = A&gt; = <span class="hljs-title class_">BigInt</span>
+type <span class="hljs-variable constant_">BL</span>&lt;T = A&gt; = <span class="hljs-title class_">Blob</span>
+type <span class="hljs-variable constant_">BU</span>&lt;T = A&gt; = <span class="hljs-title class_">Buffer</span>
+type <span class="hljs-variable constant_">CAP</span>&lt;T <span class="hljs-keyword">extends</span> S&gt; = <span class="hljs-title class_">Capitalize</span>&lt;T&gt;
+type <span class="hljs-variable constant_">CON</span>&lt;T&gt; = <span class="hljs-title class_">ConstructorParameters</span>&lt;T <span class="hljs-keyword">extends</span> abstract <span class="hljs-keyword">new</span> (...<span class="hljs-attr">args</span>: A) =&gt; A ? T : never&gt;
+type <span class="hljs-variable constant_">CTX</span>&lt;T <span class="hljs-keyword">extends</span> (...<span class="hljs-attr">args</span>: A) =&gt; A&gt; = <span class="hljs-title class_">OmitThisParameter</span>&lt;T&gt;
+type <span class="hljs-variable constant_">CE</span>&lt;T = A&gt; = <span class="hljs-title class_">CustomEvent</span>
+type <span class="hljs-variable constant_">DE</span>&lt;T = A&gt; = <span class="hljs-title class_">Document</span>
+type <span class="hljs-variable constant_">DPR</span>&lt;T&gt; = { readonly [K <span class="hljs-keyword">in</span> keyof T]: <span class="hljs-variable constant_">DEEPR</span>&lt;T[K]&gt; }
+type <span class="hljs-variable constant_">DC</span>&lt;T = A&gt; = <span class="hljs-title class_">Record</span>&lt;S, T&gt;
+type <span class="hljs-variable constant_">DV</span>&lt;T = A&gt; = <span class="hljs-title class_">DataView</span>
+type <span class="hljs-variable constant_">EL</span>&lt;T = A&gt; = <span class="hljs-title class_">Element</span>
+type <span class="hljs-variable constant_">ERR</span>&lt;T = A&gt; = <span class="hljs-title class_">Error</span>
+type <span class="hljs-variable constant_">EV</span>&lt;T = A&gt; = <span class="hljs-title class_">Event</span>
+type <span class="hljs-variable constant_">EQ</span>&lt;X, Y&gt; = (&lt;T&gt;<span class="hljs-function">() =&gt;</span> T <span class="hljs-keyword">extends</span> X ? <span class="hljs-number">1</span> : <span class="hljs-number">2</span>) <span class="hljs-keyword">extends</span> (&lt;T&gt;<span class="hljs-function">() =&gt;</span> T <span class="hljs-keyword">extends</span> Y ? <span class="hljs-number">1</span> : <span class="hljs-number">2</span>) ? <span class="hljs-literal">true</span> : <span class="hljs-literal">false</span>
+type <span class="hljs-variable constant_">EX</span>&lt;T, U&gt; = <span class="hljs-title class_">Exclude</span>&lt;T, U&gt;
+type <span class="hljs-variable constant_">EXT</span>&lt;T&gt; = T <span class="hljs-keyword">extends</span> (infer U)[] ? U : never
+type <span class="hljs-variable constant_">F64</span>&lt;T = A&gt; = <span class="hljs-title class_">Float64Array</span>
+type <span class="hljs-variable constant_">FR</span>&lt;T = A&gt; = <span class="hljs-title class_">DocumentFragment</span>
+type <span class="hljs-variable constant_">FD</span>&lt;T = A&gt; = <span class="hljs-title class_">FormData</span>
+type <span class="hljs-variable constant_">FN</span>&lt;T <span class="hljs-keyword">extends</span> (...<span class="hljs-attr">args</span>: A) =&gt; A = <span class="hljs-function">(<span class="hljs-params">...args: A</span>) =&gt;</span> A&gt; = T
+type <span class="hljs-variable constant_">GEN</span>&lt;T = A, R = A, N = A&gt; = <span class="hljs-title class_">Generator</span>&lt;T, R, N&gt;
+type <span class="hljs-variable constant_">HE</span>&lt;T = A&gt; = <span class="hljs-title class_">HTMLElement</span>
+type <span class="hljs-variable constant_">I32</span>&lt;T = A&gt; = <span class="hljs-title class_">Int32Array</span>
+type <span class="hljs-variable constant_">IN</span>&lt;T, U&gt; = <span class="hljs-title class_">Extract</span>&lt;T, U&gt;
+type <span class="hljs-variable constant_">IT</span>&lt;T <span class="hljs-keyword">extends</span> abstract <span class="hljs-keyword">new</span> (...<span class="hljs-attr">args</span>: A) =&gt; A&gt; = T <span class="hljs-keyword">extends</span> abstract <span class="hljs-keyword">new</span> (...<span class="hljs-attr">args</span>: A) =&gt; infer R ? R : A;
+type <span class="hljs-variable constant_">IDX</span>&lt;T&gt; = T <span class="hljs-keyword">extends</span> readonly (infer U)[] ? U : never
+type <span class="hljs-variable constant_">ITR</span>&lt;T = A&gt; = <span class="hljs-title class_">IterableIterator</span>&lt;T&gt;
+type <span class="hljs-variable constant_">ITOR</span>&lt;T = A&gt; = <span class="hljs-title class_">Iterator</span>&lt;T&gt;
+type <span class="hljs-variable constant_">KE</span>&lt;T = A&gt; = <span class="hljs-title class_">KeyboardEvent</span>
+type <span class="hljs-variable constant_">KOF</span>&lt;T&gt; = keyof T
+type <span class="hljs-variable constant_">MAP</span>&lt;K = A, V = A&gt; = <span class="hljs-title class_">Map</span>&lt;K, V&gt;
+type <span class="hljs-variable constant_">MUT</span>&lt;T&gt; = { -readonly [K <span class="hljs-keyword">in</span> keyof T]: T[K] }
+type <span class="hljs-variable constant_">MAY</span>&lt;T&gt; = T | <span class="hljs-literal">null</span> | <span class="hljs-variable constant_">UD</span>
+type <span class="hljs-variable constant_">ME</span>&lt;T = A&gt; = <span class="hljs-title class_">MouseEvent</span>
+type <span class="hljs-variable constant_">NOI</span>&lt;T&gt; = <span class="hljs-title class_">NoInfer</span>&lt;T&gt;
+type <span class="hljs-variable constant_">ND</span>&lt;T = A&gt; = <span class="hljs-title class_">Node</span>;
+type <span class="hljs-variable constant_">NE</span>&lt;T = A&gt; = never
+type <span class="hljs-variable constant_">NLE</span>&lt;T = A&gt; = <span class="hljs-title class_">NodeListOf</span>&lt;<span class="hljs-title class_">Element</span>&gt;
+type <span class="hljs-variable constant_">NIL</span>&lt;T&gt; = T | <span class="hljs-literal">null</span>
+type <span class="hljs-variable constant_">NR</span>&lt;T&gt; = <span class="hljs-title class_">NonNullable</span>&lt;T&gt;
+type <span class="hljs-variable constant_">NA</span>&lt;T = A&gt; = <span class="hljs-title class_">NodeListOf</span>&lt;T&gt;
+type <span class="hljs-variable constant_">NU</span>&lt;T = A&gt; = <span class="hljs-literal">null</span>
+type <span class="hljs-variable constant_">OM</span>&lt;T, K <span class="hljs-keyword">extends</span> keyof T&gt; = <span class="hljs-title class_">Omit</span>&lt;T, K&gt;
+type <span class="hljs-variable constant_">OPT</span>&lt;T&gt; = T | <span class="hljs-variable constant_">UD</span>
+type <span class="hljs-variable constant_">OB</span>&lt;T = A&gt; = { [<span class="hljs-attr">key</span>: S]: T }
+type <span class="hljs-variable constant_">OBJ</span>&lt;T = A&gt; = { [<span class="hljs-attr">key</span>: S]: T }
+type <span class="hljs-variable constant_">OV</span>&lt;T, U&gt; = <span class="hljs-title class_">Omit</span>&lt;T, keyof U&gt; &amp; U
+type <span class="hljs-variable constant_">PSR</span>&lt;T&gt; = <span class="hljs-title class_">PromiseSettledResult</span>&lt;T&gt;
+type <span class="hljs-variable constant_">PFR</span>&lt;T&gt; = <span class="hljs-title class_">PromiseFulfilledResult</span>&lt;T&gt;
+type <span class="hljs-variable constant_">PRR</span> = <span class="hljs-title class_">PromiseRejectedResult</span>
+type <span class="hljs-variable constant_">PA</span>&lt;T&gt; = <span class="hljs-title class_">Partial</span>&lt;T&gt;
+type <span class="hljs-variable constant_">PE</span>&lt;T = A&gt; = <span class="hljs-title class_">PointerEvent</span>
+type <span class="hljs-variable constant_">PI</span>&lt;T, K <span class="hljs-keyword">extends</span> keyof T&gt; = <span class="hljs-title class_">Pick</span>&lt;T, K&gt;
+type <span class="hljs-variable constant_">REG</span>&lt;T = A&gt; = <span class="hljs-title class_">RegExp</span>
+type <span class="hljs-variable constant_">RE</span>&lt;T&gt; = <span class="hljs-title class_">Required</span>&lt;T&gt;
+type <span class="hljs-variable constant_">RM</span>&lt;K = A, V = A&gt; = <span class="hljs-title class_">ReadonlyMap</span>&lt;K, V&gt;
+type <span class="hljs-variable constant_">RS</span>&lt;T = A&gt; = <span class="hljs-title class_">ReadonlySet</span>&lt;T&gt;
+type <span class="hljs-variable constant_">RET</span>&lt;T <span class="hljs-keyword">extends</span> (...<span class="hljs-attr">args</span>: A) =&gt; A&gt; = <span class="hljs-title class_">ReturnType</span>&lt;T&gt;
+type <span class="hljs-variable constant_">RO</span>&lt;T&gt; = <span class="hljs-title class_">Readonly</span>&lt;T&gt;
+type <span class="hljs-variable constant_">ROA</span>&lt;T <span class="hljs-keyword">extends</span> A[]&gt; = <span class="hljs-title class_">ReadonlyArray</span>&lt;T[N]&gt;
+type <span class="hljs-variable constant_">RT</span>&lt;T <span class="hljs-keyword">extends</span> (...<span class="hljs-attr">args</span>: A) =&gt; A&gt; = T <span class="hljs-keyword">extends</span> (...<span class="hljs-attr">args</span>:A) =&gt; infer R ? R :A;
+type <span class="hljs-variable constant_">SETOF</span>&lt;T = A&gt; = <span class="hljs-title class_">Set</span>&lt;T&gt;
+type <span class="hljs-variable constant_">STR</span>&lt;T&gt; = T <span class="hljs-keyword">extends</span> S ? T : never
+type <span class="hljs-variable constant_">SK</span>&lt;T&gt; = keyof T &amp; S
+type <span class="hljs-variable constant_">SY</span>&lt;T = A&gt; = symbol
+type <span class="hljs-variable constant_">SYM</span>&lt;T = A&gt; = <span class="hljs-title class_">Symbol</span>
+type <span class="hljs-variable constant_">TL</span>&lt;T <span class="hljs-keyword">extends</span> S&gt; = T[<span class="hljs-string">&#x27;length&#x27;</span>]
+type <span class="hljs-variable constant_">TUP</span>&lt;T <span class="hljs-keyword">extends</span> A[] = A[]&gt; = [...T]
+type <span class="hljs-variable constant_">UD</span>&lt;T = A&gt; = <span class="hljs-literal">undefined</span>
+type <span class="hljs-variable constant_">UN</span>&lt;T = A&gt; = <span class="hljs-literal">undefined</span>
+type <span class="hljs-variable constant_">U16</span> = <span class="hljs-title class_">Uint16Array</span>
+type <span class="hljs-variable constant_">I8</span> = <span class="hljs-title class_">Int8Array</span>
+type <span class="hljs-variable constant_">I16</span> = <span class="hljs-title class_">Int16Array</span>
+type <span class="hljs-variable constant_">F32</span> = <span class="hljs-title class_">Float32Array</span>
+type <span class="hljs-variable constant_">U8C</span> = <span class="hljs-title class_">Uint8ClampedArray</span>
+type <span class="hljs-variable constant_">U8</span>&lt;T = A&gt; = <span class="hljs-title class_">Uint8Array</span>
+type <span class="hljs-variable constant_">U32</span>&lt;T = A&gt; = <span class="hljs-title class_">Uint32Array</span>
+type <span class="hljs-variable constant_">U32ARB</span>&lt;T = A&gt; =  <span class="hljs-title class_">Uint32Array</span>&lt;<span class="hljs-title class_">ArrayBufferLike</span>&gt;
+type <span class="hljs-variable constant_">URI</span>&lt;T = A&gt; = <span class="hljs-variable constant_">URL</span>
+type <span class="hljs-variable constant_">URLT</span>&lt;T = A&gt; = <span class="hljs-variable constant_">URL</span>
+type <span class="hljs-variable constant_">VAL</span>&lt;T&gt; = T[keyof T]
+type <span class="hljs-variable constant_">WS</span>&lt;T <span class="hljs-keyword">extends</span> O = O&gt; = <span class="hljs-title class_">WeakSet</span>&lt;T&gt;
+type <span class="hljs-variable constant_">WM</span>&lt;K <span class="hljs-keyword">extends</span> O = O, V = A&gt; = <span class="hljs-title class_">WeakMap</span>&lt;K, V&gt;
+type <span class="hljs-variable constant_">WIN</span>&lt;T = A&gt; = <span class="hljs-title class_">Window</span>
+type <span class="hljs-variable constant_">XOR</span>&lt;T, U&gt; = (T | U) <span class="hljs-keyword">extends</span> O ? (<span class="hljs-title class_">Omit</span>&lt;T, keyof U&gt; &amp; U) | (<span class="hljs-title class_">Omit</span>&lt;U, keyof T&gt; &amp; T) : T | U
+
+
+type <span class="hljs-variable constant_">DOMX</span> = <span class="hljs-title class_">DOMException</span>
+type <span class="hljs-variable constant_">WREF</span>&lt;T <span class="hljs-keyword">extends</span> O&gt; = <span class="hljs-title class_">WeakRef</span>&lt;T&gt;
+type <span class="hljs-variable constant_">FREG</span>&lt;T <span class="hljs-keyword">extends</span> O&gt; = <span class="hljs-title class_">FinalizationRegistry</span>&lt;T&gt;
+type <span class="hljs-variable constant_">DISP</span> = <span class="hljs-title class_">Disposable</span>
+type <span class="hljs-variable constant_">ADISP</span> = <span class="hljs-title class_">AsyncDisposable</span>
+type <span class="hljs-variable constant_">ITOBJ</span>&lt;T = A, R = A, N = A&gt; = <span class="hljs-title class_">IteratorObject</span>&lt;T, R, N&gt;
+type <span class="hljs-variable constant_">AITOBJ</span>&lt;T = A, R = A, N = A&gt; = <span class="hljs-title class_">AsyncIteratorObject</span>&lt;T, R, N&gt;
+type <span class="hljs-variable constant_">ERRCAUSE</span>&lt;T = A&gt; = <span class="hljs-title class_">Error</span> &amp; { cause?: T }
+type <span class="hljs-variable constant_">DICT</span>&lt;T = A&gt; = { [<span class="hljs-attr">key</span>: S]: T | <span class="hljs-variable constant_">UD</span> }
+type <span class="hljs-variable constant_">ROOBJ</span>&lt;T&gt; = { readonly [K <span class="hljs-keyword">in</span> keyof T]: T[K] }
+type <span class="hljs-variable constant_">MUTOBJ</span>&lt;T&gt; = { -readonly [K <span class="hljs-keyword">in</span> keyof T]: T[K] }
+type <span class="hljs-variable constant_">VALOF</span>&lt;T&gt; = T[keyof T]
+type <span class="hljs-variable constant_">KEYS</span>&lt;T&gt; = keyof T
+type <span class="hljs-variable constant_">UNION</span>&lt;T&gt; = T <span class="hljs-keyword">extends</span> A ? T : never
+type <span class="hljs-variable constant_">ISNEVER</span>&lt;T&gt; = [T] <span class="hljs-keyword">extends</span> [never] ? <span class="hljs-literal">true</span> : <span class="hljs-literal">false</span>
+type <span class="hljs-variable constant_">ISANY</span>&lt;T&gt; = <span class="hljs-number">0</span> <span class="hljs-keyword">extends</span> (<span class="hljs-number">1</span> &amp; T) ? <span class="hljs-literal">true</span> : <span class="hljs-literal">false</span>
+type <span class="hljs-variable constant_">ISUNKNOWN</span>&lt;T&gt; = <span class="hljs-variable constant_">EQ</span>&lt;T, unknown&gt;
+type <span class="hljs-variable constant_">ISUNION</span>&lt;T, C = T&gt; = T <span class="hljs-keyword">extends</span> C ? ([C] <span class="hljs-keyword">extends</span> [T] ? <span class="hljs-literal">false</span> : <span class="hljs-literal">true</span>) : never
+type <span class="hljs-variable constant_">ROARR</span>&lt;T&gt; = readonly T[]
+type <span class="hljs-variable constant_">NONEMPTY</span>&lt;T&gt; = readonly [T, ...T[]]
+type <span class="hljs-variable constant_">FIRST</span>&lt;T <span class="hljs-keyword">extends</span> readonly A[]&gt; = T <span class="hljs-keyword">extends</span> readonly [infer H, ...A[]] ? H : never
+type <span class="hljs-variable constant_">LAST</span>&lt;T <span class="hljs-keyword">extends</span> readonly A[]&gt; = T <span class="hljs-keyword">extends</span> readonly [...A[], infer L] ? L : never
+type <span class="hljs-variable constant_">LENGTH</span>&lt;T <span class="hljs-keyword">extends</span> readonly A[]&gt; = T[<span class="hljs-string">&#x27;length&#x27;</span>]
+type <span class="hljs-variable constant_">REPLACE</span>&lt;<span class="hljs-variable constant_">S0</span> <span class="hljs-keyword">extends</span> S, F <span class="hljs-keyword">extends</span> S, T <span class="hljs-keyword">extends</span> S&gt; = <span class="hljs-variable constant_">S0</span> <span class="hljs-keyword">extends</span> <span class="hljs-string">`<span class="hljs-subst">${infer L}</span><span class="hljs-subst">${F}</span><span class="hljs-subst">${infer R}</span>`</span> ? <span class="hljs-string">`<span class="hljs-subst">${L}</span><span class="hljs-subst">${T}</span><span class="hljs-subst">${R}</span>`</span> : <span class="hljs-variable constant_">S0</span>
+type <span class="hljs-variable constant_">SPLIT</span>&lt;<span class="hljs-variable constant_">S0</span> <span class="hljs-keyword">extends</span> S, D <span class="hljs-keyword">extends</span> S&gt; = <span class="hljs-variable constant_">S0</span> <span class="hljs-keyword">extends</span> <span class="hljs-string">`<span class="hljs-subst">${infer L}</span><span class="hljs-subst">${D}</span><span class="hljs-subst">${infer R}</span>`</span> ? [L, ...<span class="hljs-variable constant_">SPLIT</span>&lt;R, D&gt;] : [<span class="hljs-variable constant_">S0</span>]
+type <span class="hljs-variable constant_">JOIN</span>&lt;T <span class="hljs-keyword">extends</span> readonly S[], D <span class="hljs-keyword">extends</span> S = <span class="hljs-string">&#x27;&#x27;</span>&gt; = T <span class="hljs-keyword">extends</span> readonly [infer H <span class="hljs-keyword">extends</span> S, ...infer R <span class="hljs-keyword">extends</span> S[]] ? R <span class="hljs-keyword">extends</span> [] ? H : <span class="hljs-string">`<span class="hljs-subst">${H}</span><span class="hljs-subst">${D}</span><span class="hljs-subst">${JOIN&lt;R, D&gt;}</span>`</span> : <span class="hljs-string">&#x27;&#x27;</span>
+type <span class="hljs-variable constant_">ARGS</span>&lt;T <span class="hljs-keyword">extends</span> (...<span class="hljs-attr">args</span>: A) =&gt; A&gt; = <span class="hljs-title class_">Parameters</span>&lt;T&gt;
+type <span class="hljs-variable constant_">ASYNCGEN</span>&lt;T = A, R = A, N = A&gt; = <span class="hljs-title class_">AsyncGenerator</span>&lt;T, R, N&gt;
+type <span class="hljs-variable constant_">ASYNCITR</span>&lt;T = A&gt; = <span class="hljs-title class_">AsyncIterableIterator</span>&lt;T&gt;
+type <span class="hljs-variable constant_">ASYNCIT</span>&lt;T = A&gt; = <span class="hljs-title class_">AsyncIterable</span>&lt;T&gt;
+type <span class="hljs-variable constant_">ASSERT</span>&lt;T <span class="hljs-keyword">extends</span> <span class="hljs-literal">true</span>&gt; = T
+type <span class="hljs-variable constant_">AWAIT</span>&lt;T&gt; = T <span class="hljs-keyword">extends</span> <span class="hljs-title class_">PromiseLike</span>&lt;infer U&gt; ? <span class="hljs-variable constant_">AWAIT</span>&lt;U&gt; : T
+type <span class="hljs-variable constant_">BRAND</span>&lt;T, N <span class="hljs-keyword">extends</span> S&gt; = T &amp; { readonly <span class="hljs-attr">__brand</span>: N }
+type <span class="hljs-variable constant_">DIFF</span>&lt;T, U&gt; = T <span class="hljs-keyword">extends</span> U ? never : T
+type <span class="hljs-variable constant_">DEEP</span>&lt;T&gt; = T <span class="hljs-keyword">extends</span> O ? { [K <span class="hljs-keyword">in</span> keyof T]: <span class="hljs-variable constant_">DEEP</span>&lt;T[K]&gt; } : T
+type <span class="hljs-variable constant_">DEEPP</span>&lt;T&gt; = T <span class="hljs-keyword">extends</span> O ? { [K <span class="hljs-keyword">in</span> keyof T]?: <span class="hljs-variable constant_">DEEPP</span>&lt;T[K]&gt; } : T
+type <span class="hljs-variable constant_">GUARD</span>&lt;T, U&gt; = T <span class="hljs-keyword">extends</span> U ? T : never
+type <span class="hljs-variable constant_">INST</span>&lt;T&gt; = <span class="hljs-title class_">InstanceType</span>&lt;T <span class="hljs-keyword">extends</span> abstract <span class="hljs-keyword">new</span> (...<span class="hljs-attr">args</span>: A) =&gt; A ? T : never&gt;
+type <span class="hljs-variable constant_">LOWER</span>&lt;T <span class="hljs-keyword">extends</span> S&gt; = <span class="hljs-title class_">Lowercase</span>&lt;T&gt;
+type <span class="hljs-variable constant_">PARAMS</span>&lt;T <span class="hljs-keyword">extends</span> (...<span class="hljs-attr">args</span>: A) =&gt; A&gt; = T <span class="hljs-keyword">extends</span> (...<span class="hljs-attr">args</span>: infer P) =&gt; A ? P : never;
+type <span class="hljs-variable constant_">PROM</span>&lt;T = A&gt; = <span class="hljs-title class_">Promise</span>&lt;T&gt;
+type <span class="hljs-variable constant_">STRNUM</span>&lt;T = A&gt; = <span class="hljs-string">`<span class="hljs-subst">${N}</span>`</span>
+type <span class="hljs-variable constant_">STRBIG</span>&lt;T = A&gt; = <span class="hljs-string">`<span class="hljs-subst">${bigint}</span>`</span>
+type <span class="hljs-variable constant_">STRBOOL</span>&lt;T = A&gt; = <span class="hljs-string">`<span class="hljs-subst">${B}</span>`</span>
+type <span class="hljs-variable constant_">STRKEY</span>&lt;T = A&gt; = <span class="hljs-string">`<span class="hljs-subst">${S &amp; {}}</span>`</span>
+type <span class="hljs-variable constant_">THIS</span>&lt;T <span class="hljs-keyword">extends</span> (<span class="hljs-attr">this</span>: A, ...<span class="hljs-attr">args</span>: A) =&gt; A&gt; = <span class="hljs-title class_">ThisParameterType</span>&lt;T&gt;
+type <span class="hljs-variable constant_">OTHIS</span>&lt;T&gt; = <span class="hljs-title class_">OmitThisParameter</span>&lt;T&gt;
+type <span class="hljs-variable constant_">UNCAP</span>&lt;T <span class="hljs-keyword">extends</span> S&gt; = <span class="hljs-title class_">Uncapitalize</span>&lt;T&gt;
+type <span class="hljs-variable constant_">UPPER</span>&lt;T <span class="hljs-keyword">extends</span> S&gt; = <span class="hljs-title class_">Uppercase</span>&lt;T&gt;
+type <span class="hljs-variable constant_">WEAKMAP</span>&lt;K <span class="hljs-keyword">extends</span> O = O, V = A&gt; = <span class="hljs-title class_">WeakMap</span>&lt;K, V&gt;
+type <span class="hljs-variable constant_">WEAKSET</span>&lt;T <span class="hljs-keyword">extends</span> O = O&gt; = <span class="hljs-title class_">WeakSet</span>&lt;T&gt;
+</code></pre>
+</details>
+<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Types</p><p></p>
+<p>Each type was reviewed manually, one at a time, to ensure that no single type was missed in relation to passing in your defined generics. As you can see I have left the generics props on virtually all of them so that whenever items are added or edited, it allows me to make sure that it was in fact review and done at a previous time. Leaving it there poses no issue in the use of it.</p>
+</div>
+<div class="markdown-alert markdown-alert-warning"><p class="markdown-alert-title"><svg class="octicon octicon-alert mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Quadruple Tiered Scopes</p><p></p>
+<p>The next item on the weird list is that, any time you deal with any type of data... they ALL take the same format. Which is a triple tiered channel + key format. Everything from the message queue, to the databases, to the atoms/cells... everything, each having very specific and intentional benefits.</p>
+<p>Message queue:</p>
+<ul>
+<li>defaults the entire message queue, as multiplexed. Which in turn gives us virtually a free message queue system in terms of performance. Instead of have 100-1000 ports devoted to the solution, there is less than 10 active.</li>
+</ul>
+<p>Atoms/Cells/Soul Shards:</p>
+<ul>
+<li>This allows us to organize our data, in a very nice and neat manner. The 'r' key, stands for root. By default it is set to whatever you label your app with, and there is no way of changing THAT name to something else. BUT what you can do is, if you wanted to create an entirely decoupled context/state system for something you need in your app, you simply change the r key... and voila, you just created your very own, entirely seperated context storage system from the apps context storage.</li>
+</ul>
+<p>Databases:
+This one... I don't think many people will get it without an explanation but, the datbases still get the same 4 channel format when dealing with setting and getting of its values. The 'r' key, still the applications name is mapped out to be your databases name, the 'm' key is mapped either a custom label of your choosing, OR if you enabled your app to contain global and workspace enviornments, then this maps out to either or to signinfy which you are saving to. The 's' key, gives us a means to organize it by category or in this case table. Finally the 'k' key is the values key identifier.</p>
+<p>The system works exactly the same way, everywhere. Weirdly this 4 channel setup works great in all its use cases because... When designing it, and deciding where the keys should be maped to in relation to a fn's props, to make life easier on everyone... I simply placed them backwards.</p>
+<p>Depending on the fn it would go something like this...</p>
+</div>
+<pre><code class="language-tsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">PropsExample</span>(<span class="hljs-params">payload: A, k: A = <span class="hljs-string">`<span class="hljs-subst">${<span class="hljs-variable language_">this</span>.k}</span><span class="hljs-subst">${<span class="hljs-variable language_">this</span>._sid()}</span>`</span>, s: S = <span class="hljs-variable language_">this</span>.s, m: S = <span class="hljs-variable language_">this</span>.m, r: S = <span class="hljs-variable language_">this</span>.r</span>)
+</code></pre>
+<div class="markdown-alert markdown-alert-warning"><p class="markdown-alert-title"><svg class="octicon octicon-alert mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Quadruple Tiered Scopes</p><p></p>
+<p>And yes... each prop is accomanied with a default, even the k key when appropriate for example, when deal with signals... executing the signals function, you simply can just provide a value. Just like how you would with reacts useRef, giving you a means to a much better function to use in its place, whenever you need to reach for it.</p>
+<p>There will be times where the payload and the k key are switched, but that depends on the actual function you are dealing with.</p>
+<p>There has been an a rolling update put into effect that is backwards compatible. Moving forward a quintuple tiered format will be put into place moving forward, where all quad tier format will slowly get upgraded.</p>
+<p>With the addition of the new atom/cell platform a new value has been put into play to signify storage type, as there are more than just a few available:</p>
+<ul>
+<li>r: root key</li>
+<li>m: master key</li>
+<li>c: context storage map</li>
+<li>s: slave key</li>
+<li>k: key</li>
+</ul>
+<p>Just like previously, the new value will come with a default already put into play which in effect makes it so that if you do not need to change the storage type... you simply, don't even concern yourself with it. Just supply your key:value pair and on your way you go on to the next line of code. BUT, when you do need to change something it is as easy as suppling that extra identifier making it so that all that is required for a hot swap is:</p>
+<ul>
+<li>key, slaveKey, contextKey</li>
+</ul>
+<p>The avialable storage types:</p>
+<ul>
+<li>cache</li>
+<li>sauron</li>
+<li>disruptor</li>
+<li>s class</li>
+<li>module registry</li>
+</ul>
+<p>While 6th and 7th options are currently being explored where a persistent global app context system, in place of just have it stored within memory, as well as a persisted ttl encrypted option is also being evaluated.</p>
+<p>While an 8th... much more extreme option, that I will not currently go over, is also be looked at into great detail and will be given great consideration...</p>
+</div>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Maybe Promise</p><p></p>
+<p>Before moving on there is one more 'weird' thing that is done with this platform.</p>
+<p>There is no disinctive sync / async defined functions. During the development of this platform, I was able to finally exploit a window in javascripts runtime where it now allows me to have it so that each function can be both async and sync when creating it.</p>
+<p>The async / sync functionality is actually defined at the call site with the use of await.</p>
+</div>
+<pre><code class="language-tsx">type <span class="hljs-title class_">MaybePromise</span>&lt;R = any&gt; = R;
+<span class="hljs-keyword">function</span> <span class="hljs-title class_">MaybePromise</span>&lt;R = any&gt;(<span class="hljs-attr">v</span>: R): <span class="hljs-title class_">MaybePromise</span> {
+	<span class="hljs-keyword">return</span> v !== <span class="hljs-literal">undefined</span> ? (v <span class="hljs-keyword">as</span> R) : (<span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(v) <span class="hljs-keyword">as</span> P&lt;R&gt;);
+}
+</code></pre>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Maybe Promise</p><p></p>
+<p>This simple snippet of code is what allows us to achieve just that. I go into much greater detail on how and why this works, if your interested please refer to it as its simply to long to dump here.</p>
+<p>In addition to that, due to 'dropping' half of the required fns that I would need to create I decided to experiment since I had all this new api space just open up.</p>
+<p>Maybe promise isn't the only thing that wraps a fns return value, IF you opt into it at the call site... otherwise it just simply returns the value like it would any other time.</p>
+<p>Opting into it though you would get one of two things, each of which are accessible through each call site through the use of that fns props.</p>
+<ol>
+<li>Chain: <code>Chain&lt;T&gt;</code> is a fluent, state-backed value wrapper for composing operations around a value. It provides conditional branching, switch-style matching, guards, mutation, property access, side-effect taps, promise-based continuation and error handling, retries, delays, explicit throwing, and value resolution.</li>
+<li>ReChain</li>
+</ol>
+</div>
+<div class="markdown-alert markdown-alert-warning"><p class="markdown-alert-title"><svg class="octicon octicon-alert mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>[SOME OTHER NOTE WORTH ITEMS...]</p><p></p>
+<p>It would seem to a lot of people that, the removal of all friction is a bit of an obsession. It isn't, but if I can increase my productivety, thus also doing the same to my output... why wouldn't you make that investment? Especially if it does end up benefiting more than the the cost you put into it.</p>
+<p>This industry... there is a lot of time wasting things. Like you think I want to be coding these things?... no...</p>
+<p>So the items found on this list aren't as substantial as others, still everything adds up.</p>
+<ul>
+<li>twx... As of late, I have been really looking into and experiementing... being extra agressive in removing schafolding. If ceremony lives because... it is just ceremony.... that is just... fucking stupid. Yes, please give me a platform... where you devs did... almost nothing for us, the user... I would LOVE to fucking spend 2 fucking weeks configuring the app before I write a single line of code...</li>
+</ul>
+<p>If you do not see... THE MASSIVE fucking problem there, maybe you just need to hear... but are apart of the problem. I'm not saying it in any bad annotation, sometimes... people really do just need to hear it. We go about our lives, and get so used to things just being the way they are. So I am more telling you in a way, like man dont you want to be better?</p>
+<p>Anyways... enoguh of that...</p>
+<p>twx: currently, it is not in a place where I would... find it to be in a place that is friendly for everyone. This is more for the dev that... your trying to cut corners... everywhere. Personally, I access the platforms values... A LOT, and it is a lot of ceremony... instead, I created a helper... it HAS been saving time, but its just not user friendly... but it only took me 2 mins to get used to it though... THAT IS HOW MUCH of a time saver it is.</p>
+<pre><code class="language-tsx">twx.<span class="hljs-property">THE_POWER_OF_TWO</span>;
+twx.<span class="hljs-property">SIGNALS</span>;
+twx.<span class="hljs-property">HADRON_COLLIDER</span>;
+
+twx.<span class="hljs-title function_">app</span>(<span class="hljs-string">&quot;myKey&quot;</span>);
+twx.<span class="hljs-property">app</span>.<span class="hljs-title function_">set</span>(myValue, <span class="hljs-string">&quot;myKey&quot;</span>);
+
+twx.<span class="hljs-title function_">app</span>(<span class="hljs-string">&quot;myKey&quot;</span>, <span class="hljs-string">&quot;slave&quot;</span>, <span class="hljs-string">&quot;master&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>);
+twx.<span class="hljs-property">app</span>.<span class="hljs-title function_">set</span>(myValue, <span class="hljs-string">&quot;myKey&quot;</span>, <span class="hljs-string">&quot;slave&quot;</span>, <span class="hljs-string">&quot;master&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>);
+
+<span class="hljs-keyword">const</span> scope = <span class="hljs-title function_">twx</span>(<span class="hljs-string">&quot;myKey&quot;</span>, <span class="hljs-string">&quot;slave&quot;</span>, <span class="hljs-string">&quot;master&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>);
+scope.<span class="hljs-title function_">get</span>();
+scope.<span class="hljs-title function_">set</span>(myValue);
+scope.<span class="hljs-title function_">map</span>();
+
+<span class="hljs-title function_">twx</span>(<span class="hljs-string">&quot;myKey&quot;</span>, <span class="hljs-string">&quot;slave&quot;</span>, <span class="hljs-string">&quot;master&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>).<span class="hljs-title function_">set</span>(myValue)
+
+<span class="hljs-title function_">twx</span>()
+</code></pre>
+<p>This is what I mean in it being not user friendly.
+twx... literally means nothing, just a unique call signature, being as short as possible. PERSONALLY... I fucking love the single letter alias... omg, you take in so much more information, in such a shorter window of time. But, the single letter annotation... is a bit extreme. Which is why its optional instead of a requirement for the platform.</p>
+<p>Anyways... all it is, is a MUCH easier time dealing with the 4, soon to be 5 channel format the platfomr uses.</p>
+<p>This can be found in the folder, bag of tricks. Speaking of which, I would suggest you to go through it as it contains a ton of reallllyy nice smaller things. To which, I will add when I think the should be placed in there. Yesterday I placed about 30 more things in there. Actually, really nice things when dealing with byteop.</p>
+<p>There... is another category like this being made... but it won't be here, there will be a new catergory simply named dx.</p>
+<p>This folder will focus on taking things that... we use every single, all day long. For example, Map2.0 is already in there, there is something else in addition to the new map fn, but everything in here will 100% be backwards compatible.</p>
+<p>A much BIGGER thing... will be sClass... actually, taking javascript class and upgrading it... I will submit it, but I... already know that my shit is going to be TOOO FUCKING EXTREME for these people. Meanwhile, I'll be using the shit out of it. Because, it wil be exactly like s class... but just a real class, as I have found a couple of cases where I wish it was a real class.</p>
+<p>Don't get me wrong, I actually like the platform primitive MUCH better. When you think about it... if all you have to do is learn a single platform primitive and you now know, 105+ prims as a consequence... I can't think of a platform that... has 2 never mind the number that you can find here. Meanwhile, ALL of them do VERY different thigns.</p>
+<p>The new class will be a mesh of addressable, organizalbe classes...</p>
+</div>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>

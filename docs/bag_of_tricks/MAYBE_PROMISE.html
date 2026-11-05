@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;MaybePromise&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<div style="display: grid; grid-template-columns: 4fr 2fr; gap: 20px;">
+<div>
+<h1 id="maybepromise"><code>MaybePromise</code></h1>
+<h1 id="usage">USAGE</h1>
+<p>Whenever you are using a fn that has maybe promise, it makes our jobs as devs even easier...</p>
+<ol>
+<li>Do I need the result/value from this?
+<ul>
+<li>No: then do not await the fn</li>
+<li>Yes: await the fn</li>
+</ul>
+</li>
+</ol>
+<p>That's it, seriously, that is the entire usage. Full stop, actually you can stop reading right now. IF, you want to learn how to set up your own code so you do not have to create 2 seperate apis... Then I would continue.</p>
+<h1 id="implementation">IMPLEMENTATION</h1>
+<p>You cannot look at this from any other perspective than... improving the ux. Because when you look at it, especially at first, it should not work. Below is the actual maybe promise fn.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">MaybePromise</span>&lt;R = <span class="hljs-built_in">any</span>&gt; = R;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title class_">MaybePromise</span>&lt;R = <span class="hljs-built_in">any</span>&gt;(<span class="hljs-attr">v</span>: R): <span class="hljs-title class_">MaybePromise</span> {
+  <span class="hljs-keyword">return</span> v !== <span class="hljs-literal">undefined</span> ? v <span class="hljs-keyword">as</span> R : <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(v) <span class="hljs-keyword">as</span> <span class="hljs-title class_">Promise</span>&lt;R&gt;
+}
+</code></pre>
+<p>Depending on where you are getting it from, there will be a test bed for it so you can actually test it yourself and see how the tests are set up and just how great of an surface area it covers. There were more, but I just thought it was stupid that there were 1000 of them, so I just brought the number down to 100 or so.</p>
+<p>In order to take advantage of this, the code has to written a certain way. Not all of it, just where you need it. And to be honest, ever since I had uncovered this and produce the code it requires to work... it genuinely makes sense.</p>
+<p>In order to take advantage of it, you have to push all of the async functionality, to the back of the fn. This is to ensure that the sync work executes first, while the async work is behind a logic gate at the very end. Thinking of it in terms of how you really want your code to execute, or how you should want it to... this is how we should already be coding.</p>
+<p>One note before moving on to the code... the typescript written in maybe promise... is not required for this to actually work. It just increases ergonomics and in some cases to shut typescript right the fuck up.</p>
+<h2 id="js-runtime-window">JS RUNTIME WINDOW</h2>
+<p>Javascript does not take into consideration whenever you type await. It could not give any less of a fuck if you code in with defining your fn. It waits till it actually sees a async fn or a promise before triggering the promise process and slowing everything down.</p>
+<p>That is why we must hide all of the async work behind a logic gate. Once it is behind one, javascript cannot execute a promise... becasue OH MAYBE... it might have a change at triggering in this logic gate, so I'll start before the logic to get prepared for it... it does not do that. Why is why the logic gate is important.</p>
+<p>But very simply put, run your sync work first.</p>
+<p>Put down a logic gate by if'ing the sync value and returning it... then placing else with all of the async work behind it.</p>
+<p>Below I have included a reproducable instruction set for ai's. I got reallly frustrated with them, but in the end had finally got a prompt to work where the ai responded with actual code written exactly the way its supposed to.</p>
+<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p><p></p>
+<p>FUCK... I just tried teaching and getting several ai's to do this, so that I can create a scripte that autoamtes this process...<em>sigh</em>, it went as well as you think it would... SO IF I SEEM A LITTLE FRUSTRATED... and just... on edge... it's not you... it is those fucking ai's man...</p>
+<p>ALRIGHT... so now you KINDA know what the fuck MaybePromise is... but how the FUCK do you convert your code over to... take advantage of it everywhere. Because there IS A SET OF REQUIREMENTS THAT NEED TO BE MET...</p>
+<p>First lets start with the 'DO NOTS'</p>
+</div>
+<pre><code class="language-tsx"><span class="hljs-comment">// let me get some real arrows so I can be super specific...</span>
+<span class="hljs-comment">//                             ↘  ↓  ↓  ↓  ↙ ... fuck off with that shit...</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">resolveEnvThenables</span>(<span class="hljs-params"></span>): <span class="hljs-title class_">Promise</span>&lt;any&gt;
+</code></pre>
+<pre><code class="language-tsx"><span class="hljs-comment">//     ↘ ↓ ↓ ↙   ↘  ↓  ↓  ↓  ↓  ↙            ... you guessed it, both of them...</span>
+<span class="hljs-keyword">return</span> (<span class="hljs-keyword">async</span> (): <span class="hljs-title class_">Promise</span>&lt;T | F&gt; =&gt; {
+</code></pre>
+<pre><code class="language-tsx"><span class="hljs-comment">//         ↘ ↓ ↓ ↙                           ... yup</span>
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">blindImport</span>(moduleName);
+</code></pre>
+<div class="markdown-alert markdown-alert-warning"><p class="markdown-alert-title"><svg class="octicon octicon-alert mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Warning</p><p></p>
+<p>Fair warning... this is the same guide that I automate my conversions while working with ai. Obviously... there was some frustration, as I was well in the 20-some odd attempts... finally, this version when written exactly as it is... immediately came with a result of 4/4 ai's getting it correct. I am leaving it here as written, because so far... it has a 100% success rate in teaching the ai on what it is that needs to happen, the requirements and how it can go about succesfully converting the code for you despite not having a single example it can reference off of within its own training data. With saying that... expect swear swords.</p>
+<p>Basically, if you use async, Promise or await... ANYWHERE... just throw it out.</p>
+<p>Which means everything has to be converted into a promise. That is just the first requirement.</p>
+<p>REQUIREMENTS</p>
+<ol>
+<li>NO USE OF ASYNC, AWAIT OR DEFINING THE TYPE PROMISE IE PROMISE&lt; T &gt;</li>
+<li>ALL PROMISE WORK HAS TO BE MOVED, TO THE END OF THE FN OR THE BACK OF THE BUS IF YOU WILL</li>
+<li>ALL PROMISE FUNCTIONALITY MUST BE BEHIND A LOGIC GATE
+... that's it, it is simple... but it does go against literally everything you have been taught on how to program for the last... 15 years.</li>
+</ol>
+<p>Lets do an example, of what we need to convert... followed by what some asshole ai had attemted to give me, which is just another example on exactly what NOT to do... followed by the correct example.</p>
+</div>
+<div class="markdown-alert markdown-alert-warning"><p class="markdown-alert-title"><svg class="octicon octicon-alert mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>A LOGIC GATE</p><p></p>
+<p>A LOGIC GATE... NOT AN EARLY FUCKING RETURN... A FUCKING LOGIC GATE</p>
+</div>
+<pre><code class="language-tsx"><span class="hljs-keyword">if</span> (syncFuckingValue) {
+  <span class="hljs-keyword">return</span> <span class="hljs-title class_">MaybePromise</span>(syncFuckingValue)
+} <span class="hljs-keyword">else</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-title class_">MaybePromise</span>(
+  <span class="hljs-comment">// START THE FUCKING PROMISE NOW AS IT IS BEHIND A LOGIC GATE... FUCK</span>
+  <span class="hljs-comment">// DO NOT USE ASYNC</span>
+  <span class="hljs-comment">// DO NOT USE AWAIT</span>
+  <span class="hljs-comment">// DO NOT DEFINE THE FUNCTION BODY WITH A PROMISE TYPE DEFINITION</span>
+  <span class="hljs-comment">// A PROMISE... FOR THE FUCKING LOVE OF GOD... A FUCKING PROMISE...</span>
+  )
+}
+<span class="hljs-comment">// FUCK...</span>
+</code></pre>
+<h3 id="what-we-need-to-convert">WHAT WE NEED TO CONVERT</h3>
+<pre><code class="language-tsx"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-variable constant_">CONJURATION_LIBS_UNCACHED</span>&lt;T = any, F = any&gt;(<span class="hljs-attr">options</span>: <span class="hljs-title class_">OptionalImportOptions</span>&lt;T, F&gt;,): <span class="hljs-title class_">Promise</span>&lt;T | F&gt; {
+  <span class="hljs-keyword">const</span> {
+    moduleName,
+    <span class="hljs-attr">fallback</span>: rawFallback,
+    comp_name,
+    <span class="hljs-variable language_">module</span> = <span class="hljs-literal">true</span>,
+    preferRequire = <span class="hljs-literal">false</span>,
+    importPromise,
+    ...userEnvImports
+  } = options;
+  <span class="hljs-keyword">const</span> fallback = normalizeFallback&lt;F&gt;(rawFallback, createSafeProxy <span class="hljs-keyword">as</span> () =&gt; F);
+  <span class="hljs-keyword">const</span> forceNode = userEnvImports.<span class="hljs-property">force</span> !== <span class="hljs-literal">undefined</span>;
+
+  <span class="hljs-comment">// moduleName-less, direct-promise path — for local files with no</span>
+  <span class="hljs-comment">// package name to resolve. Mirrors APPRENTICE_CONJURER_LIBS&#x27; own</span>
+  <span class="hljs-comment">// importPromise branch, just reachable from the public API now.</span>
+  <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">module</span> || (importPromise &amp;&amp; !moduleName)) {
+    <span class="hljs-keyword">if</span> (importPromise) {
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> resolved = <span class="hljs-keyword">await</span> importPromise;
+        <span class="hljs-keyword">if</span> (resolved !== <span class="hljs-literal">null</span> &amp;&amp; resolved !== <span class="hljs-literal">undefined</span>) <span class="hljs-keyword">return</span> resolved;
+      } <span class="hljs-keyword">catch</span> { <span class="hljs-comment">/* fall through to userEnvImports scan below */</span> }
+    }
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> value <span class="hljs-keyword">of</span> <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">values</span>(userEnvImports)) {
+      <span class="hljs-keyword">if</span> (value &amp;&amp; <span class="hljs-keyword">typeof</span> value === <span class="hljs-string">&#x27;object&#x27;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> (value <span class="hljs-keyword">as</span> any).<span class="hljs-property">then</span> === <span class="hljs-string">&#x27;function&#x27;</span>) {
+        <span class="hljs-keyword">try</span> {
+          <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> value;
+          <span class="hljs-keyword">if</span> (result !== <span class="hljs-literal">null</span> &amp;&amp; result !== <span class="hljs-literal">undefined</span>) <span class="hljs-keyword">return</span> result;
+        } <span class="hljs-keyword">catch</span> { <span class="hljs-keyword">continue</span>; }
+      }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_">fallback</span>() <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F;
+  }
+
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">resolveImportCandidate</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params">candidate: any</span>) =&gt; {
+    <span class="hljs-keyword">if</span> (!candidate) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">try</span> {
+      <span class="hljs-keyword">const</span> resolved = <span class="hljs-keyword">typeof</span> candidate.<span class="hljs-property">then</span> === <span class="hljs-string">&#x27;function&#x27;</span> ? <span class="hljs-keyword">await</span> candidate : candidate;
+      <span class="hljs-keyword">return</span> resolved ?? <span class="hljs-literal">null</span>;
+    } <span class="hljs-keyword">catch</span> { <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>; }
+  };
+
+  <span class="hljs-keyword">const</span> state = disruptor? disruptor.<span class="hljs-title function_">useCell</span>(<span class="hljs-variable constant_">ENV_CHANNEL</span>, <span class="hljs-variable constant_">ENV_SUB_CHANNEL</span>, <span class="hljs-variable constant_">ENV_STATE_DEFAULT</span>): <span class="hljs-literal">null</span>;
+  <span class="hljs-keyword">const</span> priorityKeys = [...state.<span class="hljs-property">adapters</span>, ...state.<span class="hljs-property">compilers</span>, state.<span class="hljs-property">moduleLevel</span>, state.<span class="hljs-property">platform</span>, state.<span class="hljs-property">bundler</span>];
+
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">of</span> priorityKeys) {
+    <span class="hljs-keyword">if</span> (key &amp;&amp; userEnvImports[key]) {
+      <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">resolveImportCandidate</span>(userEnvImports[key]);
+      <span class="hljs-keyword">if</span> (res !== <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> res <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F;
+    }
+  }
+
+  <span class="hljs-keyword">if</span> (userEnvImports.<span class="hljs-property">default</span>) { <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">resolveImportCandidate</span>(userEnvImports.<span class="hljs-property">default</span>); <span class="hljs-keyword">if</span> (res !== <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> res <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F; }
+
+  <span class="hljs-keyword">if</span> (moduleName) {
+    <span class="hljs-keyword">if</span> (forceNode) {
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">typeof</span> forceNode === <span class="hljs-string">&#x27;function&#x27;</span> ? (forceNode <span class="hljs-keyword">as</span> () =&gt; F)() : forceNode;
+        <span class="hljs-keyword">if</span> (res !== <span class="hljs-literal">null</span> &amp;&amp; res !== <span class="hljs-literal">undefined</span>) <span class="hljs-keyword">return</span> res <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F;
+      } <span class="hljs-keyword">catch</span> { }
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (moduleName &amp;&amp; comp_name) {
+      <span class="hljs-keyword">if</span> (blindRequire &amp;&amp; is_require_available) {
+        <span class="hljs-keyword">try</span> {
+          <span class="hljs-keyword">const</span> res = <span class="hljs-title function_">blindRequire</span>(moduleName);
+          <span class="hljs-keyword">if</span> (res &amp;&amp; res[comp_name] !== <span class="hljs-literal">undefined</span>) <span class="hljs-keyword">return</span> res[comp_name] <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F
+        } <span class="hljs-keyword">catch</span> { }
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">try</span> {
+          <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">blindImport</span>(moduleName);
+          <span class="hljs-keyword">if</span> (res &amp;&amp; res[comp_name] !== <span class="hljs-literal">undefined</span>) <span class="hljs-keyword">return</span> res[comp_name] <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F
+        } <span class="hljs-keyword">catch</span> { }
+      }
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (preferRequire &amp;&amp; blindRequire) {
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> res = <span class="hljs-title function_">blindRequire</span>(moduleName);
+        <span class="hljs-keyword">if</span> (res !== <span class="hljs-literal">null</span> &amp;&amp; res !== <span class="hljs-literal">undefined</span>) <span class="hljs-keyword">return</span> res <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F;
+      } <span class="hljs-keyword">catch</span> { }
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!preferRequire &amp;&amp; blindRequire &amp;&amp; (state.<span class="hljs-property">bundler</span> === <span class="hljs-string">&#x27;bun&#x27;</span> || state.<span class="hljs-property">compilers</span>.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&#x27;electron&#x27;</span>) || <span class="hljs-keyword">typeof</span> process !== <span class="hljs-string">&#x27;undefined&#x27;</span>) &amp;&amp; is_require_available) {
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> res = <span class="hljs-title function_">blindRequire</span>(moduleName);
+        <span class="hljs-keyword">if</span> (res !== <span class="hljs-literal">null</span> &amp;&amp; res !== <span class="hljs-literal">undefined</span>) <span class="hljs-keyword">return</span> res <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F;
+      } <span class="hljs-keyword">catch</span> { }
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (is_require_available &amp;&amp; blindRequire) {
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> res = <span class="hljs-title function_">blindRequire</span>(moduleName);
+        <span class="hljs-keyword">if</span> (res !== <span class="hljs-literal">null</span> &amp;&amp; res !== <span class="hljs-literal">undefined</span>) <span class="hljs-keyword">return</span> res <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F;
+      } <span class="hljs-keyword">catch</span> { }
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">blindImport</span>(moduleName);
+        <span class="hljs-keyword">if</span> (res !== <span class="hljs-literal">null</span> &amp;&amp; res !== <span class="hljs-literal">undefined</span>) <span class="hljs-keyword">return</span> res <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F;
+      } <span class="hljs-keyword">catch</span> { }
+    }
+  }
+
+  <span class="hljs-keyword">return</span> <span class="hljs-title function_">fallback</span>() <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F;
+}
+</code></pre>
+<h3 id="what-not-to-do">WHAT NOT TO DO</h3>
+<pre><code class="language-tsx"><span class="hljs-keyword">function</span> <span class="hljs-variable constant_">CONJURATION_LIBS_UNCACHED</span>&lt;T = any, F = any&gt;(
+	<span class="hljs-attr">options</span>: <span class="hljs-title class_">OptionalImportOptions</span>&lt;T, F&gt;,
+): <span class="hljs-title class_">Promise</span>&lt;T | F&gt; {
+	<span class="hljs-keyword">const</span> {
+		moduleName,
+		<span class="hljs-attr">fallback</span>: rawFallback,
+		comp_name,
+		<span class="hljs-variable language_">module</span> = <span class="hljs-literal">true</span>,
+		preferRequire = <span class="hljs-literal">false</span>,
+		importPromise,
+		...userEnvImports
+	} = options;
+	<span class="hljs-keyword">const</span> fallback = normalizeFallback&lt;F&gt;(rawFallback, createSafeProxy <span class="hljs-keyword">as</span> () =&gt; F);
+	<span class="hljs-keyword">const</span> forceNode = userEnvImports.<span class="hljs-property">force</span> !== <span class="hljs-literal">undefined</span>;
+
+	<span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">module</span> || (importPromise &amp;&amp; !moduleName)) {
+		<span class="hljs-keyword">return</span> <span class="hljs-title function_">runAsyncTail</span>();
+	}
+
+	<span class="hljs-keyword">const</span> state = disruptor
+		? disruptor.<span class="hljs-title function_">useCell</span>(<span class="hljs-variable constant_">ENV_CHANNEL</span>, <span class="hljs-variable constant_">ENV_SUB_CHANNEL</span>, <span class="hljs-variable constant_">ENV_STATE_DEFAULT</span>)
+		: <span class="hljs-literal">null</span>;
+	<span class="hljs-keyword">const</span> priorityKeys = state
+		? [...state.<span class="hljs-property">adapters</span>, ...state.<span class="hljs-property">compilers</span>, state.<span class="hljs-property">moduleLevel</span>, state.<span class="hljs-property">platform</span>, state.<span class="hljs-property">bundler</span>]
+		: [];
+
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">of</span> priorityKeys) {
+		<span class="hljs-keyword">if</span> (key &amp;&amp; userEnvImports[key]) {
+			<span class="hljs-keyword">const</span> v = userEnvImports[key];
+			<span class="hljs-keyword">if</span> (v &amp;&amp; <span class="hljs-keyword">typeof</span> v === <span class="hljs-string">&#x27;object&#x27;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> (v <span class="hljs-keyword">as</span> any).<span class="hljs-property">then</span> === <span class="hljs-string">&#x27;function&#x27;</span>) {
+				<span class="hljs-keyword">return</span> <span class="hljs-title function_">runAsyncTail</span>();
+			}
+			<span class="hljs-keyword">if</span> (v !== <span class="hljs-literal">null</span> &amp;&amp; v !== <span class="hljs-literal">undefined</span>) {
+				<span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(v <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F);
+			}
+		}
+	}
+
+	<span class="hljs-keyword">if</span> (userEnvImports.<span class="hljs-property">default</span>) {
+		<span class="hljs-keyword">const</span> v = userEnvImports.<span class="hljs-property">default</span>;
+		<span class="hljs-keyword">if</span> (v &amp;&amp; <span class="hljs-keyword">typeof</span> v === <span class="hljs-string">&#x27;object&#x27;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> (v <span class="hljs-keyword">as</span> any).<span class="hljs-property">then</span> === <span class="hljs-string">&#x27;function&#x27;</span>) {
+			<span class="hljs-keyword">return</span> <span class="hljs-title function_">runAsyncTail</span>();
+		}
+		<span class="hljs-keyword">if</span> (v !== <span class="hljs-literal">null</span> &amp;&amp; v !== <span class="hljs-literal">undefined</span>) {
+			<span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(v <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F);
+		}
+	}
+
+	<span class="hljs-keyword">if</span> (moduleName) {
+		<span class="hljs-keyword">if</span> (forceNode) {
+			<span class="hljs-keyword">try</span> {
+				<span class="hljs-keyword">const</span> res =
+					<span class="hljs-keyword">typeof</span> forceNode === <span class="hljs-string">&#x27;function&#x27;</span>
+						? (forceNode <span class="hljs-keyword">as</span> () =&gt; F)()
+						: forceNode;
+				<span class="hljs-keyword">if</span> (res !== <span class="hljs-literal">null</span> &amp;&amp; res !== <span class="hljs-literal">undefined</span>) {
+					<span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(res <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F);
+				}
+			} <span class="hljs-keyword">catch</span> {
+			}
+		} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (comp_name) {
+			<span class="hljs-keyword">if</span> (blindRequire &amp;&amp; is_require_available) {
+				<span class="hljs-keyword">try</span> {
+					<span class="hljs-keyword">const</span> res = <span class="hljs-title function_">blindRequire</span>(moduleName);
+					<span class="hljs-keyword">if</span> (res &amp;&amp; res[comp_name] !== <span class="hljs-literal">undefined</span>) {
+						<span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(res[comp_name] <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F);
+					}
+				} <span class="hljs-keyword">catch</span> {
+				}
+			}
+			<span class="hljs-keyword">return</span> <span class="hljs-title function_">runAsyncTail</span>();
+		} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (preferRequire &amp;&amp; blindRequire) {
+			<span class="hljs-keyword">try</span> {
+				<span class="hljs-keyword">const</span> res = <span class="hljs-title function_">blindRequire</span>(moduleName);
+				<span class="hljs-keyword">if</span> (res !== <span class="hljs-literal">null</span> &amp;&amp; res !== <span class="hljs-literal">undefined</span>) {
+					<span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(res <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F);
+				}
+			} <span class="hljs-keyword">catch</span> {
+			}
+			<span class="hljs-keyword">return</span> <span class="hljs-title function_">runAsyncTail</span>();
+		} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (
+			!preferRequire &amp;&amp;
+			blindRequire &amp;&amp;
+			state &amp;&amp;
+			(state.<span class="hljs-property">bundler</span> === <span class="hljs-string">&#x27;bun&#x27;</span> ||
+				state.<span class="hljs-property">compilers</span>.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&#x27;electron&#x27;</span>) ||
+				<span class="hljs-keyword">typeof</span> process !== <span class="hljs-string">&#x27;undefined&#x27;</span>) &amp;&amp;
+			is_require_available
+		) {
+			<span class="hljs-keyword">try</span> {
+				<span class="hljs-keyword">const</span> res = <span class="hljs-title function_">blindRequire</span>(moduleName);
+				<span class="hljs-keyword">if</span> (res !== <span class="hljs-literal">null</span> &amp;&amp; res !== <span class="hljs-literal">undefined</span>) {
+					<span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(res <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F);
+				}
+			} <span class="hljs-keyword">catch</span> {
+			}
+			<span class="hljs-keyword">return</span> <span class="hljs-title function_">runAsyncTail</span>();
+		} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (is_require_available &amp;&amp; blindRequire) {
+			<span class="hljs-keyword">try</span> {
+				<span class="hljs-keyword">const</span> res = <span class="hljs-title function_">blindRequire</span>(moduleName);
+				<span class="hljs-keyword">if</span> (res !== <span class="hljs-literal">null</span> &amp;&amp; res !== <span class="hljs-literal">undefined</span>) {
+					<span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(res <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F);
+				}
+			} <span class="hljs-keyword">catch</span> {
+			}
+			<span class="hljs-keyword">return</span> <span class="hljs-title function_">runAsyncTail</span>();
+		} <span class="hljs-keyword">else</span> {
+			<span class="hljs-keyword">return</span> <span class="hljs-title function_">runAsyncTail</span>();
+		}
+	}
+
+	<span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-title function_">fallback</span>() <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F);
+
+	<span class="hljs-keyword">function</span> <span class="hljs-title function_">runAsyncTail</span>(<span class="hljs-params"></span>): <span class="hljs-title class_">Promise</span>&lt;T | F&gt; {
+		<span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">module</span> || (importPromise &amp;&amp; !moduleName)) {
+			<span class="hljs-keyword">const</span> <span class="hljs-attr">chain</span>: <span class="hljs-title class_">Promise</span>&lt;any&gt; = importPromise
+				? <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(importPromise).<span class="hljs-title function_">then</span>(
+						<span class="hljs-function">(<span class="hljs-params">resolved</span>) =&gt;</span>
+							resolved !== <span class="hljs-literal">null</span> &amp;&amp; resolved !== <span class="hljs-literal">undefined</span>
+								? resolved
+								: <span class="hljs-title function_">scanEnvThenables</span>(),
+						<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">scanEnvThenables</span>(),
+					)
+				: <span class="hljs-title function_">scanEnvThenables</span>();
+
+			<span class="hljs-keyword">return</span> chain.<span class="hljs-title function_">then</span>(
+				<span class="hljs-function">(<span class="hljs-params">v</span>) =&gt;</span> (v !== <span class="hljs-literal">null</span> &amp;&amp; v !== <span class="hljs-literal">undefined</span> ? (v <span class="hljs-keyword">as</span> F) : (<span class="hljs-title function_">fallback</span>() <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F)),
+			);
+		}
+
+		<span class="hljs-keyword">return</span> <span class="hljs-title function_">resolveEnvThenables</span>()
+			.<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">envHit</span>) =&gt;</span> (envHit !== <span class="hljs-literal">null</span> ? envHit : <span class="hljs-title function_">resolveModuleAsync</span>()))
+			.<span class="hljs-title function_">then</span>(
+				<span class="hljs-function">(<span class="hljs-params">v</span>) =&gt;</span> (v !== <span class="hljs-literal">null</span> &amp;&amp; v !== <span class="hljs-literal">undefined</span> ? (v <span class="hljs-keyword">as</span> F) : (<span class="hljs-title function_">fallback</span>() <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F)),
+			);
+
+
+		<span class="hljs-keyword">function</span> <span class="hljs-title function_">scanEnvThenables</span>(<span class="hljs-params"></span>): <span class="hljs-title class_">Promise</span>&lt;any&gt; {
+			<span class="hljs-keyword">const</span> values = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">values</span>(userEnvImports);
+			<span class="hljs-keyword">const</span> thenables = values.<span class="hljs-title function_">filter</span>(
+				<span class="hljs-function">(<span class="hljs-params">v</span>) =&gt;</span>
+					v &amp;&amp; <span class="hljs-keyword">typeof</span> v === <span class="hljs-string">&#x27;object&#x27;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> (v <span class="hljs-keyword">as</span> any).<span class="hljs-property">then</span> === <span class="hljs-string">&#x27;function&#x27;</span>,
+			) <span class="hljs-keyword">as</span> <span class="hljs-title class_">Promise</span>&lt;any&gt;[];
+			<span class="hljs-keyword">if</span> (thenables.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-literal">null</span>);
+
+			<span class="hljs-keyword">return</span> thenables.<span class="hljs-property">reduce</span>&lt;<span class="hljs-title class_">Promise</span>&lt;any&gt;&gt;(
+				<span class="hljs-function">(<span class="hljs-params">acc, p</span>) =&gt;</span>
+					acc.<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">found</span>) =&gt;</span> {
+						<span class="hljs-keyword">if</span> (found !== <span class="hljs-literal">null</span> &amp;&amp; found !== <span class="hljs-literal">undefined</span>) <span class="hljs-keyword">return</span> found;
+						<span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(p).<span class="hljs-title function_">then</span>(
+							<span class="hljs-function">(<span class="hljs-params">r</span>) =&gt;</span> (r !== <span class="hljs-literal">null</span> &amp;&amp; r !== <span class="hljs-literal">undefined</span> ? r : <span class="hljs-literal">null</span>),
+							<span class="hljs-function">() =&gt;</span> <span class="hljs-literal">null</span>,
+						);
+					}),
+				<span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-literal">null</span>),
+			);
+		}
+
+		<span class="hljs-keyword">function</span> <span class="hljs-title function_">resolveEnvThenables</span>(<span class="hljs-params"></span>): <span class="hljs-title class_">Promise</span>&lt;any&gt; {
+			<span class="hljs-keyword">return</span> priorityKeys
+				.<span class="hljs-property">reduce</span>&lt;<span class="hljs-title class_">Promise</span>&lt;any&gt;&gt;(<span class="hljs-function">(<span class="hljs-params">acc, key</span>) =&gt;</span> {
+					<span class="hljs-keyword">return</span> acc.<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">found</span>) =&gt;</span> {
+						<span class="hljs-keyword">if</span> (found !== <span class="hljs-literal">null</span> &amp;&amp; found !== <span class="hljs-literal">undefined</span>) <span class="hljs-keyword">return</span> found;
+						<span class="hljs-keyword">const</span> v = key &amp;&amp; userEnvImports[key];
+						<span class="hljs-keyword">if</span> (!v) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+						<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> (v <span class="hljs-keyword">as</span> any).<span class="hljs-property">then</span> !== <span class="hljs-string">&#x27;function&#x27;</span>) {
+							<span class="hljs-keyword">return</span> v !== <span class="hljs-literal">null</span> &amp;&amp; v !== <span class="hljs-literal">undefined</span> ? v : <span class="hljs-literal">null</span>;
+						}
+						<span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(v <span class="hljs-keyword">as</span> <span class="hljs-title class_">Promise</span>&lt;any&gt;).<span class="hljs-title function_">then</span>(
+							<span class="hljs-function">(<span class="hljs-params">r</span>) =&gt;</span> (r !== <span class="hljs-literal">null</span> &amp;&amp; r !== <span class="hljs-literal">undefined</span> ? r : <span class="hljs-literal">null</span>),
+							<span class="hljs-function">() =&gt;</span> <span class="hljs-literal">null</span>,
+						);
+					});
+				}, <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-literal">null</span>))
+				.<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">found</span>) =&gt;</span> {
+					<span class="hljs-keyword">if</span> (found !== <span class="hljs-literal">null</span> &amp;&amp; found !== <span class="hljs-literal">undefined</span>) <span class="hljs-keyword">return</span> found;
+					<span class="hljs-keyword">const</span> d = userEnvImports.<span class="hljs-property">default</span>;
+					<span class="hljs-keyword">if</span> (!d) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+					<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> (d <span class="hljs-keyword">as</span> any).<span class="hljs-property">then</span> !== <span class="hljs-string">&#x27;function&#x27;</span>) {
+						<span class="hljs-keyword">return</span> d !== <span class="hljs-literal">null</span> &amp;&amp; d !== <span class="hljs-literal">undefined</span> ? d : <span class="hljs-literal">null</span>;
+					}
+					<span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(d <span class="hljs-keyword">as</span> <span class="hljs-title class_">Promise</span>&lt;any&gt;).<span class="hljs-title function_">then</span>(
+						<span class="hljs-function">(<span class="hljs-params">r</span>) =&gt;</span> (r !== <span class="hljs-literal">null</span> &amp;&amp; r !== <span class="hljs-literal">undefined</span> ? r : <span class="hljs-literal">null</span>),
+						<span class="hljs-function">() =&gt;</span> <span class="hljs-literal">null</span>,
+					);
+				});
+		}
+
+		<span class="hljs-keyword">function</span> <span class="hljs-title function_">resolveModuleAsync</span>(<span class="hljs-params"></span>): <span class="hljs-title class_">Promise</span>&lt;any&gt; {
+			<span class="hljs-keyword">if</span> (!moduleName) <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-literal">null</span>);
+
+			<span class="hljs-keyword">if</span> (comp_name &amp;&amp; !(blindRequire &amp;&amp; is_require_available)) {
+				<span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-title function_">blindImport</span>(moduleName)).<span class="hljs-title function_">then</span>(
+					<span class="hljs-function">(<span class="hljs-params">res: any</span>) =&gt;</span>
+						res &amp;&amp; res[comp_name] !== <span class="hljs-literal">undefined</span> ? res[comp_name] : <span class="hljs-literal">null</span>,
+					<span class="hljs-function">() =&gt;</span> <span class="hljs-literal">null</span>,
+				);
+			}
+
+			<span class="hljs-keyword">if</span> (
+				(preferRequire &amp;&amp; blindRequire) ||
+				(is_require_available &amp;&amp; blindRequire) ||
+				(!preferRequire &amp;&amp;
+					blindRequire &amp;&amp;
+					state &amp;&amp;
+					(state.<span class="hljs-property">bundler</span> === <span class="hljs-string">&#x27;bun&#x27;</span> ||
+						state.<span class="hljs-property">compilers</span>.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&#x27;electron&#x27;</span>) ||
+						<span class="hljs-keyword">typeof</span> process !== <span class="hljs-string">&#x27;undefined&#x27;</span>))
+			) {
+				<span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-title function_">blindImport</span>(moduleName)).<span class="hljs-title function_">then</span>(
+					<span class="hljs-function">(<span class="hljs-params">res: any</span>) =&gt;</span> (res !== <span class="hljs-literal">null</span> &amp;&amp; res !== <span class="hljs-literal">undefined</span> ? res : <span class="hljs-literal">null</span>),
+					<span class="hljs-function">() =&gt;</span> <span class="hljs-literal">null</span>,
+				);
+			}
+
+			<span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-title function_">blindImport</span>(moduleName)).<span class="hljs-title function_">then</span>(
+				<span class="hljs-function">(<span class="hljs-params">res: any</span>) =&gt;</span> (res !== <span class="hljs-literal">null</span> &amp;&amp; res !== <span class="hljs-literal">undefined</span> ? res : <span class="hljs-literal">null</span>),
+				<span class="hljs-function">() =&gt;</span> <span class="hljs-literal">null</span>,
+			);
+		}
+	}
+}
+</code></pre>
+<h3 id="what-the-final-product-should-look-like">WHAT THE FINAL PRODUCT SHOULD LOOK LIKE</h3>
+<pre><code class="language-tsx"><span class="hljs-keyword">function</span> <span class="hljs-variable constant_">CONJURATION_LIBS_UNCACHED</span>&lt;T = any, F = any&gt;(<span class="hljs-attr">options</span>: <span class="hljs-title class_">OptionalImportOptions</span>&lt;T, F&gt;) {
+	<span class="hljs-keyword">const</span> { moduleName, <span class="hljs-attr">fallback</span>: rawFallback, comp_name, <span class="hljs-variable language_">module</span> = <span class="hljs-literal">true</span>, preferRequire = <span class="hljs-literal">false</span>, importPromise, ...userEnvImports } = options;
+	<span class="hljs-keyword">const</span> fallback = normalizeFallback&lt;F&gt;(rawFallback, createSafeProxy <span class="hljs-keyword">as</span> () =&gt; F);
+	<span class="hljs-keyword">const</span> forceNode = userEnvImports.<span class="hljs-property">force</span> !== <span class="hljs-literal">undefined</span>;
+
+	<span class="hljs-keyword">const</span> state = disruptor ? disruptor.<span class="hljs-title function_">useCell</span>(<span class="hljs-variable constant_">ENV_CHANNEL</span>, <span class="hljs-variable constant_">ENV_SUB_CHANNEL</span>, <span class="hljs-variable constant_">ENV_STATE_DEFAULT</span>) : <span class="hljs-literal">null</span>;
+	<span class="hljs-keyword">const</span> priorityKeys = state ? [...state.<span class="hljs-property">adapters</span>, ...state.<span class="hljs-property">compilers</span>, state.<span class="hljs-property">moduleLevel</span>, state.<span class="hljs-property">platform</span>, state.<span class="hljs-property">bundler</span>] : [];
+  
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">resolveImportCandidate</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params">candidate: any</span>) =&gt; {
+    <span class="hljs-keyword">if</span> (!candidate) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">try</span> {
+      <span class="hljs-keyword">const</span> resolved = <span class="hljs-keyword">typeof</span> candidate.<span class="hljs-property">then</span> === <span class="hljs-string">&#x27;function&#x27;</span> ? <span class="hljs-keyword">await</span> candidate : candidate;
+      <span class="hljs-keyword">return</span> resolved ?? <span class="hljs-literal">null</span>;
+    } <span class="hljs-keyword">catch</span> { <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>; }
+  };
+
+	<span class="hljs-keyword">let</span> <span class="hljs-attr">syncResult</span>: any = <span class="hljs-literal">undefined</span>;
+	<span class="hljs-keyword">let</span> needsAsync = <span class="hljs-literal">false</span>;
+
+	<span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">module</span> || (importPromise &amp;&amp; !moduleName)) {
+		<span class="hljs-keyword">if</span> (importPromise &amp;&amp; <span class="hljs-keyword">typeof</span> (importPromise <span class="hljs-keyword">as</span> any).<span class="hljs-property">then</span> !== <span class="hljs-string">&quot;function&quot;</span>) {
+			syncResult = importPromise;
+		} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (importPromise) {
+			needsAsync = <span class="hljs-literal">true</span>;
+		} <span class="hljs-keyword">else</span> {
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> value <span class="hljs-keyword">of</span> <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">values</span>(userEnvImports)) {
+				<span class="hljs-keyword">if</span> (value &amp;&amp; <span class="hljs-keyword">typeof</span> value === <span class="hljs-string">&quot;object&quot;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> (value <span class="hljs-keyword">as</span> any).<span class="hljs-property">then</span> === <span class="hljs-string">&quot;function&quot;</span>) {
+					needsAsync = <span class="hljs-literal">true</span>;
+					<span class="hljs-keyword">break</span>;
+				}
+				<span class="hljs-keyword">if</span> (value !== <span class="hljs-literal">null</span> &amp;&amp; value !== <span class="hljs-literal">undefined</span>) {
+					syncResult = value;
+					<span class="hljs-keyword">break</span>;
+				}
+			}
+			<span class="hljs-keyword">if</span> (!needsAsync &amp;&amp; syncResult === <span class="hljs-literal">undefined</span>) {
+				syncResult = <span class="hljs-title function_">fallback</span>();
+			}
+		}
+	} <span class="hljs-keyword">else</span> {
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">of</span> priorityKeys) {
+			<span class="hljs-keyword">if</span> (key &amp;&amp; userEnvImports[key]) {
+				<span class="hljs-keyword">const</span> v = userEnvImports[key];
+				<span class="hljs-keyword">if</span> (v &amp;&amp; <span class="hljs-keyword">typeof</span> v === <span class="hljs-string">&quot;object&quot;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> (v <span class="hljs-keyword">as</span> any).<span class="hljs-property">then</span> === <span class="hljs-string">&quot;function&quot;</span>) {
+					needsAsync = <span class="hljs-literal">true</span>;
+					<span class="hljs-keyword">break</span>;
+				}
+				<span class="hljs-keyword">if</span> (v !== <span class="hljs-literal">null</span> &amp;&amp; v !== <span class="hljs-literal">undefined</span>) {
+					syncResult = v;
+					<span class="hljs-keyword">break</span>;
+				}
+			}
+		}
+
+		<span class="hljs-keyword">if</span> (!needsAsync &amp;&amp; syncResult === <span class="hljs-literal">undefined</span> &amp;&amp; userEnvImports.<span class="hljs-property">default</span>) {
+			<span class="hljs-keyword">const</span> v = userEnvImports.<span class="hljs-property">default</span>;
+			<span class="hljs-keyword">if</span> (v &amp;&amp; <span class="hljs-keyword">typeof</span> v === <span class="hljs-string">&quot;object&quot;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> (v <span class="hljs-keyword">as</span> any).<span class="hljs-property">then</span> === <span class="hljs-string">&quot;function&quot;</span>) {
+				needsAsync = <span class="hljs-literal">true</span>;
+			} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (v !== <span class="hljs-literal">null</span> &amp;&amp; v !== <span class="hljs-literal">undefined</span>) {
+				syncResult = v;
+			}
+		}
+
+		<span class="hljs-keyword">if</span> (!needsAsync &amp;&amp; syncResult === <span class="hljs-literal">undefined</span> &amp;&amp; moduleName) {
+			<span class="hljs-keyword">if</span> (forceNode) {
+				<span class="hljs-keyword">try</span> {
+					<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">typeof</span> forceNode === <span class="hljs-string">&quot;function&quot;</span> ? (forceNode <span class="hljs-keyword">as</span> () =&gt; F)() : forceNode;
+					<span class="hljs-keyword">if</span> (res !== <span class="hljs-literal">null</span> &amp;&amp; res !== <span class="hljs-literal">undefined</span>) syncResult = res;
+					<span class="hljs-keyword">else</span> needsAsync = <span class="hljs-literal">true</span>;
+				} <span class="hljs-keyword">catch</span> {
+					needsAsync = <span class="hljs-literal">true</span>;
+				}
+			} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (comp_name) {
+				<span class="hljs-keyword">if</span> (blindRequire &amp;&amp; is_require_available) {
+					<span class="hljs-keyword">try</span> {
+						<span class="hljs-keyword">const</span> res = <span class="hljs-title function_">blindRequire</span>(moduleName);
+						<span class="hljs-keyword">if</span> (res &amp;&amp; res[comp_name] !== <span class="hljs-literal">undefined</span>) syncResult = res[comp_name];
+						<span class="hljs-keyword">else</span> needsAsync = <span class="hljs-literal">true</span>;
+					} <span class="hljs-keyword">catch</span> {
+						needsAsync = <span class="hljs-literal">true</span>;
+					}
+				} <span class="hljs-keyword">else</span> {
+					needsAsync = <span class="hljs-literal">true</span>;
+				}
+			} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (preferRequire &amp;&amp; blindRequire) {
+				<span class="hljs-keyword">try</span> {
+					<span class="hljs-keyword">const</span> res = <span class="hljs-title function_">blindRequire</span>(moduleName);
+					<span class="hljs-keyword">if</span> (res !== <span class="hljs-literal">null</span> &amp;&amp; res !== <span class="hljs-literal">undefined</span>) syncResult = res;
+					<span class="hljs-keyword">else</span> needsAsync = <span class="hljs-literal">true</span>;
+				} <span class="hljs-keyword">catch</span> {
+					needsAsync = <span class="hljs-literal">true</span>;
+				}
+			} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!preferRequire &amp;&amp; blindRequire &amp;&amp; state &amp;&amp; (state.<span class="hljs-property">bundler</span> === <span class="hljs-string">&quot;bun&quot;</span> || state.<span class="hljs-property">compilers</span>.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;electron&quot;</span>) || <span class="hljs-keyword">typeof</span> process !== <span class="hljs-string">&quot;undefined&quot;</span>) &amp;&amp; is_require_available) {
+				<span class="hljs-keyword">try</span> {
+					<span class="hljs-keyword">const</span> res = <span class="hljs-title function_">blindRequire</span>(moduleName);
+					<span class="hljs-keyword">if</span> (res !== <span class="hljs-literal">null</span> &amp;&amp; res !== <span class="hljs-literal">undefined</span>) syncResult = res;
+					<span class="hljs-keyword">else</span> needsAsync = <span class="hljs-literal">true</span>;
+				} <span class="hljs-keyword">catch</span> {
+					needsAsync = <span class="hljs-literal">true</span>;
+				}
+			} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (is_require_available &amp;&amp; blindRequire) {
+				<span class="hljs-keyword">try</span> {
+					<span class="hljs-keyword">const</span> res = <span class="hljs-title function_">blindRequire</span>(moduleName);
+					<span class="hljs-keyword">if</span> (res !== <span class="hljs-literal">null</span> &amp;&amp; res !== <span class="hljs-literal">undefined</span>) syncResult = res;
+					<span class="hljs-keyword">else</span> needsAsync = <span class="hljs-literal">true</span>;
+				} <span class="hljs-keyword">catch</span> {
+					needsAsync = <span class="hljs-literal">true</span>;
+				}
+			} <span class="hljs-keyword">else</span> {
+				needsAsync = <span class="hljs-literal">true</span>;
+			}
+		}
+
+		<span class="hljs-keyword">if</span> (!needsAsync &amp;&amp; syncResult === <span class="hljs-literal">undefined</span>) {
+			syncResult = <span class="hljs-title function_">fallback</span>();
+		}
+	}
+
+  <span class="hljs-comment">// AND BAM... All sync work is now complete... NOW let us throw down a logic gate so that we can meet the other req&#x27;s</span>
+  <span class="hljs-comment">// We first attempt to return the sync result... just like how it is defined in MaybePromise, followed by the promise functionality...</span>
+  <span class="hljs-comment">// this is A HARD FUCKING REQUIREMENT... This is because javascript does not trigger async work TILL it ACTUALLY see the promised code, so it DOES NOT TRIGGER... SIMPLY WALKING OVER AWAIT at the start of the function... the same goes for async... BUT not all runtimes play nicely... so to ensure this happen everywhere without any errors whats so ever... we lock it behind a logic gate as well, because when javascript executes the code... it can see and view everything except what is behind that logic gate. Thus... allowing us to hide the async functionality, that when triggered fucks our execution right up and slows everything down...</span>
+
+	<span class="hljs-keyword">if</span> (syncResult) {
+		<span class="hljs-keyword">return</span> <span class="hljs-title class_">MaybePromise</span>(syncResult);
+	} <span class="hljs-keyword">else</span> {
+		<span class="hljs-keyword">return</span> <span class="hljs-title class_">MaybePromise</span>(
+			(<span class="hljs-function">() =&gt;</span> {
+				<span class="hljs-keyword">const</span> timeoutMs = <span class="hljs-number">10000</span>;
+				<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>&lt;T&gt;(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+					<span class="hljs-keyword">let</span> <span class="hljs-attr">timer</span>: <span class="hljs-title class_">ReturnType</span>&lt;<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">setTimeout</span>&gt; | <span class="hljs-literal">undefined</span>;
+					<span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">module</span> || (importPromise &amp;&amp; !moduleName)) {
+						<span class="hljs-keyword">if</span> (importPromise) {
+							<span class="hljs-keyword">const</span> resolved = importPromise;
+							<span class="hljs-keyword">if</span> (resolved !== <span class="hljs-literal">null</span> &amp;&amp; resolved !== <span class="hljs-literal">undefined</span>) {
+								<span class="hljs-keyword">if</span> (timer) <span class="hljs-built_in">clearTimeout</span>(timer);
+								<span class="hljs-title function_">resolve</span>(resolved);
+								<span class="hljs-keyword">return</span>;
+							}
+						}
+
+						<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> value <span class="hljs-keyword">of</span> <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">values</span>(userEnvImports)) {
+							<span class="hljs-keyword">if</span> (value &amp;&amp; <span class="hljs-keyword">typeof</span> value === <span class="hljs-string">&quot;object&quot;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> (value <span class="hljs-keyword">as</span> any).<span class="hljs-property">then</span> === <span class="hljs-string">&quot;function&quot;</span>) {
+								<span class="hljs-keyword">try</span> {
+									<span class="hljs-keyword">const</span> result = value;
+									<span class="hljs-keyword">if</span> (result !== <span class="hljs-literal">null</span> &amp;&amp; result !== <span class="hljs-literal">undefined</span>) {
+										<span class="hljs-keyword">if</span> (timer) <span class="hljs-built_in">clearTimeout</span>(timer);
+										<span class="hljs-title function_">resolve</span>(result);
+										<span class="hljs-keyword">return</span>;
+									}
+								} <span class="hljs-keyword">catch</span> {
+									<span class="hljs-keyword">continue</span>;
+								}
+							}
+						}
+					}
+
+					<span class="hljs-keyword">if</span> (moduleName) {
+						<span class="hljs-keyword">if</span> (moduleName &amp;&amp; comp_name) {
+							<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">blindImport</span>(moduleName);
+							<span class="hljs-keyword">if</span> (res &amp;&amp; res[comp_name] !== <span class="hljs-literal">undefined</span>) {
+								<span class="hljs-title function_">resolve</span>(res[comp_name]) <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F;
+								<span class="hljs-keyword">if</span> (timer) <span class="hljs-built_in">clearTimeout</span>(timer);
+								<span class="hljs-keyword">return</span>;
+							}
+						} <span class="hljs-keyword">else</span> {
+							<span class="hljs-keyword">const</span> res2 = <span class="hljs-title function_">blindImport</span>(moduleName);
+							<span class="hljs-keyword">if</span> (res2 !== <span class="hljs-literal">null</span> &amp;&amp; res2 !== <span class="hljs-literal">undefined</span>) {
+								<span class="hljs-title function_">resolve</span>(res2) <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F;
+								<span class="hljs-keyword">if</span> (timer) <span class="hljs-built_in">clearTimeout</span>(timer);
+								<span class="hljs-keyword">return</span>;
+							}
+						}
+					}
+					<span class="hljs-keyword">if</span> (userEnvImports.<span class="hljs-property">default</span>) {
+						<span class="hljs-keyword">const</span> res = <span class="hljs-title function_">resolveImportCandidate</span>(userEnvImports.<span class="hljs-property">default</span>);
+						<span class="hljs-keyword">if</span> (res !== <span class="hljs-literal">null</span>) {
+							<span class="hljs-title function_">resolve</span>(res) <span class="hljs-keyword">as</span> unknown <span class="hljs-keyword">as</span> F;
+							<span class="hljs-keyword">if</span> (timer) <span class="hljs-built_in">clearTimeout</span>(timer);
+							<span class="hljs-keyword">return</span>;
+						}
+					}
+					<span class="hljs-keyword">if</span> (timeoutMs) {
+						timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+							<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">`[rift] wait() timed out after <span class="hljs-subst">${timeoutMs}</span>ms`</span>));
+						}, timeoutMs);
+					}
+				});
+			})(),
+		);
+	}
+}
+</code></pre>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p></p>
+<p>Can you get away with not following all the requirements?... Yes and no... but I can promise you one thing, it will not be succesfull 100% of the time... sooo I hope this makes the requirements clear when converting your code... I apoligize for the anger and frustration... but I hope you can feel for me as I had just attempted teaching 4 different ai's this method of conversion... so I'm going to give them this and hopefully, finger crossed... this attempt works, and I will report back on it because if I can teach an ai on something it literally has ZERO references to go by within its dataset... then I have truly made it so any one can follow along and understand how the process works.</p>
+</div>
+<h2 id="typescript-prank">TYPESCRIPT PRANK</h2>
+<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>First time round, we pulled a fast one on javascripts runtime... NOW... its typescripts turn...</p><p></p>
+<p>Because of maybe promise...</p>
+<ol>
+<li>we have increased ergonomics at each of our defined call sites.</li>
+<li>we have entirely removed the need/requirement to build and manange an entirely second api for solutions, as this places both async and sync javascript runtime contracts... and placing them with in a single function, WHILE AT THE SAME TIME... with a 100% sucess rate, no errors, no weirdness, and even increased performance as a side effect, we wil be coming back to this part shortly.</li>
+<li>less of a mental / context load of what to use, when to use it and which piece to use in relation to where it ends up being defined</li>
+<li>exploits a very small gap in javascripts runtime, which in effect leads to even more benefits but you can read more on this down below...</li>
+</ol>
+<p>This note... is related to an entirely... differently problem that this same exploit also solves. And let me tell you, it solves it in such a gratifying way...</p>
+<p>Picture this, ya?... You don't have the most surface are to paly with in terms of code placement where you are... In addition to THAT problem, you don't have any possible way... of placing, exactly what it is that you need here due to the contract around the function body your currently coding inside of... doesn't happen often, when you get this stuck and your stumped... staring at it, if only I could use x... welllllll...</p>
+<p>[ME] 'Oh... would you look at that...' <em>stares at the ground over yonder real hard...</em></p>
+<p>[typescript] 'Look... look at what?... I don't see anything, you know I LITEREALLY... cannot fall for that, right? My contracts are so wound up... they are tighter than... ALL the nuns assholes...'</p>
+<p>[ME] <em>stares at it harder... sees a twitch from typescript... slowly I lift my arm, 'over there... you don't see it... what's wrong with you old man, getting too damn old eh? It IS pretty obvious, its RIGHT there...' Points at the 'thing' even harder.</em></p>
+<p>[typescript] <em>takes a real good look at you... staring you down..., 'As I said, don't be trying any of that funny businesss, you hear me?'</em></p>
+<p>[ME] 'What are you so paranoid about old man?... you said it yourself, your asshole is to wound up to get anything past you...' *turns real hard to look at the same spot again... I just simpy don't move, finally typescript inches closer to get a better look at, whatever it is that your fucking staring at... and just... just when he inches JUST ENOUGH by you, like the flash you pivot and bolt, yeling behind ya, 'HA... YOINK BITCH!'</p>
+<p>[typescript] *starts to try to run after you, but is a feeble old man..., 'GET BACK HERE, YOU GOD DAMN SON OF A BITCH...'</p>
+<p>Literally... it is... almost entirely like that... it is so satisfying, lol...</p>
+<p>Let's take my weird bus as the example since that is where I ended up finding it. Looking at it... there is no possible way for this function... to meet the requirements of maybe promise and satisfy what it needs, in order for it to truly work. First of all... we only have... A SINGLE ASYNC FUNCTION. How the fuck are we going to feel typescript in letting us... basically... some fucking how... squeeze enough lemon out of this desert rock... to make enough juice... that is the sweetness that is, sync functionality.</p>
+</div>
+<pre><code class="language-tsx">public <span class="hljs-keyword">async</span> <span class="hljs-title function_">send</span>(<span class="hljs-attr">p</span>: unknown, <span class="hljs-attr">k</span>: string, sl = <span class="hljs-variable language_">this</span>.<span class="hljs-property">sl</span>, ms = <span class="hljs-variable language_">this</span>.<span class="hljs-property">ms</span>, rt = <span class="hljs-variable language_">this</span>.<span class="hljs-property">rt</span>, ttl?: number, binary = <span class="hljs-literal">false</span>): <span class="hljs-title class_">Promise</span>&lt;unknown&gt; {
+  <span class="hljs-keyword">const</span> msgId = <span class="hljs-string">`[<span class="hljs-subst">${rt}</span>][<span class="hljs-subst">${ms}</span>][<span class="hljs-subst">${sl}</span>][<span class="hljs-subst">${k}</span>][<span class="hljs-subst">${<span class="hljs-variable language_">this</span>._staffId()}</span>]`</span>.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/[.\[\]]/g</span>, <span class="hljs-function"><span class="hljs-params">match</span> =&gt;</span> match === <span class="hljs-string">&#x27;.&#x27;</span> ? <span class="hljs-string">&#x27;_&#x27;</span> : <span class="hljs-string">&#x27;&#x27;</span>);
+  <span class="hljs-keyword">const</span> <span class="hljs-attr">msg</span>: CSE_Multiplexed_Msg = {
+    <span class="hljs-attr">id</span>: msgId,
+    rt,
+    <span class="hljs-attr">ms</span>: ms,
+    <span class="hljs-attr">sl</span>: sl,
+    <span class="hljs-attr">k</span>: k,
+    <span class="hljs-attr">p</span>: { p },
+    ttl,
+    <span class="hljs-attr">ts</span>: <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>(),
+    <span class="hljs-attr">_ack</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">priority</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">defaultPriority</span>,
+    binary
+  }
+
+  <span class="hljs-keyword">if</span> (!(<span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">runBeforeSend</span>(msg))) <span class="hljs-keyword">return</span> { <span class="hljs-attr">success</span>: <span class="hljs-literal">false</span>, <span class="hljs-attr">blocked</span>: <span class="hljs-literal">true</span> }
+  <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">dispatch</span>(msg)
+  <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">runAfterSend</span>(msg, result)
+  <span class="hljs-keyword">return</span> result
+}
+</code></pre>
+<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p><p></p>
+<p>Haha... there IS NOTHING SYNC ABOUT IT... YOU COULD NOT FIND A MORE ASYNC LIKE FUNCTION THAN THAT. It literally has 100% coversage, that is entirely async. The ONLY things that AREN'T... are literally the console.logging functions that are the dev events...</p>
+<p>BUT HEY... We can NOW, define the call site... as if it were a sync function, pulling a fast, and hard one on typescript.</p>
+<p>Because... boi is it fucking cheeky on how we pull this off. AND BTW... it passes the test suite... 100% through and through. Which means, it is rock solid in terms of what we can expect from it in terms of results, whenever we use it.</p>
+<p>What's the cheeky, immature... prank that we pulled on typescript to get what we want?</p>
+</div>
+<pre><code class="language-tsx">public send&lt;T = A&gt;(<span class="hljs-attr">p</span>: U, <span class="hljs-attr">k</span>: S, s = <span class="hljs-variable language_">this</span>.<span class="hljs-property">s</span>, m = <span class="hljs-variable language_">this</span>.<span class="hljs-property">m</span>, r = <span class="hljs-variable language_">this</span>.<span class="hljs-property">r</span>, chain?: <span class="hljs-variable constant_">CHAIN</span>, adapter = <span class="hljs-string">&quot;disruptor&quot;</span>) {
+	<span class="hljs-keyword">const</span> msgId = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">_byteid</span>();
+	<span class="hljs-keyword">const</span> <span class="hljs-attr">msg</span>: SIG_BUS_Message = { <span class="hljs-attr">id</span>: msgId, <span class="hljs-attr">rt</span>: r, <span class="hljs-attr">ms</span>: m, <span class="hljs-attr">sl</span>: s, <span class="hljs-attr">k</span>: k, <span class="hljs-attr">p</span>: { p }, <span class="hljs-attr">ts</span>: <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>(), <span class="hljs-attr">_ack</span>: <span class="hljs-literal">false</span> };
+
+	<span class="hljs-keyword">let</span> <span class="hljs-attr">v</span>: <span class="hljs-title class_">MaybePromise</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">DISPATCH</span>(msg, adapter);
+	<span class="hljs-keyword">if</span> (v !== <span class="hljs-literal">undefined</span> &amp;&amp; !(v <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Promise</span>)) {
+		<span class="hljs-keyword">return</span> <span class="hljs-title function_">MCR_Combo</span>(v, chain);
+	} <span class="hljs-keyword">else</span> {
+		<span class="hljs-keyword">const</span> timeoutMs = <span class="hljs-number">5000</span> 
+		<span class="hljs-keyword">return</span> <span class="hljs-title class_">MaybePromise</span>(
+			(<span class="hljs-function">() =&gt;</span> {
+				<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>&lt;T&gt;(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+					<span class="hljs-keyword">let</span> <span class="hljs-attr">timer</span>: <span class="hljs-variable constant_">RET</span>&lt;<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">setTimeout</span>&gt; | <span class="hljs-variable constant_">UD</span>;
+					<span class="hljs-keyword">if</span> (v) {
+						<span class="hljs-keyword">if</span> (timer) <span class="hljs-built_in">clearTimeout</span>(timer);
+							<span class="hljs-title function_">resolve</span>(v <span class="hljs-keyword">as</span> T);
+							<span class="hljs-keyword">return</span>;
+						}
+						<span class="hljs-keyword">if</span> (timeoutMs) {
+							timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+								<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">`[rift] wait() timed out after <span class="hljs-subst">${timeoutMs}</span>ms`</span>));
+							}, timeoutMs);
+						}
+					});
+				})(),
+			);
+		}
+	}
+</code></pre>
+<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p><p></p>
+<p>You would be 100% correct in saying, 'but dude... it... IS an async fn... that will never work...'</p>
+<p>JUST LIKE with maybe prommise, trust me, I'm a fucking wizard... just hear me out...</p>
+<p>Yes it is 100% through and through a async fn, AND becuuse of the level of benefits we get from this singular async fn, it will never change.</p>
+<p>BUT in terms of what typescript CAN ACTUALLY SEE there is nothing wrong with this picture.</p>
+<p>The promise is locked behind a logic gate, in effect making typescript none the wiser that there is IN FACT A FUCKING PROMISE CONTRACT HIDDEN THERE.</p>
+<p>NOW, if you guessed that WE ARE LITERALLY DOING WHAT I USED IN THAT REDICULOUS EXAMPLE, you are correct.</p>
+<p>There is 100% going to be times where, we simply only need a fire and forget... without await attached to it, so by giving typescript something to focus on, a big fat lie, but that's ok. When we use it like this, we don't really care if we get the value back, there will be times we don't even want it back so, it is as if we are sacrifcing a constant that we assigned... for the greater good.</p>
+<p>As you will notice, the logic gate changed ever so slightly... SOMETHING TO WATCH OUT FOR HERE, for all you 'any' haters out there, you HAVE TO... define that let, with any, because that logic gate, as it sits... will not let you run it without it. Actually, you could ACTUALLY stick maybe promise there too...</p>
+<p>The gate checks to see IF it is NOT undefined... which ofcourse 100% of the time... this logic gate will fail due to the second condition since dispatch returns a promise 100% of the time... Effectively turning the gate AND the value, as a herring to succesfully and entirely distract typescript with a lie. Letting us execute the fn and take off running and the message gets to where you sent it... meanwhile, your herring is left stuck there returned with, what is most of the time, a shit fucking value to hold. But this time we welcome the returned promise... thank-you javascript, for teeing us up to fake out typescript. <em>gives a good ol'thumbs up</em> haha</p>
+<p>Removes the sync/async decision entirely. One name, one function, one return. Works as both a type and a value. Callers <code>await</code> if they want the value and don't if they don't — both work, always. Every platform that ships <code>readFile</code> <em>and</em> <code>readFileSync</code>, <code>getItem</code> <em>and</em> <code>getItemAsync</code>, <code>query</code> <em>and</em> <code>querySync</code> can ship one function instead.</p>
+</div>
+</div>
+<div style="font-size: 9px;  text-align: right">
+<h2 id="-pew-pew---toc-"><span style="font-size: 10.5px;"> ⇦✦──⇦✦──✦──✦──←'pew pew'<span> <span style="font-size: 24px;"> 🧙 [TOC] <span></h2>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[PLATFORM]</span> </strong></summary>
+<ul>
+<li><a href="../platform/TOC.html#TOC">TOC</a></li>
+<li><a href="../platform/ATOM.html#ATOM">ATOM</a></li>
+<li><a href="../platform/CELLS.html#CELLS">CELLS</a></li>
+<li><a href="../platform/CONVERGENCE.html#CONVERGENCE">CONVERGENCE</a></li>
+<li><a href="../platform/FORMS.html#FORMS">FORMS</a></li>
+<li><a href="../platform/GLOBAL_QUAD_KEY_CONTEXT.html#GLOBAL_QUAD_KEY_CONTEXT">GLOBAL_QUAD_KEY_CONTEXT</a></li>
+<li><a href="../platform/PERFORMANCE_DIVISION.html#PERFORMANCE_DIVISION">PERFORMANCE_DIVISION</a></li>
+<li><a href="../platform/REACTIVITY.html#REACTIVITY">REACTIVITY</a></li>
+<li><a href="../platform/ROUTE_COMPONENTS.html#ROUTE_COMPONENTS">ROUTE_COMPONENTS</a></li>
+<li><a href="../platform/SAURON.html#SAURON">SAURON</a></li>
+<li><a href="../platform/SIGNALS.html#SIGNALS">SIGNALS</a></li>
+<li><a href="../platform/STAFF.html#STAFF">STAFF</a></li>
+<li><a href="../platform/THE_WARLOCK_MODE.html#THE_WARLOCK_MODE">THE_WARLOCK_MODE</a></li>
+<li><a href="../platform/THE_WIZARD_MODE.html#THE_WIZARD_MODE">THE_WIZARD_MODE</a></li>
+<li><a href="../platform/WARLOCKS_NECROMANCY_OBSERVATORY.html#WARLOCKS_NECROMANCY_OBSERVATORY">WARLOCKS_NECROMANCY_OBSERVATORY</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[MESSAGE QUEUES / BUSES]</span> </strong></summary>
+<ul>
+<li><a href="../platform/TOC.html#TOC">DISRUPTOR</a></li>
+<li><a href="../platform/ATOM.html#ATOM">STAFF</a></li>
+<li><a href="../platform/CELLS.html#CELLS">CHAINS</a></li>
+<li><a href="../platform/CONVERGENCE.html#CONVERGENCE">XXSR TRICKY</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[PLATFORM PRIMTIVES]</span> </strong></summary>
+<ul>
+<li><a href="../primitives/API_WARDS.html#API_WARDS">API_WARDS</a></li>
+<li><a href="../primitives/APPARATIONS_DQ,md#APPARATIONS_DQ">APPARATIONS_DQ</a></li>
+<li><a href="../primitives/ARCHETYPES.html#ARCHETYPES">ARCHETYPES</a></li>
+<li><a href="../primitives/BATCH.html#BATCH">BATCH</a></li>
+<li><a href="../primitives/BINARY.html#BINARY">BINARY</a></li>
+<li><a href="../primitives/CHAINS.html#CHAINS">CHAINS</a></li>
+<li><a href="../primitives/CHRONO_SHIFT.html#CHRONO_SHIFT">CHRONO_SHIFT</a></li>
+<li><a href="../primitives/CHRONOMANCER.html#CHRONOMANCER">CHRONOMANCER</a></li>
+<li><a href="../primitives/CONJURE_LIBRARIES.html#CONJURE_LIBRARIES">CONJURE_LIBRARIES</a></li>
+<li><a href="../primitives/CONJURE_MIMIC.html#CONJURE_MIMIC">CONJURE_MIMIC</a></li>
+<li><a href="../primitives/CRON.html#CRON">CRON</a></li>
+<li><a href="../primitives/DARK_PORTALS.html#DARK_PORTALS">DARK_PORTALS</a></li>
+<li><a href="../primitives/DUPLEX_STREAMS.html#DUPLEX_STREAMS">DUPLEX_STREAMS</a></li>
+<li><a href="../primitives/EMITTER.html#EMITTER">EMITTER</a></li>
+<li><a href="../primitives/EVOCATIONS.html#EVOCATIONS">EVOCATIONS</a></li>
+<li><a href="../primitives/EXECUTE_MASTER.html#EXECUTE_MASTER">EXECUTE_MASTER</a></li>
+<li><a href="../primitives/GATE_MASTER.html#GATE_MASTER">GATE_MASTER</a></li>
+<li><a href="../primitives/GATES.html#GATES">GATES</a></li>
+<li><a href="../primitives/GLYPH_BINDER.html#GLYPH_BINDER">GLYPH_BINDER</a></li>
+<li><a href="../primitives/GOLEMS.html#GOLEMS">GOLEMS</a></li>
+<li><a href="../primitives/GRIMOIRE.html#GRIMOIRE">GRIMOIRE</a></li>
+<li><a href="../primitives/ILLUSIONIST.html#ILLUSIONIST">ILLUSIONIST</a></li>
+<li><a href="../primitives/INCANTATIONS.html#INCANTATIONS">INCANTATIONS</a></li>
+<li><a href="../primitives/JOBS.html#JOBS">JOBS</a></li>
+<li><a href="../primitives/MACHINES_MACHINE.html#MACHINES_MACHINE">MACHINES_MACHINE</a></li>
+<li><a href="../primitives/MICROTASKS.html#MICROTASKS">MICROTASKS</a></li>
+<li><a href="../primitives/MSGS.html#MSGS">MSGS</a></li>
+<li><a href="../primitives/NO_NO_SQUARE_DQ.html#NO_NO_SQUARE_DQ">NO_NO_SQUARE_DQ</a></li>
+<li><a href="../primitives/PERFORMANCE_TIMER.html#PERFORMANCE_TIMER">PERFORMANCE_TIMER</a></li>
+<li><a href="../primitives/PLINKO_MASTER.html#PLINKO_MASTER">PLINKO_MASTER</a></li>
+<li><a href="../primitives/PRIORITY.html#PRIORITY">PRIORITY</a></li>
+<li><a href="../primitives/RDB.html#RDB">RDB</a></li>
+<li><a href="../primitives/RENDERIVITY_DQ.html#RENDERIVITY_DQ">RENDERIVITY_DQ</a></li>
+<li><a href="../primitives/RETRY_MASTER.html#RETRY_MASTER">RETRY_MASTER</a></li>
+<li><a href="../primitives/RUNE_HTTP.html#RUNE_HTTP">RUNE_HTTP</a></li>
+<li><a href="../primitives/S_CLASS.html#S_CLASS">S_CLASS</a></li>
+<li><a href="../primitives/SCHEDULER.html#SCHEDULER">SCHEDULER</a></li>
+<li><a href="../primitives/SENTINELmd#SENTINELmd">SENTINELmd</a></li>
+<li><a href="../primitives/SESSION_SIGIL.html#SESSION_SIGIL">SESSION_SIGIL</a></li>
+<li><a href="../primitives/SPEELBOOK.html#SPEELBOOK">SPEELBOOK</a></li>
+<li><a href="../primitives/TIERED_QUEUE.html#TIERED_QUEUE">TIERED_QUEUE</a></li>
+<li><a href="../primitives/TIME_MACHINE.html#TIME_MACHINE">TIME_MACHINE</a></li>
+<li><a href="../primitives/TOME_OF_SECRETS.html#TOME_OF_SECRETS">TOME_OF_SECRETS</a></li>
+<li><a href="../primitives/TRANSMOGRIFY.html#TRANSMOGRIFY">TRANSMOGRIFY</a></li>
+<li><a href="../primitives/TYPES_MACHINE.html#TYPES_MACHINE">TYPES_MACHINE</a></li>
+<li><a href="../primitives/TYR.html#TYR">TYR</a></li>
+<li><a href="../primitives/VAULTS.html#VAULTS">VAULTS</a></li>
+<li><a href="../primitives/VENOM.html#VENOM">VENOM</a></li>
+<li><a href="../primitives/WARDS.html#WARDS">WARDS</a></li>
+<li><a href="../primitives/WIZARD_KEEP.html#WIZARD_KEEP">WIZARD_KEEP</a></li>
+<li><a href="../primitives/WORKERS.html#WORKERS">WORKERS</a></li>
+<li><a href="../primitives/WORKFLOW.html#WORKFLOW">WORKFLOW</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[SOLUTIONS]</span> </strong></summary>
+<ul>
+<li><a href="../solutions/BATCH.html#BATCH">BATCH</a></li>
+<li><a href="../solutions/CELLS.html#CELLS">CELLS</a></li>
+<li><a href="../solutions/CHEERIO.html#CHEERIO">CHEERIO</a></li>
+<li><a href="../solutions/CIRCUIT_BREAKER.html#CIRCUIT_BREAKER">CIRCUIT_BREAKER</a></li>
+<li><a href="../solutions/COMPRESSION.html#COMPRESSION">COMPRESSION</a></li>
+<li><a href="../solutions/CONCURRENT.html#CONCURRENT">CONCURRENT</a></li>
+<li><a href="../solutions/CQRS.html#CQRS">CQRS</a></li>
+<li><a href="../solutions/DEBOUNCE.html#DEBOUNCE">DEBOUNCE</a></li>
+<li><a href="../solutions/DEFER.html#DEFER">DEFER</a></li>
+<li><a href="../solutions/DEV_TOOLS.html#DEV_TOOLS">DEV_TOOLS</a></li>
+<li><a href="../solutions/DIFFPATCH.html#DIFFPATCH">DIFFPATCH</a></li>
+<li><a href="../solutions/DISTRBUTED_EXE.html#DISTRBUTED_EXE">DISTRBUTED_EXE</a></li>
+<li><a href="../solutions/DISTRIBUTED_LOGIC_GATES.html#DISTRIBUTED_LOGIC_GATES">DISTRIBUTED_LOGIC_GATES</a></li>
+<li><a href="../solutions/DISTRIBUTED_PORTAL.html#DISTRIBUTED_PORTAL">DISTRIBUTED_PORTAL</a></li>
+<li><a href="../solutions/DISTRIBUTED_REACTIVE_STATE.html#DISTRIBUTED_REACTIVE_STATE">DISTRIBUTED_REACTIVE_STATE</a></li>
+<li><a href="../solutions/DRS.html#DRS">DRS</a></li>
+<li><a href="../solutions/EMPHEMRAL_STATE.html#EMPHEMRAL_STATE">EMPHEMRAL_STATE</a></li>
+<li><a href="../solutions/FULL_TEXT_SEARCH.html#FULL_TEXT_SEARCH">FULL_TEXT_SEARCH</a></li>
+<li><a href="../solutions/HTTP_CLIENT.html#HTTP_CLIENT">HTTP_CLIENT</a></li>
+<li><a href="../solutions/LOGIC_GATES.html#LOGIC_GATES">LOGIC_GATES</a></li>
+<li><a href="../solutions/LONGPOLL.html#LONGPOLL">LONGPOLL</a></li>
+<li><a href="../solutions/LWW.html#LWW">LWW</a></li>
+<li><a href="../solutions/MV.html#MV">MV</a></li>
+<li><a href="../solutions/OPTIMISTIC.html#OPTIMISTIC">OPTIMISTIC</a></li>
+<li><a href="../solutions/OR.html#OR">OR</a></li>
+<li><a href="../solutions/PERFORMANCE_TIMER.html#PERFORMANCE_TIMER">PERFORMANCE_TIMER</a></li>
+<li><a href="../solutions/PN.html#PN">PN</a></li>
+<li><a href="../solutions/QUEUE_TIERED.html#QUEUE_TIERED">QUEUE_TIERED</a></li>
+<li><a href="../solutions/RAFT.html#RAFT">RAFT</a></li>
+<li><a href="../solutions/RATE_LIMIT.html#RATE_LIMIT">RATE_LIMIT</a></li>
+<li><a href="../solutions/REACTIVE_CHAINS.html#REACTIVE_CHAINS">REACTIVE_CHAINS</a></li>
+<li><a href="../solutions/REVERSE_HEART_BEAT_MGR.html#REVERSE_HEART_BEAT_MGR">REVERSE_HEART_BEAT_MGR</a></li>
+<li><a href="../solutions/RIFTS.html#RIFTS">RIFTS</a></li>
+<li><a href="../solutions/RIFT_MAELSTROM.html#RIFT_MAELSTROM">RIFT_MAELSTROM</a></li>
+<li><a href="../solutions/SEMAPHORE.html#SEMAPHORE">SEMAPHORE</a></li>
+<li><a href="../solutions/SEND_SUB.html#SEND_SUB">SEND_SUB</a></li>
+<li><a href="../solutions/SIGNALS.html#SIGNALS">SIGNALS</a></li>
+<li><a href="../solutions/SPREADSHEET.html#SPREADSHEET">SPREADSHEET</a></li>
+<li><a href="../solutions/SSE.html#SSE">SSE</a></li>
+<li><a href="../solutions/STAFF.html#STAFF">STAFF</a></li>
+<li><a href="../solutions/STREAMS.html#STREAMS">STREAMS</a></li>
+<li><a href="../solutions/SWR.html#SWR">SWR</a></li>
+<li><a href="../solutions/TEMPORAL_SHIFT.html#TEMPORAL_SHIFT">TEMPORAL_SHIFT</a></li>
+<li><a href="../solutions/THROTTLE.html#THROTTLE">THROTTLE</a></li>
+<li><a href="../solutions/WIRE_TAPS.html#WIRE_TAPS">WIRE_TAPS</a></li>
+<li><a href="../solutions/WORKSPACE_GLOBAL.html#WORKSPACE_GLOBAL">WORKSPACE_GLOBAL</a></li>
+<li><a href="../solutions/WS.html#WS">WS</a></li>
+<li><a href="../solutions/XXSR.html#XXSR">XXSR</a></li>
+<li><a href="../solutions/YATA.html#YATA">YATA</a></li>
+<li><a href="../solutions/YIMIR.html#YIMIR">YIMIR</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[DATABASES]</span> </strong></summary>
+<ul>
+<li><a href="../databases/BDB.html#BDB">BDB</a></li>
+<li><a href="../databases/BINARY.html#BINARY">BINARY</a></li>
+<li><a href="../databases/COOKIE.html#COOKIE">COOKIE</a></li>
+<li><a href="../databases/GDB.html#GDB">GDB</a></li>
+<li><a href="../databases/GT.html#GT">GT</a></li>
+<li><a href="../databases/HADRON_COLLIDER.html#HADRON_COLLIDER">HADRON_COLLIDER</a></li>
+<li><a href="../databases/IDB_HADRON_COLLIDER.html#IDB_HADRON_COLLIDER">IDB_HADRON_COLLIDER</a></li>
+<li><a href="../databases/IDB_HC_SINK.html#IDB_HC_SINK">IDB_HC_SINK</a></li>
+<li><a href="../databases/IDB_KVDB.html#IDB_KVDB">IDB_KVDB</a></li>
+<li><a href="../databases/IDB_RDB.html#IDB_RDB">IDB_RDB</a></li>
+<li><a href="../databases/KVDB.html#KVDB">KVDB</a></li>
+<li><a href="../databases/LS.html#LS">LS</a></li>
+<li><a href="../databases/MEMORY.html#MEMORY">MEMORY</a></li>
+<li><a href="../databases/RDB.html#RDB">RDB</a></li>
+<li><a href="../databases/REGISTRIES.html#REGISTRIES">REGISTRIES</a></li>
+<li><a href="../databases/SAURON.html#SAURON">SAURON</a></li>
+<li><a href="../databases/SECURE_COOKIE.html#SECURE_COOKIE">SECURE_COOKIE</a></li>
+<li><a href="../databases/SS.html#SS">SS</a></li>
+<li><a href="../databases/TDB.html#TDB">TDB</a></li>
+<li><a href="../databases/VDB.html#VDB">VDB</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[BAG OF TRICKS]</span> </strong></summary>
+<ul>
+<li><a href="../bag_of_tricks/BARRIER.html#BARRIER">BARRIER</a></li>
+<li><a href="../bag_of_tricks/CALL_IF.html#CALL_IF">CALL_IF</a></li>
+<li><a href="../bag_of_tricks/CHAIN_RECHAIN.html#CHAIN_RECHAIN">CHAIN_RECHAIN</a></li>
+<li><a href="../bag_of_tricks/chain.html#chain">chain</a></li>
+<li><a href="../bag_of_tricks/clamp.html#clamp">clamp</a></li>
+<li><a href="../bag_of_tricks/deferred.html#deferred">deferred</a></li>
+<li><a href="../bag_of_tricks/evaluator.html#evaluator">evaluator</a></li>
+<li><a href="../bag_of_tricks/finally.html#finally">finally</a></li>
+<li><a href="../bag_of_tricks/gate.html#gate">gate</a></li>
+<li><a href="../bag_of_tricks/ignore_arg.html#ignore_arg">ignore_arg</a></li>
+<li><a href="../bag_of_tricks/invoke.html#invoke">invoke</a></li>
+<li><a href="../bag_of_tricks/is_defined.html#is_defined">is_defined</a></li>
+<li><a href="../bag_of_tricks/is_not_defined.html#is_not_defined">is_not_defined</a></li>
+<li><a href="../bag_of_tricks/LAZY.html#LAZY">LAZY</a></li>
+<li><a href="../bag_of_tricks/MAYBE_PROMISE.html#MAYBE_PROMISE">MAYBE_PROMISE</a></li>
+<li><a href="../bag_of_tricks/maybe.html#maybe">maybe</a></li>
+<li><a href="../bag_of_tricks/mcr_combo.html#mcr_combo">mcr_combo</a></li>
+<li><a href="../bag_of_tricks/ONCE.html#ONCE">ONCE</a></li>
+<li><a href="../bag_of_tricks/or_default.html#or_default">or_default</a></li>
+<li><a href="../bag_of_tricks/patch_state.html#patch_state">patch_state</a></li>
+<li><a href="../bag_of_tricks/retry_with_backoff.html#retry_with_backoff">retry_with_backoff</a></li>
+<li><a href="../bag_of_tricks/run_with_retry.html#run_with_retry">run_with_retry</a></li>
+<li><a href="../bag_of_tricks/SERIAL_EXECUTOR.html#SERIAL_EXECUTOR">SERIAL_EXECUTOR</a></li>
+<li><a href="../bag_of_tricks/set_keys.html#set_keys">set_keys</a></li>
+<li><a href="../bag_of_tricks/set_prev.html#set_prev">set_prev</a></li>
+<li><a href="../bag_of_tricks/sleep.html#sleep">sleep</a></li>
+<li><a href="../bag_of_tricks/tap.html#tap">tap</a></li>
+<li><a href="../bag_of_tricks/thenable.html#thenable">thenable</a></li>
+<li><a href="../bag_of_tricks/TIMED_PROMISE.html#TIMED_PROMISE">TIMED_PROMISE</a></li>
+<li><a href="../bag_of_tricks/to_promise.html#to_promise">to_promise</a></li>
+<li><a href="../bag_of_tricks/try_catch.html#try_catch">try_catch</a></li>
+<li><a href="../bag_of_tricks/unreachable.html#unreachable">unreachable</a></li>
+<li><a href="../bag_of_tricks/WAIT_AND_PROMISE.html#WAIT_AND_PROMISE">WAIT_AND_PROMISE</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[TODO & IDEAS]</span> </strong></summary>
+<ul>
+<li><a href="TO_DO_AND_IDEAS.html#todo--ideas">TODO &amp; IDEAS</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#the_wizard">[THE_WIZARD]</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#primitives">[PRIMITIVES]</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#next_level_ideas">[NEXT_LEVEL_IDEAS]</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#kvdb">KVDB</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#prxcdb">PRxCDB</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#staff">STAFF</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#--e--mc2--">E = mc^2</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#native-custom-built-solutions">NATIVE, CUSTOM BUILT SOLUTIONS</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#storage-context">STORAGE CONTEXT</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#other">OTHER</a></li>
+</ul>
+</details>
+<br/>
+<pre><code>                          🗨️           ☁️
+                       🌴🌵                             🧙            
+┌──────────┐          ┌──────────────────────────┐
+└──────────┘          └──────────────────────────┘
+              ☁️      
+  🔮        🏜️🌵🏜️🌴🌵                         🏜️
+┌─────────────────────────────┐        ┌─────────┐
+└─────────────────────────────┘        └─────────┘
+
+                                         🏜️🌴🌵
+           ┌──────────────────────────────────────┐
+           └──────────────────────────────────────┘
+         ☁️                  
+           🌴🌴                🏜️🌴                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🏜️🌴🏜️🌵      🌪️                    🧙     🏝️🏜️
+┌─────────────────────────────────────────────────┐
+└─────────────────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️       ☁️                              
+    🌴🌵                                     🌵🏜️
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                            🌵🌴🌴       
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+         🌵🌴                      🌵          🌴
+┌────────────────┐        ┌───────────────────────┐
+└────────────────┘        └───────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                     🌴🌵          🌵🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵          🌵🌵                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+            ☁️          ☁️                     
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+
+  🌵🌴               🌴🌵          🌵🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴          🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+            ☁️          ☁️                     
+  🌴🌵                         🌵🌵          🏜️🌴
+┌──────────┐       ┌───────────────────────────────┐
+└──────────┘       └───────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+            🌵🌴                  🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵          🧙🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️       ☁️                              
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                          🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵      🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+             🌵🌴                                             🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                                🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                    🌵🌴                              🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵                          🌴                     
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                             
+
+  🌴                            🌵 
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵🌴                                       
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                               🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+                                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                 🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                                           🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵                🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌴                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                            🌵             🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                             🌵
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                   ☁️                     
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵   🌴🌴                                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                           🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+  🌵                           
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                  🌵           🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵           🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+   🌵        🌵🌴                             
+┌──────────────────┐        ┌───────────────┐
+└──────────────────┘        └───────────────┘
+                   ☁️          ☁️                     
+🌴                                      🌵        🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵            🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+        🌵🌴                                   🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                           🌵                           
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                            🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+                   ☁️          ☁️                     
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                              🌵🌵
+┌───────────────────┐       ┌────────┐       ┌────┐
+└───────────────────┘       └────────┘       └────┘
+
+                                              🌵🌴                      
+                   ┌──────────────────────────────┐
+                   └──────────────────────────────┘
+                   ☁️          ☁️                     
+  🌴                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵                   🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴              🌵
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                        ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                               🌵🌴                          
+                       ┌──────────────────────────┐
+                       └──────────────────────────┘
+         ☁️                  
+  🌴🌵                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵        🌴                                🌵
+┌────────────────────────┐       ┌────────────────┐
+└────────────────────────┘       └────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+      ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+              ☁️      
+  🔮        🏜️🌵🏜️🌴🌵                         🏜️
+┌─────────────────────────────┐        ┌─────────┐
+└─────────────────────────────┘        └─────────┘
+
+                                         🏜️🌴🌵
+           ┌──────────────────────────────────────┐
+           └──────────────────────────────────────┘
+         ☁️                  
+           🌴🌴                🏜️🌴                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🏜️🌴🏜️🌵      🌪️                    🧙     🏝️🏜️
+┌─────────────────────────────────────────────────┐
+└─────────────────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️       ☁️                              
+    🌴🌵                                     🌵🏜️
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                            🌵🌴🌴       
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+         🌵🌴                      🌵          🌴
+┌────────────────┐        ┌───────────────────────┐
+└────────────────┘        └───────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                     🌴🌵          🌵🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵          🌵🌵                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+            ☁️          ☁️                     
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+
+  🌵🌴               🌴🌵          🌵🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴          🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+            ☁️          ☁️                     
+  🌴🌵                         🌵🌵          🏜️🌴
+┌──────────┐       ┌───────────────────────────────┐
+└──────────┘       └───────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+            🌵🌴                  🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵          🧙🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️       ☁️                              
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                          🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵      🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+             🌵🌴                                             🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                                🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                    🌵🌴                              🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵                          🌴                     
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                             
+
+  🌴                            🌵 
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵🌴                                       
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                               🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+                                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                 🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                                           🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵                🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌴                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                            🌵             🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                             🌵
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                   ☁️                     
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵   🌴🌴                                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                           🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+  🌵                           
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                  🌵           🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵           🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+   🌵        🌵🌴                             
+┌──────────────────┐        ┌───────────────┐
+└──────────────────┘        └───────────────┘
+                   ☁️          ☁️                     
+🌴                                      🌵        🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵            🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+        🌵🌴                                   🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                           🌵                           
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                            🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+                   ☁️          ☁️                     
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                              🌵🌵
+┌───────────────────┐       ┌────────┐       ┌────┐
+└───────────────────┘       └────────┘       └────┘
+
+                                              🌵🌴                      
+                   ┌──────────────────────────────┐
+                   └──────────────────────────────┘
+                   ☁️          ☁️                     
+  🌴                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵                   🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴              🌵
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                        ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                               🌵🌴                          
+                       ┌──────────────────────────┐
+                       └──────────────────────────┘
+         ☁️                  
+  🌴🌵                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵        🌴                                🌵
+┌────────────────────────┐       ┌────────────────┐
+└────────────────────────┘       └────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+      ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+              ☁️      
+  🔮        🏜️🌵🏜️🌴🌵                         🏜️
+┌─────────────────────────────┐        ┌─────────┐
+└─────────────────────────────┘        └─────────┘
+
+                                         🏜️🌴🌵
+           ┌──────────────────────────────────────┐
+           └──────────────────────────────────────┘
+         ☁️                  
+           🌴🌴                🏜️🌴                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🏜️🌴🏜️🌵      🌪️                    🧙     🏝️🏜️
+┌─────────────────────────────────────────────────┐
+└─────────────────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️       ☁️                              
+    🌴🌵                                     🌵🏜️
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                            🌵🌴🌴       
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+         🌵🌴                      🌵          🌴
+┌────────────────┐        ┌───────────────────────┐
+└────────────────┘        └───────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                     🌴🌵          🌵🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵          🌵🌵                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+            ☁️          ☁️                     
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+
+  🌵🌴               🌴🌵          🌵🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴          🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+            ☁️          ☁️                     
+  🌴🌵                         🌵🌵          🏜️🌴
+┌──────────┐       ┌───────────────────────────────┐
+└──────────┘       └───────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+            🌵🌴                  🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵          🧙🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️       ☁️                              
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                          🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵      🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+             🌵🌴                                             🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                                🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                    🌵🌴                              🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵                          🌴                     
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                             
+
+  🌴                            🌵 
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵🌴                                       
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                               🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+                                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                 🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                                           🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵                🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌴                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                            🌵             🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                             🌵
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                   ☁️                     
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵   🌴🌴                                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                           🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+  🌵                           
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                  🌵           🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵           🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+   🌵        🌵🌴                             
+┌──────────────────┐        ┌───────────────┐
+└──────────────────┘        └───────────────┘
+                   ☁️          ☁️                     
+🌴                                      🌵        🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵            🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+        🌵🌴                                   🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                           🌵                           
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                            🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+                   ☁️          ☁️                     
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                              🌵🌵
+┌───────────────────┐       ┌────────┐       ┌────┐
+└───────────────────┘       └────────┘       └────┘
+
+                                              🌵🌴                      
+                   ┌──────────────────────────────┐
+                   └──────────────────────────────┘
+                   ☁️          ☁️                     
+  🌴                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵                   🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴              🌵
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                        ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                               🌵🌴                          
+                       ┌──────────────────────────┐
+                       └──────────────────────────┘
+         ☁️                  
+  🌴🌵                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵        🌴                                🌵
+┌────────────────────────┐       ┌────────────────┐
+└────────────────────────┘       └────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+      ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                  🌵             🌴                         🌵
+┌─────────────────────────────────────────────────┐
+└─────────────────────────────────────────────────┘
+</code></pre>
+</div>
+</div>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>

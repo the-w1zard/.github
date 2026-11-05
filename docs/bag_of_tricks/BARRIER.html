@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;barrier&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="barrier"><code>barrier</code></h1>
+<blockquote>
+<p>Wait for N things to happen. No counters. No mutexes. No race conditions.</p>
+</blockquote>
+<p>A minimal, single-file barrier primitive for TypeScript and JavaScript. Create a barrier with a count, call <code>.arrive()</code> from anywhere that needs to check in, and <code>await .wait()</code> to unblock once every arrival has happened. That's the whole API.</p>
+<p>This is the correct way to express <em>&quot;wait until N things have happened&quot;</em> — a pattern that shows up in distributed systems, parallel test runners, rasterizers finishing tile batches, peer coordination, and every <code>Promise.all</code>-adjacent problem you've ever hand-rolled. Most implementations invent a shared counter, a mutex, and a condition variable and still get the race condition wrong. This one doesn't, because it has none of those things.</p>
+<hr>
+<h2 id="install">Install</h2>
+<pre><code class="language-bash">npm install barrier
+</code></pre>
+<p>Or just copy the function into your codebase. It's a few lines and has zero dependencies. This is a legitimate way to use it.</p>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<p>The absolute minimum to get this working in under 5 minutes:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { barrier } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;barrier&quot;</span>
+
+<span class="hljs-keyword">const</span> b = <span class="hljs-title function_">barrier</span>(<span class="hljs-number">3</span>)
+
+b.<span class="hljs-title function_">arrive</span>()  <span class="hljs-comment">// 1st</span>
+b.<span class="hljs-title function_">arrive</span>()  <span class="hljs-comment">// 2nd</span>
+b.<span class="hljs-title function_">arrive</span>()  <span class="hljs-comment">// 3rd — this one resolves the wait</span>
+
+<span class="hljs-keyword">await</span> b.<span class="hljs-title function_">wait</span>()  <span class="hljs-comment">// resolves after the 3rd arrive()</span>
+</code></pre>
+<p>That's it. You're done. You now know how to use <code>barrier</code>.</p>
+<p>If you want it to actually be useful, here's the same thing with real async work:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { barrier } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;barrier&quot;</span>
+
+<span class="hljs-keyword">const</span> ready = <span class="hljs-title function_">barrier</span>(<span class="hljs-number">3</span>)
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">worker</span>(<span class="hljs-params">id: <span class="hljs-built_in">number</span></span>) {
+  <span class="hljs-keyword">await</span> <span class="hljs-title function_">doSomeSetup</span>()
+  ready.<span class="hljs-title function_">arrive</span>()
+  <span class="hljs-keyword">await</span> ready.<span class="hljs-title function_">wait</span>()
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`worker <span class="hljs-subst">${id}</span> proceeding`</span>)
+}
+
+<span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>([<span class="hljs-title function_">worker</span>(<span class="hljs-number">1</span>), <span class="hljs-title function_">worker</span>(<span class="hljs-number">2</span>), <span class="hljs-title function_">worker</span>(<span class="hljs-number">3</span>)])
+</code></pre>
+<p>Every worker blocks until all three have checked in. No counter. No mutex.</p>
+<h3 id="-everyone-else--the-full-picture">🔵 Everyone else — the full picture</h3>
+<h4 id="the-api">The API</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">barrier</span>(<span class="hljs-params">n: <span class="hljs-built_in">number</span></span>): {
+  <span class="hljs-title function_">arrive</span>(): <span class="hljs-built_in">void</span>
+  <span class="hljs-title function_">wait</span>(): <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-built_in">void</span>&gt;
+}
+</code></pre>
+<ul>
+<li><strong><code>barrier(n)</code></strong> — creates a barrier that resolves once <code>n</code> callers have called <code>.arrive()</code>.</li>
+<li><strong><code>.arrive()</code></strong> — records one arrival. When the <code>n</code>-th arrival happens, the internal promise resolves. Idempotent in the sense that extra arrivals past <code>n</code> are harmless no-ops.</li>
+<li><strong><code>.wait()</code></strong> — returns the same promise every time. Safe to call before, during, or after all arrivals. Safe to call from many places. Returns immediately (on the next microtask) if the barrier is already resolved.</li>
+</ul>
+<h4 id="why-wait-returns-the-same-promise">Why <code>wait()</code> returns the same promise</h4>
+<p><code>wait()</code> is not a one-shot. It's not a consumable. It can be awaited by every participant independently, and by anyone else who happens to hold a reference. This is what makes the primitive composable — you can hand the barrier object to N workers, or to a coordinator, or to both.</p>
+<h4 id="n-is-captured-at-construction"><code>n</code> is captured at construction</h4>
+<p>The count is fixed when you call <code>barrier(n)</code>. This is deliberate. A barrier whose target can change underneath waiting callers is a barrier that has to be locked, and the moment you lock it you've reinvented the thing this exists to avoid.</p>
+<h4 id="arrivals-are-counted-synchronously">Arrivals are counted synchronously</h4>
+<p><code>arrive()</code> is not async and does not yield. It increments and, if the threshold is met, resolves. This means:</p>
+<ul>
+<li>Two <code>.arrive()</code> calls in the same synchronous tick are counted correctly.</li>
+<li>You cannot lose an arrival between the increment and the check.</li>
+<li>There is no window for a race.</li>
+</ul>
+<h4 id="the-gate-dependency">The <code>gate</code> dependency</h4>
+<p>Internally this uses a <code>gate&lt;void&gt;()</code> helper that returns <code>{ promise, resolve }</code>. If you're vendoring the code, <code>gate</code> is a two-liner:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> gate&lt;T&gt;() {
+  <span class="hljs-keyword">let</span> resolve!: <span class="hljs-function">(<span class="hljs-params">v: T</span>) =&gt;</span> <span class="hljs-built_in">void</span>
+  <span class="hljs-keyword">const</span> promise = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>&lt;T&gt;(<span class="hljs-function"><span class="hljs-params">r</span> =&gt;</span> { resolve = r })
+  <span class="hljs-keyword">return</span> { promise, resolve }
+}
+</code></pre>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Wait for N peers to check in</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> allHere = <span class="hljs-title function_">barrier</span>(peerCount)
+peers.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">p</span> =&gt;</span> p.<span class="hljs-title function_">on</span>(<span class="hljs-string">&quot;ready&quot;</span>, <span class="hljs-function">() =&gt;</span> allHere.<span class="hljs-title function_">arrive</span>()))
+<span class="hljs-keyword">await</span> allHere.<span class="hljs-title function_">wait</span>()
+</code></pre>
+<p><strong>Parallel test runner — wait for N suites to finish setup</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> setupDone = <span class="hljs-title function_">barrier</span>(suites.<span class="hljs-property">length</span>)
+<span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>(suites.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> s.<span class="hljs-title function_">setup</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> setupDone.<span class="hljs-title function_">arrive</span>())))
+<span class="hljs-keyword">await</span> setupDone.<span class="hljs-title function_">wait</span>()
+</code></pre>
+<p><strong>Rasterizer — wait for N tiles</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> done = <span class="hljs-title function_">barrier</span>(tiles.<span class="hljs-property">length</span>)
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> tile <span class="hljs-keyword">of</span> tiles) {
+  <span class="hljs-title function_">renderTile</span>(tile, <span class="hljs-function">() =&gt;</span> done.<span class="hljs-title function_">arrive</span>())
+}
+<span class="hljs-keyword">await</span> done.<span class="hljs-title function_">wait</span>()
+</code></pre>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not reusable. Once resolved, it stays resolved. If you need a cyclic barrier (reusable across rounds), that's a different primitive and you should build it on top of this one, not inside it.</li>
+<li>Not a <code>Semaphore</code>. It doesn't track available permits or block on acquisition. It only counts arrivals toward a single threshold.</li>
+<li>Not a <code>Latch</code> in the Java sense, although it's close. A latch typically supports count-down semantics; a barrier is symmetric — all parties arrive and then all parties proceed.</li>
+</ul>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li>Calling <code>.arrive()</code> more than <code>n</code> times is fine but the extra calls do nothing. If you find yourself arriving more than you expected, you have a bug elsewhere and this primitive will not hide it from you.</li>
+<li><code>.wait()</code> never rejects. It has no timeout, no abort signal, no cancellation. If you need those, wrap it: <code>await Promise.race([b.wait(), timeout(5000)])</code>.</li>
+<li>Zero is a valid <code>n</code> — <code>barrier(0).wait()</code> resolves immediately. This is useful as a fallback in code where the participant count is dynamic.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p>Every &quot;wait until N things happen&quot; you've ever written by hand has had a shared counter and a resolve call and a check, and every one of them had a subtle bug the first time. This is the smallest correct expression of that pattern. Use it instead of the counter.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;runWithRetry&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="runwithretry"><code>runWithRetry</code></h1>
+<blockquote>
+<p>Run an async function, retry on failure with exponential backoff. Returns the function's value on success, <code>undefined</code> if every attempt failed. Logs each failed attempt with a label.</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> <span class="hljs-title function_">runWithRetry</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">fetchRemote</span>(), <span class="hljs-string">&quot;sync&quot;</span>)
+<span class="hljs-comment">// → the value, or undefined if all 3 attempts failed</span>
+</code></pre>
+<p>The point: wrap a flaky operation so a transient failure doesn't propagate. Retry, back off, give up quietly.</p>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { runWithRetry } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+<span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> <span class="hljs-title function_">runWithRetry</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">flakyFetch</span>(url), <span class="hljs-string">&quot;fetch&quot;</span>)
+<span class="hljs-keyword">if</span> (!data) {
+  <span class="hljs-comment">// all attempts failed</span>
+}
+</code></pre>
+<p>That's it. You're done. You now know how to use <code>runWithRetry</code>.</p>
+<p>Pass a thunk and a label. If it succeeds, you get the value. If it fails, it retries up to <code>maxAttempts</code> times with a delay that doubles each attempt. If all attempts fail, it logs and returns <code>undefined</code> — it does not throw.</p>
+<p>Defaults: 3 attempts, 1000ms base delay.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">await</span> <span class="hljs-title function_">runWithRetry</span>(fn, <span class="hljs-string">&quot;label&quot;</span>)                         <span class="hljs-comment">// 3 attempts, 1s, 2s backoff</span>
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">runWithRetry</span>(fn, <span class="hljs-string">&quot;label&quot;</span>, <span class="hljs-number">5</span>)                       <span class="hljs-comment">// 5 attempts, 1s, 2s, 4s, 8s</span>
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">runWithRetry</span>(fn, <span class="hljs-string">&quot;label&quot;</span>, <span class="hljs-number">3</span>, <span class="hljs-number">500</span>)                  <span class="hljs-comment">// 3 attempts, 500ms, 1s</span>
+</code></pre>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="signature">Signature</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">runWithRetry</span>(<span class="hljs-params">
+  fn: () =&gt; <span class="hljs-built_in">any</span>,
+  label: <span class="hljs-built_in">string</span>,
+  maxAttempts = <span class="hljs-number">3</span>,
+  baseDelay = <span class="hljs-number">1000</span>,
+</span>): <span class="hljs-title class_">Promise</span>&lt;A | <span class="hljs-literal">undefined</span>&gt;
+</code></pre>
+<ul>
+<li><code>fn</code> — a thunk. Called on each attempt. May be sync or async.</li>
+<li><code>label</code> — a string used in log messages. <code>[TimeMachine:${label}]</code>.</li>
+<li><code>maxAttempts</code> — total number of attempts, including the first. Default <code>3</code>.</li>
+<li><code>baseDelay</code> — the initial backoff delay in milliseconds. Doubles each retry. Default <code>1000</code>.</li>
+<li>Returns the value of <code>fn()</code> on success, <code>undefined</code> if all attempts fail.</li>
+</ul>
+<h4 id="how-it-works">How it works</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">let</span> attempt = <span class="hljs-number">0</span>
+<span class="hljs-keyword">let</span> delay = baseDelay
+<span class="hljs-keyword">while</span> (attempt &lt; maxAttempts) {
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> <span class="hljs-title function_">fn</span>()
+  } <span class="hljs-keyword">catch</span> (err) {
+    attempt++
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`[TimeMachine:<span class="hljs-subst">${label}</span>] attempt <span class="hljs-subst">${attempt}</span> failed`</span>, err)
+    <span class="hljs-keyword">if</span> (attempt &gt;= maxAttempts) { <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`[TimeMachine:<span class="hljs-subst">${label}</span>] all retries failed`</span>); <span class="hljs-keyword">return</span> }
+    <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> <span class="hljs-built_in">setTimeout</span>(res, delay))
+    delay *= <span class="hljs-number">2</span>
+  }
+}
+</code></pre>
+<ol>
+<li>Loop up to <code>maxAttempts</code> times.</li>
+<li>Try <code>fn()</code>. If it returns, return the value immediately — no further attempts.</li>
+<li>On throw or rejection, increment <code>attempt</code>, log the failure.</li>
+<li>If we've exhausted attempts, log once more and return <code>undefined</code>.</li>
+<li>Otherwise sleep for <code>delay</code> ms and double <code>delay</code> for next time.</li>
+</ol>
+<p>The backoff is <code>baseDelay * 2^(attempt - 1)</code>: 1s, 2s, 4s, 8s... starting from <code>baseDelay</code>. A <code>baseDelay</code> of <code>500</code> gives <code>500, 1000, 2000, ...</code>.</p>
+<h4 id="why-exponential-backoff">Why exponential backoff</h4>
+<p>Immediate retries hammer a failing service. If the service is down or overloaded, retrying at full speed makes it worse and burns your own quota. Doubling the delay gives the downstream time to recover, and spreads out retry pressure across clients (assuming the initial failures weren't synchronized).</p>
+<p>This is the standard pattern from TCP retransmission, and it's the right default for anything crossing a network or a process boundary.</p>
+<h4 id="return-semantics--success-failure-undefined">Return semantics — success, failure, <code>undefined</code></h4>
+<p>The function <strong>does not throw</strong>. On total failure, it returns <code>undefined</code>. The caller checks for the value:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> <span class="hljs-title function_">runWithRetry</span>(fn, <span class="hljs-string">&quot;sync&quot;</span>)
+<span class="hljs-keyword">if</span> (result === <span class="hljs-literal">undefined</span>) {
+  <span class="hljs-comment">// all attempts failed</span>
+}
+</code></pre>
+<p>This is a real design choice, and it has consequences:</p>
+<ul>
+<li><strong>Pro:</strong> retries are self-contained. The caller doesn't need a <code>try</code> block.</li>
+<li><strong>Con:</strong> <code>undefined</code> is ambiguous. If <code>fn()</code> legitimately returns <code>undefined</code>, the caller can't distinguish &quot;succeeded with <code>undefined</code>&quot; from &quot;all attempts failed.&quot; The log messages are the only signal.</li>
+</ul>
+<p>If you need to distinguish, either ensure <code>fn</code> never returns <code>undefined</code>, or wrap the call site to check the logs, or copy the function and re-throw on exhaustion.</p>
+<h4 id="logging">Logging</h4>
+<p>Three log lines, all <code>console.log</code>:</p>
+<ul>
+<li><strong>Per failure:</strong> <code>[TimeMachine:${label}] attempt N failed</code> followed by the error.</li>
+<li><strong>On exhaustion:</strong> <code>[TimeMachine:${label}] all retries failed</code>.</li>
+</ul>
+<p>The <code>TimeMachine</code> prefix is hardcoded. If you're vendoring, rename it or route it through your own logger. <code>console.log</code> is not structured; if you need to pipe these to a log aggregator, replace the calls.</p>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Flaky network calls</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">runWithRetry</span>(
+  <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">fetch</span>(url).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">r</span> =&gt;</span> r.<span class="hljs-title function_">json</span>()),
+  <span class="hljs-string">&quot;api.getUser&quot;</span>,
+  <span class="hljs-number">5</span>,
+  <span class="hljs-number">250</span>,
+)
+</code></pre>
+<p><strong>Idempotent writes</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">await</span> <span class="hljs-title function_">runWithRetry</span>(<span class="hljs-function">() =&gt;</span> store.<span class="hljs-title function_">put</span>(key, value), <span class="hljs-string">&quot;store.put&quot;</span>)
+</code></pre>
+<p><strong>Initialization that can race</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> conn = <span class="hljs-keyword">await</span> <span class="hljs-title function_">runWithRetry</span>(
+  <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">connectDb</span>(),
+  <span class="hljs-string">&quot;db.connect&quot;</span>,
+  <span class="hljs-number">10</span>,
+  <span class="hljs-number">100</span>,
+)
+</code></pre>
+<p><strong>Retry with an inner timeout</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">await</span> <span class="hljs-title function_">runWithRetry</span>(
+  <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">timedPromise</span>(<span class="hljs-title function_">fetch</span>(url), <span class="hljs-number">3000</span>),
+  <span class="hljs-string">&quot;api.withTimeout&quot;</span>,
+)
+</code></pre>
+<p>Each attempt gets its own 3-second bound; the retry loop bounds the total number of attempts.</p>
+<p><strong>Wrapping a non-idempotent operation deliberately</strong></p>
+<pre><code class="language-ts"><span class="hljs-comment">// POST that may have succeeded server-side but failed to reply</span>
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">runWithRetry</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">postWithIdempotencyKey</span>(key, body), <span class="hljs-string">&quot;post&quot;</span>)
+</code></pre>
+<p>Retries on non-idempotent operations are dangerous. Use an idempotency key on the request so the server can dedupe.</p>
+<h4 id="behavior">Behavior</h4>
+<ul>
+<li><strong>First attempt runs immediately.</strong> No delay before the first try.</li>
+<li><strong>Delay between attempts, not after the last.</strong> If the last attempt fails, no delay; the function returns <code>undefined</code> right away.</li>
+<li><strong>Backoff doubles per attempt.</strong> <code>baseDelay</code>, <code>2 * baseDelay</code>, <code>4 * baseDelay</code>, ...</li>
+<li><strong><code>fn</code> can be sync or async.</strong> The <code>await fn()</code> handles both.</li>
+<li><strong>Synchronous throws are caught.</strong> <code>try</code> wraps the call, so <code>throw</code> inside <code>fn</code> is treated the same as a rejection.</li>
+<li><strong>The loop is a <code>while</code> with an explicit <code>attempt</code> counter.</strong> No <code>for</code> loop, no <code>forEach</code>, no recursion. Easy to follow and to instrument.</li>
+</ul>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li><strong>Returns <code>undefined</code> on failure, never throws.</strong> If the caller doesn't check, a failure looks like a success with no value. If your code can't tell <code>undefined</code> from a legitimate return, this is a footgun.</li>
+<li><strong><code>fn</code> must be a thunk.</strong> Pass <code>() =&gt; doThing()</code>, not <code>doThing()</code>. If you pass a promise, the first <code>try</code> awaits it, and if it rejects, the retry calls <code>fn()</code> again — which returns the <em>same already-rejected promise</em>, and every retry sees the same rejection. Always pass a thunk.</li>
+<li><strong><code>console.log</code> is hardcoded.</strong> No log level, no structured logging, no way to silence. In production code, this is usually the first thing to replace.</li>
+<li><strong><code>[TimeMachine]</code> prefix is hardcoded.</strong> Rename if the subsystem isn't called that.</li>
+<li><strong>Backoff is unbounded.</strong> With <code>baseDelay = 1000</code> and <code>maxAttempts = 30</code>, the last delay is ~8.9 <em>days</em>. Choose <code>maxAttempts</code> with the growth rate in mind, or add a cap.</li>
+<li><strong>No jitter.</strong> Every caller retrying at the same time will retry at the same intervals. For a fleet of clients hitting a recovering service, this produces synchronized retry storms. Standard practice is to add random jitter: <code>delay * (0.5 + Math.random())</code>. This function doesn't.</li>
+<li><strong>No abort signal.</strong> Once started, it runs to completion (success or exhaustion). No way to cancel from outside.</li>
+<li><strong><code>maxAttempts &lt;= 0</code></strong> — the <code>while</code> loop never runs, <code>attempt</code> stays 0, and the function returns <code>undefined</code> without ever calling <code>fn</code>. Same for <code>maxAttempts = 0</code>. Only <code>maxAttempts &gt;= 1</code> actually attempts anything.</li>
+<li><strong><code>maxAttempts = 1</code></strong> means one attempt, no retry. Correct, but worth noting.</li>
+<li><strong><code>baseDelay = 0</code></strong> — the wait is a <code>setTimeout(..., 0)</code> on every retry. Effectively immediate, which defeats the purpose of backoff. If you want no delay, pass <code>0</code> knowingly.</li>
+<li><strong>The error is logged but not accumulated.</strong> If you need the final error (to inspect it, to rethrow a wrapped version, or to report it), this function doesn't give it to you. Only the logs.</li>
+<li><strong>The <code>any</code> return type.</strong> No generic <code>T</code>, so callers get <code>any</code> and lose type information. If you want the value typed, wrap it: <code>const x = (await runWithRetry(...)) as MyType</code>.</li>
+</ul>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not a circuit breaker. It retries; it doesn't stop retrying when the downstream is known-broken.</li>
+<li>Not a timeout. Each attempt is unbounded; use <code>timedPromise</code> inside <code>fn</code> if you need per-attempt bounds.</li>
+<li>Not a rate limiter. Between-attempt delays are backoff, not throttling.</li>
+<li>Not a task queue. It runs <code>fn</code> immediately, one attempt at a time, and finishes.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p>Flaky operations fail transiently, and transient failures shouldn't be the caller's problem. <code>runWithRetry</code> handles them: try, back off, try again, give up quietly with a log. The caller gets a value or <code>undefined</code>, never an exception. The cost is that the caller has to <em>check</em> the value, and the function never tells them <em>why</em> it failed — only the logs know.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>

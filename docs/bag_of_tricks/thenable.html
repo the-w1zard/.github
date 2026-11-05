@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;chain&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="chain"><code>chain</code></h1>
+<blockquote>
+<p>Two ways to start a chain. One is a function that lifts a value into a Promise. The other is a class that lifts a value into a chain of synchronous transforms. Same word, same idea, two pipelines.</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hljs-keyword">return</span> <span class="hljs-title function_">chain</span>(result)          <span class="hljs-comment">// Promise pipeline</span>
+<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Chain</span>(result)      <span class="hljs-comment">// sync pipeline</span>
+</code></pre>
+<p>Both are three lines. Both exist so you can say &quot;start a chain here&quot; and have the shape of the pipeline determined by which one you reach for.</p>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<p><strong>The function — async chain:</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { chain } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+<span class="hljs-keyword">return</span> <span class="hljs-title function_">chain</span>(result)
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x + <span class="hljs-number">1</span>)
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x * <span class="hljs-number">2</span>)
+  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-number">0</span>)
+</code></pre>
+<p><code>chain(value)</code> is just <code>Promise.resolve(value)</code>. It exists so the code reads as &quot;start an async chain here&quot; instead of &quot;wrap this in a promise.&quot;</p>
+<p><strong>The class — sync chain:</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Chain</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Chain</span>(result)
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x + <span class="hljs-number">1</span>)
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x * <span class="hljs-number">2</span>)
+</code></pre>
+<p><code>new Chain(value)</code> starts a synchronous pipeline. Each <code>.then</code> runs immediately, wraps the result in a new <code>Chain</code>, and returns it. No promises involved.</p>
+<p>That's it. You're done. Pick the function for async, the class for sync. The <code>.then</code> reads the same in both.</p>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="the-function">The function</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> chain&lt;T&gt;(<span class="hljs-attr">value</span>: T | <span class="hljs-title class_">Promise</span>&lt;T&gt;) {
+  <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(value)
+}
+</code></pre>
+<p><code>chain</code> is an alias for <code>Promise.resolve</code> with a name that reads as a pipeline opener. <code>chain(x)</code> accepts either a plain value or a promise and always returns a <code>Promise&lt;T&gt;</code>. From there, normal <code>.then</code> / <code>.catch</code> / <code>.finally</code> chaining applies.</p>
+<p>The <code>T | Promise&lt;T&gt;</code> signature means callers don't have to know which they have. A value gets wrapped; a promise passes through. Either way the return is a promise.</p>
+<h4 id="the-class">The class</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Chain</span>&lt;T&gt; {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> value: T</span>) {}
+
+  then&lt;<span class="hljs-title class_">TResult</span>&gt;(<span class="hljs-attr">resolve</span>: <span class="hljs-function">(<span class="hljs-params">value: T</span>) =&gt;</span> <span class="hljs-title class_">TResult</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Chain</span>(<span class="hljs-title function_">resolve</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">value</span>))
+  }
+}
+</code></pre>
+<ul>
+<li>Construct with a value.</li>
+<li><code>.then(fn)</code> calls <code>fn</code> on the current value, wraps the result in a new <code>Chain</code>, and returns it.</li>
+<li>Calling <code>.then</code> again chains the next transform.</li>
+<li>Every <code>.then</code> returns a <strong>new</strong> <code>Chain</code>. The receiver is unchanged.</li>
+</ul>
+<p>This is a synchronous pipeline. <code>.then</code> here is not <code>Promise.prototype.then</code> — it's a plain method that runs <code>fn</code> immediately, stores the result, and hands back a fresh wrapper.</p>
+<h4 id="the-relationship">The relationship</h4>
+<p>They're the same concept expressed twice, so that a call site can start a chain without committing to async or sync <em>up front</em> in a way that's awkward to change later:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// async — the return is a Promise</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">loadUser</span>(<span class="hljs-params">id: <span class="hljs-built_in">string</span></span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-title function_">chain</span>(<span class="hljs-title function_">fetchUser</span>(id))
+    .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">u</span> =&gt;</span> u.<span class="hljs-property">profile</span>)
+    .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">p</span> =&gt;</span> p.<span class="hljs-property">displayName</span>)
+}
+<span class="hljs-comment">// caller: await loadUser(&quot;abc&quot;)</span>
+
+<span class="hljs-comment">// sync — the return is a Chain</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">decorateName</span>(<span class="hljs-params">user: User</span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Chain</span>(user.<span class="hljs-property">name</span>)
+    .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n.<span class="hljs-title function_">trim</span>())
+    .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n.<span class="hljs-title function_">toUpperCase</span>())
+}
+<span class="hljs-comment">// caller: decorateName(user).value  (or however Chain is unwrapped)</span>
+</code></pre>
+<p>Both start with the word <code>chain</code>. The reader sees the same shape. The behavior differs only in <em>when</em> the transforms run.</p>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Async — one-liner to enter promise-land</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">return</span> <span class="hljs-title function_">chain</span>(maybePromiseOrValue)
+  .<span class="hljs-title function_">then</span>(normalize)
+  .<span class="hljs-title function_">then</span>(validate)
+</code></pre>
+<p><strong>Sync — compose pure transforms</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> result = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Chain</span>(input)
+  .<span class="hljs-title function_">then</span>(parse)
+  .<span class="hljs-title function_">then</span>(transform)
+  .<span class="hljs-title function_">then</span>(format)
+</code></pre>
+<p><strong>Returning from a function that might be either</strong></p>
+<pre><code class="language-ts"><span class="hljs-comment">// sync path</span>
+<span class="hljs-keyword">if</span> (cache.<span class="hljs-title function_">has</span>(key)) <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Chain</span>(cache.<span class="hljs-title function_">get</span>(key))
+
+<span class="hljs-comment">// async path</span>
+<span class="hljs-keyword">return</span> <span class="hljs-title function_">chain</span>(<span class="hljs-title function_">fetch</span>(key))
+</code></pre>
+<p>The caller treats the result the same way — it's chainable in both cases.</p>
+<h4 id="behavioral-notes">Behavioral notes</h4>
+<p><strong>Function:</strong></p>
+<ul>
+<li><code>chain(x)</code> → <code>Promise&lt;T&gt;</code>.</li>
+<li>Accepts <code>T</code> or <code>Promise&lt;T&gt;</code>. Non-promises are wrapped.</li>
+<li>Supports <code>.then</code>, <code>.catch</code>, <code>.finally</code> — standard Promise API.</li>
+<li>Rejections propagate as normal promise rejections.</li>
+</ul>
+<p><strong>Class:</strong></p>
+<ul>
+<li><code>new Chain(x)</code> → <code>Chain&lt;T&gt;</code>.</li>
+<li><code>.then(fn)</code> runs <code>fn</code> synchronously and returns a new <code>Chain&lt;U&gt;</code>.</li>
+<li>Thrown errors propagate as normal exceptions — no catch built in.</li>
+<li>No <code>.catch</code>, no <code>.finally</code>, no async support in the class as written. Just <code>.then</code>.</li>
+<li>Each <code>.then</code> is eager. Nothing is deferred.</li>
+</ul>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li><strong><code>Chain.then</code> is not the Promise <code>.then</code>.</strong> If you <code>await new Chain(x)</code>, you'll get the <code>Chain</code> instance, not the underlying value — because <code>Chain</code> is not a thenable (its <code>.then</code> has the wrong shape for the Promise machinery). Keep the two pipelines distinct in your head.</li>
+<li><strong><code>Chain.then</code> runs immediately.</strong> There's no deferral, no laziness. <code>new Chain(x).then(f).then(g)</code> is <code>g(f(x))</code> with extra allocation.</li>
+<li><strong>No <code>.value</code> accessor in the class as written.</strong> You need a way to unwrap — either add a getter or a <code>.done()</code> method, or the class is only useful as an intermediate value.</li>
+<li><strong><code>chain</code> will flatten thenables.</strong> <code>chain(somePromise)</code> returns that promise (via <code>Promise.resolve</code>), so it's an identity for promises and a wrapper for plain values. That's the standard <code>Promise.resolve</code> behavior.</li>
+<li><strong>The names collide.</strong> <code>chain</code> (lowercase, function) and <code>Chain</code> (uppercase, class) live in the same module. Call sites are unambiguous to the compiler, but the reader has to track which one they're looking at.</li>
+</ul>
+<h4 id="when-to-use-which">When to use which</h4>
+<ul>
+<li><strong><code>chain(x)</code></strong> — you want a Promise. The rest of the pipeline is <code>.then</code> / <code>.catch</code>. The result is awaitable.</li>
+<li><strong><code>new Chain(x)</code></strong> — you want a synchronous, eager transform pipeline with a chainable API. The result is a <code>Chain</code> wrapper you'll unwrap at the end.</li>
+</ul>
+<p>They're not interchangeable. They're the same verb for two different tenses.</p>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p>Starting a chain shouldn't require deciding whether it's async or sync before you know. <code>chain(x)</code> says &quot;make this a Promise.&quot; <code>new Chain(x)</code> says &quot;make this a value pipeline.&quot; Same word at the call site, two shapes underneath. The reader sees intent; the runtime sees whichever one you meant.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            
+            
+        </body>
+        </html>

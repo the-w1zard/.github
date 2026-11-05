@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Core Components</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h3 style="font-size:26px;">Message Queues, Buses & Disruptors: <span style="font-size:16px;" >Need a disruptor bruh?!</span></h3>
+<p align="right"><em>The most opinionated platform... ever.</em></p>
+<p align="right"><em>Trust me... I'm a fucking wizard... 🧙</em></p>
+<div style="display: grid; grid-template-columns: 4fr 2fr; gap: 20px;">
+<div>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p></p>
+<p>These are genuinly fun. THe above is more of a paraody than anything, but those numbers are real. The power of 2, I left the bench there fully intact so you can literally just run it by executing it with bun.</p>
+<p>I have... a lot more actually, now that I'm looking at the posted list. Ventrex and sith it looks as if I forgot to include them in this push, but I'll be sure to add them for the next one.</p>
+<p>The power of 2 is a lot more stable, but comes at a price of 50 mill less than sith. Where as sith goes after the silion itself.</p>
+<p>And ventrex, yes... 751 or whatever it was in the users usage path. Once I saw that number, I played with it for about 25 mins and how it to 950. I'm sure it has more room, but cmon... what the fuck are we doing at the numbers it is already acheiving anyways lol.</p>
+<p>Using either one of them, you can get an amazing visusl of how v8's engine works in real time.</p>
+<p>Without fail, it starts with a rather large blip in performance within the one sec mark, then dropping to run flat as its still within the normal runtime. At the 4 second mark, it passes off to the turbo which experiences another drop due to the handover. Then at 9-10 secs it hits the plateau. If you run the test for 27-ish secs, you will experience silicon thermal throttling and the numbers drop based on current room temps.</p>
+<p>I have seen that exact run across many disruptors, using a wide range of builds and techniques, but it is pretty interresting to watch how consistently it behalves as my disruptors literally ride on the back of its coat tails.</p>
+<p>I don't know how much harder, becasue I haven't yet tbh, I'll push the single core at these numbers. v8 achieves 2 billion, sooooo... we are still executing through v8, so hitting 2 is just not possible... how close can we actual get there... I don't know, and javascript is not known for its fucking massive performance metrics... since it rather sucks in that dept. BUT... all of my 750+ disruptors will see an upgrade and be pushed over to multi core.</p>
+<p>The only reason I haven't done it yet, is purely because of the cost in performance in doing so. One high performing disruptor, I wouldn't even bother... because thats just luck... But with the amount I have, as I seem to be collecting an arsenal of them, AND with how they actually push v8 as hard as they do... there is A LOT of performance left on the table to pay for the cost of going to multi core. Not to mention, its fucking front end... LOL... One thing that's curious... everyone else seems to be stuck at that 4 million mark... ** shrugs **</p>
+</div>
+<blockquote>
+<p>The file 'its_on.ts' has 20 or so disruptors already hooked up to a bench where you can dial the batch size, total batches capacity and more.</p>
+<p>There is two tests to choose from just by changing the boolean at RUNE_BARE_METAL_CPU_TEST, and then under fight you can change which disruptor the actual test runs for.</p>
+</blockquote>
+<hr>
+<p>A collection of high-performance execution primitives for event processing, message delivery, reactive state, shared-memory coordination, and streaming.</p>
+<p>The module brings together several Disruptor implementations, message queues, event emitters, stream relays, and Server-Sent Events infrastructure.</p>
+<hr>
+<h2 id="core-components">Core Components</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>THE_POWER_OF_TWO</code></td>
+<td>Power-of-two ring buffer using a structure-of-arrays layout</td>
+</tr>
+<tr>
+<td><code>IS_BETTER_THAN_ONE</code></td>
+<td>Lightweight send/subscribe interface over a Disruptor</td>
+</tr>
+<tr>
+<td><code>DisruptorSoA</code></td>
+<td>Direct structure-of-arrays event processing</td>
+</tr>
+<tr>
+<td><code>HADRON_DISRUPTOR</code></td>
+<td>Phase-locked, multi-producer, multi-lane shared-memory execution engine</td>
+</tr>
+<tr>
+<td><code>StreamRelay</code></td>
+<td>Subscriber relay with buffering and backpressure</td>
+</tr>
+<tr>
+<td><code>EMITTER</code></td>
+<td>Event emission and subscription</td>
+</tr>
+<tr>
+<td><code>EMITTER_CHAIN</code></td>
+<td>Composable event-processing pipeline</td>
+</tr>
+<tr>
+<td>SSE infrastructure</td>
+<td>Server-Sent Events, broadcasting, versioned state, and client connections</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="disruptor-implementations">Disruptor Implementations</h2>
+<h3 id="the_power_of_two"><code>THE_POWER_OF_TWO</code></h3>
+<p>A power-of-two ring buffer built around preallocated typed-array storage.</p>
+<p>The structure-of-arrays design keeps event data in separate numeric lanes rather than allocating an object for every event.</p>
+<p>Core storage:</p>
+<ul>
+<li><code>pids</code>: <code>Int32Array</code></li>
+<li><code>values</code>: <code>Float64Array</code></li>
+<li><code>flags</code>: <code>Uint8Array</code></li>
+</ul>
+<p>Supports publishing, batch handling, and reset operations.</p>
+<h3 id="power_of_two"><code>POWER_OF_TWO</code></h3>
+<p>A power-of-two ring buffer with preallocated typed-array storage and batch consumption.</p>
+<p>Designed for high-throughput event processing with predictable memory access and minimal allocation.</p>
+<h3 id="is_better_than_one"><code>IS_BETTER_THAN_ONE</code></h3>
+<p>A lightweight interface over <code>THE_POWER_OF_TWO</code>, exposing send and subscribe operations without requiring callers to interact directly with the underlying ring implementation.</p>
+<h3 id="disruptorsoa"><code>DisruptorSoA</code></h3>
+<p>A structure-of-arrays Disruptor using typed-array lanes for event data.</p>
+<p>The implementation separates identifiers, numeric values, and flags, allowing direct access to event data without constructing per-event objects.</p>
+<hr>
+<h2 id="hadron_disruptor">HADRON_DISRUPTOR</h2>
+<p><badge color="success">Multi-producer · Phase-locked · Shared-memory</badge></p>
+<p>A phase-locked, multi-producer, availability-buffered, batch-draining Disruptor.</p>
+<p><code>HADRON_DISRUPTOR</code> extends the conventional ring-buffer model with per-lane producer sequencing, LMAX-style availability tracking, consumer gating, homogeneous execution phases, and a tracer-particle epoch clock.</p>
+<p>It is designed as a shared-memory execution engine for database and reactive-state workloads.</p>
+<h3 id="architecture">Architecture</h3>
+<p>Each lane has its own:</p>
+<ul>
+<li>Preallocated <code>Int32Array</code> ring.</li>
+<li>Multi-producer claim cursor.</li>
+<li>Availability buffer.</li>
+<li>Consumer gating sequence.</li>
+<li>Batch handler.</li>
+<li>Publication and consumption statistics.</li>
+</ul>
+<p>The engine uses a configurable schedule to execute homogeneous operation phases. The tracer clock advances after a complete schedule revolution.</p>
+<p>When a lane reaches capacity, producers encounter structural backpressure. A ring slot cannot be reused until the consumer advances its gating sequence and releases that capacity.</p>
+<h3 id="fixed-width-record-layout">Fixed-width record layout</h3>
+<p>Each record occupies eight <code>Int32</code> values: 32 bytes.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Offset</th>
+<th>Field</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td><code>opcode</code></td>
+<td>Operation type</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td><code>pid</code></td>
+<td>Particle / process identifier</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td><code>slot</code></td>
+<td>Storage slot</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td><code>a</code></td>
+<td>Primary payload or arena offset</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td><code>b</code></td>
+<td>Secondary payload, length, or count</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td><code>c</code></td>
+<td>Tertiary payload or flags</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td><code>epoch</code></td>
+<td>Tracer clock at publication</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td><code>reserved</code></td>
+<td>Checksum or extension</td>
+</tr>
+</tbody>
+</table>
+<h3 id="operation-types">Operation types</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">OP</span> = {
+  <span class="hljs-attr">READ</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">WRITE</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">DELETE</span>: <span class="hljs-number">2</span>,
+  <span class="hljs-attr">EFFECT</span>: <span class="hljs-number">3</span>,
+  <span class="hljs-attr">COMPACT</span>: <span class="hljs-number">4</span>,
+} <span class="hljs-keyword">as</span> <span class="hljs-keyword">const</span>;
+</code></pre>
+<p>The schedule is configurable. The default schedule is:</p>
+<pre><code class="language-ts">[
+  <span class="hljs-variable constant_">OP</span>.<span class="hljs-property">READ</span>,
+  <span class="hljs-variable constant_">OP</span>.<span class="hljs-property">WRITE</span>,
+  <span class="hljs-variable constant_">OP</span>.<span class="hljs-property">READ</span>,
+  <span class="hljs-variable constant_">OP</span>.<span class="hljs-property">WRITE</span>,
+  <span class="hljs-variable constant_">OP</span>.<span class="hljs-property">DELETE</span>,
+  <span class="hljs-variable constant_">OP</span>.<span class="hljs-property">EFFECT</span>,
+  <span class="hljs-variable constant_">OP</span>.<span class="hljs-property">COMPACT</span>,
+]
+</code></pre>
+<p>This allows operation classes to execute in dedicated phases rather than interleaving unrelated work in one event loop.</p>
+<h3 id="multi-producer-publication">Multi-producer publication</h3>
+<p>Each producer claims a unique sequence through compare-and-swap.</p>
+<p>After writing its record, the producer marks that exact sequence as published in the lane's availability buffer.</p>
+<p>Consumers scan availability rather than relying on a single highest-published sequence.</p>
+<p>This handles out-of-order producer completion:</p>
+<pre><code class="language-txt">Producer A claims 10
+Producer B claims 11
+
+Producer B publishes 11
+Producer A publishes 10
+
+Availability:
+10 -&gt; published
+11 -&gt; published
+
+Consumer processes 10 and 11 in sequence.
+</code></pre>
+<p>A later producer can publish without incorrectly making an earlier, unfinished claim visible to the consumer.</p>
+<h3 id="batch-execution">Batch execution</h3>
+<p>Handlers receive a contiguous sequence range:</p>
+<pre><code class="language-ts">(
+  ring,
+  <span class="hljs-keyword">from</span>,
+  to,
+  epoch,
+  disruptor
+) =&gt; <span class="hljs-built_in">void</span>
+</code></pre>
+<p>This makes the batch boundary the unit of execution rather than invoking a callback for every record.</p>
+<p>Handlers can specialize their processing loops around a single operation type.</p>
+<h3 id="phase-locked-execution">Phase-locked execution</h3>
+<p>A phase drains one scheduled lane and advances the phase index.</p>
+<p>A full revolution executes every scheduled phase:</p>
+<pre><code class="language-ts">d.<span class="hljs-title function_">revolution</span>();
+</code></pre>
+<p>The tracer clock represents completed revolutions rather than individual event publications.</p>
+<p>This gives the database execution path an epoch boundary that can be shared across READ, WRITE, DELETE, EFFECT, and COMPACT passes.</p>
+<h3 id="soa-payload-arenas">SOA payload arenas</h3>
+<p>Records remain fixed-width. Larger or differently typed payloads live in separate preallocated arenas:</p>
+<ul>
+<li><code>Float64Array</code></li>
+<li><code>Uint32Array</code></li>
+<li><code>Int32Array</code></li>
+<li><code>Uint8Array</code></li>
+</ul>
+<p>Arena allocation returns numeric offsets that can be stored directly in event records.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> valueOffset = d.<span class="hljs-title function_">allocF64</span>(<span class="hljs-number">123.456</span>);
+
+d.<span class="hljs-title function_">emit</span>(
+  <span class="hljs-variable constant_">OP</span>.<span class="hljs-property">WRITE</span>,
+  pid,
+  slot,
+  valueOffset,
+  <span class="hljs-number">1</span>,
+  <span class="hljs-number">0</span>,
+);
+</code></pre>
+<p>A handler retrieves the value directly:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> offset = ring[base + <span class="hljs-variable constant_">F_A</span>];
+<span class="hljs-keyword">const</span> value = d.<span class="hljs-title function_">f64At</span>(offset);
+</code></pre>
+<h3 id="pid-and-dirty-tracking">PID and dirty tracking</h3>
+<p>The engine includes a direct PID-to-slot table:</p>
+<pre><code class="language-ts">d.<span class="hljs-title function_">bind</span>(pid, slot);
+
+<span class="hljs-keyword">const</span> slot = d.<span class="hljs-title function_">slot</span>(pid);
+d.<span class="hljs-title function_">unbind</span>(pid);
+</code></pre>
+<p>Dirty tracking uses a <code>Uint32Array</code> bitmask:</p>
+<pre><code class="language-ts">d.<span class="hljs-title function_">dirtyMark</span>(pid);
+
+<span class="hljs-keyword">if</span> (d.<span class="hljs-title function_">dirtyTake</span>(pid)) {
+  <span class="hljs-comment">// Process invalidation.</span>
+}
+</code></pre>
+<p>This provides constant-time mark, take, and peek operations without a <code>Map</code> or per-PID object allocation.</p>
+<h3 id="example-reactive-database-write-path">Example: reactive database write path</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> d = <span class="hljs-keyword">new</span> <span class="hljs-title function_">HADRON_DISRUPTOR</span>({
+  <span class="hljs-attr">capacity</span>: <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">18</span>,
+  <span class="hljs-attr">pidCapacity</span>: <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">20</span>,
+  <span class="hljs-attr">f64Capacity</span>: <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">20</span>,
+  <span class="hljs-attr">wait</span>: <span class="hljs-string">&quot;spin&quot;</span>,
+});
+
+<span class="hljs-keyword">const</span> values = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Float64Array</span>(<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">20</span>);
+<span class="hljs-keyword">const</span> versions = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint32Array</span>(<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">20</span>);
+
+d.<span class="hljs-title function_">on</span>(<span class="hljs-variable constant_">OP</span>.<span class="hljs-property">WRITE</span>, <span class="hljs-function">(<span class="hljs-params">ring, <span class="hljs-keyword">from</span>, to, epoch, d</span>) =&gt;</span> {
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> seq = <span class="hljs-keyword">from</span>; seq &lt; to; seq++) {
+    <span class="hljs-keyword">const</span> base = (seq &amp; d.<span class="hljs-property">mask</span>) * <span class="hljs-number">8</span>;
+
+    <span class="hljs-keyword">const</span> pid = ring[base + <span class="hljs-number">1</span>];
+    <span class="hljs-keyword">const</span> slot = ring[base + <span class="hljs-number">2</span>];
+    <span class="hljs-keyword">const</span> valueOffset = ring[base + <span class="hljs-number">3</span>];
+
+    values[slot] = d.<span class="hljs-title function_">f64At</span>(valueOffset);
+    versions[slot] = epoch;
+
+    d.<span class="hljs-title function_">dirtyMark</span>(pid);
+  }
+});
+
+d.<span class="hljs-title function_">on</span>(<span class="hljs-variable constant_">OP</span>.<span class="hljs-property">READ</span>, <span class="hljs-function">(<span class="hljs-params">ring, <span class="hljs-keyword">from</span>, to, epoch, d</span>) =&gt;</span> {
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> seq = <span class="hljs-keyword">from</span>; seq &lt; to; seq++) {
+    <span class="hljs-keyword">const</span> base = (seq &amp; d.<span class="hljs-property">mask</span>) * <span class="hljs-number">8</span>;
+    <span class="hljs-keyword">const</span> pid = ring[base + <span class="hljs-number">1</span>];
+    <span class="hljs-keyword">const</span> slot = d.<span class="hljs-title function_">slot</span>(pid);
+
+    <span class="hljs-keyword">if</span> (slot &gt;= <span class="hljs-number">0</span> &amp;&amp; d.<span class="hljs-title function_">dirtyTake</span>(pid)) {
+      <span class="hljs-comment">// Reactive invalidation / subscriber dispatch.</span>
+    }
+  }
+});
+
+d.<span class="hljs-title function_">on</span>(<span class="hljs-variable constant_">OP</span>.<span class="hljs-property">COMPACT</span>, <span class="hljs-function">(<span class="hljs-params">_ring, _from, _to, _epoch, d</span>) =&gt;</span> {
+  <span class="hljs-comment">// Bulk slot reclamation.</span>
+});
+
+<span class="hljs-keyword">const</span> pid = <span class="hljs-number">77</span>;
+<span class="hljs-keyword">const</span> slot = <span class="hljs-number">1234</span>;
+
+d.<span class="hljs-title function_">bind</span>(pid, slot);
+
+<span class="hljs-keyword">const</span> valueAt = d.<span class="hljs-title function_">allocF64</span>(<span class="hljs-number">42.5</span>);
+
+d.<span class="hljs-title function_">emit</span>(<span class="hljs-variable constant_">OP</span>.<span class="hljs-property">WRITE</span>, pid, slot, valueAt);
+
+d.<span class="hljs-title function_">revolution</span>();
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(d.<span class="hljs-title function_">tick</span>());       <span class="hljs-comment">// 1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(values[slot]);   <span class="hljs-comment">// 42.5</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(versions[slot]); <span class="hljs-comment">// 1</span>
+</code></pre>
+<h3 id="control-and-observability">Control and observability</h3>
+<p>The engine exposes:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>on(op, handler)</code></td>
+<td>Register an operation handler</td>
+</tr>
+<tr>
+<td><code>claim(lane)</code></td>
+<td>Claim a producer sequence</td>
+</tr>
+<tr>
+<td><code>publish(lane, seq)</code></td>
+<td>Publish a claimed sequence</td>
+</tr>
+<tr>
+<td><code>emit(...)</code></td>
+<td>Write and publish an event</td>
+</tr>
+<tr>
+<td><code>drainPhase(limit)</code></td>
+<td>Drain one scheduled phase</td>
+</tr>
+<tr>
+<td><code>revolution(limit)</code></td>
+<td>Execute one full schedule</td>
+</tr>
+<tr>
+<td><code>drainAll(limit)</code></td>
+<td>Drain until no additional records are consumed</td>
+</tr>
+<tr>
+<td><code>tick()</code></td>
+<td>Read the tracer epoch</td>
+</tr>
+<tr>
+<td><code>currentPhase()</code></td>
+<td>Read the scheduled operation</td>
+</tr>
+<tr>
+<td><code>start()</code> / <code>stop()</code></td>
+<td>Update running state</td>
+</tr>
+<tr>
+<td><code>isRunning()</code></td>
+<td>Read running state</td>
+</tr>
+<tr>
+<td><code>stats(lane)</code></td>
+<td>Read lane statistics</td>
+</tr>
+<tr>
+<td><code>pending(lane)</code></td>
+<td>Read pending publication count</td>
+</tr>
+</tbody>
+</table>
+<p><code>LANE_STATS</code> reports claimed, published, consumed, batch count, maximum batch size, and full-stall count.</p>
+<h3 id="design-properties">Design properties</h3>
+<ul>
+<li>Preallocated, fixed-width event records.</li>
+<li>Per-lane multi-producer sequencing.</li>
+<li>Availability-buffer publication.</li>
+<li>Consumer gating and structural backpressure.</li>
+<li>Batch handlers instead of per-event callbacks.</li>
+<li>Homogeneous database execution phases.</li>
+<li>Tracer-particle epoch clock.</li>
+<li>Direct PID-to-slot lookup.</li>
+<li>O(1) dirty bitmask operations.</li>
+<li>Separate typed-array payload arenas.</li>
+<li>Shared-memory-compatible storage.</li>
+</ul>
+<p>The intended execution path is specialized around numeric kernels: READ for scanning and invalidation, WRITE for bulk SOA updates, DELETE for slot reclamation, EFFECT for post-mutation work, and COMPACT for scheduled compaction.</p>
+<hr>
+<h2 id="streamrelay">StreamRelay</h2>
+<p><code>StreamRelay&lt;T&gt;</code> provides a local subscriber relay with buffering and backpressure controls.</p>
+<p>Features:</p>
+<ul>
+<li>Multiple subscribers.</li>
+<li>Buffered delivery.</li>
+<li>Pause and resume.</li>
+<li>Reentrancy protection.</li>
+<li>Upstream subscription integration.</li>
+<li>Configurable backpressure strategies.</li>
+</ul>
+<p>Supported strategies:</p>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pause</code></td>
+<td>Pause upstream delivery</td>
+</tr>
+<tr>
+<td><code>drop</code></td>
+<td>Drop events when the buffer cannot accept more</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td>Surface a backpressure error</td>
+</tr>
+</tbody>
+</table>
+<p>The relay separates upstream event production from downstream subscriber delivery.</p>
+<hr>
+<h2 id="event-infrastructure">Event Infrastructure</h2>
+<h3 id="emitter"><code>EMITTER</code></h3>
+<p>Event emission and subscription infrastructure.</p>
+<h3 id="emitter_chain"><code>EMITTER_CHAIN</code></h3>
+<p>Composable event-processing functionality built around chained event operations.</p>
+<hr>
+<h2 id="server-sent-events">Server-Sent Events</h2>
+<p>The SSE infrastructure provides server-side event channels, broadcasting, versioned state, and client-side EventSource management.</p>
+<h3 id="sse-core">SSE Core</h3>
+<p>Includes:</p>
+<ul>
+<li>SSE types and configuration.</li>
+<li><code>createSSEChannel</code></li>
+<li><code>createWebSSEChannel</code></li>
+<li>Broadcaster.</li>
+<li>Versioned store.</li>
+<li>Store subscriptions.</li>
+<li>State operations.</li>
+</ul>
+<p>Store operations include:</p>
+<pre><code class="language-ts"><span class="hljs-title function_">sseSet</span>(...)
+<span class="hljs-title function_">sseGet</span>(...)
+<span class="hljs-title function_">sseDelete</span>(...)
+<span class="hljs-title function_">sseMerge</span>(...)
+<span class="hljs-title function_">sseReset</span>(...)
+<span class="hljs-title function_">sseGetAll</span>(...)
+<span class="hljs-title function_">sseSubscribeStore</span>(...)
+</code></pre>
+<h3 id="sse-client">SSE Client</h3>
+<p>The client manages EventSource connections by URL and tracks channel subscriptions.</p>
+<p>Includes:</p>
+<ul>
+<li>EventSource connection management.</li>
+<li>Multiple channels per URL.</li>
+<li>Reconnection and retry handling.</li>
+<li>Ymir mapping and conflict handling.</li>
+</ul>
+<hr>
+<h2 id="stream-utilities">Stream Utilities</h2>
+<p>The module includes utilities for bridging Web Streams, Node streams, async iterables, and strings.</p>
+<table>
+<thead>
+<tr>
+<th>Utility</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>writeReadableStreamToWritable</code></td>
+<td>Pipe a readable stream into a writable</td>
+</tr>
+<tr>
+<td><code>writeAsyncIterableToWritable</code></td>
+<td>Write an async iterable into a writable</td>
+</tr>
+<tr>
+<td><code>readableStreamToString</code></td>
+<td>Collect a readable stream as a string</td>
+</tr>
+<tr>
+<td><code>createReadableStreamFromReadable</code></td>
+<td>Adapt a readable into a Web ReadableStream</td>
+</tr>
+<tr>
+<td><code>StreamPump</code></td>
+<td>Stream pumping and transfer utility</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="performance">Performance</h2>
+<p>The module includes a benchmark harness using <code>BENCH</code> and <code>BARE_METAL_CPU</code>.</p>
+<p>Recorded benchmark:</p>
+<table>
+<thead>
+<tr>
+<th>Benchmark</th>
+<th style="text-align:right">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DisruptorSoA.editDirect</code> peak</td>
+<td style="text-align:right">848.46M ops/sec</td>
+</tr>
+<tr>
+<td><code>DisruptorSoA.editDirect</code> average</td>
+<td style="text-align:right">725.71M ops/sec</td>
+</tr>
+</tbody>
+</table>
+<p>These figures are recorded benchmark results, not universal throughput guarantees. Actual performance depends on workload, runtime, hardware, and execution conditions.</p>
+<hr>
+<h2 id="design-philosophy">Design Philosophy</h2>
+<p>The module is built around a few consistent principles:</p>
+<ol>
+<li><strong>Preallocation</strong> — keep recurring work away from allocation-heavy paths.</li>
+<li><strong>Typed storage</strong> — use numeric arrays and fixed layouts for predictable access.</li>
+<li><strong>Batching</strong> — process ranges of events instead of paying per-event dispatch overhead.</li>
+<li><strong>Backpressure</strong> — make capacity and consumer progress part of the execution model.</li>
+<li><strong>Separation of concerns</strong> — keep operation classes, streams, events, and transport infrastructure distinct.</li>
+<li><strong>Composable infrastructure</strong> — provide primitives that can be combined into larger execution systems.</li>
+</ol>
+<p>The result is a collection of low-level building blocks for high-throughput event processing, reactive state, database execution, and streaming.</p>
+</div>
+<div style="font-size: 9px;  text-align: right">
+<h2 id="-pew-pew---toc-"><span style="font-size: 10.5px;"> ⇦✦──⇦✦──✦──✦──←'pew pew'<span> <span style="font-size: 24px;"> 🧙 [TOC] <span></h2>
+<div style="font-size: 14px;  text-align: right">
+<ul style="list-style: none; padding-left: 0;">
+  <li><a href="#array">ARRAY</a></li>
+  <li><a href="#iterator">ITERATOR</a></li>
+  <li><a href="#map">MAP</a></li>
+  <li><a href="#number">NUMBER</a></li>
+  <li><a href="#object">OBJECT</a></li>
+  <li><a href="#promise">PROMISE</a></li>
+  <li><a href="#set">SET</a></li>
+  <li><a href="#string">STRING</a></li>
+  <li><a href="#unit_8_array">UNIT 8 ARRAY</a></li>
+  <li><a href="#weakmap">WEAKMAP</a></li>
+  <li><a href="#weakset">WEAKSET</a></li>
+</ul>
+</div>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[PLATFORM]</span> </strong></summary>
+<ul style="list-style: none; padding-left: 0;">
+  <li><a href="../platform/TOC.html#TOC">TOC</a></li>
+  <li><a href="../platform/ATOM.html#ATOM">ATOM</a></li>
+  <li><a href="../platform/CELLS.html#CELLS">CELLS</a></li>
+  <li><a href="../platform/CONVERGENCE.html#CONVERGENCE">CONVERGENCE</a></li>
+  <li><a href="../platform/FORMS.html#FORMS">FORMS</a></li>
+  <li><a href="../platform/GLOBAL_QUAD_KEY_CONTEXT.html#GLOBAL_QUAD_KEY_CONTEXT">GLOBAL_QUAD_KEY_CONTEXT</a></li>
+  <li><a href="../platform/PERFORMANCE_DIVISION.html#PERFORMANCE_DIVISION">PERFORMANCE_DIVISION</a></li>
+  <li><a href="../platform/REACTIVITY.html#REACTIVITY">REACTIVITY</a></li>
+  <li><a href="../platform/ROUTE_COMPONENTS.html#ROUTE_COMPONENTS">ROUTE_COMPONENTS</a></li>
+  <li><a href="../platform/SAURON.html#SAURON">SAURON</a></li>
+  <li><a href="../platform/SIGNALS.html#SIGNALS">SIGNALS</a></li>
+  <li><a href="../platform/STAFF.html#STAFF">STAFF</a></li>
+  <li><a href="../platform/THE_WARLOCK_MODE.html#THE_WARLOCK_MODE">THE_WARLOCK_MODE</a></li>
+  <li><a href="../platform/THE_WIZARD_MODE.html#THE_WIZARD_MODE">THE_WIZARD_MODE</a></li>
+  <li><a href="../platform/WARLOCKS_NECROMANCY_OBSERVATORY.html#WARLOCKS_NECROMANCY_OBSERVATORY">WARLOCKS_NECROMANCY_OBSERVATORY</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[MESSAGE QUEUES / BUSES]</span> </strong></summary>
+<ul style="list-style: none; padding-left: 0;">
+  <li><a href="../platform/TOC.html#TOC">DISRUPTOR</a></li>
+  <li><a href="../platform/ATOM.html#ATOM">STAFF</a></li>
+  <li><a href="../platform/CELLS.html#CELLS">CHAINS</a></li>
+  <li><a href="../platform/CONVERGENCE.html#CONVERGENCE">XXSR TRICKY</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[PLATFORM PRIMTIVES]</span> </strong></summary>
+<ul style="list-style: none; padding-left: 0;">
+  <li><a href="../primitives/API_WARDS.html#API_WARDS">API_WARDS</a></li>
+  <li><a href="../primitives/APPARATIONS_DQ.html#APPARATIONS_DQ">APPARATIONS_DQ</a></li>
+  <li><a href="../primitives/ARCHETYPES.html#ARCHETYPES">ARCHETYPES</a></li>
+  <li><a href="../primitives/BATCH.html#BATCH">BATCH</a></li>
+  <li><a href="../primitives/BINARY.html#BINARY">BINARY</a></li>
+  <li><a href="../primitives/CHAINS.html#CHAINS">CHAINS</a></li>
+  <li><a href="../primitives/CHRONO_SHIFT.html#CHRONO_SHIFT">CHRONO_SHIFT</a></li>
+  <li><a href="../primitives/CHRONOMANCER.html#CHRONOMANCER">CHRONOMANCER</a></li>
+  <li><a href="../primitives/CONJURE_LIBRARIES.html#CONJURE_LIBRARIES">CONJURE_LIBRARIES</a></li>
+  <li><a href="../primitives/CONJURE_MIMIC.html#CONJURE_MIMIC">CONJURE_MIMIC</a></li>
+  <li><a href="../primitives/CRON.html#CRON">CRON</a></li>
+  <li><a href="../primitives/DARK_PORTALS.html#DARK_PORTALS">DARK_PORTALS</a></li>
+  <li><a href="../primitives/DUPLEX_STREAMS.html#DUPLEX_STREAMS">DUPLEX_STREAMS</a></li>
+  <li><a href="../primitives/EMITTER.html#EMITTER">EMITTER</a></li>
+  <li><a href="../primitives/EVOCATIONS.html#EVOCATIONS">EVOCATIONS</a></li>
+  <li><a href="../primitives/EXECUTE_MASTER.html#EXECUTE_MASTER">EXECUTE_MASTER</a></li>
+  <li><a href="../primitives/GATE_MASTER.html#GATE_MASTER">GATE_MASTER</a></li>
+  <li><a href="../primitives/GATES.html#GATES">GATES</a></li>
+  <li><a href="../primitives/GLYPH_BINDER.html#GLYPH_BINDER">GLYPH_BINDER</a></li>
+  <li><a href="../primitives/GOLEMS.html#GOLEMS">GOLEMS</a></li>
+  <li><a href="../primitives/GRIMOIRE.html#GRIMOIRE">GRIMOIRE</a></li>
+  <li><a href="../primitives/ILLUSIONIST.html#ILLUSIONIST">ILLUSIONIST</a></li>
+  <li><a href="../primitives/INCANTATIONS.html#INCANTATIONS">INCANTATIONS</a></li>
+  <li><a href="../primitives/JOBS.html#JOBS">JOBS</a></li>
+  <li><a href="../primitives/MACHINES_MACHINE.html#MACHINES_MACHINE">MACHINES_MACHINE</a></li>
+  <li><a href="../primitives/MICROTASKS.html#MICROTASKS">MICROTASKS</a></li>
+  <li><a href="../primitives/MSGS.html#MSGS">MSGS</a></li>
+  <li><a href="../primitives/NO_NO_SQUARE_DQ.html#NO_NO_SQUARE_DQ">NO_NO_SQUARE_DQ</a></li>
+  <li><a href="../primitives/PERFORMANCE_TIMER.html#PERFORMANCE_TIMER">PERFORMANCE_TIMER</a></li>
+  <li><a href="../primitives/PLINKO_MASTER.html#PLINKO_MASTER">PLINKO_MASTER</a></li>
+  <li><a href="../primitives/PRIORITY.html#PRIORITY">PRIORITY</a></li>
+  <li><a href="../primitives/RDB.html#RDB">RDB</a></li>
+  <li><a href="../primitives/RENDERIVITY_DQ.html#RENDERIVITY_DQ">RENDERIVITY_DQ</a></li>
+  <li><a href="../primitives/RETRY_MASTER.html#RETRY_MASTER">RETRY_MASTER</a></li>
+  <li><a href="../primitives/RUNE_HTTP.html#RUNE_HTTP">RUNE_HTTP</a></li>
+  <li><a href="../primitives/S_CLASS.html#S_CLASS">S_CLASS</a></li>
+  <li><a href="../primitives/SCHEDULER.html#SCHEDULER">SCHEDULER</a></li>
+  <li><a href="../primitives/SENTINEL.html#SENTINEL">SENTINEL</a></li>
+  <li><a href="../primitives/SESSION_SIGIL.html#SESSION_SIGIL">SESSION_SIGIL</a></li>
+  <li><a href="../primitives/SPEELBOOK.html#SPEELBOOK">SPEELBOOK</a></li>
+  <li><a href="../primitives/TIERED_QUEUE.html#TIERED_QUEUE">TIERED_QUEUE</a></li>
+  <li><a href="../primitives/TIME_MACHINE.html#TIME_MACHINE">TIME_MACHINE</a></li>
+  <li><a href="../primitives/TOME_OF_SECRETS.html#TOME_OF_SECRETS">TOME_OF_SECRETS</a></li>
+  <li><a href="../primitives/TRANSMOGRIFY.html#TRANSMOGRIFY">TRANSMOGRIFY</a></li>
+  <li><a href="../primitives/TYPES_MACHINE.html#TYPES_MACHINE">TYPES_MACHINE</a></li>
+  <li><a href="../primitives/TYR.html#TYR">TYR</a></li>
+  <li><a href="../primitives/VAULTS.html#VAULTS">VAULTS</a></li>
+  <li><a href="../primitives/VENOM.html#VENOM">VENOM</a></li>
+  <li><a href="../primitives/WARDS.html#WARDS">WARDS</a></li>
+  <li><a href="../primitives/WIZARD_KEEP.html#WIZARD_KEEP">WIZARD_KEEP</a></li>
+  <li><a href="../primitives/WORKERS.html#WORKERS">WORKERS</a></li>
+  <li><a href="../primitives/WORKFLOW.html#WORKFLOW">WORKFLOW</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[SOLUTIONS]</span> </strong></summary>
+<ul style="list-style: none; padding-left: 0;">
+  <li><a href="../solutions/BATCH.html#BATCH">BATCH</a></li>
+  <li><a href="../solutions/CELLS.html#CELLS">CELLS</a></li>
+  <li><a href="../solutions/CHEERIO.html#CHEERIO">CHEERIO</a></li>
+  <li><a href="../solutions/CIRCUIT_BREAKER.html#CIRCUIT_BREAKER">CIRCUIT_BREAKER</a></li>
+  <li><a href="../solutions/COMPRESSION.html#COMPRESSION">COMPRESSION</a></li>
+  <li><a href="../solutions/CONCURRENT.html#CONCURRENT">CONCURRENT</a></li>
+  <li><a href="../solutions/CQRS.html#CQRS">CQRS</a></li>
+  <li><a href="../solutions/DEBOUNCE.html#DEBOUNCE">DEBOUNCE</a></li>
+  <li><a href="../solutions/DEFER.html#DEFER">DEFER</a></li>
+  <li><a href="../solutions/DEV_TOOLS.html#DEV_TOOLS">DEV_TOOLS</a></li>
+  <li><a href="../solutions/DIFFPATCH.html#DIFFPATCH">DIFFPATCH</a></li>
+  <li><a href="../solutions/DISTRIBUTED_EXE.html#DISTRIBUTED_EXE">DISTRIBUTED_EXE</a></li>
+  <li><a href="../solutions/DISTRIBUTED_LOGIC_GATES.html#DISTRIBUTED_LOGIC_GATES">DISTRIBUTED_LOGIC_GATES</a></li>
+  <li><a href="../solutions/DISTRIBUTED_PORTAL.html#DISTRIBUTED_PORTAL">DISTRIBUTED_PORTAL</a></li>
+  <li><a href="../solutions/DISTRIBUTED_REACTIVE_STATE.html#DISTRIBUTED_REACTIVE_STATE">DISTRIBUTED_REACTIVE_STATE</a></li>
+  <li><a href="../solutions/DRS.html#DRS">DRS</a></li>
+  <li><a href="../solutions/EPHEMERAL_STATE.html#EPHEMERAL_STATE">EPHEMERAL_STATE</a></li>
+  <li><a href="../solutions/FULL_TEXT_SEARCH.html#FULL_TEXT_SEARCH">FULL_TEXT_SEARCH</a></li>
+  <li><a href="../solutions/HTTP_CLIENT.html#HTTP_CLIENT">HTTP_CLIENT</a></li>
+  <li><a href="../solutions/LOGIC_GATES.html#LOGIC_GATES">LOGIC_GATES</a></li>
+  <li><a href="../solutions/LONGPOLL.html#LONGPOLL">LONGPOLL</a></li>
+  <li><a href="../solutions/LWW.html#LWW">LWW</a></li>
+  <li><a href="../solutions/MV.html#MV">MV</a></li>
+  <li><a href="../solutions/OPTIMISTIC.html#OPTIMISTIC">OPTIMISTIC</a></li>
+  <li><a href="../solutions/OR.html#OR">OR</a></li>
+  <li><a href="../solutions/PERFORMANCE_TIMER.html#PERFORMANCE_TIMER">PERFORMANCE_TIMER</a></li>
+  <li><a href="../solutions/PN.html#PN">PN</a></li>
+  <li><a href="../solutions/QUEUE_TIERED.html#QUEUE_TIERED">QUEUE_TIERED</a></li>
+  <li><a href="../solutions/RAFT.html#RAFT">RAFT</a></li>
+  <li><a href="../solutions/RATE_LIMIT.html#RATE_LIMIT">RATE_LIMIT</a></li>
+  <li><a href="../solutions/REACTIVE_CHAINS.html#REACTIVE_CHAINS">REACTIVE_CHAINS</a></li>
+  <li><a href="../solutions/REVERSE_HEART_BEAT_MGR.html#REVERSE_HEART_BEAT_MGR">REVERSE_HEART_BEAT_MGR</a></li>
+  <li><a href="../solutions/RIFTS.html#RIFTS">RIFTS</a></li>
+  <li><a href="../solutions/RIFT_MAELSTROM.html#RIFT_MAELSTROM">RIFT_MAELSTROM</a></li>
+  <li><a href="../solutions/SEMAPHORE.html#SEMAPHORE">SEMAPHORE</a></li>
+  <li><a href="../solutions/SEND_SUB.html#SEND_SUB">SEND_SUB</a></li>
+  <li><a href="../solutions/SIGNALS.html#SIGNALS">SIGNALS</a></li>
+  <li><a href="../solutions/SPREADSHEET.html#SPREADSHEET">SPREADSHEET</a></li>
+  <li><a href="../solutions/SSE.html#SSE">SSE</a></li>
+  <li><a href="../solutions/STAFF.html#STAFF">STAFF</a></li>
+  <li><a href="../solutions/STREAMS.html#STREAMS">STREAMS</a></li>
+  <li><a href="../solutions/SWR.html#SWR">SWR</a></li>
+  <li><a href="../solutions/TEMPORAL_SHIFT.html#TEMPORAL_SHIFT">TEMPORAL_SHIFT</a></li>
+  <li><a href="../solutions/THROTTLE.html#THROTTLE">THROTTLE</a></li>
+  <li><a href="../solutions/WIRE_TAPS.html#WIRE_TAPS">WIRE_TAPS</a></li>
+  <li><a href="../solutions/WORKSPACE_GLOBAL.html#WORKSPACE_GLOBAL">WORKSPACE_GLOBAL</a></li>
+  <li><a href="../solutions/WS.html#WS">WS</a></li>
+  <li><a href="../solutions/XXSR.html#XXSR">XXSR</a></li>
+  <li><a href="../solutions/YATA.html#YATA">YATA</a></li>
+  <li><a href="../solutions/YIMIR.html#YIMIR">YIMIR</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[DATABASES]</span> </strong></summary>
+<ul style="list-style: none; padding-left: 0;">
+  <li><a href="../databases/BDB.html#BDB">BDB</a></li>
+  <li><a href="../databases/BINARY.html#BINARY">BINARY</a></li>
+  <li><a href="../databases/COOKIE.html#COOKIE">COOKIE</a></li>
+  <li><a href="../databases/GDB.html#GDB">GDB</a></li>
+  <li><a href="../databases/GT.html#GT">GT</a></li>
+  <li><a href="../databases/HADRON_COLLIDER.html#HADRON_COLLIDER">HADRON_COLLIDER</a></li>
+  <li><a href="../databases/IDB_HADRON_COLLIDER.html#IDB_HADRON_COLLIDER">IDB_HADRON_COLLIDER</a></li>
+  <li><a href="../databases/IDB_HC_SINK.html#IDB_HC_SINK">IDB_HC_SINK</a></li>
+  <li><a href="../databases/IDB_KVDB.html#IDB_KVDB">IDB_KVDB</a></li>
+  <li><a href="../databases/IDB_RDB.html#IDB_RDB">IDB_RDB</a></li>
+  <li><a href="../databases/KVDB.html#KVDB">KVDB</a></li>
+  <li><a href="../databases/LS.html#LS">LS</a></li>
+  <li><a href="../databases/MEMORY.html#MEMORY">MEMORY</a></li>
+  <li><a href="../databases/RDB.html#RDB">RDB</a></li>
+  <li><a href="../databases/REGISTRIES.html#REGISTRIES">REGISTRIES</a></li>
+  <li><a href="../databases/SAURON.html#SAURON">SAURON</a></li>
+  <li><a href="../databases/SECURE_COOKIE.html#SECURE_COOKIE">SECURE_COOKIE</a></li>
+  <li><a href="../databases/SS.html#SS">SS</a></li>
+  <li><a href="../databases/TDB.html#TDB">TDB</a></li>
+  <li><a href="../databases/VDB.html#VDB">VDB</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[BAG OF TRICKS]</span> </strong></summary>
+<ul style="list-style: none; padding-left: 0;">
+  <li><a href="../bag_of_tricks/BARRIER.html#BARRIER">BARRIER</a></li>
+  <li><a href="../bag_of_tricks/CALL_IF.html#CALL_IF">CALL_IF</a></li>
+  <li><a href="../bag_of_tricks/CHAIN_RECHAIN.html#CHAIN_RECHAIN">CHAIN_RECHAIN</a></li>
+  <li><a href="../bag_of_tricks/chain.html#chain">chain</a></li>
+  <li><a href="../bag_of_tricks/clamp.html#clamp">clamp</a></li>
+  <li><a href="../bag_of_tricks/deferred.html#deferred">deferred</a></li>
+  <li><a href="../bag_of_tricks/evaluator.html#evaluator">evaluator</a></li>
+  <li><a href="../bag_of_tricks/finally.html#finally">finally</a></li>
+  <li><a href="../bag_of_tricks/gate.html#gate">gate</a></li>
+  <li><a href="../bag_of_tricks/ignore_arg.html#ignore_arg">ignore_arg</a></li>
+  <li><a href="../bag_of_tricks/invoke.html#invoke">invoke</a></li>
+  <li><a href="../bag_of_tricks/is_defined.html#is_defined">is_defined</a></li>
+  <li><a href="../bag_of_tricks/is_not_defined.html#is_not_defined">is_not_defined</a></li>
+  <li><a href="../bag_of_tricks/LAZY.html#LAZY">LAZY</a></li>
+  <li><a href="../bag_of_tricks/MAYBE_PROMISE.html#MAYBE_PROMISE">MAYBE_PROMISE</a></li>
+  <li><a href="../bag_of_tricks/maybe.html#maybe">maybe</a></li>
+  <li><a href="../bag_of_tricks/mcr_combo.html#mcr_combo">mcr_combo</a></li>
+  <li><a href="../bag_of_tricks/ONCE.html#ONCE">ONCE</a></li>
+  <li><a href="../bag_of_tricks/or_default.html#or_default">or_default</a></li>
+  <li><a href="../bag_of_tricks/patch_state.html#patch_state">patch_state</a></li>
+  <li><a href="../bag_of_tricks/retry_with_backoff.html#retry_with_backoff">retry_with_backoff</a></li>
+  <li><a href="../bag_of_tricks/run_with_retry.html#run_with_retry">run_with_retry</a></li>
+  <li><a href="../bag_of_tricks/SERIAL_EXECUTOR.html#SERIAL_EXECUTOR">SERIAL_EXECUTOR</a></li>
+  <li><a href="../bag_of_tricks/set_keys.html#set_keys">set_keys</a></li>
+  <li><a href="../bag_of_tricks/set_prev.html#set_prev">set_prev</a></li>
+  <li><a href="../bag_of_tricks/sleep.html#sleep">sleep</a></li>
+  <li><a href="../bag_of_tricks/tap.html#tap">tap</a></li>
+  <li><a href="../bag_of_tricks/thenable.html#thenable">thenable</a></li>
+  <li><a href="../bag_of_tricks/TIMED_PROMISE.html#TIMED_PROMISE">TIMED_PROMISE</a></li>
+  <li><a href="../bag_of_tricks/to_promise.html#to_promise">to_promise</a></li>
+  <li><a href="../bag_of_tricks/try_catch.html#try_catch">try_catch</a></li>
+  <li><a href="../bag_of_tricks/unreachable.html#unreachable">unreachable</a></li>
+  <li><a href="../bag_of_tricks/WAIT_AND_PROMISE.html#WAIT_AND_PROMISE">WAIT_AND_PROMISE</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[TODO & IDEAS]</span> </strong></summary>
+<ul style="list-style: none; padding-left: 0;">
+  <li><a href="TO_DO_AND_IDEAS.html#todo--ideas">TODO &amp; IDEAS</a></li>
+  <li><a href="TO_DO_AND_IDEAS.html#the_wizard">[THE_WIZARD]</a></li>
+  <li><a href="TO_DO_AND_IDEAS.html#primitives">[PRIMITIVES]</a></li>
+  <li><a href="TO_DO_AND_IDEAS.html#next_level_ideas">[NEXT_LEVEL_IDEAS]</a></li>
+  <li><a href="TO_DO_AND_IDEAS.html#kvdb">KVDB</a></li>
+  <li><a href="TO_DO_AND_IDEAS.html#prxcdb">PRxCDB</a></li>
+  <li><a href="TO_DO_AND_IDEAS.html#staff">STAFF</a></li>
+  <li><a href="TO_DO_AND_IDEAS.html#--e--mc2--">E = mc^2</a></li>
+  <li><a href="TO_DO_AND_IDEAS.html#native-custom-built-solutions">NATIVE, CUSTOM BUILT SOLUTIONS</a></li>
+  <li><a href="TO_DO_AND_IDEAS.html#storage-context">STORAGE CONTEXT</a></li>
+  <li><a href="TO_DO_AND_IDEAS.html#other">OTHER</a></li>
+</ul>
+</details>
+<br/>
+<pre><code>                          🗨️           ☁️
+                       🌴🌵                             🧙            
+┌──────────┐          ┌──────────────────────────┐
+└──────────┘          └──────────────────────────┘
+              ☁️      
+  🔮        🏜️🌵🏜️🌴🌵                         🏜️
+┌─────────────────────────────┐        ┌─────────┐
+└─────────────────────────────┘        └─────────┘
+
+                                         🏜️🌴🌵
+           ┌──────────────────────────────────────┐
+           └──────────────────────────────────────┘
+         ☁️                  
+           🌴🌴                🏜️🌴                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🏜️🌴🏜️🌵      🌪️                    🧙     🏝️🏜️
+┌─────────────────────────────────────────────────┐
+└─────────────────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️       ☁️                              
+    🌴🌵                                     🌵🏜️
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                            🌵🌴🌴       
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+         🌵🌴                      🌵          🌴
+┌────────────────┐        ┌───────────────────────┐
+└────────────────┘        └───────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                     🌴🌵          🌵🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵          🌵🌵                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+            ☁️          ☁️                     
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+
+  🌵🌴               🌴🌵          🌵🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴          🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+            ☁️          ☁️                     
+  🌴🌵                         🌵🌵          🏜️🌴
+┌──────────┐       ┌───────────────────────────────┐
+└──────────┘       └───────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+            🌵🌴                  🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵          🧙🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️       ☁️                              
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                          🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵      🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+             🌵🌴                                             🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                                🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                    🌵🌴                              🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵                          🌴                     
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                             
+
+  🌴                            🌵 
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵🌴                                       
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                               🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+                                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                 🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                                           🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵                🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌴                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                            🌵             🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                             🌵
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                   ☁️                     
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵   🌴🌴                                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                           🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+  🌵                           
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                  🌵           🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵           🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+   🌵        🌵🌴                             
+┌──────────────────┐        ┌───────────────┐
+└──────────────────┘        └───────────────┘
+                   ☁️          ☁️                     
+🌴                                      🌵        🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵            🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+        🌵🌴                                   🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                           🌵                           
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                            🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+                   ☁️          ☁️                     
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                              🌵🌵
+┌───────────────────┐       ┌────────┐       ┌────┐
+└───────────────────┘       └────────┘       └────┘
+
+                                              🌵🌴                      
+                   ┌──────────────────────────────┐
+                   └──────────────────────────────┘
+                   ☁️          ☁️                     
+  🌴                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵                   🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴              🌵
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                        ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                               🌵🌴                          
+                       ┌──────────────────────────┐
+                       └──────────────────────────┘
+         ☁️                  
+  🌴🌵                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵        🌴                                🌵
+┌────────────────────────┐       ┌────────────────┐
+└────────────────────────┘       └────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+      ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+              ☁️      
+  🔮        🏜️🌵🏜️🌴🌵                         🏜️
+┌─────────────────────────────┐        ┌─────────┐
+└─────────────────────────────┘        └─────────┘
+
+                                         🏜️🌴🌵
+           ┌──────────────────────────────────────┐
+           └──────────────────────────────────────┘
+         ☁️                  
+           🌴🌴                🏜️🌴                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🏜️🌴🏜️🌵      🌪️                    🧙     🏝️🏜️
+┌─────────────────────────────────────────────────┐
+└─────────────────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️       ☁️                              
+    🌴🌵                                     🌵🏜️
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                            🌵🌴🌴       
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+         🌵🌴                      🌵          🌴
+┌────────────────┐        ┌───────────────────────┐
+└────────────────┘        └───────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                     🌴🌵          🌵🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵          🌵🌵                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+            ☁️          ☁️                     
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+
+  🌵🌴               🌴🌵          🌵🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴          🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+            ☁️          ☁️                     
+  🌴🌵                         🌵🌵          🏜️🌴
+┌──────────┐       ┌───────────────────────────────┐
+└──────────┘       └───────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+            🌵🌴                  🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵          🧙🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️       ☁️                              
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                          🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵      🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+             🌵🌴                                             🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                                🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                    🌵🌴                              🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵                          🌴                     
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                             
+
+  🌴                            🌵 
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵🌴                                       
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                               🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+                                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                 🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                                           🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵                🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌴                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                            🌵             🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                             🌵
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                   ☁️                     
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵   🌴🌴                                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                           🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+  🌵                           
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                  🌵           🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵           🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+   🌵        🌵🌴                             
+┌──────────────────┐        ┌───────────────┐
+└──────────────────┘        └───────────────┘
+                   ☁️          ☁️                     
+🌴                                      🌵        🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵            🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+        🌵🌴                                   🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                           🌵                           
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                            🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+                   ☁️          ☁️                     
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                              🌵🌵
+┌───────────────────┐       ┌────────┐       ┌────┐
+└───────────────────┘       └────────┘       └────┘
+
+                                              🌵🌴                      
+                   ┌──────────────────────────────┐
+                   └──────────────────────────────┘
+                   ☁️          ☁️                     
+  🌴                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵                   🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴              🌵
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                        ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                               🌵🌴                          
+                       ┌──────────────────────────┐
+                       └──────────────────────────┘
+         ☁️                  
+  🌴🌵                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵        🌴                                🌵
+┌────────────────────────┐       ┌────────────────┐
+└────────────────────────┘       └────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+      ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+              ☁️      
+  🔮        🏜️🌵🏜️🌴🌵                         🏜️
+┌─────────────────────────────┐        ┌─────────┐
+└─────────────────────────────┘        └─────────┘
+
+                                         🏜️🌴🌵
+           ┌──────────────────────────────────────┐
+           └──────────────────────────────────────┘
+         ☁️                  
+           🌴🌴                🏜️🌴                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🏜️🌴🏜️🌵      🌪️                    🧙     🏝️🏜️
+┌─────────────────────────────────────────────────┐
+└─────────────────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️       ☁️                              
+    🌴🌵                                     🌵🏜️
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                            🌵🌴🌴       
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+         🌵🌴                      🌵          🌴
+┌────────────────┐        ┌───────────────────────┐
+└────────────────┘        └───────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                     🌴🌵          🌵🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵          🌵🌵                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+            ☁️          ☁️                     
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+
+  🌵🌴               🌴🌵          🌵🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴          🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+            ☁️          ☁️                     
+  🌴🌵                         🌵🌵          🏜️🌴
+┌──────────┐       ┌───────────────────────────────┐
+└──────────┘       └───────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+            🌵🌴                  🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵          🧙🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️       ☁️                              
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                          🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵      🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+             🌵🌴                                             🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                                🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                    🌵🌴                              🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵                          🌴                     
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                             
+
+  🌴                            🌵 
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵🌴                                       
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                               🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+                                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                 🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                                           🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵                🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌴                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                            🌵             🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                             🌵
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                   ☁️                     
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵   🌴🌴                                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                           🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+  🌵                           
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                  🌵           🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵           🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+   🌵        🌵🌴                             
+┌──────────────────┐        ┌───────────────┐
+└──────────────────┘        └───────────────┘
+                   ☁️          ☁️                     
+🌴                                      🌵        🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵            🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+        🌵🌴                                   🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                           🌵                           
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                            🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+                   ☁️          ☁️                     
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                              🌵🌵
+┌───────────────────┐       ┌────────┐       ┌────┐
+└───────────────────┘       └────────┘       └────┘
+
+                                              🌵🌴                      
+                   ┌──────────────────────────────┐
+                   └──────────────────────────────┘
+                   ☁️          ☁️                     
+  🌴                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵                   🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴              🌵
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                        ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                               🌵🌴                          
+                       ┌──────────────────────────┐
+                       └──────────────────────────┘
+         ☁️                  
+  🌴🌵                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵        🌴                                🌵
+┌────────────────────────┐       ┌────────────────┐
+└────────────────────────┘       └────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+      ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                  🌵             🌴                         🌵
+┌─────────────────────────────────────────────────┐
+└─────────────────────────────────────────────────┘
+</code></pre>
+</div>
+</div>
+
+            
+            
+        </body>
+        </html>

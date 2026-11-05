@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>ATOMS</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="atoms">ATOMS</h1>
+<p>A holistic atom solution that does not drop the complexity onto the user, and does not require them to set up the remaining parts of the system that the solution did not provide.</p>
+<h1 id="master-atoms">MASTER ATOMS</h1>
+<p>A master atom is the base container and comes with several too choose from based on your use case.</p>
+<ul>
+<li>ATOM</li>
+<li>VERTEX</li>
+<li>SLAB</li>
+<li>MODULE</li>
+<li>CLOUD</li>
+<li>DRS</li>
+<li>DUPLEX</li>
+<li>S_CLASS</li>
+<li>SEND</li>
+<li>SPREADSHEET</li>
+<li>STREAM</li>
+</ul>
+<p>The atom solution is not required to be used with the platform, the only difference being that not all master atoms will work unless you also install what it needs. The first four options will always be available though.</p>
+<h1 id="default-atom">DEFAULT ATOM</h1>
+<p>The default apth is the hot path, this is the only way to get extremely fast atoms while also letting us bolt on the complexity as we need it. The deafult master atom is the vertex, which is a mini disruptor.</p>
+<p>This gives an extremely hot fast pass, literally. During testing a user can actually get it to where it is running at 750 mill ops / sec. While I doubt there will be many who can get it to this point, but atleast there is the option to for the few that have the use case for it.</p>
+<p>The disruptor literally maxes out the v8 engine and rides it coat tails. v8's characteristics consist of a spike within the first sec, then dropping quite a bit. Once it reaches the 6 second mark it then switches over to its turbo process, at first it experiences another dip, but the climbs to max performance at 9-10 secs in. At 27 secs, might be a slightly shorter/longer time depending on the station its running on, it experiences another dip in performance. My best guess is that the core has become heat soaked because this dip was experienced on all disruptors that could push v8 this hard, it was also experienced across different test beds, and finally stations as well.</p>
+<h1 id="contracts">CONTRACTS</h1>
+<p>To make it easier for us to use the solution, 2 helper factory functions that creates contracts is available for use.</p>
+<h2 id="1-core-concept">1. Core concept</h2>
+<p>A Message Queue Atom, or Message Queue Cell, is an independently managed communication entity identified by the existing four-channel address.</p>
+<p>Rather than treating the four-channel address as merely a routing key passed into <code>send()</code> and <code>sub()</code> operations, the address identifies a cell that can have its own behavior, configuration, metadata, temporal characteristics, and lifecycle semantics.</p>
+<p>The cell becomes the unit of control for communication.</p>
+<p>Its purpose is not to replace existing send operations or reduce their number. Existing specialized operations—including streaming, duplex communication, and other upgraded send behaviors—remain useful. The cell provides a more capable architectural foundation for those operations.</p>
+<p>The central idea: communication behavior becomes associated with an independently managed cell, rather than being scattered across individual sends and subscriptions.</p>
+<h2 id="2-cell-identity">2. Cell identity</h2>
+<p>Each cell is identified by the platform's existing four-channel address:</p>
+<ul>
+<li><code>rt</code>: Channel 1</li>
+<li><code>ms</code>: Channel 2</li>
+<li><code>sl</code>: Channel 3</li>
+<li><code>k</code>: Channel 4</li>
+</ul>
+<p>The cell's configuration and capabilities can be associated with that identity. Different cells can therefore have different communication contracts, even when they use the same underlying messaging infrastructure.</p>
+<h2 id="3-what-a-message-queue-atom-can-own">3. What a message queue atom can own</h2>
+<p>The cell could manage a collection of independently configurable capabilities.</p>
+<ul>
+<li>sending type and characteristics could be configured per cell... making it so that the call sites that sub into it... simply just sub to it and that call site acquires the characteristics based on that cells configuration</li>
+<li>subsequent send call sites could simply... have all of its schaffolding eliminated as the cell already exists configured, basically letting other call sites piggy back off of it to send messages out</li>
+<li>in terms of actual placement within the platform, one of the message queues is actually a first class citizen of the paltforms reactive aspect... making it so that the platforms reactivity and message queue have literal direct access to one another. Taking our approach to solids reactivery model, renderivity... and apply the same level of surgical ideals to sends and subs, compared to how it currently is as it feels like sends and subs has... not been forgetten about... but no one other than me is doing anything remotely exciting with it as this would add onto the current bespoke atom/cells the platform has
+<ul>
+<li>distrbuted reactive state/cells</li>
+<li>signals</li>
+<li>modules/comps</li>
+<li>and now message queue</li>
+<li>to be honest, it seriously only makes sense to also have the apps context also be an atom as well due to the roll in benenfits that comes with it</li>
+</ul>
+</li>
+<li>Deadletter</li>
+<li>Groups</li>
+<li>Transforms</li>
+<li>Durable History</li>
+<li>Play by play time travel</li>
+<li>Middleware</li>
+<li>Compression</li>
+<li>Specialized encoding</li>
+<li>Specialized encryption</li>
+<li>Acks
+<ul>
+<li>Whether or not they are required, and the history of them in relation to this cell which also would strength things like dead letters, especially in use cases where there are multiple call sites... did every one recieve the msg that were supposed to, if not which did and which did not?</li>
+</ul>
+</li>
+<li>Temporal semantics
+<ul>
+<li>Per-cell history, event retention, replay, and time travel, subject to the configured retention model.</li>
+</ul>
+</li>
+<li>Schema and validation
+<ul>
+<li>The cell's message contract, payload validation, and handling of invalid messages.</li>
+</ul>
+</li>
+<li>Permissions and tags
+<ul>
+<li>Cell-specific access policies and metadata governing how communication may be used.</li>
+</ul>
+</li>
+<li>Subscription behavior
+<ul>
+<li>Persistent subscriptions, one-shot delivery, filtering, replay, and lifecycle rules appropriate to the cell.</li>
+</ul>
+</li>
+<li>Ordering and conflict policies
+<ul>
+<li>Rules for competing events, ordering, duplicate handling, and reconciliation where required.</li>
+</ul>
+</li>
+<li>Lifecycle and observability
+<ul>
+<li>Cell configuration, operational state, inspection, and relevant communication history.</li>
+</ul>
+</li>
+<li>and more...</li>
+</ul>
+<p>These are proposed capabilities, not a requirement that every cell implement all of them. A cell's purpose and configuration determine which features it needs.</p>
+<h2 id="shape">SHAPE</h2>
+<p>Thinking of performance, if everything were placed in toa single atom... just the configs alone for a message queue atom could become huge... a graph too wouldn't be the best shape as it would basically have to get walked each time...</p>
+<p>The base atom, should essentially just be a bare metal atom... where it can store OTHER atom types within itself. Only issue with at is, once a lot of things get configured... it has a lot of baggage to carry around.</p>
+<p>it is almost as if an addressable atom mesh... would be best. DOesn't carry anything around besides addresses, which then only get read or accessed when required... if it even has an address saved to start with. Making the fast path... fast while not clipping the legs of use cases where more complicated configurations are required. For exmaple:</p>
+<ul>
+<li>bare metal cell
+<ul>
+<li>schema config address, if not null</li>
+<li>time travel / snapshots address, become opt in... instead of a requiremnt, again... the time travel cell would still live else whre at its own addressable location... acessed only when required</li>
+<li>tags, if any</li>
+<li>transforms address, for when transforms are to be applied, if any</li>
+<li>group configuration address, if any</li>
+<li>encryption configs address, if any</li>
+<li>durable config address, if any</li>
+<li>compression configs address, if any</li>
+<li>middleware address if any</li>
+<li>and so on</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-sends-and-subscriptions">4. Sends and subscriptions</h2>
+<p>The message queue atom does not eliminate specialized sending events. Instead, it gives them a common, addressable entity around which their behavior can be coordinated.</p>
+<h3 id="sending">Sending</h3>
+<p>A specialized send operation can retain its existing purpose while consulting the target cell's contract.</p>
+<p>For example, depending on the operation and cell configuration, communication may involve:</p>
+<ol>
+<li>Resolving the target cell.</li>
+<li>Applying its authorization and schema rules.</li>
+<li>Executing the appropriate delivery behavior.</li>
+<li>Recording history when configured.</li>
+<li>Applying relevant ordering or duplicate-handling rules.</li>
+<li>Delivering messages to matching active subscribers.</li>
+</ol>
+<p>A streaming operation and a duplex operation can still have different execution mechanisms and lifecycle requirements. The cell supplies their associated policy and identity; it does not make their underlying protocols identical.</p>
+<h3 id="subscriptions">Subscriptions</h3>
+<p>The cell provides a natural place to define the intended subscription semantics.</p>
+<table>
+<thead>
+<tr>
+<th>Subscription type</th>
+<th>Expected behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One-shot</td>
+<td>Ends after its specified result or event</td>
+</tr>
+<tr>
+<td>Reactive state</td>
+<td>Receives the current value and continues receiving changes</td>
+</tr>
+<tr>
+<td>Event stream</td>
+<td>Receives successive matching events</td>
+</tr>
+<tr>
+<td>Replay-enabled</td>
+<td>Replays the configured historical range, optionally continuing with new events</td>
+</tr>
+<tr>
+<td>Page-scoped</td>
+<td>Remains active while its consuming page or call site is active</td>
+</tr>
+</tbody>
+</table>
+<p>The key distinction is between message delivery and subscription lifetime.</p>
+<p>Receiving a value does not automatically terminate a persistent subscription. The subscription ends according to its contract and the lifecycle of its consumer.</p>
+<p>Likewise, disposing a page's subscription does not inherently destroy the cell or its retained data.</p>
+<h2 id="5-streaming-and-duplex-communication">5. Streaming and duplex communication</h2>
+<p>The cell architecture is particularly relevant to specialized communication patterns already present in the platform.</p>
+<p>Streaming cells</p>
+<p>Can associate stream-specific contracts, history, subscriber behavior, and lifecycle policies with a communication identity.</p>
+<p>Duplex cells</p>
+<p>Can define the policies and lifecycle for bidirectional exchanges without pretending they are ordinary one-way messages.</p>
+<p>Temporally aware cells</p>
+<p>Can retain selected events and support inspection or replay according to their configured temporal behavior.</p>
+<p>The specialized send events still exist because their behaviors are intentionally preconfigured. The cell makes it possible to manage those behaviors with finer-grained control and richer capabilities.</p>
+<h2 id="6-relationship-to-the-rest-of-the-platform">6. Relationship to the rest of the platform</h2>
+<p>Message queue atoms would be independently implemented systems, consistent with your platform's composability philosophy.</p>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Relationship to the cell</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Distributed reactive atom</td>
+<td>Can use communication cells to propagate distributed-state changes</td>
+</tr>
+<tr>
+<td>Reactive system</td>
+<td>Can react to relevant cell events and resulting state changes</td>
+</tr>
+<tr>
+<td>Global context</td>
+<td>Can provide access and integration with the wider platform</td>
+</tr>
+<tr>
+<td>Message queue</td>
+<td>Executes message delivery and queue-related operations</td>
+</tr>
+<tr>
+<td>Specialized send events</td>
+<td>Initiate communication according to their particular behaviors</td>
+</tr>
+<tr>
+<td>Subscription system</td>
+<td>Maintains relationships between cells and active consumers</td>
+</tr>
+</tbody>
+</table>
+<p>First-class access between these systems allows them to coordinate without requiring the message queue atom to inherit its implementation from Signals, S Class, or the distributed reactive atom.</p>
+<p>The cell remains independently portable. Platform integration is something that can be composed around it rather than an unavoidable dependency embedded inside it.</p>
+<h2 id="7-the-intended-result">7. The intended result</h2>
+<p>The architectural objective is surgical control over each communication cell.</p>
+<p>Each four-channel address can become a unit with its own identity, contract, policies, temporal behavior, and subscription semantics. This provides a coherent foundation for managing communication at a much finer level than individual send and subscribe calls.</p>
+<p>The resulting benefits include:</p>
+<ul>
+<li>Per-cell history and time travel.</li>
+<li>More deliberate subscription lifecycle management.</li>
+<li>Cell-specific schemas, permissions, and tags.</li>
+<li>More precise inspection and debugging.</li>
+<li>Better coordination of streaming, duplex, and other specialized communication behaviors.</li>
+<li>Independent implementation and portability.</li>
+<li>A foundation for additional capabilities that would otherwise require disconnected mechanisms or awkward integrations.</li>
+</ul>
+<p>The number of specialized sending events may remain unchanged. Their purpose is still to provide preconfigured behaviors.</p>
+<p>The fundamental change is that each communication address becomes an independently managed message queue atom, giving the platform a precise unit around which to organize behavior, history, policies, and subscriptions.</p>
+
+            
+            
+        </body>
+        </html>

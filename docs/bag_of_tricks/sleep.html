@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;sleep&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="sleep"><code>sleep</code></h1>
+<blockquote>
+<p>Wait for a number of milliseconds. Returns a promise that resolves after the delay. That's the whole thing.</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hljs-keyword">await</span> <span class="hljs-title function_">sleep</span>(<span class="hljs-number">1000</span>)   <span class="hljs-comment">// waits one second</span>
+</code></pre>
+<p>The point: an awaitable delay. <code>setTimeout</code> is a callback API; <code>sleep</code> is the promise version. Pause an async function without wrapping <code>setTimeout</code> in a promise every time.</p>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { sleep } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">sleep</span>(<span class="hljs-number">1000</span>)
+</code></pre>
+<p>That's it. You're done. You now know how to use <code>sleep</code>.</p>
+<p>Pause, then continue. <code>sleep(0)</code> yields to the next macrotask — useful for &quot;let the event loop breathe&quot; moments.</p>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="signature">Signature</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> sleep = (<span class="hljs-attr">ms</span>: <span class="hljs-built_in">number</span>): <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-built_in">void</span>&gt;
+</code></pre>
+<ul>
+<li><code>ms</code> — milliseconds to wait. Standard <code>setTimeout</code> semantics apply.</li>
+<li>Returns <code>Promise&lt;void&gt;</code> — resolves with <code>undefined</code> after the delay.</li>
+<li>Never rejects. No cancellation. No signal.</li>
+</ul>
+<h4 id="how-it-works">How it works</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> <span class="hljs-built_in">setTimeout</span>(resolve, ms))
+</code></pre>
+<p>One line. <code>setTimeout</code> is called with <code>resolve</code> as the callback, so the promise settles when the timer fires. The value passed to <code>resolve</code> is <code>undefined</code> (the return value of <code>setTimeout</code>'s callback is discarded).</p>
+<h4 id="timing-semantics">Timing semantics</h4>
+<p><code>sleep(ms)</code> does <strong>not</strong> guarantee &quot;resume after exactly <code>ms</code> milliseconds.&quot; It guarantees &quot;resume no earlier than <code>ms</code> milliseconds from now, whenever the event loop gets around to it.&quot; Three things can push the actual resume later:</p>
+<ol>
+<li><strong>The event loop is busy.</strong> If a long synchronous task is running when the timer fires, <code>sleep</code> resumes after that task finishes.</li>
+<li><strong>Other timers are queued ahead.</strong> <code>setTimeout</code> callbacks fire in order of scheduled time, but if the loop is behind, they all run together.</li>
+<li><strong>Browsers clamp timers.</strong> Nested timers beyond 5 levels are clamped to a minimum of 4ms. Background tabs clamp to 1000ms or more. This is the platform, not <code>sleep</code>.</li>
+</ol>
+<p>For most code, none of this matters. If you're building a precise timer, use <code>performance.now()</code> and re-schedule.</p>
+<h4 id="sleep0--yielding"><code>sleep(0)</code> — yielding</h4>
+<p><code>sleep(0)</code> doesn't &quot;sleep.&quot; It schedules a macrotask via <code>setTimeout(_, 0)</code>. This yields control back to the event loop, allowing pending microtasks and I/O callbacks to run before resuming. Useful when you want to break up a synchronous loop:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> item <span class="hljs-keyword">of</span> hugeList) {
+  <span class="hljs-title function_">process</span>(item)
+  <span class="hljs-keyword">await</span> <span class="hljs-title function_">sleep</span>(<span class="hljs-number">0</span>)   <span class="hljs-comment">// let the event loop breathe</span>
+}
+</code></pre>
+<p>This is the macrotask equivalent of <code>await Promise.resolve()</code>. It's slower than a microtask yield but allows I/O to run in between.</p>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Basic pause</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">await</span> <span class="hljs-title function_">sleep</span>(<span class="hljs-number">500</span>)
+</code></pre>
+<p><strong>Rate limiting in a loop</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> item <span class="hljs-keyword">of</span> items) {
+  <span class="hljs-keyword">await</span> <span class="hljs-title function_">process</span>(item)
+  <span class="hljs-keyword">await</span> <span class="hljs-title function_">sleep</span>(<span class="hljs-number">100</span>)   <span class="hljs-comment">// 100ms between items</span>
+}
+</code></pre>
+<p><strong>Backoff between retries</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) {
+  <span class="hljs-keyword">try</span> { <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> <span class="hljs-title function_">attempt</span>() }
+  <span class="hljs-keyword">catch</span> { <span class="hljs-keyword">await</span> <span class="hljs-title function_">sleep</span>(<span class="hljs-number">1000</span> * <span class="hljs-number">2</span> ** i) }
+}
+</code></pre>
+<p>Same pattern as <code>runWithRetry</code> and <code>retryWithBackoff</code>, written out inline.</p>
+<p><strong>Yield to the event loop</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">await</span> <span class="hljs-title function_">sleep</span>(<span class="hljs-number">0</span>)
+</code></pre>
+<p><strong>Minimal debounce</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">let</span> <span class="hljs-attr">pending</span>: <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-built_in">void</span>&gt; | <span class="hljs-literal">undefined</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">debounced</span>(<span class="hljs-params"></span>) {
+  pending = <span class="hljs-title function_">sleep</span>(<span class="hljs-number">100</span>).<span class="hljs-title function_">then</span>(run)
+}
+</code></pre>
+<p>Not the real debounce pattern, but <code>sleep</code> is the delay primitive underneath.</p>
+<p><strong>Composing with a timeout</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">race</span>([<span class="hljs-title function_">operation</span>(), <span class="hljs-title function_">sleep</span>(<span class="hljs-number">5000</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> { <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;timeout&quot;</span>) })])
+</code></pre>
+<p><code>sleep</code> is the timeout arm of a race. The same trick appears inside <code>timedPromise</code>.</p>
+<h4 id="behavior">Behavior</h4>
+<ul>
+<li>
+<p><strong>Always resolves with <code>undefined</code>.</strong> Never with a value, never rejects.</p>
+</li>
+<li>
+<p><strong>Timers aren't cancelled by anything.</strong> Once <code>sleep</code> is called, the timer runs even if the caller's outer context has given up. The promise will resolve; whether anyone is still awaiting it is another matter.</p>
+</li>
+<li>
+<p><strong>No <code>AbortSignal</code> support.</strong> No way to cancel from outside. If you need cancellable sleep, wrap it:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">cancellableSleep</span>(<span class="hljs-params">ms: <span class="hljs-built_in">number</span>, signal: AbortSignal</span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-built_in">void</span>&gt;(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> timer = <span class="hljs-built_in">setTimeout</span>(resolve, ms)
+    signal.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;abort&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-built_in">clearTimeout</span>(timer)
+      <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;aborted&quot;</span>))
+    }, { <span class="hljs-attr">once</span>: <span class="hljs-literal">true</span> })
+  })
+}
+</code></pre>
+<p><code>sleep</code> deliberately doesn't do this. It's the smallest possible delay primitive.</p>
+</li>
+<li>
+<p><strong><code>ms</code> can be negative or <code>NaN</code>.</strong> <code>setTimeout</code> coerces to <code>0</code>. <code>sleep(-100)</code> is effectively <code>sleep(0)</code>.</p>
+</li>
+<li>
+<p><strong><code>ms</code> can be <code>Infinity</code>.</strong> <code>setTimeout(_, Infinity)</code> is treated as <code>setTimeout(_, 0)</code> in most engines — it doesn't wait forever. If you need &quot;never resolve,&quot; use <code>new Promise(() =&gt; {})</code>.</p>
+</li>
+</ul>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li><strong>Not a real sleep.</strong> <code>sleep</code> doesn't block the thread; it yields to the event loop. Other code runs during the pause. This is what you want most of the time, but it's not the same as a synchronous pause (which doesn't exist in JS anyway).</li>
+<li><strong>Not precise.</strong> See timing semantics above. Don't use <code>sleep</code> for scheduling; use it for delaying.</li>
+<li><strong>Timer leaks in hot loops.</strong> A <code>sleep(Infinity)</code> (which becomes <code>sleep(0)</code>) in a tight loop still schedules a timer per iteration. Cheap, but not free.</li>
+<li><strong><code>await sleep(0)</code> is a macrotask yield, not a microtask.</strong> If you want a microtask yield (i.e., wait for the current microtask queue to drain), use <code>await Promise.resolve()</code> or <code>await null</code>. <code>sleep(0)</code> is slower — it waits for the next macrotask cycle.</li>
+<li><strong>No cleanup on abandonment.</strong> If a caller <code>await</code>s a sleep and the surrounding promise is abandoned (e.g., a component unmounts), the timer still fires. The <code>.then</code> handlers on the outer promise simply don't do anything if no one's listening.</li>
+<li><strong>Test timing.</strong> <code>sleep</code> in tests means real wall-clock waits, which adds up. Use fake timers (<code>jest.useFakeTimers()</code>, <code>vi.useFakeTimers()</code>) to control <code>setTimeout</code> and skip the actual wait. <code>sleep</code> composes with fake timers because it's just <code>setTimeout</code> underneath.</li>
+<li><strong>Node process lifetime.</strong> A pending <code>sleep</code> keeps the Node process alive until the timer fires. If your script ends with an outstanding <code>sleep</code>, the process waits. <code>clearTimeout</code> can't reach it from the outside — the timer handle isn't exposed.</li>
+</ul>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not a scheduler. It doesn't fire at a specific wall-clock time; it delays by a relative amount.</li>
+<li>Not cancellable. No signal, no handle, no abort.</li>
+<li>Not <code>setTimeout</code> with a promise wrapper for cleanup. It returns the promise only; the timer handle is internal.</li>
+<li>Not a blocking sleep. Nothing in JS blocks the thread like a true sleep syscall.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p><code>setTimeout</code> is a callback API. <code>sleep</code> is the promise version of it, one line, no ceremony. Every async delay in a codebase is either a <code>setTimeout</code> wrapped in a promise or an <code>await sleep(ms)</code>. The second is what everyone means; the first is what they write when there's no primitive. There's a primitive now.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            
+            
+        </body>
+        </html>

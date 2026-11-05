@@ -1,0 +1,3769 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Built-in API Extensions</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1>DX: <span style="font-size:18px;" >The Wizard's Arsenal</span></h1>
+<p align="right"><em>The most opinionated platform... ever.</em></p>
+<p align="right"><em>Trust me... I'm a fucking wizard... 🧙</em></p>
+<div style="display: grid; grid-template-columns: 4fr 2fr; gap: 20px;">
+<div>
+<span  style="font-family: monospace"> 
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>TLDR</p><p></p>
+<p>Take what is currently... lacking in the ux dept. and give it the updates they desperatly need.</p>
+</div>
+</span>
+<h2 id="built-in-api-extensions">Built-in API Extensions</h2>
+<p>Extensions to native JavaScript objects that improve developer experience by adding commonly needed operations while preserving the original APIs.</p>
+<p>The package extends native classes and exposes their implementations through <code>globalThis</code>, allowing them to be accessed without importing each class individually.</p>
+<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>UPDATE!!</p><p></p>
+<p>Where appropriate, there will be some additional functions that will surface as a complete byteop variant where each of the currently defined functions within this solution, will be getting a complete brother... or sister to stand beside it.</p>
+<p>This is not a priority for the solution, merely some extra goodies.</p>
+<p>With the performance difference between the two, I have found the use case for myself to create binary versions of each. Items like map and set are already in play and can be used. Items like array, will not be getting conversions.
+Conversions completed so far:</p>
+<ul>
+<li>map
+<ul>
+<li>fn: M2B</li>
+<li>interface: M2BI</li>
+</ul>
+</li>
+<li>set
+<ul>
+<li>fn: SET2B</li>
+<li>interface: SET2BI</li>
+</ul>
+</li>
+<li>boolean
+<ul>
+<li>fn: B2B</li>
+<li>interface: B2BI</li>
+</ul>
+</li>
+</ul>
+<p>Each fn available globally, so your free to call without actually importing the implementation itself. The byteop variants will be mirror versions.</p>
+<p>For the ones that aren't familiar, don't worry I got you...</p>
+<p>There will be some accompanying utilities that will help with the use of the new fns as they either need to be converted to binary, or have values converted to use a pid in its place.</p>
+<p>The pid converter will come with a 1-1 conversion as well as the ability to convert using the 3/4 scoped channel format.</p>
+<p>Due to wanting to create the absolute dx possible, despite making a much more complex system available... each of the fns with have the same named fn, taking in the same props where applicable. For exmaple, getNestedMap... already has a stand in... getNestedMap, but inside the byte orientated class, taking in the same 3 props.</p>
+<p>There will be 2 encoders available, cbor and avro.</p>
+<p>Cbor being a bit more... lenient of the two, I guess is the right word. As you simply call upon encode or decode... and away you go. Where as with avro, you do need to set up a defined shapped schema in order to use it. Both of their use cases, but avro compresses to a much smaller figure and is 6x faster than cbor, if I remember correctly. It doesn't sound like much... but at these speed it adds up to a lot.</p>
+<p>For example, while acheiving the 900+ mill ops/sec with benching, obviously that is not a realistic goal when it comes to the users usage path, but we need to get as close as we can and having a 6x mulitplier when your doing 900 mill ops/sec... is fucking huge.</p>
+</div>
+<h2 id="global-apis">Global APIs</h2>
+<table>
+<thead>
+<tr>
+<th>Global</th>
+<th>Extends</th>
+<th>Implementation</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>N2</code></td>
+<td><code>Number</code></td>
+<td><code>N2I</code></td>
+<td>Numeric operations, range mapping, formatting, and validation</td>
+</tr>
+<tr>
+<td><code>M2</code></td>
+<td><code>Map</code></td>
+<td><code>M2I</code></td>
+<td>Map access helpers, transformations, grouping, and comparison</td>
+</tr>
+<tr>
+<td><code>I2</code></td>
+<td>Iterator</td>
+<td><code>I2I</code></td>
+<td>Lazy iterator pipelines and collection operations</td>
+</tr>
+<tr>
+<td><code>ER2</code></td>
+<td><code>Error</code></td>
+<td><code>ER2I</code></td>
+<td>Error normalization, cloning, serialization, and wrapping</td>
+</tr>
+<tr>
+<td><code>D2</code></td>
+<td><code>Date</code></td>
+<td><code>D2I</code></td>
+<td>Date arithmetic, boundaries, comparisons, and formatting</td>
+</tr>
+<tr>
+<td><code>A2</code></td>
+<td><code>Array</code></td>
+<td><code>A2I</code></td>
+<td>Array manipulation, selection, grouping, and aggregation</td>
+</tr>
+<tr>
+<td><code>SET2</code></td>
+<td><code>Set</code></td>
+<td><code>SET2I</code></td>
+<td>Extended set operations</td>
+</tr>
+<tr>
+<td><code>O2</code></td>
+<td><code>Object</code></td>
+<td><code>O2I</code></td>
+<td>Extended object operations</td>
+</tr>
+<tr>
+<td><code>WM2</code></td>
+<td><code>WeakMap</code></td>
+<td><code>WM2I</code></td>
+<td>Extended weak-map operations</td>
+</tr>
+<tr>
+<td><code>WS2</code></td>
+<td><code>WeakSet</code></td>
+<td><code>WS2I</code></td>
+<td>Extended weak-set operations</td>
+</tr>
+<tr>
+<td><code>P2</code></td>
+<td><code>Promise</code></td>
+<td><code>P2I</code></td>
+<td>Extended promise operations</td>
+</tr>
+<tr>
+<td><code>S2</code></td>
+<td><code>String</code></td>
+<td><code>S2I</code></td>
+<td>Extended string operations</td>
+</tr>
+<tr>
+<td><code>U82</code></td>
+<td><code>Uint8Array</code></td>
+<td><code>U82I</code></td>
+<td>Extended byte-array operations</td>
+</tr>
+<tr>
+<td><code>USP2</code></td>
+<td><code>URLSearchParams</code></td>
+<td><code>USP2I</code></td>
+<td>Extended URL parameter operations</td>
+</tr>
+</tbody>
+</table>
+<p>The global declarations provide TypeScript access to these APIs. <code>MaybePromise</code> is also declared globally as a type alias.</p>
+<h2 id="quick-reference">Quick Reference</h2>
+<h2 id="a2--array"><code>A2</code> — Array</h2>
+<p><code>A2I</code> extends <code>Array</code> and adds collection helpers. Methods returning arrays generally return <code>A2I</code> instances.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>first()</code> / <code>last()</code></td>
+<td>Retrieve the first or last element</td>
+</tr>
+<tr>
+<td><code>isEmpty()</code> / <code>isNotEmpty()</code></td>
+<td>Check whether the array contains elements</td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>Empty the array in place</td>
+</tr>
+<tr>
+<td><code>clone()</code></td>
+<td>Create a shallow copy</td>
+</tr>
+<tr>
+<td><code>unique()</code> / <code>compact()</code></td>
+<td>Remove duplicates or nullish values</td>
+</tr>
+<tr>
+<td><code>take()</code> / <code>takeLast()</code></td>
+<td>Select elements from either end</td>
+</tr>
+<tr>
+<td><code>drop()</code> / <code>dropLast()</code></td>
+<td>Remove elements from either end</td>
+</tr>
+<tr>
+<td><code>chunk(size)</code></td>
+<td>Split into fixed-size arrays</td>
+</tr>
+<tr>
+<td><code>flatten(depth?)</code></td>
+<td>Flatten nested arrays</td>
+</tr>
+<tr>
+<td><code>flatMap(callback)</code></td>
+<td>Map and flatten</td>
+</tr>
+<tr>
+<td><code>distinctBy(callback)</code></td>
+<td>Deduplicate by a computed key</td>
+</tr>
+<tr>
+<td><code>groupBy(callback)</code></td>
+<td>Group elements into a map</td>
+</tr>
+<tr>
+<td><code>partition(callback)</code></td>
+<td>Split into matching and nonmatching arrays</td>
+</tr>
+<tr>
+<td><code>insert(index, ...items)</code></td>
+<td>Insert elements in place</td>
+</tr>
+<tr>
+<td><code>removeAt(index)</code></td>
+<td>Remove and return an element</td>
+</tr>
+<tr>
+<td><code>remove(value)</code> / <code>removeAll(value)</code></td>
+<td>Remove one or all matching values</td>
+</tr>
+<tr>
+<td><code>replaceAt(index, value)</code></td>
+<td>Replace an element and return the previous value</td>
+</tr>
+<tr>
+<td><code>move(from, to)</code> / <code>swap(first, second)</code></td>
+<td>Reorder elements in place</td>
+</tr>
+<tr>
+<td><code>sample()</code></td>
+<td>Return a random element</td>
+</tr>
+<tr>
+<td><code>shuffle()</code></td>
+<td>Shuffle in place</td>
+</tr>
+<tr>
+<td><code>countBy(callback)</code></td>
+<td>Count matching elements</td>
+</tr>
+<tr>
+<td><code>sum(callback?)</code> / <code>average(callback?)</code></td>
+<td>Calculate numeric aggregates</td>
+</tr>
+<tr>
+<td><code>min(callback?)</code> / <code>max(callback?)</code></td>
+<td>Find minimum or maximum element</td>
+</tr>
+<tr>
+<td><code>equals(array)</code></td>
+<td>Compare arrays using <code>Object.is</code></td>
+</tr>
+<tr>
+<td><code>includesAll(values)</code></td>
+<td>Check whether every supplied value exists</td>
+</tr>
+<tr>
+<td><code>intersects(values)</code></td>
+<td>Check whether any supplied value exists</td>
+</tr>
+</tbody>
+</table>
+<p>Static helpers include <code>A2I.from()</code> and <code>A2I.of()</code>.</p>
+<h2 id="b2--byte-bool"><code>B2</code> — Byte Bool</h2>
+<p><code>B2I</code> replaces boolean properties and boolean maps with a zero-allocation, PID-indexed <code>Uint8Array</code> lane. One byte per PID, no boxing, no <code>Map</code>, no per-entry allocation — <code>set</code>, <code>get</code>, and <code>toggle</code> are O(1) array stores, and <code>clear</code> is a single <code>fill(0)</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>set(pid, value)</code></td>
+<td>Set the boolean flag for a PID</td>
+</tr>
+<tr>
+<td><code>true(pid, value)</code></td>
+<td>Set the flag to <code>1</code> (<code>value</code> is accepted for call-site symmetry and ignored)</td>
+</tr>
+<tr>
+<td><code>false(pid, value)</code></td>
+<td>Set the flag to <code>0</code> (<code>value</code> is accepted for call-site symmetry and ignored)</td>
+</tr>
+<tr>
+<td><code>get(pid)</code></td>
+<td>Return <code>true</code> if the PID's flag is <code>1</code>, else <code>false</code></td>
+</tr>
+<tr>
+<td><code>toggle(pid)</code></td>
+<td>Flip the PID's flag and return the new state</td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>Zero every flag in place; no reallocation</td>
+</tr>
+<tr>
+<td><code>flags</code></td>
+<td>The backing <code>Uint8Array</code>, indexed by PID</td>
+</tr>
+</tbody>
+</table>
+<h2 id="d2--date"><code>D2</code> — Date</h2>
+<p><code>D2</code> extends <code>Date</code> and keeps the standard <code>Date</code> API, adding immutable date arithmetic, calendar helpers, human-readable diffs, custom formatting, and locale-aware parsing. Every method returns a new <code>D2I</code>; the receiver is never mutated.</p>
+<p>Registered as a codec (<code>DATE_TAG = 0x4432</code>, <code>&quot;D2&quot;</code>): <code>enc</code> writes the epoch-ms as an <code>i64</code>, <code>dec</code> revives it as a <code>D2I</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>set(f)</code></td>
+<td>Return a new date with the given <code>{ year, month, day, hour, minute, second, ms }</code> fields applied; unset fields are preserved, <code>day</code> is clamped to the target month</td>
+</tr>
+<tr>
+<td><code>withDate(year, month, day)</code></td>
+<td>Replace the calendar date, keep the time</td>
+</tr>
+<tr>
+<td><code>sameTimeOn(other)</code></td>
+<td>Keep this date's time, adopt <code>other</code>'s calendar date</td>
+</tr>
+<tr>
+<td><code>at(hour, minute?, second?, ms?)</code></td>
+<td>Return a new date at the given time on this date</td>
+</tr>
+<tr>
+<td><code>atNoon()</code> / <code>midnight()</code></td>
+<td><code>at(12)</code> / <code>startOfDay()</code></td>
+</tr>
+<tr>
+<td><code>toInputDate()</code> / <code>toInputTime()</code> / <code>toInputDateTime()</code> / <code>toInputTimeWithSeconds()</code></td>
+<td><code>YYYY-MM-DD</code>, <code>HH:mm</code>, <code>YYYY-MM-DDTHH:mm</code>, <code>HH:mm:ss</code> for form inputs</td>
+</tr>
+</tbody>
+</table>
+<h3 id="arithmetic">Arithmetic</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>addMs</code> / <code>addSeconds</code> / <code>addMinutes</code> / <code>addHours</code> / <code>addDays</code> / <code>addWeeks</code> / <code>addMonths</code> / <code>addYears</code></td>
+<td>Return a new date shifted by the amount</td>
+</tr>
+<tr>
+<td><code>subDays</code> / <code>subWeeks</code> / <code>subMonths</code> / <code>subYears</code></td>
+<td>Negative-shift shorthand</td>
+</tr>
+<tr>
+<td><code>addBusinessDays(n)</code> / <code>nextBusinessDay()</code> / <code>prevBusinessDay()</code></td>
+<td>Shift by weekdays, skipping weekends</td>
+</tr>
+<tr>
+<td><code>next(unit)</code> / <code>prev(unit)</code></td>
+<td>Next/previous <code>day</code>, <code>week</code>, <code>month</code>, <code>quarter</code>, <code>year</code>, or weekday name (<code>&quot;friday&quot;</code>)</td>
+</tr>
+<tr>
+<td><code>nextWeek</code> / <code>prevWeek</code> / <code>nextMonth</code> / <code>prevMonth</code> / <code>nextQuarter</code> / <code>prevQuarter</code> / <code>nextYear</code> / <code>prevYear</code></td>
+<td>Named shorthands</td>
+</tr>
+</tbody>
+</table>
+<h3 id="boundaries">Boundaries</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>startOfDay</code> / <code>endOfDay</code></td>
+<td>Local day boundaries</td>
+</tr>
+<tr>
+<td><code>startOfWeek(weekStartsOn?)</code> / <code>endOfWeek(weekStartsOn?)</code></td>
+<td>Week boundaries; <code>weekStartsOn</code> defaults to <code>0</code> (Sunday)</td>
+</tr>
+<tr>
+<td><code>startOfMonth</code> / <code>endOfMonth</code></td>
+<td>Month boundaries</td>
+</tr>
+<tr>
+<td><code>startOfQuarter</code> / <code>endOfQuarter</code></td>
+<td>Quarter boundaries</td>
+</tr>
+<tr>
+<td><code>startOfYear</code> / <code>endOfYear</code></td>
+<td>Year boundaries</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fields-and-predicates">Fields and predicates</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>month()</code></td>
+<td>1-based month</td>
+</tr>
+<tr>
+<td><code>dateOfWeek()</code> / <code>dayOfYear()</code> / <code>quarter()</code></td>
+<td>Calendar fields</td>
+</tr>
+<tr>
+<td><code>daysInMonth()</code> / <code>daysInYear()</code> / <code>isLeapYear()</code></td>
+<td>Calendar facts</td>
+</tr>
+<tr>
+<td><code>isWeekend()</code> / <code>isWeekday()</code> / <code>isBusinessDay()</code></td>
+<td>Day-type predicates</td>
+</tr>
+<tr>
+<td><code>isBefore</code> / <code>isAfter</code> / <code>isEqual</code> / <code>isBetween</code> / <code>isSameOrBefore</code> / <code>isSameOrAfter</code></td>
+<td>Instant comparison</td>
+</tr>
+<tr>
+<td><code>sameDay</code> / <code>sameMonth</code> / <code>sameYear</code> / <code>isSame(unit, other)</code></td>
+<td>Calendar comparison</td>
+</tr>
+<tr>
+<td><code>isToday</code> / <code>isTomorrow</code> / <code>isYesterday</code></td>
+<td>Relative-day predicates</td>
+</tr>
+<tr>
+<td><code>clamp(min, max)</code></td>
+<td>Clamp into a range</td>
+</tr>
+</tbody>
+</table>
+<h3 id="differences">Differences</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>diffMs</code> / <code>diffSeconds</code> / <code>diffMinutes</code> / <code>diffHours</code> / <code>diffDays</code></td>
+<td>Numeric difference from <code>other</code></td>
+</tr>
+<tr>
+<td><code>calendarDays(other)</code></td>
+<td>Whole calendar days between the two dates</td>
+</tr>
+<tr>
+<td><code>businessDays(other)</code></td>
+<td>Weekdays between the two dates</td>
+</tr>
+<tr>
+<td><code>diffHuman(other?)</code></td>
+<td>Compact human diff, e.g. <code>&quot;3d&quot;</code></td>
+</tr>
+<tr>
+<td><code>fromNow()</code> / <code>ago()</code></td>
+<td>Relative description, e.g. <code>&quot;in 2 hours&quot;</code>, <code>&quot;3 minutes ago&quot;</code></td>
+</tr>
+<tr>
+<td><code>from(other)</code></td>
+<td>Relative description vs. <code>other</code></td>
+</tr>
+<tr>
+<td><code>age(unit?)</code></td>
+<td>Elapsed years/months/days since this date</td>
+</tr>
+</tbody>
+</table>
+<h3 id="formatting-and-parsing">Formatting and parsing</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fmt(format)</code></td>
+<td>Token substitution: <code>YYYY</code>, <code>YY</code>, <code>MMMM</code>, <code>MMM</code>, <code>MM</code>, <code>M</code>, <code>DD</code>, <code>D</code>, <code>dddd</code>, <code>ddd</code>, <code>HH</code>, <code>H</code>, <code>hh</code>, <code>h</code>, <code>mm</code>, <code>m</code>, <code>ss</code>, <code>s</code>, <code>SSS</code>, <code>A</code>, <code>a</code></td>
+</tr>
+<tr>
+<td><code>toLocalString(format?)</code></td>
+<td><code>toLocaleString(&quot;en-US&quot;, format)</code>; <code>format</code> defaults to <code>FORMAT.full</code></td>
+</tr>
+<tr>
+<td><code>D2.from(value)</code></td>
+<td>Parse from <code>Date</code>, number (epoch ms), ISO string, <code>YYYY-MM-DD</code>, <code>YYYY-MM-DD HH:mm</code>, array <code>[y,m,d,h?,min?,s?,ms?]</code>, or object (<code>{ date, time }</code> or <code>{ year, month, day, … }</code>)</td>
+</tr>
+<tr>
+<td><code>D2.parseDate(&quot;YYYY-MM-DD&quot;)</code></td>
+<td>Local midnight for that date</td>
+</tr>
+<tr>
+<td><code>D2.parseDateTime(&quot;YYYY-MM-DD HH:mm&quot;)</code></td>
+<td>Local date-time</td>
+</tr>
+<tr>
+<td><code>D2.fromParts(y, m, d, h?, min?, s?, ms?)</code></td>
+<td>Construct from calendar parts</td>
+</tr>
+</tbody>
+</table>
+<h3 id="statics">Statics</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>D2.now()</code> / <code>D2.today()</code></td>
+<td>Current instant / today's <code>startOfDay()</code></td>
+</tr>
+<tr>
+<td><code>D2.fromUnix(s)</code> / <code>D2.fromUnixMs(ms)</code></td>
+<td>Construct from epoch seconds / milliseconds</td>
+</tr>
+<tr>
+<td><code>D2.min(...dates)</code> / <code>D2.max(...dates)</code></td>
+<td>Earliest / latest of the inputs</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ranges">Ranges</h3>
+<p><code>R2I</code> is a half-open <code>[start, end)</code> interval.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>contains(d)</code></td>
+<td>Whether <code>d</code> falls inside the range</td>
+</tr>
+<tr>
+<td><code>overlaps(other)</code></td>
+<td>Whether two ranges intersect</td>
+</tr>
+<tr>
+<td><code>durationMs()</code> / <code>days()</code></td>
+<td>Length in ms / whole days</td>
+</tr>
+<tr>
+<td><code>eachDay(fn)</code></td>
+<td>Iterate each calendar day in the range</td>
+</tr>
+<tr>
+<td><code>toArray()</code></td>
+<td><code>A2I&lt;D2&gt;</code> of days</td>
+</tr>
+<tr>
+<td><code>R2(start, end)</code></td>
+<td>Build a range from any two <code>D2</code>-coercible values</td>
+</tr>
+</tbody>
+</table>
+<h2 id="er2--error"><code>ER2</code> — Error</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>clone()</code></td>
+<td>Copy message, name, cause, and stack</td>
+</tr>
+<tr>
+<td><code>toJSON()</code></td>
+<td>Produce a serializable error representation</td>
+</tr>
+<tr>
+<td><code>toString()</code></td>
+<td>Format as <code>name: message</code></td>
+</tr>
+<tr>
+<td><code>ER2.is(value)</code></td>
+<td>Check whether a value is an <code>Error</code></td>
+</tr>
+<tr>
+<td><code>ER2.isER2(value)</code></td>
+<td>Check whether a value is an <code>ER2I</code></td>
+</tr>
+<tr>
+<td><code>ER2.from(value, fallback?)</code></td>
+<td>Normalize unknown values into <code>ER2I</code></td>
+</tr>
+<tr>
+<td><code>ER2.wrap(value, message?)</code></td>
+<td>Wrap an error with a cause</td>
+</tr>
+<tr>
+<td><code>ER2.aggregate(errors, message?)</code></td>
+<td>Create an <code>AggregateError</code> from multiple errors</td>
+</tr>
+</tbody>
+</table>
+<p><code>ER2</code> accepts an optional message and standard <code>ErrorOptions</code>, including <code>cause</code>.</p>
+<h2 id="i2--iterator"><code>I2</code> — Iterator</h2>
+<p><code>I2</code> wraps an iterable or iterator and provides lazy transformation pipelines.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>n()</code> / <code>r()</code> / <code>f()</code></td>
+<td>Intended aliases for <code>next</code>, <code>return</code>, and <code>throw</code></td>
+</tr>
+<tr>
+<td><code>toArray()</code></td>
+<td>Consume into an array</td>
+</tr>
+<tr>
+<td><code>first()</code> / <code>last()</code></td>
+<td>Retrieve the first or last value</td>
+</tr>
+<tr>
+<td><code>at(index)</code></td>
+<td>Retrieve by position, supporting negative indices</td>
+</tr>
+<tr>
+<td><code>peek()</code></td>
+<td>Read the next value without consuming it</td>
+</tr>
+<tr>
+<td><code>nextValue()</code></td>
+<td>Return the next value</td>
+</tr>
+<tr>
+<td><code>nextOr(value)</code> / <code>nextOrM(make)</code></td>
+<td>Return the next value or a fallback</td>
+</tr>
+<tr>
+<td><code>nextOrThrow(error?)</code></td>
+<td>Throw if exhausted</td>
+</tr>
+<tr>
+<td><code>map(fn)</code> / <code>filter(pred)</code></td>
+<td>Lazy transformation and filtering</td>
+</tr>
+<tr>
+<td><code>flatMap(fn)</code> / <code>flat()</code></td>
+<td>Flatten mapped iterables</td>
+</tr>
+<tr>
+<td><code>take(limit)</code> / <code>drop(limit)</code></td>
+<td>Limit or skip values</td>
+</tr>
+<tr>
+<td><code>unique(fn?)</code></td>
+<td>Remove duplicate values or computed keys</td>
+</tr>
+<tr>
+<td><code>chunk(size)</code></td>
+<td>Emit arrays of a specified size</td>
+</tr>
+<tr>
+<td><code>zip(other)</code></td>
+<td>Pair values from two iterators</td>
+</tr>
+<tr>
+<td><code>concat(...others)</code></td>
+<td>Concatenate iterables</td>
+</tr>
+<tr>
+<td><code>enumerate()</code></td>
+<td>Emit index-value pairs</td>
+</tr>
+<tr>
+<td><code>find(pred)</code> / <code>findIndex(pred)</code></td>
+<td>Find a value or index</td>
+</tr>
+<tr>
+<td><code>some(pred)</code> / <code>every(pred)</code></td>
+<td>Predicate checks</td>
+</tr>
+<tr>
+<td><code>reduce(fn, initial)</code> / <code>forEach(fn)</code></td>
+<td>Aggregate or consume values</td>
+</tr>
+<tr>
+<td><code>count()</code> / <code>sum(fn?)</code></td>
+<td>Count or sum values</td>
+</tr>
+<tr>
+<td><code>join(separator?)</code></td>
+<td>Join values into a string</td>
+</tr>
+<tr>
+<td><code>partition(pred)</code></td>
+<td>Split into matching and nonmatching arrays</td>
+</tr>
+<tr>
+<td><code>group(fn)</code></td>
+<td>Group values into a map</td>
+</tr>
+<tr>
+<td><code>toSet()</code> / <code>toMap(keyFn, valueFn?)</code></td>
+<td>Convert to collections</td>
+</tr>
+<tr>
+<td><code>isEmpty()</code></td>
+<td>Check whether another value is available</td>
+</tr>
+<tr>
+<td><code>exhaust()</code></td>
+<td>Consume the remaining iterator</td>
+</tr>
+<tr>
+<td><code>clone()</code></td>
+<td>Create an iterator over a materialized copy</td>
+</tr>
+</tbody>
+</table>
+<h2 id="m2--map"><code>M2</code> — Map</h2>
+<p><code>M2</code> extends <code>Map</code> and retains the standard <code>Map</code> API, plus reactive subscriptions, derived values, batching, and a large set of convenience methods. Keys are arbitrary — any value <code>Map</code> accepts, <code>M2</code> accepts.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>g(key)</code> / <code>h(key)</code> / <code>d(key)</code> / <code>c()</code></td>
+<td>Aliases for <code>get</code>, <code>has</code>, <code>delete</code>, and <code>clear</code></td>
+</tr>
+<tr>
+<td><code>f</code></td>
+<td>Alias for <code>forEach</code></td>
+</tr>
+<tr>
+<td><code>s(value, key)</code></td>
+<td>Set a value; function arguments are evaluated as factories</td>
+</tr>
+<tr>
+<td><code>mutate(key, fn)</code></td>
+<td>Update an existing value in place using the current value</td>
+</tr>
+<tr>
+<td><code>swap(value, key)</code></td>
+<td>Replace a value and return the previous value</td>
+</tr>
+<tr>
+<td><code>take(key)</code></td>
+<td>Get and delete a value</td>
+</tr>
+<tr>
+<td><code>peek(key)</code></td>
+<td>Return the value or <code>false</code> if absent</td>
+</tr>
+<tr>
+<td><code>getOrI(value, key)</code></td>
+<td>Get or insert a supplied value</td>
+</tr>
+<tr>
+<td><code>getOrM(make, key)</code></td>
+<td>Get or lazily create a value</td>
+</tr>
+<tr>
+<td><code>update(key, fn, initial?)</code></td>
+<td>Update using the current value, or an initial value if missing</td>
+</tr>
+<tr>
+<td><code>setIfAbsent(value, key)</code></td>
+<td>Insert only when missing</td>
+</tr>
+<tr>
+<td><code>setIfPresent(value, key)</code></td>
+<td>Set only when present</td>
+</tr>
+<tr>
+<td><code>replace(value, key)</code></td>
+<td>Replace only when present</td>
+</tr>
+<tr>
+<td><code>inc(key, by?)</code></td>
+<td>Increment a numeric entry</td>
+</tr>
+<tr>
+<td><code>touch(key)</code></td>
+<td>Ensure a key exists</td>
+</tr>
+<tr>
+<td><code>mapValues(fn)</code> / <code>mapKeys(fn)</code></td>
+<td>Transform values or keys into a new map</td>
+</tr>
+<tr>
+<td><code>filterKV(pred)</code> / <code>filterKeys(pred)</code></td>
+<td>Filter in place</td>
+</tr>
+<tr>
+<td><code>partition(pred)</code></td>
+<td>Split entries into matching and nonmatching maps</td>
+</tr>
+<tr>
+<td><code>find(pred)</code></td>
+<td>Find the first matching entry</td>
+</tr>
+<tr>
+<td><code>findKey(pred)</code> / <code>findValue(pred)</code></td>
+<td>Find a matching key or value</td>
+</tr>
+<tr>
+<td><code>some(pred)</code> / <code>every(pred)</code></td>
+<td>Predicate checks</td>
+</tr>
+<tr>
+<td><code>reduce(fn, initial)</code></td>
+<td>Reduce entries</td>
+</tr>
+<tr>
+<td><code>forEachKV(fn)</code></td>
+<td>Iterate over value, key, and map</td>
+</tr>
+<tr>
+<td><code>invert()</code></td>
+<td>Reverse keys and values</td>
+</tr>
+<tr>
+<td><code>group(fn)</code></td>
+<td>Group values by computed key, into a map of <code>A2</code> buckets</td>
+</tr>
+<tr>
+<td><code>unique(fn?)</code></td>
+<td>Deduplicate by computed or original value</td>
+</tr>
+<tr>
+<td><code>pick(keys)</code> / <code>omit(keys)</code></td>
+<td>Select or exclude keys</td>
+</tr>
+<tr>
+<td><code>merge(entries)</code></td>
+<td>Merge entries into the current map</td>
+</tr>
+<tr>
+<td><code>clearAndSet(entries)</code></td>
+<td>Replace all entries as a single batch</td>
+</tr>
+<tr>
+<td><code>toObject()</code></td>
+<td>Convert entries to an object</td>
+</tr>
+<tr>
+<td><code>toArray()</code> / <code>toKeys()</code> / <code>toValues()</code></td>
+<td>Convert entries, keys, or values to an <code>A2</code></td>
+</tr>
+<tr>
+<td><code>clone()</code></td>
+<td>Create a shallow copy</td>
+</tr>
+<tr>
+<td><code>equals(other)</code></td>
+<td>Compare keys and values by value-aware equality</td>
+</tr>
+<tr>
+<td><code>on(fn)</code></td>
+<td>Subscribe to change events; returns an unsubscribe function</td>
+</tr>
+<tr>
+<td><code>off(fn)</code></td>
+<td>Unsubscribe a listener</td>
+</tr>
+<tr>
+<td><code>batch(fn)</code></td>
+<td>Run multiple writes, coalescing into one event per key</td>
+</tr>
+<tr>
+<td><code>dv(key, deps, fn)</code></td>
+<td>Define a derived value computed from other keys</td>
+</tr>
+<tr>
+<td><code>dirty(...keys)</code></td>
+<td>Mark derived values as needing recomputation</td>
+</tr>
+<tr>
+<td><code>$debug(limit?)</code></td>
+<td>Enable event history tracking</td>
+</tr>
+<tr>
+<td><code>$strict()</code></td>
+<td>Throw if mutated while iterating</td>
+</tr>
+<tr>
+<td><code>$history()</code></td>
+<td>Return recorded change events</td>
+</tr>
+<tr>
+<td><code>$why(key)</code></td>
+<td>Return the most recent event for a key</td>
+</tr>
+<tr>
+<td><code>$diff(other)</code></td>
+<td>Compare against another map: added, deleted, and changed entries</td>
+</tr>
+<tr>
+<td><code>fromObject(obj)</code></td>
+<td>Create a map from an object</td>
+</tr>
+<tr>
+<td><code>fromEntries(entries)</code></td>
+<td>Create a map from entries</td>
+</tr>
+<tr>
+<td><code>from(map)</code></td>
+<td>Create a map from another map</td>
+</tr>
+</tbody>
+</table>
+<h2 id="m2b--map-binary"><code>M2B</code> — Map binary</h2>
+<p><code>M2B</code> is the dense, PID-indexed backing store for <code>M2</code>. Where <code>M2</code> accepts arbitrary keys and stores values in a <code>Map</code>, <code>M2B</code> stores fixed-width values in a flat <code>Float64Array</code>, indexed by integer PID. <code>pidToSlot</code> / <code>slotToPid</code> give O(1) lookup in both directions, and iteration walks the dense slot range — no hashing, no per-entry allocation.</p>
+<p><code>stride</code> controls how many doubles each PID holds: <code>stride = 1</code> stores scalars (<code>number</code>), <code>stride &gt; 1</code> stores fixed-length <code>Float64Array</code> views. <code>cap</code> is the maximum PID; values outside <code>[0, cap)</code> read as absent.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>g(pid)</code> / <code>h(pid)</code> / <code>d(pid)</code> / <code>c()</code></td>
+<td>Aliases for <code>get</code>, <code>has</code>, <code>delete</code>, and <code>clear</code></td>
+</tr>
+<tr>
+<td><code>f</code></td>
+<td>Alias for <code>forEach</code></td>
+</tr>
+<tr>
+<td><code>s(value, pid)</code></td>
+<td>Set a value for a PID</td>
+</tr>
+<tr>
+<td><code>mutate(pid, fn)</code></td>
+<td>Update an existing value in place using the current value</td>
+</tr>
+<tr>
+<td><code>swap(value, pid)</code></td>
+<td>Replace a value and return the previous value</td>
+</tr>
+<tr>
+<td><code>take(pid)</code></td>
+<td>Get and delete a value</td>
+</tr>
+<tr>
+<td><code>peek(pid)</code></td>
+<td>Return the value or <code>false</code> if absent</td>
+</tr>
+<tr>
+<td><code>getOrI(value, pid)</code></td>
+<td>Get or insert a supplied value</td>
+</tr>
+<tr>
+<td><code>getOrM(make, pid)</code></td>
+<td>Get or lazily create a value</td>
+</tr>
+<tr>
+<td><code>update(pid, fn, initial?)</code></td>
+<td>Update using the current value, or an initial value if missing</td>
+</tr>
+<tr>
+<td><code>setIfAbsent(value, pid)</code></td>
+<td>Insert only when missing</td>
+</tr>
+<tr>
+<td><code>setIfPresent(value, pid)</code></td>
+<td>Set only when present</td>
+</tr>
+<tr>
+<td><code>replace(value, pid)</code></td>
+<td>Replace only when present</td>
+</tr>
+<tr>
+<td><code>inc(pid, by?)</code></td>
+<td>Increment a numeric entry</td>
+</tr>
+<tr>
+<td><code>touch(pid)</code></td>
+<td>Ensure a PID exists</td>
+</tr>
+<tr>
+<td><code>mapValues(fn)</code> / <code>mapKeys(fn)</code></td>
+<td>Transform values or PIDs into a new map</td>
+</tr>
+<tr>
+<td><code>filterKV(pred)</code> / <code>filterKeys(pred)</code></td>
+<td>Filter in place</td>
+</tr>
+<tr>
+<td><code>partition(pred)</code></td>
+<td>Split entries into matching and nonmatching maps</td>
+</tr>
+<tr>
+<td><code>find(pred)</code></td>
+<td>Find the first matching entry</td>
+</tr>
+<tr>
+<td><code>findKey(pred)</code> / <code>findValue(pred)</code></td>
+<td>Find a matching PID or value</td>
+</tr>
+<tr>
+<td><code>some(pred)</code> / <code>every(pred)</code></td>
+<td>Predicate checks</td>
+</tr>
+<tr>
+<td><code>reduce(fn, initial)</code></td>
+<td>Reduce entries</td>
+</tr>
+<tr>
+<td><code>forEachKV(fn)</code></td>
+<td>Iterate over value, PID, and map</td>
+</tr>
+<tr>
+<td><code>invert()</code></td>
+<td>Reverse PIDs and values into a plain <code>Map</code></td>
+</tr>
+<tr>
+<td><code>group(fn)</code></td>
+<td>Group values by computed key, into a map of arrays</td>
+</tr>
+<tr>
+<td><code>unique(fn?)</code></td>
+<td>Deduplicate by computed or original value</td>
+</tr>
+<tr>
+<td><code>pick(pids)</code> / <code>omit(pids)</code></td>
+<td>Select or exclude PIDs</td>
+</tr>
+<tr>
+<td><code>merge(entries)</code></td>
+<td>Merge entries into the current map</td>
+</tr>
+<tr>
+<td><code>clearAndSet(entries)</code></td>
+<td>Replace all entries as a single batch</td>
+</tr>
+<tr>
+<td><code>toObject()</code></td>
+<td>Convert entries to an object</td>
+</tr>
+<tr>
+<td><code>toArray()</code> / <code>toKeys()</code> / <code>toValues()</code></td>
+<td>Convert entries, PIDs, or values to an array</td>
+</tr>
+<tr>
+<td><code>clone()</code></td>
+<td>Create a shallow copy</td>
+</tr>
+<tr>
+<td><code>equals(other)</code></td>
+<td>Compare PIDs and values by value-aware equality</td>
+</tr>
+<tr>
+<td><code>on(fn)</code></td>
+<td>Subscribe to change events; returns an unsubscribe function</td>
+</tr>
+<tr>
+<td><code>off(fn)</code></td>
+<td>Unsubscribe a listener</td>
+</tr>
+<tr>
+<td><code>batch(fn)</code></td>
+<td>Run multiple writes, coalescing into one event per PID</td>
+</tr>
+<tr>
+<td><code>dv(pid, deps, fn)</code></td>
+<td>Define a derived value computed from other PIDs</td>
+</tr>
+<tr>
+<td><code>dirty(...pids)</code></td>
+<td>Mark derived values as needing recomputation</td>
+</tr>
+<tr>
+<td><code>$debug(limit?)</code></td>
+<td>Enable event history tracking</td>
+</tr>
+<tr>
+<td><code>$strict()</code></td>
+<td>Throw if mutated while iterating</td>
+</tr>
+<tr>
+<td><code>$history()</code></td>
+<td>Return recorded change events</td>
+</tr>
+<tr>
+<td><code>$why(pid)</code></td>
+<td>Return the most recent event for a PID</td>
+</tr>
+<tr>
+<td><code>$diff(other)</code></td>
+<td>Compare against another map: added, deleted, and changed entries</td>
+</tr>
+<tr>
+<td><code>fromObject(obj, cap, stride?)</code></td>
+<td>Create a map from an object</td>
+</tr>
+<tr>
+<td><code>fromEntries(entries, cap, stride?)</code></td>
+<td>Create a map from entries</td>
+</tr>
+<tr>
+<td><code>from(map, cap, stride?)</code></td>
+<td>Create a map from another map</td>
+</tr>
+</tbody>
+</table>
+<p><code>cap</code>, <code>stride</code>, and <code>size</code> are exposed as readonly properties. <code>pidToSlot</code>, <code>slotToPid</code>, and <code>vals</code> are the backing arrays.</p>
+<h2 id="n2--number"><code>N2</code> — Number</h2>
+<p>Numeric helpers return <code>N2I</code> for chaining unless otherwise indicated.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>abs()</code></td>
+<td>Absolute value</td>
+</tr>
+<tr>
+<td><code>sign()</code></td>
+<td>Sign of the number</td>
+</tr>
+<tr>
+<td><code>neg()</code></td>
+<td>Negate the number</td>
+</tr>
+<tr>
+<td><code>inv()</code></td>
+<td>Reciprocal</td>
+</tr>
+<tr>
+<td><code>clamp(min, max)</code></td>
+<td>Constrain to a range</td>
+</tr>
+<tr>
+<td><code>wrap(min, max)</code></td>
+<td>Wrap into a range</td>
+</tr>
+<tr>
+<td><code>lerp(to, t)</code></td>
+<td>Linear interpolation</td>
+</tr>
+<tr>
+<td><code>map(inMin, inMax, outMin, outMax)</code></td>
+<td>Map between numeric ranges</td>
+</tr>
+<tr>
+<td><code>remap(...)</code></td>
+<td>Alias for <code>map()</code></td>
+</tr>
+<tr>
+<td><code>roundTo(precision?)</code></td>
+<td>Round to decimal precision</td>
+</tr>
+<tr>
+<td><code>floorTo(precision?)</code></td>
+<td>Floor to decimal precision</td>
+</tr>
+<tr>
+<td><code>ceilTo(precision?)</code></td>
+<td>Ceiling to decimal precision</td>
+</tr>
+<tr>
+<td><code>truncTo(precision?)</code></td>
+<td>Truncate to decimal precision</td>
+</tr>
+<tr>
+<td><code>isFinite()</code></td>
+<td>Check for a finite number</td>
+</tr>
+<tr>
+<td><code>isInteger()</code></td>
+<td>Check for an integer</td>
+</tr>
+<tr>
+<td><code>isSafeInteger()</code></td>
+<td>Check for a safe integer</td>
+</tr>
+<tr>
+<td><code>isNaN()</code></td>
+<td>Check for <code>NaN</code></td>
+</tr>
+<tr>
+<td><code>isBetween(min, max, inclusive?)</code></td>
+<td>Check whether the value is in a range</td>
+</tr>
+<tr>
+<td><code>isPositive()</code> / <code>isNegative()</code></td>
+<td>Check the sign</td>
+</tr>
+<tr>
+<td><code>isZero()</code></td>
+<td>Check for zero</td>
+</tr>
+<tr>
+<td><code>isEven()</code> / <code>isOdd()</code></td>
+<td>Check integer parity</td>
+</tr>
+<tr>
+<td><code>squared()</code> / <code>cubed()</code></td>
+<td>Square or cube</td>
+</tr>
+<tr>
+<td><code>sqrt()</code> / <code>cbrt()</code></td>
+<td>Square or cube root</td>
+</tr>
+<tr>
+<td><code>pow(exponent)</code></td>
+<td>Raise to a power</td>
+</tr>
+<tr>
+<td><code>root(degree)</code></td>
+<td>Calculate a root</td>
+</tr>
+<tr>
+<td><code>mod(divisor)</code></td>
+<td>Positive modulo</td>
+</tr>
+<tr>
+<td><code>percentOf(total)</code></td>
+<td>Calculate a percentage of a total</td>
+</tr>
+<tr>
+<td><code>percentChange(from)</code></td>
+<td>Calculate percentage change</td>
+</tr>
+<tr>
+<td><code>toRadians()</code> / <code>toDegrees()</code></td>
+<td>Convert angular units</td>
+</tr>
+<tr>
+<td><code>toOrdinal()</code></td>
+<td>Format as an ordinal</td>
+</tr>
+<tr>
+<td><code>toBytes(unit?, decimals?)</code></td>
+<td>Format as a byte quantity</td>
+</tr>
+<tr>
+<td><code>toCompact(locales?)</code></td>
+<td>Compact number formatting</td>
+</tr>
+<tr>
+<td><code>toCurrency(currency?, locales?)</code></td>
+<td>Currency formatting</td>
+</tr>
+<tr>
+<td><code>toPercent(decimals?, locales?)</code></td>
+<td>Percentage formatting</td>
+</tr>
+<tr>
+<td><code>times(fn)</code></td>
+<td>Execute a callback for each integer index below the value</td>
+</tr>
+<tr>
+<td><code>upTo(end, step?)</code></td>
+<td>Generate an ascending numeric array</td>
+</tr>
+<tr>
+<td><code>downTo(end, step?)</code></td>
+<td>Generate a descending numeric array</td>
+</tr>
+</tbody>
+</table>
+<h2 id="o2--object"><code>O2</code> — Object</h2>
+<p>Provides static object inspection, nested-path access, cloning, merging, selection, transformation, comparison, and update helpers.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>isEmpty(value)</code> / <code>isNotEmpty(value)</code></td>
+<td>Checks own-key count</td>
+</tr>
+<tr>
+<td><code>size(value)</code></td>
+<td>Returns the number of own keys, including symbols</td>
+</tr>
+<tr>
+<td><code>isPlainObject(value)</code> / <code>isObject(value)</code></td>
+<td>Checks object type</td>
+</tr>
+<tr>
+<td><code>get(value, path, fallback?)</code></td>
+<td>Reads a nested path</td>
+</tr>
+<tr>
+<td><code>getOr(value, path, fallback)</code></td>
+<td>Reads a nested path with a typed fallback</td>
+</tr>
+<tr>
+<td><code>set(value, path, next)</code></td>
+<td>Sets a nested path, creating intermediate objects</td>
+</tr>
+<tr>
+<td><code>unset(value, path)</code></td>
+<td>Deletes a nested property</td>
+</tr>
+<tr>
+<td><code>hasPath(value, path)</code></td>
+<td>Checks whether a nested path exists</td>
+</tr>
+<tr>
+<td><code>clone(value)</code></td>
+<td>Shallow-clones an object or array</td>
+</tr>
+<tr>
+<td><code>deepClone(value)</code></td>
+<td>Uses <code>structuredClone</code></td>
+</tr>
+<tr>
+<td><code>deepMerge(target, source)</code></td>
+<td>Recursively merges plain objects</td>
+</tr>
+<tr>
+<td><code>defaults(target, defaults)</code></td>
+<td>Applies defaults while retaining target values</td>
+</tr>
+<tr>
+<td><code>getOrCreate(value, key, create)</code></td>
+<td>Creates a property when absent or undefined</td>
+</tr>
+<tr>
+<td><code>pick(value, keys)</code> / <code>omit(value, keys)</code></td>
+<td>Selects or excludes properties</td>
+</tr>
+<tr>
+<td><code>pickBy(value, predicate)</code> / <code>omitBy(value, predicate)</code></td>
+<td>Selects or excludes properties by predicate</td>
+</tr>
+<tr>
+<td><code>mapKeys(value, mapper)</code></td>
+<td>Transforms property keys</td>
+</tr>
+<tr>
+<td><code>mapValues(value, mapper)</code></td>
+<td>Transforms property values</td>
+</tr>
+<tr>
+<td><code>mapEntries(value, mapper)</code></td>
+<td>Transforms key-value entries</td>
+</tr>
+<tr>
+<td><code>filter(value, predicate)</code></td>
+<td>Selects properties by predicate</td>
+</tr>
+<tr>
+<td><code>isEqual(first, second)</code></td>
+<td>Performs recursive equality checks</td>
+</tr>
+<tr>
+<td><code>isShallowEqual(first, second)</code></td>
+<td>Compares own keys and values shallowly</td>
+</tr>
+<tr>
+<td><code>hasAll(value, keys)</code> / <code>hasAny(value, keys)</code></td>
+<td>Checks required own properties</td>
+</tr>
+<tr>
+<td><code>assertKeys(value, keys)</code></td>
+<td>Throws if required own properties are missing</td>
+</tr>
+<tr>
+<td><code>with(value, key, next)</code></td>
+<td>Returns a copy with a property changed</td>
+</tr>
+<tr>
+<td><code>without(value, key)</code></td>
+<td>Returns a copy without a property</td>
+</tr>
+<tr>
+<td><code>update(value, key, updater)</code></td>
+<td>Returns a copy with an updated property</td>
+</tr>
+</tbody>
+</table>
+<p><code>O2</code> is exposed as a static utility constructor on <code>globalThis</code>.</p>
+<h2 id="p2--promise"><code>P2</code> — Promise</h2>
+<p>Extends <code>Promise&lt;T&gt;</code> with chaining helpers, recovery, timing controls, and result conversion.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tap(fn)</code></td>
+<td>Runs a callback on fulfillment and preserves the value</td>
+</tr>
+<tr>
+<td><code>tapError(fn)</code></td>
+<td>Runs a callback on rejection and preserves the rejection</td>
+</tr>
+<tr>
+<td><code>recover(fn)</code></td>
+<td>Recovers from rejection</td>
+</tr>
+<tr>
+<td><code>fallback(value)</code></td>
+<td>Supplies a fallback after rejection</td>
+</tr>
+<tr>
+<td><code>timeout(ms, error?)</code></td>
+<td>Rejects if the promise does not settle before the timeout</td>
+</tr>
+<tr>
+<td><code>delay(ms)</code></td>
+<td>Delays delivery of a fulfilled value</td>
+</tr>
+<tr>
+<td><code>withDeadline(deadline, error?)</code></td>
+<td>Applies a deadline based on a timestamp</td>
+</tr>
+<tr>
+<td><code>map(fn)</code> / <code>flatMap(fn)</code></td>
+<td>Chains a transformation</td>
+</tr>
+<tr>
+<td><code>and(other)</code> / <code>zip(other)</code></td>
+<td>Combines a fulfilled value with another value or promise</td>
+</tr>
+<tr>
+<td><code>or(other)</code></td>
+<td>Uses an alternative after rejection</td>
+</tr>
+<tr>
+<td><code>unwrap()</code></td>
+<td>Returns the promise as a native <code>Promise&lt;T&gt;</code> type</td>
+</tr>
+<tr>
+<td><code>toResult()</code></td>
+<td>Converts fulfillment or rejection into an <code>{ ok, value/error }</code> result</td>
+</tr>
+<tr>
+<td><code>onResolve(fn)</code> / <code>onReject(fn)</code></td>
+<td>Registers fulfillment or rejection callbacks</td>
+</tr>
+<tr>
+<td><code>finallyDo(fn)</code></td>
+<td>Runs a final callback</td>
+</tr>
+</tbody>
+</table>
+<p>Static helpers:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>resolve(value?)</code> / <code>reject(reason?)</code></td>
+<td>Creates a settled promise</td>
+</tr>
+<tr>
+<td><code>all(values)</code></td>
+<td>Waits for all promises to fulfill</td>
+</tr>
+<tr>
+<td><code>allSettled(values)</code></td>
+<td>Waits for all promises to settle</td>
+</tr>
+<tr>
+<td><code>race(values)</code></td>
+<td>Settles with the first settled promise</td>
+</tr>
+<tr>
+<td><code>any(values)</code></td>
+<td>Settles with the first fulfilled promise</td>
+</tr>
+<tr>
+<td><code>retry(fn, times?, delay?)</code></td>
+<td>Retries a task after rejection</td>
+</tr>
+<tr>
+<td><code>deferred&lt;T&gt;()</code></td>
+<td>Returns a promise with external <code>resolve</code> and <code>reject</code> functions</td>
+</tr>
+<tr>
+<td><code>try(fn)</code></td>
+<td>Executes a function and converts synchronous throws into rejection</td>
+</tr>
+</tbody>
+</table>
+<p>Chained operations return <code>P2</code> instances.</p>
+<h2 id="s2--string"><code>S2</code> — String</h2>
+<p>Extends <code>String</code> with common string checks, transformations, parsing, and conversion helpers.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>empty()</code> / <code>notEmpty()</code></td>
+<td>Checks whether the string has characters</td>
+</tr>
+<tr>
+<td><code>blank()</code> / <code>notBlank()</code></td>
+<td>Checks whether the string is empty or whitespace-only</td>
+</tr>
+<tr>
+<td><code>equals(value)</code></td>
+<td>Checks exact equality</td>
+</tr>
+<tr>
+<td><code>equalsIgnoreCase(value)</code></td>
+<td>Checks equality without case sensitivity</td>
+</tr>
+<tr>
+<td><code>contains(value)</code></td>
+<td>Checks whether the string contains a value</td>
+</tr>
+<tr>
+<td><code>starts(value)</code> / <code>ends(value)</code></td>
+<td>Checks the beginning or end</td>
+</tr>
+<tr>
+<td><code>first()</code> / <code>last()</code></td>
+<td>Gets the first or last character</td>
+</tr>
+<tr>
+<td><code>reverse()</code></td>
+<td>Reverses the string by Unicode code point</td>
+</tr>
+<tr>
+<td><code>capitalize()</code> / <code>uncapitalize()</code></td>
+<td>Changes the first character's case</td>
+</tr>
+<tr>
+<td><code>titleCase()</code></td>
+<td>Capitalizes word initials</td>
+</tr>
+<tr>
+<td><code>camelCase()</code></td>
+<td>Converts to camel case</td>
+</tr>
+<tr>
+<td><code>kebabCase()</code></td>
+<td>Converts to kebab case</td>
+</tr>
+<tr>
+<td><code>snakeCase()</code></td>
+<td>Converts to snake case</td>
+</tr>
+<tr>
+<td><code>pascalCase()</code></td>
+<td>Converts to PascalCase</td>
+</tr>
+<tr>
+<td><code>words()</code></td>
+<td>Extracts letter-and-number sequences</td>
+</tr>
+<tr>
+<td><code>lines()</code></td>
+<td>Splits into lines</td>
+</tr>
+<tr>
+<td><code>chars()</code> / <code>toArray()</code></td>
+<td>Converts to an array of characters</td>
+</tr>
+<tr>
+<td><code>unique()</code></td>
+<td>Removes duplicate characters</td>
+</tr>
+<tr>
+<td><code>escapeRegExp()</code></td>
+<td>Escapes regular-expression special characters</td>
+</tr>
+<tr>
+<td><code>stripHtml()</code></td>
+<td>Removes HTML-like tags</td>
+</tr>
+<tr>
+<td><code>stripWhitespace()</code></td>
+<td>Removes all whitespace</td>
+</tr>
+<tr>
+<td><code>truncate(length, suffix?)</code> / <code>limit(length, suffix?)</code></td>
+<td>Limits string length</td>
+</tr>
+<tr>
+<td><code>toNumber()</code></td>
+<td>Converts to a number</td>
+</tr>
+<tr>
+<td><code>toInt(radix?)</code></td>
+<td>Parses an integer</td>
+</tr>
+<tr>
+<td><code>toFloat()</code></td>
+<td>Parses a floating-point number</td>
+</tr>
+<tr>
+<td><code>toBoolean()</code></td>
+<td>Parses <code>true</code>, <code>1</code>, <code>yes</code>, or <code>on</code> as true</td>
+</tr>
+<tr>
+<td><code>toJSON()</code></td>
+<td>Returns the JSON-serialized string</td>
+</tr>
+</tbody>
+</table>
+<p>Also inherits the native <code>String</code> API. <code>S2</code> is registered as a callable and constructible string wrapper.</p>
+<h2 id="set2--set"><code>SET2</code> — Set</h2>
+<p><code>SET2</code> extends <code>Set</code> and retains the standard <code>Set</code> API, plus functional transforms, bulk mutation, set algebra, and conversion helpers. Like <code>M2</code>, keys are arbitrary — any value <code>Set</code> accepts, <code>SET2</code> accepts.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>s(value)</code></td>
+<td>Alias for <code>add</code></td>
+</tr>
+<tr>
+<td><code>take(value)</code></td>
+<td>Delete and return the value, or <code>undefined</code> if absent</td>
+</tr>
+<tr>
+<td><code>peek(value)</code></td>
+<td>Return the value or <code>false</code> if absent</td>
+</tr>
+<tr>
+<td><code>toggle(value)</code></td>
+<td>Add if absent, delete if present; returns the new membership</td>
+</tr>
+<tr>
+<td><code>first()</code> / <code>last()</code></td>
+<td>First or last value in iteration order</td>
+</tr>
+<tr>
+<td><code>union(other)</code></td>
+<td>New set of all values in either set</td>
+</tr>
+<tr>
+<td><code>intersection(other)</code></td>
+<td>New set of values in both sets</td>
+</tr>
+<tr>
+<td><code>difference(other)</code></td>
+<td>New set of values in this set but not the other</td>
+</tr>
+<tr>
+<td><code>symmetricDifference(other)</code></td>
+<td>New set of values in either set but not both</td>
+</tr>
+<tr>
+<td><code>isSubsetOf(other)</code> / <code>isSupersetOf(other)</code></td>
+<td>Containment checks</td>
+</tr>
+<tr>
+<td><code>isDisjointFrom(other)</code></td>
+<td>Whether the two sets share no values</td>
+</tr>
+<tr>
+<td><code>equals(other)</code></td>
+<td>Whether the two sets contain the same values</td>
+</tr>
+<tr>
+<td><code>filter(fn)</code></td>
+<td>New set of values matching the predicate</td>
+</tr>
+<tr>
+<td><code>map(fn)</code></td>
+<td>New set of mapped values</td>
+</tr>
+<tr>
+<td><code>partition(fn)</code></td>
+<td>Split into matching and nonmatching sets</td>
+</tr>
+<tr>
+<td><code>differenceBy(other, fn)</code></td>
+<td>Difference by computed key</td>
+</tr>
+<tr>
+<td><code>uniqueBy(fn)</code></td>
+<td>Deduplicate by computed key</td>
+</tr>
+<tr>
+<td><code>find(fn)</code></td>
+<td>First matching value, or <code>undefined</code></td>
+</tr>
+<tr>
+<td><code>every(fn)</code> / <code>some(fn)</code></td>
+<td>Predicate checks</td>
+</tr>
+<tr>
+<td><code>reduce(fn, initial)</code></td>
+<td>Reduce values</td>
+</tr>
+<tr>
+<td><code>addAll(values)</code></td>
+<td>Add many values</td>
+</tr>
+<tr>
+<td><code>deleteAll(values)</code></td>
+<td>Delete many values; returns the count removed</td>
+</tr>
+<tr>
+<td><code>retainAll(values)</code></td>
+<td>Delete every value not in <code>values</code></td>
+</tr>
+<tr>
+<td><code>update(values)</code></td>
+<td>Alias for <code>addAll</code></td>
+</tr>
+<tr>
+<td><code>replace(values)</code></td>
+<td>Clear, then add all values</td>
+</tr>
+<tr>
+<td><code>swap(a, b)</code></td>
+<td>If <code>a</code> is present, delete <code>a</code> and add <code>b</code></td>
+</tr>
+<tr>
+<td><code>clone()</code></td>
+<td>Create a shallow copy</td>
+</tr>
+<tr>
+<td><code>toArray()</code></td>
+<td>Convert to an array</td>
+</tr>
+<tr>
+<td><code>toMap(fn)</code></td>
+<td>Convert to an <code>M2</code>, using <code>fn</code> to produce <code>[key, value]</code> per entry</td>
+</tr>
+<tr>
+<td><code>toObject(fn?)</code></td>
+<td>Convert to an object, keyed by <code>fn(value)</code> or <code>String(value)</code></td>
+</tr>
+<tr>
+<td><code>toJSON()</code></td>
+<td>Alias for <code>toArray</code></td>
+</tr>
+<tr>
+<td><code>fromArray(values)</code></td>
+<td>Create a set from an array</td>
+</tr>
+<tr>
+<td><code>fromObject(obj)</code></td>
+<td>Create a set from an object's values</td>
+</tr>
+<tr>
+<td><code>fromEntries(entries)</code></td>
+<td>Create a set from the values of <code>[key, value]</code> pairs</td>
+</tr>
+<tr>
+<td><code>from(values)</code></td>
+<td>Create a set from any iterable</td>
+</tr>
+</tbody>
+</table>
+<h2 id="set2b--set-binary"><code>SET2B</code> — Set Binary</h2>
+<p><code>SET2BI</code> is the dense, PID-indexed backing store for <code>SET2</code>. Membership lives in a <code>Uint8Array</code> (<code>flags[pid] → 0/1</code>), dense iteration walks <code>slots</code>, and <code>pidToIdx</code> gives O(1) delete via swap-remove. <code>cap</code> is the maximum PID; values outside <code>[0, cap)</code> read as absent.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>s(pid)</code></td>
+<td>Alias for <code>add</code></td>
+</tr>
+<tr>
+<td><code>add(pid)</code></td>
+<td>Add a PID</td>
+</tr>
+<tr>
+<td><code>has(pid)</code></td>
+<td>Whether the PID is a member</td>
+</tr>
+<tr>
+<td><code>delete(pid)</code></td>
+<td>Remove a PID; returns whether it was present</td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>Remove every member in place</td>
+</tr>
+<tr>
+<td><code>take(pid)</code></td>
+<td>Delete and return the PID, or <code>undefined</code> if absent</td>
+</tr>
+<tr>
+<td><code>peek(pid)</code></td>
+<td>Return the PID or <code>false</code> if absent</td>
+</tr>
+<tr>
+<td><code>toggle(pid)</code></td>
+<td>Add if absent, delete if present; returns the new membership</td>
+</tr>
+<tr>
+<td><code>first()</code> / <code>last()</code></td>
+<td>First or last PID in dense order</td>
+</tr>
+<tr>
+<td><code>union(other)</code></td>
+<td>New set of all PIDs in either set</td>
+</tr>
+<tr>
+<td><code>intersection(other)</code></td>
+<td>New set of PIDs in both sets</td>
+</tr>
+<tr>
+<td><code>difference(other)</code></td>
+<td>New set of PIDs in this set but not the other</td>
+</tr>
+<tr>
+<td><code>symmetricDifference(other)</code></td>
+<td>New set of PIDs in either set but not both</td>
+</tr>
+<tr>
+<td><code>isSubsetOf(other)</code> / <code>isSupersetOf(other)</code></td>
+<td>Containment checks</td>
+</tr>
+<tr>
+<td><code>isDisjointFrom(other)</code></td>
+<td>Whether the two sets share no PIDs</td>
+</tr>
+<tr>
+<td><code>equals(other)</code></td>
+<td>Whether the two sets contain the same PIDs</td>
+</tr>
+<tr>
+<td><code>filter(fn)</code></td>
+<td>New set of PIDs matching the predicate</td>
+</tr>
+<tr>
+<td><code>map(fn)</code></td>
+<td>New set of mapped PIDs</td>
+</tr>
+<tr>
+<td><code>partition(fn)</code></td>
+<td>Split into matching and nonmatching sets</td>
+</tr>
+<tr>
+<td><code>differenceBy(other, fn)</code></td>
+<td>Difference by computed key</td>
+</tr>
+<tr>
+<td><code>uniqueBy(fn)</code></td>
+<td>Deduplicate by computed key</td>
+</tr>
+<tr>
+<td><code>find(fn)</code></td>
+<td>First matching PID, or <code>undefined</code></td>
+</tr>
+<tr>
+<td><code>every(fn)</code> / <code>some(fn)</code></td>
+<td>Predicate checks</td>
+</tr>
+<tr>
+<td><code>reduce(fn, initial)</code></td>
+<td>Reduce PIDs</td>
+</tr>
+<tr>
+<td><code>addAll(pids)</code></td>
+<td>Add many PIDs</td>
+</tr>
+<tr>
+<td><code>deleteAll(pids)</code></td>
+<td>Delete many PIDs; returns the count removed</td>
+</tr>
+<tr>
+<td><code>retainAll(pids)</code></td>
+<td>Delete every PID not in <code>pids</code></td>
+</tr>
+<tr>
+<td><code>update(pids)</code></td>
+<td>Alias for <code>addAll</code></td>
+</tr>
+<tr>
+<td><code>replace(pids)</code></td>
+<td>Clear, then add all PIDs</td>
+</tr>
+<tr>
+<td><code>swap(a, b)</code></td>
+<td>If <code>a</code> is present, delete <code>a</code> and add <code>b</code></td>
+</tr>
+<tr>
+<td><code>clone()</code></td>
+<td>Create a shallow copy</td>
+</tr>
+<tr>
+<td><code>toArray()</code></td>
+<td>Convert to an array of PIDs</td>
+</tr>
+<tr>
+<td><code>toMap(fn)</code></td>
+<td>Convert to a plain <code>Map</code>, using <code>fn</code> to produce <code>[key, value]</code> per PID</td>
+</tr>
+<tr>
+<td><code>toObject(fn?)</code></td>
+<td>Convert to an object, keyed by <code>fn(pid)</code> or <code>String(pid)</code></td>
+</tr>
+<tr>
+<td><code>toJSON()</code></td>
+<td>Alias for <code>toArray</code></td>
+</tr>
+<tr>
+<td><code>fromArray(pids, cap?)</code></td>
+<td>Create a set from an array of PIDs</td>
+</tr>
+<tr>
+<td><code>fromObject(obj, cap?)</code></td>
+<td>Create a set from an object's values</td>
+</tr>
+<tr>
+<td><code>fromEntries(entries, cap?)</code></td>
+<td>Create a set from the values of <code>[key, value]</code> pairs</td>
+</tr>
+<tr>
+<td><code>from(pids, cap?)</code></td>
+<td>Create a set from any iterable of PIDs</td>
+</tr>
+</tbody>
+</table>
+<h2 id="u82--uint8array"><code>U82</code> — Uint8Array</h2>
+<p>Extends <code>Array&lt;T&gt;</code> with collection access, transformations, set-like operations, and in-place utilities.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>first()</code> / <code>second()</code> / <code>third()</code> / <code>last()</code></td>
+<td>Gets an element by position</td>
+</tr>
+<tr>
+<td><code>random()</code></td>
+<td>Gets a random element</td>
+</tr>
+<tr>
+<td><code>isEmpty()</code> / <code>isNotEmpty()</code></td>
+<td>Checks whether the array has elements</td>
+</tr>
+<tr>
+<td><code>isNotEmptyAndDefined()</code></td>
+<td>Checks for at least one non-nullish element</td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>Empties the array in place</td>
+</tr>
+<tr>
+<td><code>clone()</code></td>
+<td>Creates a shallow copy</td>
+</tr>
+<tr>
+<td><code>unique()</code></td>
+<td>Removes duplicate values</td>
+</tr>
+<tr>
+<td><code>compact()</code></td>
+<td>Removes <code>null</code> and <code>undefined</code></td>
+</tr>
+<tr>
+<td><code>chunk(size)</code></td>
+<td>Splits into groups of a given size</td>
+</tr>
+<tr>
+<td><code>flatten(depth?)</code> / <code>flattenDeep()</code></td>
+<td>Flattens nested arrays</td>
+</tr>
+<tr>
+<td><code>shuffle()</code> / <code>shuffleInPlace()</code></td>
+<td>Randomizes the array in place</td>
+</tr>
+<tr>
+<td><code>sample(count?)</code> / <code>pick(count?)</code></td>
+<td>Selects random elements without replacement</td>
+</tr>
+<tr>
+<td><code>count(predicate?)</code></td>
+<td>Counts all elements or matching elements</td>
+</tr>
+<tr>
+<td><code>sum()</code> / <code>average()</code> / <code>min()</code> / <code>max()</code></td>
+<td>Numeric aggregations</td>
+</tr>
+<tr>
+<td><code>groupBy(keyFn)</code></td>
+<td>Groups elements by computed key</td>
+</tr>
+<tr>
+<td><code>keyBy(keyFn)</code> / <code>toMap(keyFn)</code></td>
+<td>Maps computed keys to elements</td>
+</tr>
+<tr>
+<td><code>partition(predicate)</code></td>
+<td>Splits elements into matching and nonmatching arrays</td>
+</tr>
+<tr>
+<td><code>difference(other)</code></td>
+<td>Returns elements not present in another iterable</td>
+</tr>
+<tr>
+<td><code>intersection(other)</code></td>
+<td>Returns elements present in another iterable</td>
+</tr>
+<tr>
+<td><code>union(other)</code></td>
+<td>Combines unique elements</td>
+</tr>
+<tr>
+<td><code>symmetricDifference(other)</code></td>
+<td>Returns elements exclusive to either collection</td>
+</tr>
+<tr>
+<td><code>take(count)</code> / <code>takeLast(count)</code></td>
+<td>Takes elements from either end</td>
+</tr>
+<tr>
+<td><code>drop(count)</code> / <code>dropLast(count)</code></td>
+<td>Removes elements from either end in the returned copy</td>
+</tr>
+<tr>
+<td><code>pluck(key)</code></td>
+<td>Extracts a property from every element</td>
+</tr>
+<tr>
+<td><code>insert(index, ...items)</code></td>
+<td>Inserts elements in place</td>
+</tr>
+<tr>
+<td><code>removeAt(index)</code></td>
+<td>Removes and returns an element</td>
+</tr>
+<tr>
+<td><code>remove(value)</code></td>
+<td>Removes the first matching element</td>
+</tr>
+<tr>
+<td><code>removeWhere(predicate)</code></td>
+<td>Removes all matching elements in place</td>
+</tr>
+<tr>
+<td><code>replace(oldValue, newValue)</code></td>
+<td>Replaces the first matching element</td>
+</tr>
+<tr>
+<td><code>move(from, to)</code></td>
+<td>Moves an element to another index</td>
+</tr>
+<tr>
+<td><code>swap(i, j)</code></td>
+<td>Swaps two positions</td>
+</tr>
+<tr>
+<td><code>toSet()</code></td>
+<td>Converts to a native <code>Set</code></td>
+</tr>
+<tr>
+<td><code>equals(other)</code></td>
+<td>Checks element-by-element equality</td>
+</tr>
+<tr>
+<td><code>startsWith(other)</code> / <code>endsWith(other)</code></td>
+<td>Checks matching elements at either end</td>
+</tr>
+<tr>
+<td><code>isSorted(compareFn?)</code></td>
+<td>Checks whether elements are sorted</td>
+</tr>
+<tr>
+<td><code>frequencies()</code></td>
+<td>Counts occurrences of each element</td>
+</tr>
+</tbody>
+</table>
+<p>Also inherits the native <code>Array</code> API. Static <code>from()</code> and <code>of()</code> return the enhanced array type.</p>
+<h2 id="usp2--urlsearchparams"><code>USP2</code> — URLSearchParams</h2>
+<p>Extends <code>URLSearchParams</code> with typed value access, serialization, merging, and convenience methods.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>getOr(name, fallback)</code></td>
+<td>Gets a parameter or returns a fallback</td>
+</tr>
+<tr>
+<td><code>getOrNull(name)</code></td>
+<td>Gets a parameter or returns <code>null</code></td>
+</tr>
+<tr>
+<td><code>getOrThrow(name, error?)</code></td>
+<td>Gets a parameter or throws</td>
+</tr>
+<tr>
+<td><code>getNumber(name, fallback?)</code></td>
+<td>Parses a finite number</td>
+</tr>
+<tr>
+<td><code>getInt(name, radix?)</code></td>
+<td>Parses an integer</td>
+</tr>
+<tr>
+<td><code>getFloat(name)</code></td>
+<td>Parses a floating-point number</td>
+</tr>
+<tr>
+<td><code>getBoolean(name, fallback?)</code></td>
+<td>Parses boolean-like values</td>
+</tr>
+<tr>
+<td><code>getJSON&lt;T&gt;(name)</code></td>
+<td>Parses JSON; returns <code>undefined</code> on missing or invalid JSON</td>
+</tr>
+<tr>
+<td><code>getArray(name, separator?)</code></td>
+<td>Splits a parameter into an array</td>
+</tr>
+<tr>
+<td><code>getObject&lt;T&gt;()</code></td>
+<td>Converts parameters to an object, preserving repeated values as arrays</td>
+</tr>
+<tr>
+<td><code>setNumber(name, value)</code></td>
+<td>Sets a numeric parameter</td>
+</tr>
+<tr>
+<td><code>setBoolean(name, value)</code></td>
+<td>Sets a boolean parameter</td>
+</tr>
+<tr>
+<td><code>setJSON(name, value)</code></td>
+<td>JSON-serializes a value into a parameter</td>
+</tr>
+<tr>
+<td><code>setArray(name, values, separator?)</code></td>
+<td>Joins values into a parameter</td>
+</tr>
+<tr>
+<td><code>setIfAbsent(name, value)</code></td>
+<td>Sets only if the parameter does not exist</td>
+</tr>
+<tr>
+<td><code>setIfPresent(name, value)</code></td>
+<td>Sets only if the parameter exists</td>
+</tr>
+<tr>
+<td><code>appendAll(params)</code></td>
+<td>Appends parameters from another source</td>
+</tr>
+<tr>
+<td><code>merge(params, overwrite?)</code></td>
+<td>Merges parameters, overwriting by default</td>
+</tr>
+<tr>
+<td><code>clone()</code></td>
+<td>Creates a copy</td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>Removes all parameters</td>
+</tr>
+<tr>
+<td><code>isEmpty()</code> / <code>isNotEmpty()</code></td>
+<td>Checks whether parameters exist</td>
+</tr>
+<tr>
+<td><code>toObject()</code> / <code>toJSON()</code></td>
+<td>Converts parameters to an object</td>
+</tr>
+<tr>
+<td><code>toURLSearchParams()</code></td>
+<td>Returns a native <code>URLSearchParams</code> copy</td>
+</tr>
+<tr>
+<td><code>toURL(url)</code></td>
+<td>Creates a URL and appends these parameters</td>
+</tr>
+</tbody>
+</table>
+<p>Also exposes <code>size</code> and inherits the native <code>URLSearchParams</code> API.</p>
+<h2 id="wm2--weakmap"><code>WM2</code> — WeakMap</h2>
+<p>Extends <code>WeakMap&lt;K, V&gt;</code> with aliases, lazy initialization, conditional updates, and optional explicit key tracking.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>g</code> / <code>h</code> / <code>d</code></td>
+<td>Aliases for <code>get</code> / <code>has</code> / <code>delete</code></td>
+</tr>
+<tr>
+<td><code>s(key, value)</code></td>
+<td>Sets a value; evaluates a function argument lazily</td>
+</tr>
+<tr>
+<td><code>swap(key, value)</code></td>
+<td>Sets a value and returns the previous value</td>
+</tr>
+<tr>
+<td><code>take(key)</code> / <code>getAndDelete(key)</code></td>
+<td>Gets and deletes a value</td>
+</tr>
+<tr>
+<td><code>peek(key)</code></td>
+<td>Returns the value or <code>false</code> if absent</td>
+</tr>
+<tr>
+<td><code>getOrI(key, value)</code></td>
+<td>Gets an existing value or stores the supplied value</td>
+</tr>
+<tr>
+<td><code>getOrM(key, make)</code></td>
+<td>Gets an existing value or lazily creates and stores one</td>
+</tr>
+<tr>
+<td><code>getOr(key, fallback)</code></td>
+<td>Gets a value or returns a fallback</td>
+</tr>
+<tr>
+<td><code>getOrThrow(key, error?)</code></td>
+<td>Gets a value or throws</td>
+</tr>
+<tr>
+<td><code>getOrCreate(key, make)</code> / <code>ensure(key, make)</code></td>
+<td>Lazily creates a missing value</td>
+</tr>
+<tr>
+<td><code>update(key, fn, initial)</code></td>
+<td>Computes and stores an updated value</td>
+</tr>
+<tr>
+<td><code>setIfAbsent(key, value)</code></td>
+<td>Sets only if the key is absent</td>
+</tr>
+<tr>
+<td><code>setIfPresent(key, value)</code></td>
+<td>Sets only if the key exists</td>
+</tr>
+<tr>
+<td><code>hasOrSet(key, value)</code></td>
+<td>Returns whether the key already existed; otherwise sets it</td>
+</tr>
+<tr>
+<td><code>replace(key, value)</code></td>
+<td>Replaces a value only when the key exists</td>
+</tr>
+<tr>
+<td><code>touch(key)</code></td>
+<td>Inserts <code>undefined</code> for an absent key</td>
+</tr>
+<tr>
+<td><code>track(key)</code> / <code>untrack(key)</code></td>
+<td>Enables or removes explicit key tracking</td>
+</tr>
+<tr>
+<td><code>trackedKeys()</code> / <code>trackedValues()</code> / <code>trackedEntries()</code></td>
+<td>Reads explicitly tracked keys and their current values</td>
+</tr>
+<tr>
+<td><code>forEachTracked(fn)</code></td>
+<td>Iterates tracked entries still present</td>
+</tr>
+<tr>
+<td><code>clearTracked()</code></td>
+<td>Deletes tracked keys from the WeakMap and clears tracking</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tracking note:</strong> Tracking retains strong references to keys and can prevent garbage collection. Tracking is opt-in.</p>
+<h2 id="ws2--weakset"><code>WS2</code> — WeakSet</h2>
+<p>Extends <code>WeakSet&lt;T&gt;</code> with conditional membership, bulk operations, and optional explicit tracking.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>addIfAbsent(value)</code></td>
+<td>Adds only if absent; returns whether it added</td>
+</tr>
+<tr>
+<td><code>toggle(value)</code></td>
+<td>Adds if absent or deletes if present; returns the new membership state</td>
+</tr>
+<tr>
+<td><code>deleteIfPresent(value)</code></td>
+<td>Deletes a value if present</td>
+</tr>
+<tr>
+<td><code>hasAll(values)</code> / <code>hasAny(values)</code></td>
+<td>Checks membership across an iterable</td>
+</tr>
+<tr>
+<td><code>addAll(values)</code></td>
+<td>Adds multiple values</td>
+</tr>
+<tr>
+<td><code>deleteAll(values)</code></td>
+<td>Deletes multiple values and returns the deletion count</td>
+</tr>
+<tr>
+<td><code>replace(oldValue, newValue)</code></td>
+<td>Replaces a member if the old value exists</td>
+</tr>
+<tr>
+<td><code>track(value)</code></td>
+<td>Adds a value and explicitly tracks it</td>
+</tr>
+<tr>
+<td><code>untrack(value)</code></td>
+<td>Removes a value from explicit tracking</td>
+</tr>
+<tr>
+<td><code>trackedKeys()</code></td>
+<td>Returns explicitly tracked values</td>
+</tr>
+<tr>
+<td><code>forEachTracked(callback, thisArg?)</code></td>
+<td>Iterates tracked values still present in the WeakSet</td>
+</tr>
+<tr>
+<td><code>clearTracked()</code></td>
+<td>Deletes all explicitly tracked values</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tracking note:</strong> Native <code>WeakSet</code> values are not enumerable. These helpers maintain a separate strong-reference <code>Set</code> for tracked values; tracked objects can therefore remain reachable until untracked or cleared.</p>
+<h2 id="usage">Usage</h2>
+<p>After the package's initialization module has executed, the registered globals can be used directly:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> values = <span class="hljs-keyword">new</span> <span class="hljs-title function_">A2</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>);
+
+values.<span class="hljs-title function_">unique</span>().<span class="hljs-title function_">chunk</span>(<span class="hljs-number">2</span>);
+<span class="hljs-comment">// [[1, 2], [3, 4]]</span>
+
+<span class="hljs-keyword">new</span> <span class="hljs-title function_">N2</span>(<span class="hljs-number">42</span>).<span class="hljs-title function_">clamp</span>(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>).<span class="hljs-title function_">valueOf</span>();
+<span class="hljs-comment">// 10</span>
+
+<span class="hljs-keyword">const</span> cache = <span class="hljs-keyword">new</span> <span class="hljs-variable constant_">M2</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">number</span>&gt;();
+cache.<span class="hljs-title function_">s</span>(<span class="hljs-string">&quot;count&quot;</span>, <span class="hljs-number">1</span>);
+cache.<span class="hljs-title function_">inc</span>(<span class="hljs-string">&quot;count&quot;</span>);
+<span class="hljs-comment">// 2</span>
+
+<span class="hljs-keyword">const</span> iterator = <span class="hljs-keyword">new</span> <span class="hljs-title function_">I2</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]);
+iterator.<span class="hljs-title function_">filter</span>(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> value % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>).<span class="hljs-title function_">toArray</span>();
+<span class="hljs-comment">// [2, 4]</span>
+
+<span class="hljs-keyword">const</span> error = <span class="hljs-title class_">ER2</span>.<span class="hljs-title function_">from</span>(<span class="hljs-string">&quot;Something failed&quot;</span>);
+error.<span class="hljs-title function_">toJSON</span>();
+</code></pre>
+</div>
+<div style="font-size: 9px;  text-align: right">
+<h2 id="-pew-pew---toc-"><span style="font-size: 10.5px;"> ⇦✦──⇦✦──✦──✦──←'pew pew'<span> <span style="font-size: 24px;"> 🧙 [TOC] <span></h2>
+<div style="font-size: 14px;  text-align: right">
+<ul style="list-style: none; padding-left: 0;">
+  <li><a href="#a2--array">A2 — Array</a></li>
+  <li><a href="#b2--byte-bool">B2 — Byte Boolean</a></li>
+  <li><a href="#d2--date">D2 — Date</a></li>
+  <li><a href="#er2--error">ER2 — Error</a></li>
+  <li><a href="#i2--iterator">I2 — Iterator</a></li>
+  <li><a href="#m2--map">M2 — Map</a></li>
+  <li><a href="#m2b--map-binary">M2B — Map Binary</a></li>
+  <li><a href="#n2--number">N2 — Number</a></li>
+  <li><a href="#o2--object">O2 — Object</a></li>
+  <li><a href="#p2--promise">P2 — Promise</a></li>
+  <li><a href="#usp2--urlsearchparams">USP2 — URLSearchParams</a></li>
+  <li><a href="#u82--array">U82 — Uint8Array</a></li>
+  <li><a href="#s2--string">S2 — String</a></li>
+  <li><a href="#ws2--weakset">WS2 — WeakSet</a></li>
+  <li><a href="#wm2--weakmap">WM2 — WeakMap</a></li>
+  <li><a href="#o2--object">O2 — Object</a></li>
+  <li><a href="#set2--set">SET2 — Set</a></li>
+  <li><a href="#set2b--set-binary">SET2B — Set Binary</a></li>
+</ul>
+</div>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[PLATFORM]</span> </strong></summary>
+<ul style="list-style: none; padding-left: 0;">
+  <li><a href="../platform/TOC.html#TOC">TOC</a></li>
+  <li><a href="../platform/ATOM.html#ATOM">ATOM</a></li>
+  <li><a href="../platform/CELLS.html#CELLS">CELLS</a></li>
+  <li><a href="../platform/CONVERGENCE.html#CONVERGENCE">CONVERGENCE</a></li>
+  <li><a href="../platform/FORMS.html#FORMS">FORMS</a></li>
+  <li><a href="../platform/GLOBAL_QUAD_KEY_CONTEXT.html#GLOBAL_QUAD_KEY_CONTEXT">GLOBAL_QUAD_KEY_CONTEXT</a></li>
+  <li><a href="../platform/PERFORMANCE_DIVISION.html#PERFORMANCE_DIVISION">PERFORMANCE_DIVISION</a></li>
+  <li><a href="../platform/REACTIVITY.html#REACTIVITY">REACTIVITY</a></li>
+  <li><a href="../platform/ROUTE_COMPONENTS.html#ROUTE_COMPONENTS">ROUTE_COMPONENTS</a></li>
+  <li><a href="../platform/SAURON.html#SAURON">SAURON</a></li>
+  <li><a href="../platform/SIGNALS.html#SIGNALS">SIGNALS</a></li>
+  <li><a href="../platform/STAFF.html#STAFF">STAFF</a></li>
+  <li><a href="../platform/THE_WARLOCK_MODE.html#THE_WARLOCK_MODE">THE_WARLOCK_MODE</a></li>
+  <li><a href="../platform/THE_WIZARD_MODE.html#THE_WIZARD_MODE">THE_WIZARD_MODE</a></li>
+  <li><a href="../platform/WARLOCKS_NECROMANCY_OBSERVATORY.html#WARLOCKS_NECROMANCY_OBSERVATORY">WARLOCKS_NECROMANCY_OBSERVATORY</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[MESSAGE QUEUES / BUSES]</span> </strong></summary>
+<ul style="list-style: none; padding-left: 0;">
+  <li><a href="../platform/TOC.html#TOC">DISRUPTOR</a></li>
+  <li><a href="../platform/ATOM.html#ATOM">STAFF</a></li>
+  <li><a href="../platform/CELLS.html#CELLS">CHAINS</a></li>
+  <li><a href="../platform/CONVERGENCE.html#CONVERGENCE">XXSR TRICKY</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[PLATFORM PRIMTIVES]</span> </strong></summary>
+<ul style="list-style: none; padding-left: 0;">
+  <li><a href="../primitives/API_WARDS.html#API_WARDS">API_WARDS</a></li>
+  <li><a href="../primitives/APPARATIONS_DQ.html#APPARATIONS_DQ">APPARATIONS_DQ</a></li>
+  <li><a href="../primitives/ARCHETYPES.html#ARCHETYPES">ARCHETYPES</a></li>
+  <li><a href="../primitives/BATCH.html#BATCH">BATCH</a></li>
+  <li><a href="../primitives/BINARY.html#BINARY">BINARY</a></li>
+  <li><a href="../primitives/CHAINS.html#CHAINS">CHAINS</a></li>
+  <li><a href="../primitives/CHRONO_SHIFT.html#CHRONO_SHIFT">CHRONO_SHIFT</a></li>
+  <li><a href="../primitives/CHRONOMANCER.html#CHRONOMANCER">CHRONOMANCER</a></li>
+  <li><a href="../primitives/CONJURE_LIBRARIES.html#CONJURE_LIBRARIES">CONJURE_LIBRARIES</a></li>
+  <li><a href="../primitives/CONJURE_MIMIC.html#CONJURE_MIMIC">CONJURE_MIMIC</a></li>
+  <li><a href="../primitives/CRON.html#CRON">CRON</a></li>
+  <li><a href="../primitives/DARK_PORTALS.html#DARK_PORTALS">DARK_PORTALS</a></li>
+  <li><a href="../primitives/DUPLEX_STREAMS.html#DUPLEX_STREAMS">DUPLEX_STREAMS</a></li>
+  <li><a href="../primitives/EMITTER.html#EMITTER">EMITTER</a></li>
+  <li><a href="../primitives/EVOCATIONS.html#EVOCATIONS">EVOCATIONS</a></li>
+  <li><a href="../primitives/EXECUTE_MASTER.html#EXECUTE_MASTER">EXECUTE_MASTER</a></li>
+  <li><a href="../primitives/GATE_MASTER.html#GATE_MASTER">GATE_MASTER</a></li>
+  <li><a href="../primitives/GATES.html#GATES">GATES</a></li>
+  <li><a href="../primitives/GLYPH_BINDER.html#GLYPH_BINDER">GLYPH_BINDER</a></li>
+  <li><a href="../primitives/GOLEMS.html#GOLEMS">GOLEMS</a></li>
+  <li><a href="../primitives/GRIMOIRE.html#GRIMOIRE">GRIMOIRE</a></li>
+  <li><a href="../primitives/ILLUSIONIST.html#ILLUSIONIST">ILLUSIONIST</a></li>
+  <li><a href="../primitives/INCANTATIONS.html#INCANTATIONS">INCANTATIONS</a></li>
+  <li><a href="../primitives/JOBS.html#JOBS">JOBS</a></li>
+  <li><a href="../primitives/MACHINES_MACHINE.html#MACHINES_MACHINE">MACHINES_MACHINE</a></li>
+  <li><a href="../primitives/MICROTASKS.html#MICROTASKS">MICROTASKS</a></li>
+  <li><a href="../primitives/MSGS.html#MSGS">MSGS</a></li>
+  <li><a href="../primitives/NO_NO_SQUARE_DQ.html#NO_NO_SQUARE_DQ">NO_NO_SQUARE_DQ</a></li>
+  <li><a href="../primitives/PERFORMANCE_TIMER.html#PERFORMANCE_TIMER">PERFORMANCE_TIMER</a></li>
+  <li><a href="../primitives/PLINKO_MASTER.html#PLINKO_MASTER">PLINKO_MASTER</a></li>
+  <li><a href="../primitives/PRIORITY.html#PRIORITY">PRIORITY</a></li>
+  <li><a href="../primitives/RDB.html#RDB">RDB</a></li>
+  <li><a href="../primitives/RENDERIVITY_DQ.html#RENDERIVITY_DQ">RENDERIVITY_DQ</a></li>
+  <li><a href="../primitives/RETRY_MASTER.html#RETRY_MASTER">RETRY_MASTER</a></li>
+  <li><a href="../primitives/RUNE_HTTP.html#RUNE_HTTP">RUNE_HTTP</a></li>
+  <li><a href="../primitives/S_CLASS.html#S_CLASS">S_CLASS</a></li>
+  <li><a href="../primitives/SCHEDULER.html#SCHEDULER">SCHEDULER</a></li>
+  <li><a href="../primitives/SENTINEL.html#SENTINEL">SENTINEL</a></li>
+  <li><a href="../primitives/SESSION_SIGIL.html#SESSION_SIGIL">SESSION_SIGIL</a></li>
+  <li><a href="../primitives/SPEELBOOK.html#SPEELBOOK">SPEELBOOK</a></li>
+  <li><a href="../primitives/TIERED_QUEUE.html#TIERED_QUEUE">TIERED_QUEUE</a></li>
+  <li><a href="../primitives/TIME_MACHINE.html#TIME_MACHINE">TIME_MACHINE</a></li>
+  <li><a href="../primitives/TOME_OF_SECRETS.html#TOME_OF_SECRETS">TOME_OF_SECRETS</a></li>
+  <li><a href="../primitives/TRANSMOGRIFY.html#TRANSMOGRIFY">TRANSMOGRIFY</a></li>
+  <li><a href="../primitives/TYPES_MACHINE.html#TYPES_MACHINE">TYPES_MACHINE</a></li>
+  <li><a href="../primitives/TYR.html#TYR">TYR</a></li>
+  <li><a href="../primitives/VAULTS.html#VAULTS">VAULTS</a></li>
+  <li><a href="../primitives/VENOM.html#VENOM">VENOM</a></li>
+  <li><a href="../primitives/WARDS.html#WARDS">WARDS</a></li>
+  <li><a href="../primitives/WIZARD_KEEP.html#WIZARD_KEEP">WIZARD_KEEP</a></li>
+  <li><a href="../primitives/WORKERS.html#WORKERS">WORKERS</a></li>
+  <li><a href="../primitives/WORKFLOW.html#WORKFLOW">WORKFLOW</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[SOLUTIONS]</span> </strong></summary>
+<ul style="list-style: none; padding-left: 0;">
+  <li><a href="../solutions/BATCH.html#BATCH">BATCH</a></li>
+  <li><a href="../solutions/CELLS.html#CELLS">CELLS</a></li>
+  <li><a href="../solutions/CHEERIO.html#CHEERIO">CHEERIO</a></li>
+  <li><a href="../solutions/CIRCUIT_BREAKER.html#CIRCUIT_BREAKER">CIRCUIT_BREAKER</a></li>
+  <li><a href="../solutions/COMPRESSION.html#COMPRESSION">COMPRESSION</a></li>
+  <li><a href="../solutions/CONCURRENT.html#CONCURRENT">CONCURRENT</a></li>
+  <li><a href="../solutions/CQRS.html#CQRS">CQRS</a></li>
+  <li><a href="../solutions/DEBOUNCE.html#DEBOUNCE">DEBOUNCE</a></li>
+  <li><a href="../solutions/DEFER.html#DEFER">DEFER</a></li>
+  <li><a href="../solutions/DEV_TOOLS.html#DEV_TOOLS">DEV_TOOLS</a></li>
+  <li><a href="../solutions/DIFFPATCH.html#DIFFPATCH">DIFFPATCH</a></li>
+  <li><a href="../solutions/DISTRIBUTED_EXE.html#DISTRIBUTED_EXE">DISTRIBUTED_EXE</a></li>
+  <li><a href="../solutions/DISTRIBUTED_LOGIC_GATES.html#DISTRIBUTED_LOGIC_GATES">DISTRIBUTED_LOGIC_GATES</a></li>
+  <li><a href="../solutions/DISTRIBUTED_PORTAL.html#DISTRIBUTED_PORTAL">DISTRIBUTED_PORTAL</a></li>
+  <li><a href="../solutions/DISTRIBUTED_REACTIVE_STATE.html#DISTRIBUTED_REACTIVE_STATE">DISTRIBUTED_REACTIVE_STATE</a></li>
+  <li><a href="../solutions/DRS.html#DRS">DRS</a></li>
+  <li><a href="../solutions/EPHEMERAL_STATE.html#EPHEMERAL_STATE">EPHEMERAL_STATE</a></li>
+  <li><a href="../solutions/FULL_TEXT_SEARCH.html#FULL_TEXT_SEARCH">FULL_TEXT_SEARCH</a></li>
+  <li><a href="../solutions/HTTP_CLIENT.html#HTTP_CLIENT">HTTP_CLIENT</a></li>
+  <li><a href="../solutions/LOGIC_GATES.html#LOGIC_GATES">LOGIC_GATES</a></li>
+  <li><a href="../solutions/LONGPOLL.html#LONGPOLL">LONGPOLL</a></li>
+  <li><a href="../solutions/LWW.html#LWW">LWW</a></li>
+  <li><a href="../solutions/MV.html#MV">MV</a></li>
+  <li><a href="../solutions/OPTIMISTIC.html#OPTIMISTIC">OPTIMISTIC</a></li>
+  <li><a href="../solutions/OR.html#OR">OR</a></li>
+  <li><a href="../solutions/PERFORMANCE_TIMER.html#PERFORMANCE_TIMER">PERFORMANCE_TIMER</a></li>
+  <li><a href="../solutions/PN.html#PN">PN</a></li>
+  <li><a href="../solutions/QUEUE_TIERED.html#QUEUE_TIERED">QUEUE_TIERED</a></li>
+  <li><a href="../solutions/RAFT.html#RAFT">RAFT</a></li>
+  <li><a href="../solutions/RATE_LIMIT.html#RATE_LIMIT">RATE_LIMIT</a></li>
+  <li><a href="../solutions/REACTIVE_CHAINS.html#REACTIVE_CHAINS">REACTIVE_CHAINS</a></li>
+  <li><a href="../solutions/REVERSE_HEART_BEAT_MGR.html#REVERSE_HEART_BEAT_MGR">REVERSE_HEART_BEAT_MGR</a></li>
+  <li><a href="../solutions/RIFTS.html#RIFTS">RIFTS</a></li>
+  <li><a href="../solutions/RIFT_MAELSTROM.html#RIFT_MAELSTROM">RIFT_MAELSTROM</a></li>
+  <li><a href="../solutions/SEMAPHORE.html#SEMAPHORE">SEMAPHORE</a></li>
+  <li><a href="../solutions/SEND_SUB.html#SEND_SUB">SEND_SUB</a></li>
+  <li><a href="../solutions/SIGNALS.html#SIGNALS">SIGNALS</a></li>
+  <li><a href="../solutions/SPREADSHEET.html#SPREADSHEET">SPREADSHEET</a></li>
+  <li><a href="../solutions/SSE.html#SSE">SSE</a></li>
+  <li><a href="../solutions/STAFF.html#STAFF">STAFF</a></li>
+  <li><a href="../solutions/STREAMS.html#STREAMS">STREAMS</a></li>
+  <li><a href="../solutions/SWR.html#SWR">SWR</a></li>
+  <li><a href="../solutions/TEMPORAL_SHIFT.html#TEMPORAL_SHIFT">TEMPORAL_SHIFT</a></li>
+  <li><a href="../solutions/THROTTLE.html#THROTTLE">THROTTLE</a></li>
+  <li><a href="../solutions/WIRE_TAPS.html#WIRE_TAPS">WIRE_TAPS</a></li>
+  <li><a href="../solutions/WORKSPACE_GLOBAL.html#WORKSPACE_GLOBAL">WORKSPACE_GLOBAL</a></li>
+  <li><a href="../solutions/WS.html#WS">WS</a></li>
+  <li><a href="../solutions/XXSR.html#XXSR">XXSR</a></li>
+  <li><a href="../solutions/YATA.html#YATA">YATA</a></li>
+  <li><a href="../solutions/YIMIR.html#YIMIR">YIMIR</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[DATABASES]</span> </strong></summary>
+<ul style="list-style: none; padding-left: 0;">
+  <li><a href="../databases/BDB.html#BDB">BDB</a></li>
+  <li><a href="../databases/BINARY.html#BINARY">BINARY</a></li>
+  <li><a href="../databases/COOKIE.html#COOKIE">COOKIE</a></li>
+  <li><a href="../databases/GDB.html#GDB">GDB</a></li>
+  <li><a href="../databases/GT.html#GT">GT</a></li>
+  <li><a href="../databases/HADRON_COLLIDER.html#HADRON_COLLIDER">HADRON_COLLIDER</a></li>
+  <li><a href="../databases/IDB_HADRON_COLLIDER.html#IDB_HADRON_COLLIDER">IDB_HADRON_COLLIDER</a></li>
+  <li><a href="../databases/IDB_HC_SINK.html#IDB_HC_SINK">IDB_HC_SINK</a></li>
+  <li><a href="../databases/IDB_KVDB.html#IDB_KVDB">IDB_KVDB</a></li>
+  <li><a href="../databases/IDB_RDB.html#IDB_RDB">IDB_RDB</a></li>
+  <li><a href="../databases/KVDB.html#KVDB">KVDB</a></li>
+  <li><a href="../databases/LS.html#LS">LS</a></li>
+  <li><a href="../databases/MEMORY.html#MEMORY">MEMORY</a></li>
+  <li><a href="../databases/RDB.html#RDB">RDB</a></li>
+  <li><a href="../databases/REGISTRIES.html#REGISTRIES">REGISTRIES</a></li>
+  <li><a href="../databases/SAURON.html#SAURON">SAURON</a></li>
+  <li><a href="../databases/SECURE_COOKIE.html#SECURE_COOKIE">SECURE_COOKIE</a></li>
+  <li><a href="../databases/SS.html#SS">SS</a></li>
+  <li><a href="../databases/TDB.html#TDB">TDB</a></li>
+  <li><a href="../databases/VDB.html#VDB">VDB</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[BAG OF TRICKS]</span> </strong></summary>
+<ul style="list-style: none; padding-left: 0;">
+  <li><a href="../bag_of_tricks/BARRIER.html#BARRIER">BARRIER</a></li>
+  <li><a href="../bag_of_tricks/CALL_IF.html#CALL_IF">CALL_IF</a></li>
+  <li><a href="../bag_of_tricks/CHAIN_RECHAIN.html#CHAIN_RECHAIN">CHAIN_RECHAIN</a></li>
+  <li><a href="../bag_of_tricks/chain.html#chain">chain</a></li>
+  <li><a href="../bag_of_tricks/clamp.html#clamp">clamp</a></li>
+  <li><a href="../bag_of_tricks/deferred.html#deferred">deferred</a></li>
+  <li><a href="../bag_of_tricks/evaluator.html#evaluator">evaluator</a></li>
+  <li><a href="../bag_of_tricks/finally.html#finally">finally</a></li>
+  <li><a href="../bag_of_tricks/gate.html#gate">gate</a></li>
+  <li><a href="../bag_of_tricks/ignore_arg.html#ignore_arg">ignore_arg</a></li>
+  <li><a href="../bag_of_tricks/invoke.html#invoke">invoke</a></li>
+  <li><a href="../bag_of_tricks/is_defined.html#is_defined">is_defined</a></li>
+  <li><a href="../bag_of_tricks/is_not_defined.html#is_not_defined">is_not_defined</a></li>
+  <li><a href="../bag_of_tricks/LAZY.html#LAZY">LAZY</a></li>
+  <li><a href="../bag_of_tricks/MAYBE_PROMISE.html#MAYBE_PROMISE">MAYBE_PROMISE</a></li>
+  <li><a href="../bag_of_tricks/maybe.html#maybe">maybe</a></li>
+  <li><a href="../bag_of_tricks/mcr_combo.html#mcr_combo">mcr_combo</a></li>
+  <li><a href="../bag_of_tricks/ONCE.html#ONCE">ONCE</a></li>
+  <li><a href="../bag_of_tricks/or_default.html#or_default">or_default</a></li>
+  <li><a href="../bag_of_tricks/patch_state.html#patch_state">patch_state</a></li>
+  <li><a href="../bag_of_tricks/retry_with_backoff.html#retry_with_backoff">retry_with_backoff</a></li>
+  <li><a href="../bag_of_tricks/run_with_retry.html#run_with_retry">run_with_retry</a></li>
+  <li><a href="../bag_of_tricks/SERIAL_EXECUTOR.html#SERIAL_EXECUTOR">SERIAL_EXECUTOR</a></li>
+  <li><a href="../bag_of_tricks/set_keys.html#set_keys">set_keys</a></li>
+  <li><a href="../bag_of_tricks/set_prev.html#set_prev">set_prev</a></li>
+  <li><a href="../bag_of_tricks/sleep.html#sleep">sleep</a></li>
+  <li><a href="../bag_of_tricks/tap.html#tap">tap</a></li>
+  <li><a href="../bag_of_tricks/thenable.html#thenable">thenable</a></li>
+  <li><a href="../bag_of_tricks/TIMED_PROMISE.html#TIMED_PROMISE">TIMED_PROMISE</a></li>
+  <li><a href="../bag_of_tricks/to_promise.html#to_promise">to_promise</a></li>
+  <li><a href="../bag_of_tricks/try_catch.html#try_catch">try_catch</a></li>
+  <li><a href="../bag_of_tricks/unreachable.html#unreachable">unreachable</a></li>
+  <li><a href="../bag_of_tricks/WAIT_AND_PROMISE.html#WAIT_AND_PROMISE">WAIT_AND_PROMISE</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[TODO & IDEAS]</span> </strong></summary>
+<ul style="list-style: none; padding-left: 0;">
+  <li><a href="TO_DO_AND_IDEAS.html#todo--ideas">TODO &amp; IDEAS</a></li>
+  <li><a href="TO_DO_AND_IDEAS.html#the_wizard">[THE_WIZARD]</a></li>
+  <li><a href="TO_DO_AND_IDEAS.html#primitives">[PRIMITIVES]</a></li>
+  <li><a href="TO_DO_AND_IDEAS.html#next_level_ideas">[NEXT_LEVEL_IDEAS]</a></li>
+  <li><a href="TO_DO_AND_IDEAS.html#kvdb">KVDB</a></li>
+  <li><a href="TO_DO_AND_IDEAS.html#prxcdb">PRxCDB</a></li>
+  <li><a href="TO_DO_AND_IDEAS.html#staff">STAFF</a></li>
+  <li><a href="TO_DO_AND_IDEAS.html#--e--mc2--">E = mc^2</a></li>
+  <li><a href="TO_DO_AND_IDEAS.html#native-custom-built-solutions">NATIVE, CUSTOM BUILT SOLUTIONS</a></li>
+  <li><a href="TO_DO_AND_IDEAS.html#storage-context">STORAGE CONTEXT</a></li>
+  <li><a href="TO_DO_AND_IDEAS.html#other">OTHER</a></li>
+</ul>
+</details>
+<br/>
+<pre><code>                          🗨️           ☁️
+                       🌴🌵                             🧙            
+┌──────────┐          ┌──────────────────────────┐
+└──────────┘          └──────────────────────────┘
+              ☁️      
+  🔮        🏜️🌵🏜️🌴🌵                         🏜️
+┌─────────────────────────────┐        ┌─────────┐
+└─────────────────────────────┘        └─────────┘
+
+                                         🏜️🌴🌵
+           ┌──────────────────────────────────────┐
+           └──────────────────────────────────────┘
+         ☁️                  
+           🌴🌴                🏜️🌴                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🏜️🌴🏜️🌵      🌪️                    🧙     🏝️🏜️
+┌─────────────────────────────────────────────────┐
+└─────────────────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️       ☁️                              
+    🌴🌵                                     🌵🏜️
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                            🌵🌴🌴       
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+         🌵🌴                      🌵          🌴
+┌────────────────┐        ┌───────────────────────┐
+└────────────────┘        └───────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                     🌴🌵          🌵🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵          🌵🌵                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+            ☁️          ☁️                     
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+
+  🌵🌴               🌴🌵          🌵🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴          🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+            ☁️          ☁️                     
+  🌴🌵                         🌵🌵          🏜️🌴
+┌──────────┐       ┌───────────────────────────────┐
+└──────────┘       └───────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+            🌵🌴                  🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵          🧙🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️       ☁️                              
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                          🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵      🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+             🌵🌴                                             🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                                🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                    🌵🌴                              🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵                          🌴                     
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                             
+
+  🌴                            🌵 
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵🌴                                       
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                               🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+                                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                 🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                                           🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵                🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌴                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                            🌵             🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                             🌵
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                   ☁️                     
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵   🌴🌴                                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                           🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+  🌵                           
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                  🌵           🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵           🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+   🌵        🌵🌴                             
+┌──────────────────┐        ┌───────────────┐
+└──────────────────┘        └───────────────┘
+                   ☁️          ☁️                     
+🌴                                      🌵        🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵            🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+        🌵🌴                                   🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                           🌵                           
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                            🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+                   ☁️          ☁️                     
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                              🌵🌵
+┌───────────────────┐       ┌────────┐       ┌────┐
+└───────────────────┘       └────────┘       └────┘
+
+                                              🌵🌴                      
+                   ┌──────────────────────────────┐
+                   └──────────────────────────────┘
+                   ☁️          ☁️                     
+  🌴                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵                   🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴              🌵
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                        ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                               🌵🌴                          
+                       ┌──────────────────────────┐
+                       └──────────────────────────┘
+         ☁️                  
+  🌴🌵                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵        🌴                                🌵
+┌────────────────────────┐       ┌────────────────┐
+└────────────────────────┘       └────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+      ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+              ☁️      
+  🔮        🏜️🌵🏜️🌴🌵                         🏜️
+┌─────────────────────────────┐        ┌─────────┐
+└─────────────────────────────┘        └─────────┘
+
+                                         🏜️🌴🌵
+           ┌──────────────────────────────────────┐
+           └──────────────────────────────────────┘
+         ☁️                  
+           🌴🌴                🏜️🌴                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🏜️🌴🏜️🌵      🌪️                    🧙     🏝️🏜️
+┌─────────────────────────────────────────────────┐
+└─────────────────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️       ☁️                              
+    🌴🌵                                     🌵🏜️
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                            🌵🌴🌴       
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+         🌵🌴                      🌵          🌴
+┌────────────────┐        ┌───────────────────────┐
+└────────────────┘        └───────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                     🌴🌵          🌵🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵          🌵🌵                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+            ☁️          ☁️                     
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+
+  🌵🌴               🌴🌵          🌵🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴          🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+            ☁️          ☁️                     
+  🌴🌵                         🌵🌵          🏜️🌴
+┌──────────┐       ┌───────────────────────────────┐
+└──────────┘       └───────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+            🌵🌴                  🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵          🧙🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️       ☁️                              
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                          🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵      🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+             🌵🌴                                             🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                                🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                    🌵🌴                              🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵                          🌴                     
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                             
+
+  🌴                            🌵 
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵🌴                                       
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                               🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+                                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                 🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                                           🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵                🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌴                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                            🌵             🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                             🌵
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                   ☁️                     
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵   🌴🌴                                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                           🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+  🌵                           
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                  🌵           🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵           🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+   🌵        🌵🌴                             
+┌──────────────────┐        ┌───────────────┐
+└──────────────────┘        └───────────────┘
+                   ☁️          ☁️                     
+🌴                                      🌵        🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵            🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+        🌵🌴                                   🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                           🌵                           
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                            🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+                   ☁️          ☁️                     
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                              🌵🌵
+┌───────────────────┐       ┌────────┐       ┌────┐
+└───────────────────┘       └────────┘       └────┘
+
+                                              🌵🌴                      
+                   ┌──────────────────────────────┐
+                   └──────────────────────────────┘
+                   ☁️          ☁️                     
+  🌴                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵                   🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴              🌵
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                        ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                               🌵🌴                          
+                       ┌──────────────────────────┐
+                       └──────────────────────────┘
+         ☁️                  
+  🌴🌵                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵        🌴                                🌵
+┌────────────────────────┐       ┌────────────────┐
+└────────────────────────┘       └────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+      ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+              ☁️      
+  🔮        🏜️🌵🏜️🌴🌵                         🏜️
+┌─────────────────────────────┐        ┌─────────┐
+└─────────────────────────────┘        └─────────┘
+
+                                         🏜️🌴🌵
+           ┌──────────────────────────────────────┐
+           └──────────────────────────────────────┘
+         ☁️                  
+           🌴🌴                🏜️🌴                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🏜️🌴🏜️🌵      🌪️                    🧙     🏝️🏜️
+┌─────────────────────────────────────────────────┐
+└─────────────────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️       ☁️                              
+    🌴🌵                                     🌵🏜️
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                            🌵🌴🌴       
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+         🌵🌴                      🌵          🌴
+┌────────────────┐        ┌───────────────────────┐
+└────────────────┘        └───────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                     🌴🌵          🌵🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵          🌵🌵                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+            ☁️          ☁️                     
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+
+  🌵🌴               🌴🌵          🌵🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴          🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+            ☁️          ☁️                     
+  🌴🌵                         🌵🌵          🏜️🌴
+┌──────────┐       ┌───────────────────────────────┐
+└──────────┘       └───────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+            🌵🌴                  🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵          🧙🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️       ☁️                              
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                          🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵      🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+             🌵🌴                                             🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                                🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                    🌵🌴                              🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵                          🌴                     
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                             
+
+  🌴                            🌵 
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵🌴                                       
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                               🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+                                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                 🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                                           🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵                🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌴                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                            🌵             🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                             🌵
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                   ☁️                     
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵   🌴🌴                                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                           🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+  🌵                           
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                  🌵           🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵           🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+   🌵        🌵🌴                             
+┌──────────────────┐        ┌───────────────┐
+└──────────────────┘        └───────────────┘
+                   ☁️          ☁️                     
+🌴                                      🌵        🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵            🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+        🌵🌴                                   🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                           🌵                           
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                            🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+                   ☁️          ☁️                     
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                              🌵🌵
+┌───────────────────┐       ┌────────┐       ┌────┐
+└───────────────────┘       └────────┘       └────┘
+
+                                              🌵🌴                      
+                   ┌──────────────────────────────┐
+                   └──────────────────────────────┘
+                   ☁️          ☁️                     
+  🌴                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵                   🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴              🌵
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                        ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                               🌵🌴                          
+                       ┌──────────────────────────┐
+                       └──────────────────────────┘
+         ☁️                  
+  🌴🌵                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵        🌴                                🌵
+┌────────────────────────┐       ┌────────────────┐
+└────────────────────────┘       └────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+      ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                  🌵             🌴                         🌵
+┌─────────────────────────────────────────────────┐
+└─────────────────────────────────────────────────┘
+</code></pre>
+</div>
+</div>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>

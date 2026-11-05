@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>ReChain</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="rechain">ReChain</h1>
+<blockquote>
+<p>An immutable value pipeline for DRS. Every step returns a <strong>new</strong> <code>ReChain</code> — nothing is mutated in place. Safe to hold across renders, share between components, or re-run.</p>
+</blockquote>
+<p><code>Chain</code> is the mutating sibling. <code>ReChain</code> is the one you reach for when you want the pipeline itself to be a value: composable, shareable, and free of the &quot;who changed this?&quot; question. Same shape, same verbs, same <code>when</code> / <code>switch</code> / <code>guard</code> ergonomics — but each call hands you a fresh chain instead of mutating the one you had.</p>
+<hr>
+<h2 id="install">Install</h2>
+<pre><code class="language-bash">npm install rechain
+</code></pre>
+<p>Requires <code>root.DISRUPTOR</code> (a DRS cell store) and a <code>log</code> helper with <code>t.info</code> / <code>t.error</code> levels to be available in scope. If you're vendoring the file, point those at your own implementations.</p>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<p>The absolute minimum to get this working in under 5 minutes:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">ReChain</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;rechain&quot;</span>
+
+<span class="hljs-keyword">const</span> result = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReChain</span>({ <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> })
+  .<span class="hljs-title function_">set</span>(<span class="hljs-string">&quot;count&quot;</span>, <span class="hljs-number">5</span>)
+  .<span class="hljs-title function_">patch</span>({ <span class="hljs-attr">label</span>: <span class="hljs-string">&quot;ready&quot;</span> })
+  .<span class="hljs-title function_">done</span>()
+
+<span class="hljs-comment">// result → { count: 5, label: &quot;ready&quot; }</span>
+</code></pre>
+<p>That's it. You're done. You now know how to use <code>ReChain</code>.</p>
+<p>Now the branching version, which is the whole point:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> chain = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReChain</span>(score)
+
+<span class="hljs-keyword">const</span> next = chain
+  .<span class="hljs-title function_">when</span>(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> s &gt; <span class="hljs-number">90</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> <span class="hljs-string">&quot;A&quot;</span>)
+  .<span class="hljs-title function_">when</span>(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> s &gt; <span class="hljs-number">80</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> <span class="hljs-string">&quot;B&quot;</span>)
+  .<span class="hljs-title function_">when</span>(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> s &gt; <span class="hljs-number">70</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> <span class="hljs-string">&quot;C&quot;</span>)
+  .<span class="hljs-title function_">done</span>()
+</code></pre>
+<p>Each <code>.when()</code> returns a branch view. <code>.then()</code> fires only if the predicate passed and returns a new chain; otherwise it returns the current one unchanged. The original <code>chain</code> is never touched.</p>
+<h3 id="-everyone-else--the-full-picture">🔵 Everyone else — the full picture</h3>
+<h4 id="the-core-idea">The core idea</h4>
+<p>A <code>ReChain</code> is a <strong>value</strong>, not a builder. You don't &quot;mutate a chain and pass it around.&quot; You hold a chain, call a method, and get a <em>different</em> chain back. The old one is still valid, still readable, still whatever it was. This is what makes it safe to hold across renders and share across components.</p>
+<p>The single place a value changes hands is the private <code>step(next, write)</code>:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">private</span> <span class="hljs-title function_">step</span>(<span class="hljs-attr">next</span>: A, write = <span class="hljs-literal">false</span>): <span class="hljs-title class_">ReChain</span>&lt;A&gt; {
+  <span class="hljs-keyword">if</span> (write) {
+    <span class="hljs-keyword">const</span> [, setV] = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">_use</span>()
+    <span class="hljs-title function_">setV</span>(next)
+  }
+  <span class="hljs-keyword">return</span> next <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">ReChain</span> ? next : <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReChain</span>(next, <span class="hljs-variable language_">this</span>.<span class="hljs-property">id</span>)
+}
+</code></pre>
+<ul>
+<li>If <code>write</code> is <code>true</code>, the new value is broadcast to the store and the bus.</li>
+<li>Either way, a <strong>fresh</strong> <code>ReChain</code> is returned. The <code>this</code> you called it on is unchanged.</li>
+<li>If <code>next</code> is already a <code>ReChain</code>, it's returned as-is — no needless wrapping.</li>
+</ul>
+<h4 id="the-api">The API</h4>
+<p><strong>Branching</strong></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.when(pred)</code></td>
+<td>Returns a branch view. <code>pred</code> receives the current value.</td>
+</tr>
+<tr>
+<td><code>.if(pred)</code></td>
+<td>Alias for <code>.when(pred)</code>. Same shape.</td>
+</tr>
+<tr>
+<td><code>.switch()</code></td>
+<td>Multi-way branch on strict equality (<code>===</code> or <code>Object.is</code>).</td>
+</tr>
+</tbody>
+</table>
+<p>A branch view exposes:</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.then(fn)</code></td>
+<td>If the predicate passed, run <code>fn</code> and return a new chain. Otherwise return <code>this</code>.</td>
+</tr>
+<tr>
+<td><code>.otherwise(fn)</code></td>
+<td>If the predicate failed, run <code>fn</code> and return a new chain. Otherwise return <code>this</code>.</td>
+</tr>
+<tr>
+<td><code>.else(fn)</code></td>
+<td>Alias for <code>.otherwise</code>.</td>
+</tr>
+<tr>
+<td><code>.done()</code></td>
+<td>Return the current value of the chain.</td>
+</tr>
+</tbody>
+</table>
+<p>Both <code>.then</code> and <code>.otherwise</code> may be written on the same branch view. Only one fires. Order doesn't matter — the branch decision is frozen when <code>.when</code>/<code>.if</code> is called.</p>
+<p><strong>Mutation-style steps (each returns a new chain)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.set(k, val)</code></td>
+<td>Shallow-clones the current value and sets one key. Write-through.</td>
+</tr>
+<tr>
+<td><code>.patch(obj)</code></td>
+<td>Shallow-merges <code>obj</code> over the current value. Write-through.</td>
+</tr>
+<tr>
+<td><code>.merge(other)</code></td>
+<td>Merges another value or <code>ReChain</code> (uses <code>other.initial_value</code> if present). Write-through.</td>
+</tr>
+<tr>
+<td><code>.get(k)</code></td>
+<td>Returns a new chain wrapping the value at key <code>k</code>.</td>
+</tr>
+<tr>
+<td><code>.tap(fn)</code></td>
+<td>Runs <code>fn(value)</code> for side effects; returns <code>this</code>. Not write-through.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Guards and gates</strong></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.gate(pred)</code></td>
+<td>Throws if <code>pred</code> fails. Returns <code>this</code> on success.</td>
+</tr>
+<tr>
+<td><code>.guard(pred, onFail?)</code></td>
+<td>If <code>pred</code> fails, writes the fallback and returns a new chain. Never throws.</td>
+</tr>
+</tbody>
+</table>
+<p><code>.gate</code> is for &quot;this must be true or the program is wrong.&quot; <code>.guard</code> is for &quot;recover to a safe value and continue.&quot; Pick deliberately — the difference matters at the call site.</p>
+<p><strong>Async / Promise interop</strong></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.then(onFulfilled?, onRejected?)</code></td>
+<td>Promise-compatible. Unwraps thunks, resolves, then chains.</td>
+</tr>
+<tr>
+<td><code>.catch(onRejected)</code></td>
+<td>Sugar for <code>.then(null, onRejected)</code>.</td>
+</tr>
+<tr>
+<td><code>.finally(fn)</code></td>
+<td>Runs <code>fn()</code> synchronously, returns <code>this</code>. (Note: synchronous — not a Promise-style finally.)</td>
+</tr>
+<tr>
+<td><code>.delay(ms)</code></td>
+<td>Returns a <code>Promise&lt;ReChain&lt;T&gt;&gt;</code> that resolves after <code>ms</code>.</td>
+</tr>
+<tr>
+<td><code>.retry(attempts, delayMs?)</code></td>
+<td>Retries while the unwrapped value is <code>null</code> / <code>undefined</code>. Rejects after <code>attempts</code>.</td>
+</tr>
+<tr>
+<td><code>.throw(err)</code></td>
+<td>Throws <code>err</code>.</td>
+</tr>
+<tr>
+<td><code>.done()</code></td>
+<td>Unwraps the value. If it's a function, calls it. Returns <code>T</code>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="why-immutable-here-is-load-bearing">Why &quot;immutable&quot; here is load-bearing</h4>
+<p>The class is designed so that any chain you hold is a snapshot. Two consequences fall out immediately:</p>
+<ol>
+<li><strong>Render-safe.</strong> A <code>ReChain</code> in React state or a memo can't change out from under you. Re-running the pipeline produces the same result if the inputs are the same.</li>
+<li><strong>Order-independent.</strong> Because branching returns fresh chains, you can compose steps in either order without one step's side effects leaking into the next branch's evaluation. This is the difference that shows up when two branches both call <code>.then</code>.</li>
+</ol>
+<p>The name <code>ReChain</code> is literally &quot;re-chain&quot; — re-run the chain, get a new chain.</p>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Multi-way dispatch</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> label = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReChain</span>(status)
+  .<span class="hljs-title function_">switch</span>()
+  .<span class="hljs-keyword">case</span>(<span class="hljs-string">&quot;ok&quot;</span>,      <span class="hljs-function">() =&gt;</span> <span class="hljs-string">&quot;All systems normal&quot;</span>)
+  .<span class="hljs-keyword">case</span>(<span class="hljs-string">&quot;warn&quot;</span>,    <span class="hljs-function">() =&gt;</span> <span class="hljs-string">&quot;Degraded&quot;</span>)
+  .<span class="hljs-keyword">case</span>(<span class="hljs-string">&quot;error&quot;</span>,   <span class="hljs-function">() =&gt;</span> <span class="hljs-string">&quot;Outage&quot;</span>)
+  .<span class="hljs-title function_">default</span>(<span class="hljs-function">()      =&gt;</span> <span class="hljs-string">&quot;Unknown&quot;</span>)
+  .<span class="hljs-title function_">done</span>()
+</code></pre>
+<p><strong>Guard then continue</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> safe = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReChain</span>(payload)
+  .<span class="hljs-title function_">gate</span>(<span class="hljs-function"><span class="hljs-params">p</span> =&gt;</span> p != <span class="hljs-literal">null</span>)
+  .<span class="hljs-title function_">guard</span>(<span class="hljs-function"><span class="hljs-params">p</span> =&gt;</span> p?.<span class="hljs-property">id</span>, <span class="hljs-function">() =&gt;</span> ({ <span class="hljs-attr">id</span>: <span class="hljs-string">&quot;anonymous&quot;</span> }))
+  .<span class="hljs-title function_">done</span>()
+</code></pre>
+<p><strong>Retry with backoff</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> value = <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReChain</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">fetchRemote</span>())
+  .<span class="hljs-title function_">retry</span>(<span class="hljs-number">5</span>, <span class="hljs-number">250</span>)
+</code></pre>
+<p>Note the thunk: <code>.retry</code> unwraps function-valued chains on each attempt, so pass <code>() =&gt; …</code> rather than an already-settled value.</p>
+<p><strong>Chaining a ReChain into another ReChain</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> merged = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReChain</span>(a).<span class="hljs-title function_">merge</span>(b).<span class="hljs-title function_">done</span>()
+</code></pre>
+<p><code>.merge</code> looks for <code>other.initial_value</code> first, so passing a <code>ReChain</code> merges the <em>value inside it</em>, not the wrapper. This is intentional.</p>
+<h4 id="differences-from-chain">Differences from <code>Chain</code></h4>
+<p><code>Chain</code> is the mutating sibling. Both exist because both patterns are valid:</p>
+<ul>
+<li><strong><code>Chain</code></strong> mutates in place and returns <code>this</code>. Cheap, imperative, useful inside a hot loop or a one-shot pipeline where you own the lifetime.</li>
+<li><strong><code>ReChain</code></strong> returns a new chain every step. Slightly more allocation, dramatically more composable. Use it when the chain crosses a boundary — a render, a request handler, a shared utility.</li>
+</ul>
+<p>If you find yourself writing <code>chain = chain.set(...)</code>, you're using the wrong one. Reach for <code>Chain</code>. If you find yourself worried about <em>when</em> a chain changed, you're using the right one.</p>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li><strong><code>.get(k)</code> uses <code>v?.[k]</code></strong>, so it works on objects but silently yields <code>undefined</code> for primitives. If your chain value is a number and you call <code>.get(&quot;foo&quot;)</code>, you get <code>undefined</code> back, not an error.</li>
+<li><strong><code>.set</code> and <code>.patch</code> shallow-clone.</strong> Nested objects are shared by reference. This is the same tradeoff as React's <code>setState</code> — expected, but worth knowing.</li>
+<li><strong><code>.switch().case()</code> returns <code>self</code>, not the branch view.</strong> You can't chain a second <code>.case()</code> off the result of <code>.then()</code> inside a <code>.when()</code> — you're already back at the chain level. Read the return type carefully if you're composing.</li>
+<li><strong><code>.switch()</code> matches by <code>===</code> or <code>Object.is</code>.</strong> No structural comparison. Objects and arrays won't match unless they're the same reference.</li>
+<li><strong><code>.retry</code> retries on <code>null</code> / <code>undefined</code>, not on thrown errors.</strong> It's a &quot;keep polling until there's a value&quot; primitive, not a &quot;recover from exceptions&quot; one. Use <code>.catch</code> for thrown errors.</li>
+<li><strong><code>.finally(fn)</code> is synchronous</strong> and returns <code>this</code>, not a Promise. Don't confuse it with <code>Promise.prototype.finally</code>.</li>
+<li><strong><code>.throw(err)</code> throws immediately.</strong> If you want the throw to be deferred until <code>.done()</code> or <code>await</code>, wrap it in a thunk.</li>
+</ul>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not a Redux replacement. It's a value pipeline with DRS write-through. State lives in the store; the chain is a lens on it.</li>
+<li>Not RxJS. No streams, no subscriptions. Each chain is a one-shot value.</li>
+<li>Not a <code>Lens</code>. Lenses compose arbitrarily; <code>ReChain</code> composes linearly with a single &quot;current&quot; value.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p>Mutating builders are fine until they aren't. The moment a chain crosses a render boundary, gets stashed in a cache, or is shared between two callers who each think they own it, mutation becomes a liability. <code>ReChain</code> pays a small allocation cost on every step to make that liability structurally impossible. The pipeline is the value; the value is the pipeline.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            
+            
+        </body>
+        </html>

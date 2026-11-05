@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;unreachable&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="unreachable"><code>unreachable</code></h1>
+<blockquote>
+<p>A never-returning function for exhaustiveness checks. Call it in the <code>default</code> branch of a discriminated union switch, and TypeScript will fail compilation if a case is ever added without being handled.</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hljs-keyword">type</span> <span class="hljs-title class_">Shape</span> =
+  | { <span class="hljs-attr">kind</span>: <span class="hljs-string">&quot;circle&quot;</span>; <span class="hljs-attr">r</span>: <span class="hljs-built_in">number</span> }
+  | { <span class="hljs-attr">kind</span>: <span class="hljs-string">&quot;square&quot;</span>; <span class="hljs-attr">s</span>: <span class="hljs-built_in">number</span> }
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">area</span>(<span class="hljs-params">shape: Shape</span>): <span class="hljs-built_in">number</span> {
+  <span class="hljs-keyword">switch</span> (shape.<span class="hljs-property">kind</span>) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;circle&quot;</span>: <span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-property">PI</span> * shape.<span class="hljs-property">r</span> ** <span class="hljs-number">2</span>
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;square&quot;</span>: <span class="hljs-keyword">return</span> shape.<span class="hljs-property">s</span> ** <span class="hljs-number">2</span>
+    <span class="hljs-attr">default</span>: <span class="hljs-keyword">return</span> <span class="hljs-title function_">unreachable</span>(shape)
+  }
+}
+</code></pre>
+<p>Add a <code>triangle</code> variant and the <code>default</code> branch stops compiling — because <code>shape</code> is no longer <code>never</code> there.</p>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { unreachable } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">label</span>(<span class="hljs-params">status: <span class="hljs-string">&quot;ok&quot;</span> | <span class="hljs-string">&quot;warn&quot;</span> | <span class="hljs-string">&quot;error&quot;</span></span>): <span class="hljs-built_in">string</span> {
+  <span class="hljs-keyword">switch</span> (status) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;ok&quot;</span>: <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;fine&quot;</span>
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;warn&quot;</span>: <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;check&quot;</span>
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;error&quot;</span>: <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;broken&quot;</span>
+    <span class="hljs-attr">default</span>: <span class="hljs-keyword">return</span> <span class="hljs-title function_">unreachable</span>(status)
+  }
+}
+</code></pre>
+<p>That's it. You're done. You now know how to use <code>unreachable</code>.</p>
+<p>Put it in the <code>default:</code> of every <code>switch</code> over a union. It compiles today. When someone adds a new variant to the union, the compiler tells them they missed a case. If somehow the code runs anyway (dynamic input, bad types, <code>any</code> leaking in), it throws with the offending value in the message.</p>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="signature">Signature</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> unreachable = (<span class="hljs-attr">value</span>: <span class="hljs-built_in">never</span>): <span class="hljs-built_in">never</span>
+</code></pre>
+<ul>
+<li>Parameter is typed <code>never</code> — the type system's bottom type. Only values the compiler considers impossible can be passed.</li>
+<li>Return type is <code>never</code> — the function never returns normally. It throws.</li>
+</ul>
+<p>The two <code>never</code>s do different jobs. The parameter <code>never</code> is what makes this an exhaustiveness check: it can only be satisfied when the compiler has nothing left. The return <code>never</code> is what makes the <code>default:</code> branch typecheck against a function that's declared to return <code>number</code> — a function that never returns is assignable anywhere.</p>
+<h4 id="why-its-a-compile-time-tool-first">Why it's a compile-time tool first</h4>
+<p>The runtime behavior is trivial — throw with a helpful message. The value is in the <em>type</em>:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">type</span> E = <span class="hljs-string">&quot;a&quot;</span> | <span class="hljs-string">&quot;b&quot;</span>
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">f</span>(<span class="hljs-params">e: E</span>) {
+  <span class="hljs-keyword">if</span> (e === <span class="hljs-string">&quot;a&quot;</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+  <span class="hljs-keyword">if</span> (e === <span class="hljs-string">&quot;b&quot;</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-title function_">unreachable</span>(e)   <span class="hljs-comment">// e: never — OK</span>
+}
+</code></pre>
+<p>Now add <code>&quot;c&quot;</code> to <code>E</code>:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">type</span> E = <span class="hljs-string">&quot;a&quot;</span> | <span class="hljs-string">&quot;b&quot;</span> | <span class="hljs-string">&quot;c&quot;</span>
+</code></pre>
+<p>The <code>unreachable(e)</code> call fails to compile:</p>
+<pre><code>Argument of type 'string' is not assignable to parameter of type 'never'.
+</code></pre>
+<p>The compiler catches the missing case <strong>before</strong> the code runs. That's the whole reason this function exists.</p>
+<h4 id="why-it-also-throws-at-runtime">Why it also throws at runtime</h4>
+<p>Types don't enforce reality at runtime. Data comes from JSON, from the network, from <code>any</code>-typed boundaries, from old versions of the app talking to new versions of the server. If a value that the types <em>said</em> couldn't happen shows up anyway, the function throws with the actual value in the message:</p>
+<pre><code>Unreachable value: &quot;triangle&quot;
+</code></pre>
+<p>That's a test failure, a crash, a logged incident — something that surfaces immediately instead of silently returning <code>undefined</code> or falling through to a wrong branch. Fast, loud failure over quiet corruption.</p>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Switch exhaustiveness</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">switch</span> (event.<span class="hljs-property">type</span>) {
+  <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;click&quot;</span>: <span class="hljs-keyword">return</span> <span class="hljs-title function_">handleClick</span>(event)
+  <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;keydown&quot;</span>: <span class="hljs-keyword">return</span> <span class="hljs-title function_">handleKeydown</span>(event)
+  <span class="hljs-attr">default</span>: <span class="hljs-keyword">return</span> <span class="hljs-title function_">unreachable</span>(event)
+}
+</code></pre>
+<p><strong>If/else exhaustiveness</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">if</span> (x.<span class="hljs-property">kind</span> === <span class="hljs-string">&quot;a&quot;</span>) { ... }
+<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x.<span class="hljs-property">kind</span> === <span class="hljs-string">&quot;b&quot;</span>) { ... }
+<span class="hljs-keyword">else</span> { <span class="hljs-title function_">unreachable</span>(x) }
+</code></pre>
+<p><strong>Nested unions</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">render</span>(<span class="hljs-params">node: ASTNode</span>): <span class="hljs-variable constant_">JSX</span>.<span class="hljs-property">Element</span> {
+  <span class="hljs-keyword">switch</span> (node.<span class="hljs-property">type</span>) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;text&quot;</span>: <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>{node.value}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span>
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;element&quot;</span>: <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{node.children.map(render)}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    <span class="hljs-attr">default</span>: <span class="hljs-keyword">return</span> <span class="hljs-title function_">unreachable</span>(node)
+  }
+}
+</code></pre>
+<p><strong>As a return in a never-typed helper</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">assertNever</span>(<span class="hljs-params">x: <span class="hljs-built_in">never</span></span>): <span class="hljs-built_in">never</span> { <span class="hljs-keyword">return</span> <span class="hljs-title function_">unreachable</span>(x) }
+</code></pre>
+<p><strong>Narrowing validation in parsers</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">parseKind</span>(<span class="hljs-params">raw: <span class="hljs-built_in">string</span></span>): <span class="hljs-title class_">Kind</span> {
+  <span class="hljs-keyword">if</span> (<span class="hljs-title function_">isValidKind</span>(raw)) <span class="hljs-keyword">return</span> raw
+  <span class="hljs-keyword">return</span> <span class="hljs-title function_">unreachable</span>(raw <span class="hljs-keyword">as</span> <span class="hljs-built_in">never</span>)  <span class="hljs-comment">// deliberate — if we got here, our guard was wrong</span>
+}
+</code></pre>
+<p>(The cast to <code>never</code> is a way of saying &quot;I know the compiler thinks this is impossible, but I don't trust it.&quot; Use it sparingly.)</p>
+<h4 id="behavior">Behavior</h4>
+<ul>
+<li><strong>Always throws.</strong> Always. No return path.</li>
+<li><strong>Message includes the value.</strong> <code>Unreachable value: ${String(value)}</code>. For objects, <code>String({})</code> is <code>&quot;[object Object]&quot;</code>, so you won't see the shape — serialize explicitly if you need that.</li>
+<li><strong>Throws a plain <code>Error</code>.</strong> Not a custom class. If you want a typed <code>UnreachableError</code>, wrap it.</li>
+<li><strong>Return type is <code>never</code>.</strong> Assignable to any function's return type. Safe in expressions.</li>
+</ul>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li><strong><code>String(value)</code> is weak on objects.</strong> If the unexpected value is an object, you get <code>[object Object]</code> with no detail. For objects, <code>JSON.stringify</code> or a structured log is better. The default is fine for strings and primitives; for the richer case, consider a variant that <code>JSON.stringify</code>s.</li>
+<li><strong>Only catches when the type system is intact.</strong> If the union is <code>any</code>, <code>unknown</code>, or leaked through a cast, <code>unreachable</code> accepts anything and throws only at runtime. The compile-time check is only as strong as the types around it.</li>
+<li><strong><code>never</code> propagates.</strong> A function that ends with <code>unreachable(x)</code> has return type <code>never</code>, which is assignable everywhere but also means TypeScript might treat code after it as unreachable. That's the point, but it can produce &quot;unreachable code detected&quot; warnings if you place something after it.</li>
+<li><strong>The value is captured by <code>String</code>.</strong> If you threw a symbol or an object with a throwing <code>toString</code>, <code>String(value)</code> can throw a different error. Rare, but it means the error you see isn't always the one from <code>unreachable</code>.</li>
+<li><strong>Not a runtime validator.</strong> This doesn't check that a value is a member of a union. It just fails when reached. If you need validation, that's a different function.</li>
+</ul>
+<h4 id="assertnever-vs-unreachable"><code>assertNever</code> vs <code>unreachable</code></h4>
+<p>The common name in the wild is <code>assertNever</code>. Functionally identical:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> assertNever = (<span class="hljs-attr">x</span>: <span class="hljs-built_in">never</span>): <span class="hljs-function"><span class="hljs-params">never</span> =&gt;</span> { <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(...) }
+</code></pre>
+<p>The name <code>unreachable</code> emphasizes &quot;this code should not be reached.&quot; The name <code>assertNever</code> emphasizes &quot;assert that this value is impossible.&quot; Same function, same behavior. <code>unreachable</code> reads better at the call site:</p>
+<pre><code class="language-ts"><span class="hljs-attr">default</span>: <span class="hljs-keyword">return</span> <span class="hljs-title function_">unreachable</span>(x)   <span class="hljs-comment">// &quot;we should never get here&quot;</span>
+<span class="hljs-attr">default</span>: <span class="hljs-keyword">return</span> <span class="hljs-title function_">assertNever</span>(x)   <span class="hljs-comment">// &quot;assert this is never&quot;</span>
+</code></pre>
+<p>Either works. Pick one and use it consistently in a codebase.</p>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p>The compiler knows more about your union types than you do. <code>unreachable</code> is a way to hand that knowledge back to the compiler: put it in the last branch, and the compiler will fail the build the moment that branch stops being impossible. If the runtime ever disagrees with the compiler, it throws with the evidence. Exhaustiveness checked at compile time, defended at runtime.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>

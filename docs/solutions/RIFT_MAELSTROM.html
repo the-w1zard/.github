@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>RIFT&lowbar;MAELSTROM</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<div style="display: grid; grid-template-columns: 4fr 2fr; gap: 20px;">
+<div>
+<h1 id="rift_maelstrom">RIFT_MAELSTROM</h1>
+<h3 id="runtime-availability-agnostic-composition-and-dynamic-capability-access">Runtime Availability, Agnostic Composition, and Dynamic Capability Access</h3>
+<p>RIFT_MAELSTROM gives code a way to discover, access, coordinate with, and compose capabilities at runtime without requiring every dependency to be declared and resolved at module scope.</p>
+<p>It is not simply an initialization system.</p>
+<p>It can be used to check whether something exists, wait for a capability to become available, dynamically load modules, access functions and components from within the code that needs them, coordinate independently executing systems, and create environment-agnostic implementations that adapt to the capabilities available to them.</p>
+<p><strong>The objective is to let code depend on capabilities when it needs them, rather than forcing the entire surrounding application to depend on them in advance.</strong></p>
+<p>RIFT_MAELSTROM is already available through the platform. No separate installation is required.</p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Creating Agnostic Solutions</p><p></p>
+<p>If you are looking to create or modify a current solution of yours and make it compatible to work across multiple env's, runtimes, platforms... This will give you a great leg up on doing just that.</p>
+<p>While it DOES lean towards offensive coding... entirely, haha, I find it a much more easier time of coding agnostic solutions this way.</p>
+<p>Everything from importing, waiting, defering, using rifts, and so much more... Least we forget about apparations.</p>
+<p>To put it as simple as I can in as little words as possible... it is the offensive equivleant to doing your if checks to see if something is available.</p>
+<p>Apparations does the exact opposite, if something calls on me... HELL, I don't have it BUT... here take this and have fun with it... it is EXACTLY what you called for... but... it won't actually do anything while making you THINK you got what you request, instead I gave you something that will literally do nothing other than satisfy your requirements of your request.</p>
+</div>
+<h2 id="easy-start--your-first-successful-use-in-under-5-minutes">Easy Start — Your First Successful Use in Under 5 Minutes</h2>
+<p>The fastest way to understand RIFT_MAELSTROM is to use it to check for a capability and execute code when that capability becomes available.</p>
+<h3 id="1-wait-for-something-to-become-available">1. Wait for something to become available</h3>
+<pre><code class="language-ts">maelstrom.<span class="hljs-property">DEFER</span>.<span class="hljs-title function_">run</span>(<span class="hljs-string">&quot;database&quot;</span>, <span class="hljs-function">(<span class="hljs-params">db</span>) =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Database available:&quot;</span>, db);
+});
+
+maelstrom.<span class="hljs-property">DEFER</span>.<span class="hljs-title function_">provide</span>(<span class="hljs-string">&quot;database&quot;</span>, {
+    <span class="hljs-attr">query</span>: <span class="hljs-function">(<span class="hljs-params">sql: <span class="hljs-built_in">string</span></span>) =&gt;</span> <span class="hljs-string">`Executed: <span class="hljs-subst">${sql}</span>`</span>,
+});
+</code></pre>
+<p>Expected output:</p>
+<pre><code class="language-text">Database available: { query: [Function: query] }
+</code></pre>
+<p>The example registers work that requires <code>&quot;database&quot;</code>. When that capability is provided, the callback receives its value and executes.</p>
+<p>The important part is that the callback does not need to know where the database came from, which module created it, or how it became available. It only needs the capability it was given.</p>
+<p>In a real application, the code that provides the capability and the code that consumes it can live in separate parts of the system.</p>
+<h3 id="2-check-whether-something-is-available">2. Check whether something is available</h3>
+<p>If you only need to check availability, you don't need to set up a waiting workflow.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> available = maelstrom.<span class="hljs-property">RIFTS</span>.<span class="hljs-title function_">has</span>(<span class="hljs-string">&quot;database.ready&quot;</span>);
+
+<span class="hljs-keyword">if</span> (available) {
+    <span class="hljs-comment">// A Rift with this key has been registered.</span>
+}
+</code></pre>
+<p><code>has()</code> checks whether the named Rift exists in the registry. It does not, by itself, guarantee that the Rift has been opened or that its resource is ready.</p>
+<p>To check whether the actual capability has been opened:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> rift = maelstrom.<span class="hljs-property">RIFTS</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;database.ready&quot;</span>);
+
+<span class="hljs-keyword">if</span> (rift.<span class="hljs-property">isOpen</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Ready:&quot;</span>, rift.<span class="hljs-property">current</span>);
+}
+</code></pre>
+<p>This distinction matters: <strong>registered, available, and ready are not necessarily the same state.</strong></p>
+<h3 id="3-thats-the-basic-idea">3. That's the basic idea</h3>
+<p>You can now use RIFT_MAELSTROM to:</p>
+<ul>
+<li>Check whether a capability or coordination point exists.</li>
+<li>Wait until a capability becomes available.</li>
+<li>Pass a capability to code that depends on it.</li>
+<li>Coordinate work across independently initialized systems.</li>
+<li>Dynamically load modules instead of importing every dependency at module scope.</li>
+</ul>
+<p>The rest of this README explains the available systems, their behavior, and how they fit together.</p>
+<h2 id="quick-reference--which-api-should-i-use">Quick Reference — Which API Should I Use?</h2>
+<table>
+<thead>
+<tr>
+<th>If you need to…</th>
+<th>Use</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dynamically import an ESM module</td>
+<td><code>MODULE_RIFTS</code></td>
+<td><code>await maelstrom.MODULE_RIFTS.load(&quot;./module.js&quot;)</code></td>
+</tr>
+<tr>
+<td>Load a module from inside a class, function, or component</td>
+<td><code>MODULE_RIFTS</code></td>
+<td><code>await maelstrom.MODULE_RIFTS.load(&quot;./module.js&quot;)</code> inside the method</td>
+</tr>
+<tr>
+<td>Access a named export from a loaded module</td>
+<td><code>MODULE_RIFTS</code></td>
+<td><code>maelstrom.MODULE_RIFTS.export(&quot;myFunction&quot;, &quot;./module.js&quot;)</code></td>
+</tr>
+<tr>
+<td>Load a Node/CommonJS module synchronously</td>
+<td><code>NODE_MODULE_RIFTS</code></td>
+<td><code>maelstrom.NODE_MODULE_RIFTS.load(&quot;node:fs&quot;)</code></td>
+</tr>
+<tr>
+<td>Check whether a module is already loaded</td>
+<td><code>MODULE_RIFTS</code></td>
+<td><code>maelstrom.MODULE_RIFTS.isLoaded(&quot;./module.js&quot;)</code></td>
+</tr>
+<tr>
+<td>Check whether a named Rift exists</td>
+<td><code>RIFTS</code></td>
+<td><code>maelstrom.RIFTS.has(&quot;service.ready&quot;)</code></td>
+</tr>
+<tr>
+<td>Check whether a Rift is actually open</td>
+<td><code>RIFTS</code></td>
+<td><code>maelstrom.RIFTS.get(&quot;service.ready&quot;).isOpen</code></td>
+</tr>
+<tr>
+<td>Get the value held by an open Rift</td>
+<td><code>RIFTS</code></td>
+<td><code>maelstrom.RIFTS.get(&quot;service.ready&quot;).current</code></td>
+</tr>
+<tr>
+<td>Wait for a Rift to open</td>
+<td><code>RIFTS</code></td>
+<td><code>await maelstrom.RIFTS.get(&quot;service.ready&quot;).wait()</code></td>
+</tr>
+<tr>
+<td>Wait with a timeout</td>
+<td><code>RIFTS</code></td>
+<td><code>await maelstrom.RIFTS.get(&quot;service.ready&quot;).wait(5000)</code></td>
+</tr>
+<tr>
+<td>Announce that a Rift is ready</td>
+<td><code>RIFTS</code></td>
+<td><code>maelstrom.RIFTS.get(&quot;service.ready&quot;).open(value)</code></td>
+</tr>
+<tr>
+<td>Run code when a dependency becomes available</td>
+<td><code>DEFER</code></td>
+<td><code>maelstrom.DEFER.run(&quot;cache&quot;, cache =&gt; cache.get(&quot;key&quot;))</code></td>
+</tr>
+<tr>
+<td>Provide a dependency to waiting tasks</td>
+<td><code>DEFER</code></td>
+<td><code>maelstrom.DEFER.provide(&quot;cache&quot;, cacheInstance)</code></td>
+</tr>
+<tr>
+<td>Wait for several dependencies and receive their values</td>
+<td><code>DEFER</code></td>
+<td><code>maelstrom.DEFER.run([&quot;cache&quot;, &quot;logger&quot;], (cache, logger) =&gt; {})</code></td>
+</tr>
+<tr>
+<td>Mark a dependency as available without a value</td>
+<td><code>DEFER</code></td>
+<td><code>maelstrom.DEFER.resolve(&quot;service.ready&quot;)</code></td>
+</tr>
+<tr>
+<td>Make a dependency unavailable for future tasks</td>
+<td><code>DEFER</code></td>
+<td><code>maelstrom.DEFER.invalidate(&quot;service.ready&quot;)</code></td>
+</tr>
+<tr>
+<td>Run code when named readiness signals have arrived</td>
+<td><code>WAITERS</code></td>
+<td><code>maelstrom.WAITERS.WAIT_FOR([&quot;auth&quot;, &quot;config&quot;], () =&gt; {})</code></td>
+</tr>
+<tr>
+<td>Announce that a readiness requirement is satisfied</td>
+<td><code>WAITERS</code></td>
+<td><code>maelstrom.WAITERS.READY(&quot;auth&quot;)</code></td>
+</tr>
+<tr>
+<td>Create a one-time promise gate</td>
+<td><code>GATE</code></td>
+<td><code>const gate = maelstrom.GATE(); gate.open(value)</code></td>
+</tr>
+<tr>
+<td>Create a reusable, resettable promise gate</td>
+<td><code>REGATE</code></td>
+<td><code>const gate = maelstrom.REGATE(); gate.reset()</code></td>
+</tr>
+<tr>
+<td>Discover an available module or implementation</td>
+<td><code>CONJURE_MODULES</code></td>
+<td>Use its module-checking and candidate-detection methods</td>
+</tr>
+<tr>
+<td>Resolve libraries through higher-level Rift helpers</td>
+<td><code>CONJURE_MODULES_LVL2</code></td>
+<td>Use <code>CONJURE_LIB_RIFT(...)</code> or <code>CONJURE_NAMED_LIB_RIFT(...)</code></td>
+</tr>
+<tr>
+<td>Create generic type placeholders or proxy-based scaffolding</td>
+<td><code>APPARATION</code></td>
+<td><code>maelstrom.APPARATION.array&lt;string&gt;()</code></td>
+</tr>
+<tr>
+<td>Inspect registered Rifts</td>
+<td><code>RIFTS</code></td>
+<td><code>maelstrom.RIFTS.inspect()</code></td>
+</tr>
+<tr>
+<td>Inspect deferred tasks and dependency state</td>
+<td><code>DEFER</code></td>
+<td><code>maelstrom.DEFER.inspect()</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="fast-decision-guide">Fast Decision Guide</h3>
+<ul>
+<li><strong>I need to import a module dynamically:</strong> use <code>MODULE_RIFTS</code>.</li>
+<li><strong>I need to import it inside the function, class, or component that uses it:</strong> use <code>MODULE_RIFTS</code> from that code's execution path.</li>
+<li><strong>I need a synchronous Node/CommonJS module:</strong> use <code>NODE_MODULE_RIFTS</code>.</li>
+<li><strong>I just need to check whether something exists:</strong> use the relevant registry or resolver's availability check.</li>
+<li><strong>I need to know whether a named capability is ready:</strong> use <code>RIFTS</code> and check <code>isOpen</code>.</li>
+<li><strong>I need to wait until something is ready:</strong> use <code>RIFTS</code>, <code>WAITERS</code>, or <code>DEFER</code>, depending on whether you need a waitable value, readiness coordination, or dependency-driven execution.</li>
+<li><strong>I need code to receive one or more dependencies before running:</strong> use <code>DEFER</code>.</li>
+<li><strong>I need several independent systems to announce readiness:</strong> use <code>WAITERS</code>.</li>
+<li><strong>I need a promise that another part of the code can resolve:</strong> use <code>GATE</code> or <code>REGATE</code>.</li>
+<li><strong>I need to select an implementation based on the environment:</strong> use <code>CONJURE_MODULES</code> or <code>CONJURE_MODULES_LVL2</code>.</li>
+<li><strong>I need generic placeholders for types or scaffolding:</strong> use <code>APPARATION</code>.</li>
+</ul>
+<h2 id="important-these-apis-solve-different-problems-loading-a-module-does-not-necessarily-mean-its-service-is-initialized-checking-whether-a-rift-exists-does-not-mean-it-is-open-and-marking-a-requirement-ready-does-not-automatically-supply-a-separate-value-for-every-requirement"><strong>Important:</strong> These APIs solve different problems. Loading a module does not necessarily mean its service is initialized, checking whether a Rift exists does not mean it is open, and marking a requirement ready does not automatically supply a separate value for every requirement.</h2>
+<h2 id="1-core-philosophy">1. Core Philosophy</h2>
+<p>Traditional module-level imports establish dependencies before the importing code executes:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">SomeComponent</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./SomeComponent&quot;</span>;
+<span class="hljs-keyword">import</span> { someFunction } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./someFunction&quot;</span>;
+<span class="hljs-keyword">import</span> someModule <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./someModule&quot;</span>;
+</code></pre>
+<p>This is useful when those dependencies are known, required, and available in the same execution environment.</p>
+<p>It becomes restrictive when building reusable infrastructure, platform-level abstractions, plugins, optional features, environment-specific implementations, or components that must operate across different runtime configurations.</p>
+<p>RIFT_MAELSTROM provides alternatives.</p>
+<h3 id="runtime-capability-access">Runtime capability access</h3>
+<p>Code can request a capability when it needs it, rather than requiring the dependency to be resolved at module evaluation time.</p>
+<h3 id="environment-agnostic-composition">Environment-agnostic composition</h3>
+<p>An implementation can adapt to available capabilities rather than assuming that every environment has the same modules, functions, components, or resources.</p>
+<h3 id="decoupled-coordination">Decoupled coordination</h3>
+<p>Independent systems can announce availability and coordinate work without requiring direct initialization-order dependencies.</p>
+<h3 id="dynamic-dependency-access">Dynamic dependency access</h3>
+<p>Modules can be loaded at runtime, and their exports can be accessed through the dynamic module facilities.</p>
+<h3 id="flexible-abstraction-and-scaffolding">Flexible abstraction and scaffolding</h3>
+<p>Apparation factories provide type-oriented placeholders and proxy-based scaffolding for building generic interfaces and implementations.</p>
+<p>These capabilities are complementary. RIFT_MAELSTROM is a collection of mechanisms for runtime discovery, deferred access, composition, and coordination—not a single prescribed workflow.</p>
+<h2 id="2-public-api-overview">2. Public API Overview</h2>
+<p>The platform-provided <code>maelstrom</code> object exposes the following surfaces.</p>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RIFTS</code></td>
+<td>Named runtime coordination points, readiness state, and waitable values</td>
+</tr>
+<tr>
+<td><code>WAITERS</code></td>
+<td>Register callbacks that run when named requirements have been marked ready</td>
+</tr>
+<tr>
+<td><code>DEFER</code></td>
+<td>Schedule work until its declared dependencies are available</td>
+</tr>
+<tr>
+<td><code>GATE</code></td>
+<td>Create a one-shot promise gate</td>
+</tr>
+<tr>
+<td><code>REGATE</code></td>
+<td>Create a reusable, resettable promise gate</td>
+</tr>
+<tr>
+<td><code>MODULE_RIFTS</code></td>
+<td>Dynamically import and cache modules</td>
+</tr>
+<tr>
+<td><code>NODE_MODULE_RIFTS</code></td>
+<td>Load and cache Node-compatible CommonJS modules</td>
+</tr>
+<tr>
+<td><code>CONJURE_MODULES</code></td>
+<td>Environment-aware module resolution and capability discovery utilities</td>
+</tr>
+<tr>
+<td><code>CONJURE_MODULES_LVL2</code></td>
+<td>Higher-level module resolution and Rift-integrated helpers</td>
+</tr>
+<tr>
+<td><code>APPARATION</code></td>
+<td>Type-oriented placeholder factories and generic scaffolding</td>
+</tr>
+<tr>
+<td><code>NODE_MODULE_RIFTS</code></td>
+<td>Runtime access to supported Node modules</td>
+</tr>
+</tbody>
+</table>
+<p>The APIs serve different purposes. Use the smallest mechanism that fits the task; there is no requirement to route every runtime dependency through the same subsystem.</p>
+<h2 id="3-rifts--named-runtime-coordination-points">3. RIFTS — Named Runtime Coordination Points</h2>
+<p>A Rift is a named coordination point that can represent readiness, a runtime capability, or a value that other code needs to await.</p>
+<h3 id="create-or-retrieve-a-rift">Create or retrieve a Rift</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> rift = maelstrom.<span class="hljs-property">RIFTS</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;service.ready&quot;</span>);
+</code></pre>
+<p><code>get(name)</code> retrieves the existing Rift for that name or creates one if it does not exist.</p>
+<h3 id="check-its-state">Check its state</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">if</span> (rift.<span class="hljs-property">isOpen</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(rift.<span class="hljs-property">current</span>);
+}
+</code></pre>
+<p>Useful properties include:</p>
+<ul>
+<li><code>isOpen</code> — whether the Rift has been opened.</li>
+<li><code>current</code> — the value supplied when it was opened.</li>
+<li><code>isClaimed</code> — whether the Rift has been claimed.</li>
+<li><code>claim()</code> — claims the Rift according to its claim state.</li>
+</ul>
+<h3 id="open-the-rift">Open the Rift</h3>
+<pre><code class="language-ts">rift.<span class="hljs-title function_">open</span>({ <span class="hljs-attr">status</span>: <span class="hljs-string">&quot;ready&quot;</span> });
+</code></pre>
+<p>Opening a Rift makes its value available to waiters. The first open resolves its current waiting generation; subsequent calls to <code>open()</code> do not replace that value until the Rift is reset.</p>
+<h3 id="wait-for-it">Wait for it</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> value = <span class="hljs-keyword">await</span> rift.<span class="hljs-title function_">wait</span>();
+</code></pre>
+<p>By default, <code>wait()</code> waits indefinitely.</p>
+<p>To set a timeout:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> value = <span class="hljs-keyword">await</span> rift.<span class="hljs-title function_">wait</span>(<span class="hljs-number">5000</span>);
+</code></pre>
+<p>If the Rift does not open within five seconds, the wait rejects with a timeout error.</p>
+<p>A timeout of <code>0</code> means no timeout.</p>
+<h3 id="subscribe-to-the-open-event">Subscribe to the open event</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> unsubscribe = rift.<span class="hljs-title function_">onOpen</span>(<span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Opened:&quot;</span>, value);
+});
+
+<span class="hljs-comment">// When the subscription is no longer needed:</span>
+<span class="hljs-title function_">unsubscribe</span>();
+</code></pre>
+<h3 id="manage-the-registry">Manage the registry</h3>
+<pre><code class="language-ts">maelstrom.<span class="hljs-property">RIFTS</span>.<span class="hljs-title function_">has</span>(<span class="hljs-string">&quot;service.ready&quot;</span>);
+maelstrom.<span class="hljs-property">RIFTS</span>.<span class="hljs-title function_">reset</span>(<span class="hljs-string">&quot;service.ready&quot;</span>);
+maelstrom.<span class="hljs-property">RIFTS</span>.<span class="hljs-title function_">delete</span>(<span class="hljs-string">&quot;service.ready&quot;</span>);
+maelstrom.<span class="hljs-property">RIFTS</span>.<span class="hljs-title function_">clear</span>();
+maelstrom.<span class="hljs-property">RIFTS</span>.<span class="hljs-property">size</span>;
+maelstrom.<span class="hljs-property">RIFTS</span>.<span class="hljs-title function_">inspect</span>();
+</code></pre>
+<p>Use <code>has()</code> to check registration, not readiness. Use the retrieved Rift's <code>isOpen</code> property to check whether its current generation is open.</p>
+<p><code>reset()</code> resets a registered Rift for another generation. <code>delete()</code> removes its registry entry; it does not automatically cancel references or waiters already holding the old Rift object.</p>
+<h3 id="when-to-use-rifts">When to use RIFTS</h3>
+<p>RIFTS are useful when you need a named, waitable coordination point or want multiple independent parts of a system to agree on whether a particular event or capability has become available.</p>
+<p>They are not limited to startup sequences. A Rift can represent any meaningful readiness boundary in the lifetime of a system.</p>
+<h2 id="4-defer--execute-work-when-dependencies-are-available">4. DEFER — Execute Work When Dependencies Are Available</h2>
+<p>DEFER is designed for work that requires one or more named dependencies to exist before execution.</p>
+<h3 id="a-single-dependency">A single dependency</h3>
+<pre><code class="language-ts">maelstrom.<span class="hljs-property">DEFER</span>.<span class="hljs-title function_">run</span>(<span class="hljs-string">&quot;cache&quot;</span>, <span class="hljs-function">(<span class="hljs-params">cache</span>) =&gt;</span> {
+    cache.<span class="hljs-title function_">set</span>(<span class="hljs-string">&quot;key&quot;</span>, <span class="hljs-string">&quot;value&quot;</span>);
+});
+
+maelstrom.<span class="hljs-property">DEFER</span>.<span class="hljs-title function_">provide</span>(<span class="hljs-string">&quot;cache&quot;</span>, cacheInstance);
+</code></pre>
+<p>The callback runs when <code>&quot;cache&quot;</code> becomes available.</p>
+<h3 id="multiple-dependencies">Multiple dependencies</h3>
+<pre><code class="language-ts">maelstrom.<span class="hljs-property">DEFER</span>.<span class="hljs-title function_">run</span>([<span class="hljs-string">&quot;cache&quot;</span>, <span class="hljs-string">&quot;logger&quot;</span>], <span class="hljs-function">(<span class="hljs-params">cache, logger</span>) =&gt;</span> {
+    logger.<span class="hljs-title function_">info</span>(<span class="hljs-string">&quot;Cache is available&quot;</span>);
+    cache.<span class="hljs-title function_">set</span>(<span class="hljs-string">&quot;status&quot;</span>, <span class="hljs-string">&quot;ready&quot;</span>);
+});
+
+maelstrom.<span class="hljs-property">DEFER</span>.<span class="hljs-title function_">provide</span>({
+    <span class="hljs-attr">cache</span>: cacheInstance,
+    <span class="hljs-attr">logger</span>: loggerInstance,
+});
+</code></pre>
+<p>The callback receives the dependency values in the order of the unique keys supplied to <code>run()</code>.</p>
+<p>This lets consumers declare what they need without having to control when those capabilities are created.</p>
+<h3 id="resolve-and-invalidate-dependencies">Resolve and invalidate dependencies</h3>
+<pre><code class="language-ts">maelstrom.<span class="hljs-property">DEFER</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-string">&quot;service.ready&quot;</span>);
+maelstrom.<span class="hljs-property">DEFER</span>.<span class="hljs-title function_">invalidate</span>(<span class="hljs-string">&quot;service.ready&quot;</span>);
+</code></pre>
+<ul>
+<li><code>resolve(key)</code> marks a dependency available with an <code>undefined</code> value.</li>
+<li><code>invalidate(key)</code> removes its current availability and value for future dependency checks.</li>
+</ul>
+<p>Invalidation does not undo work that has already executed and does not cancel callbacks that have already been dispatched.</p>
+<h3 id="cancel-pending-work">Cancel pending work</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> id = maelstrom.<span class="hljs-property">DEFER</span>.<span class="hljs-title function_">run</span>(<span class="hljs-string">&quot;optional.feature&quot;</span>, <span class="hljs-function">(<span class="hljs-params">feature</span>) =&gt;</span> {
+    feature.<span class="hljs-title function_">execute</span>();
+});
+
+maelstrom.<span class="hljs-property">DEFER</span>.<span class="hljs-title function_">cancel</span>(id);
+</code></pre>
+<p>Cancellation applies to pending tasks. It does not stop a callback that is already running.</p>
+<h3 id="inspect-the-scheduler">Inspect the scheduler</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> stats = maelstrom.<span class="hljs-property">DEFER</span>.<span class="hljs-title function_">inspect</span>();
+</code></pre>
+<p>Inspection provides information about dependency availability, pending work, running work, and task outcomes.</p>
+<h3 id="important-behavior">Important behavior</h3>
+<p>DEFER is a one-shot dependency scheduler. Providing or updating a dependency does not automatically rerun callbacks that have already completed.</p>
+<p>Callbacks can return promises. Failures are recorded and reported through the scheduler's error-handling path.</p>
+<p>Use DEFER when work should execute once its declared prerequisites are available. Use RIFTS when you need a named coordination point with explicit open, wait, and reset behavior.</p>
+<h2 id="5-waiters--coordinate-named-readiness-requirements">5. WAITERS — Coordinate Named Readiness Requirements</h2>
+<p>WAITERS provides a different model: register a callback against one or more named requirements, then mark those requirements ready as their providers become available.</p>
+<h3 id="wait-for-one-requirement">Wait for one requirement</h3>
+<pre><code class="language-ts">maelstrom.<span class="hljs-property">WAITERS</span>.<span class="hljs-title function_">WAIT_FOR</span>(<span class="hljs-string">&quot;auth&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Authentication is ready&quot;</span>);
+});
+</code></pre>
+<p>When the requirement is ready:</p>
+<pre><code class="language-ts">maelstrom.<span class="hljs-property">WAITERS</span>.<span class="hljs-title function_">READY</span>(<span class="hljs-string">&quot;auth&quot;</span>);
+</code></pre>
+<h3 id="wait-for-several-requirements">Wait for several requirements</h3>
+<pre><code class="language-ts">maelstrom.<span class="hljs-property">WAITERS</span>.<span class="hljs-title function_">WAIT_FOR</span>([<span class="hljs-string">&quot;auth&quot;</span>, <span class="hljs-string">&quot;config&quot;</span>, <span class="hljs-string">&quot;storage&quot;</span>], <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;All requirements are ready&quot;</span>);
+});
+
+maelstrom.<span class="hljs-property">WAITERS</span>.<span class="hljs-title function_">READY</span>(<span class="hljs-string">&quot;auth&quot;</span>);
+maelstrom.<span class="hljs-property">WAITERS</span>.<span class="hljs-title function_">READY</span>(<span class="hljs-string">&quot;config&quot;</span>);
+maelstrom.<span class="hljs-property">WAITERS</span>.<span class="hljs-title function_">READY</span>(<span class="hljs-string">&quot;storage&quot;</span>);
+</code></pre>
+<p>The callback runs once every required key has been marked ready.</p>
+<h3 id="pass-a-value-to-the-callback">Pass a value to the callback</h3>
+<pre><code class="language-ts">maelstrom.<span class="hljs-property">WAITERS</span>.<span class="hljs-title function_">WAIT_FOR</span>(<span class="hljs-string">&quot;service&quot;</span>, <span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(value);
+});
+
+maelstrom.<span class="hljs-property">WAITERS</span>.<span class="hljs-title function_">READY</span>(<span class="hljs-string">&quot;service&quot;</span>, serviceInstance);
+</code></pre>
+<p>The callback receives the value from the <code>READY()</code> call that completes the registration's set of requirements. It does not receive an automatically assembled object containing a separate value for every requirement.</p>
+<h3 id="cancel-a-registration">Cancel a registration</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> id = maelstrom.<span class="hljs-property">WAITERS</span>.<span class="hljs-title function_">WAIT_FOR</span>(<span class="hljs-string">&quot;optional&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-comment">// This callback may be canceled before it fires.</span>
+});
+
+maelstrom.<span class="hljs-property">WAITERS</span>.<span class="hljs-title function_">CANCEL_WAIT</span>(id);
+</code></pre>
+<p><code>CANCEL_WAIT(id)</code> returns whether a pending registration was removed.</p>
+<h3 id="choosing-between-waiters-and-defer">Choosing between WAITERS and DEFER</h3>
+<p>Use WAITERS when the central concern is coordinating named readiness signals. Use DEFER when the central concern is scheduling a callback with the actual values of its declared dependencies.</p>
+<h2 id="6-gate-and-regate--promise-coordination">6. GATE and REGATE — Promise Coordination</h2>
+<p>GATE and REGATE offer promise-based coordination without requiring a named registry entry.</p>
+<h3 id="gate-one-shot-promise-gate">GATE: one-shot promise gate</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> gate = maelstrom.<span class="hljs-property">GATE</span>&lt;<span class="hljs-built_in">string</span>&gt;();
+
+<span class="hljs-keyword">const</span> result = gate.<span class="hljs-property">promise</span>;
+
+gate.<span class="hljs-title function_">open</span>(<span class="hljs-string">&quot;ready&quot;</span>);
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">await</span> result); <span class="hljs-comment">// &quot;ready&quot;</span>
+</code></pre>
+<p><code>open(value)</code> resolves the gate's promise once. Further calls do not reopen or replace the settled result.</p>
+<p>Use GATE when one piece of code needs to expose a promise that another piece of code can resolve.</p>
+<h3 id="regate-reusable-promise-gate">REGATE: reusable promise gate</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> gate = maelstrom.<span class="hljs-property">REGATE</span>&lt;<span class="hljs-built_in">string</span>&gt;();
+
+<span class="hljs-keyword">const</span> first = gate.<span class="hljs-property">promise</span>;
+gate.<span class="hljs-title function_">open</span>(<span class="hljs-string">&quot;first&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">await</span> first); <span class="hljs-comment">// &quot;first&quot;</span>
+
+gate.<span class="hljs-title function_">reset</span>();
+
+<span class="hljs-keyword">const</span> second = gate.<span class="hljs-property">promise</span>;
+gate.<span class="hljs-title function_">open</span>(<span class="hljs-string">&quot;second&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">await</span> second); <span class="hljs-comment">// &quot;second&quot;</span>
+</code></pre>
+<p>REGATE supports multiple generations. After <code>reset()</code>, it creates a new pending promise for the next cycle.</p>
+<p>Capture the current <code>promise</code> before opening that generation. Once a generation has settled, its promise remains settled; resetting starts a new generation rather than changing the previous result.</p>
+<h2 id="7-module_rifts--runtime-module-loading">7. MODULE_RIFTS — Runtime Module Loading</h2>
+<p>MODULE_RIFTS supports dynamic module imports without requiring every optional module to be imported at the top level.</p>
+<p>This is particularly useful when a module is optional, environment-dependent, selected by configuration, or needed only by a particular function or component.</p>
+<h3 id="load-a-module">Load a module</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> mod = <span class="hljs-keyword">await</span> maelstrom.<span class="hljs-property">MODULE_RIFTS</span>.<span class="hljs-title function_">load</span>(<span class="hljs-string">&quot;./some-module.js&quot;</span>);
+
+mod.<span class="hljs-title function_">someFunction</span>();
+</code></pre>
+<p>The loader caches successfully loaded modules and shares an in-flight import for the same resolved module key.</p>
+<h3 id="access-a-named-export">Access a named export</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> mod = <span class="hljs-keyword">await</span> maelstrom.<span class="hljs-property">MODULE_RIFTS</span>.<span class="hljs-title function_">load</span>(<span class="hljs-string">&quot;./some-module.js&quot;</span>);
+
+<span class="hljs-keyword">const</span> fn = maelstrom.<span class="hljs-property">MODULE_RIFTS</span>.<span class="hljs-title function_">export</span>(<span class="hljs-string">&quot;someFunction&quot;</span>, <span class="hljs-string">&quot;./some-module.js&quot;</span>);
+
+<span class="hljs-title function_">fn</span>();
+</code></pre>
+<p>Providing the module specifier makes the export lookup explicit.</p>
+<p>The loader also exposes:</p>
+<pre><code class="language-ts">maelstrom.<span class="hljs-property">MODULE_RIFTS</span>.<span class="hljs-title function_">isLoaded</span>(<span class="hljs-string">&quot;./some-module.js&quot;</span>);
+maelstrom.<span class="hljs-property">MODULE_RIFTS</span>.<span class="hljs-title function_">getLoaded</span>(<span class="hljs-string">&quot;./some-module.js&quot;</span>);
+maelstrom.<span class="hljs-property">MODULE_RIFTS</span>.<span class="hljs-property">modules</span>;
+</code></pre>
+<h3 id="access-dependencies-from-inside-the-code-that-needs-them">Access dependencies from inside the code that needs them</h3>
+<p>Consider a component that only needs an optional implementation for one particular operation.</p>
+<p>Instead of importing that implementation at module scope, the component can load it inside the relevant operation:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ReportComponent</span> {
+    <span class="hljs-keyword">async</span> <span class="hljs-title function_">exportReport</span>(<span class="hljs-params">data: <span class="hljs-built_in">unknown</span></span>) {
+        <span class="hljs-keyword">const</span> exporter = <span class="hljs-keyword">await</span> maelstrom.<span class="hljs-property">MODULE_RIFTS</span>.<span class="hljs-title function_">load</span>(<span class="hljs-string">&quot;./exporter.js&quot;</span>);
+
+        <span class="hljs-keyword">return</span> exporter.<span class="hljs-title function_">exportReport</span>(data);
+    }
+}
+</code></pre>
+<p>This is a conceptual usage pattern; adapt the module's actual exports and types to your application.</p>
+<p>The key benefit is architectural: the component can avoid making the exporter a mandatory module-level dependency when the exporter is only needed for a particular operation.</p>
+<p>The same approach can be applied inside functions, classes, and component methods. It lets the code that uses a capability control when that capability is requested.</p>
+<h3 id="export-lookup-considerations">Export lookup considerations</h3>
+<p>The explicit <code>export(name, specifier)</code> form should be preferred when the source module is known. The current implementation's automatic cross-module export index is not populated by <code>load()</code> itself, so relying on an unqualified export lookup may not work as expected.</p>
+<p>Dynamic import also does not make an incompatible module compatible with the current runtime. The module must still be loadable by the platform's module system.</p>
+<h2 id="8-node_module_rifts--node-compatible-module-access">8. NODE_MODULE_RIFTS — Node-Compatible Module Access</h2>
+<p>NODE_MODULE_RIFTS provides a synchronous loader for Node-compatible CommonJS modules.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> fs = maelstrom.<span class="hljs-property">NODE_MODULE_RIFTS</span>.<span class="hljs-title function_">load</span>(<span class="hljs-string">&quot;node:fs&quot;</span>);
+
+<span class="hljs-keyword">const</span> contents = fs.<span class="hljs-title function_">readFileSync</span>(<span class="hljs-string">&quot;./example.txt&quot;</span>, <span class="hljs-string">&quot;utf8&quot;</span>);
+</code></pre>
+<p>It also exposes module-cache and export lookup helpers:</p>
+<pre><code class="language-ts">maelstrom.<span class="hljs-property">NODE_MODULE_RIFTS</span>.<span class="hljs-title function_">isLoaded</span>(<span class="hljs-string">&quot;node:fs&quot;</span>);
+maelstrom.<span class="hljs-property">NODE_MODULE_RIFTS</span>.<span class="hljs-title function_">getLoaded</span>(<span class="hljs-string">&quot;node:fs&quot;</span>);
+</code></pre>
+<p>Use this facility only where the runtime supports the loader's CommonJS mechanism. It is not a universal substitute for ESM imports, and it should not be assumed to work in browser environments.</p>
+<p>Prefer MODULE_RIFTS for asynchronous ESM-style dynamic imports and NODE_MODULE_RIFTS for supported Node/CommonJS module access.</p>
+<h2 id="9-conjure_modules--capability-and-environment-aware-resolution">9. CONJURE_MODULES — Capability and Environment-Aware Resolution</h2>
+<p>CONJURE_MODULES contains utilities for resolving modules, detecting candidate implementations, checking availability, and selecting capabilities based on the runtime environment.</p>
+<p>The broader purpose is to avoid forcing reusable code to assume that a single implementation exists everywhere.</p>
+<p>A generic platform feature may encounter different environments, module systems, bundlers, optional packages, or available implementations. A resolver can inspect those possibilities and choose an appropriate path rather than requiring every consumer to hard-code the same dependency.</p>
+<p>The exposed surface includes methods for:</p>
+<ul>
+<li>Checking whether a module is available.</li>
+<li>Detecting the first matching candidate.</li>
+<li>Detecting all matching candidates.</li>
+<li>Running environment-detection routines.</li>
+<li>Initializing module and named-library access.</li>
+<li>Resolving library collections, including uncached resolution paths.</li>
+</ul>
+<h3 id="conjure_modules_lvl2">CONJURE_MODULES_LVL2</h3>
+<p>The higher-level surface includes <code>CONJURATION_LIBS</code>, <code>CONJURE_LIB_RIFT</code>, and <code>CONJURE_NAMED_LIB_RIFT</code>, along with failure-reporting support.</p>
+<p>These helpers are intended to combine module resolution with Rift-based coordination and caching options.</p>
+<p>Because resolver behavior depends on the actual module system, environment, and current implementation bindings, verify the relevant resolver method before making it a critical application path. Do not assume that every candidate can be loaded in every runtime.</p>
+<h2 id="10-apparation--generic-factories-and-type-oriented-scaffolding">10. APPARATION — Generic Factories and Type-Oriented Scaffolding</h2>
+<p>APPARATION exposes factories for common types and generic structures, including strings, numbers, booleans, arrays, maps, promises, functions, errors, and universal proxy-based placeholders.</p>
+<p>For example:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> apparition = maelstrom.<span class="hljs-property">APPARATION</span>;
+
+<span class="hljs-keyword">const</span> textValue = apparition.<span class="hljs-title function_">string</span>();
+<span class="hljs-keyword">const</span> numberValue = apparition.<span class="hljs-title function_">number</span>();
+<span class="hljs-keyword">const</span> listValue = apparition.<span class="hljs-property">array</span>&lt;<span class="hljs-built_in">string</span>&gt;();
+<span class="hljs-keyword">const</span> mapValue = apparition.<span class="hljs-property">map</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">number</span>&gt;();
+</code></pre>
+<p>These APIs are type-oriented scaffolding. They are not all constructors that return fully initialized, meaningful application values.</p>
+<p>Some factories return placeholder values cast to the requested type; the promise factory, for example, resolves to a placeholder. The universal factory uses a proxy.</p>
+<h3 id="why-this-matters-for-agnostic-design">Why this matters for agnostic design</h3>
+<p>Agnostic abstractions often need to describe an interface before committing to a concrete implementation. They may need generic scaffolding for types, interfaces, optional capabilities, or structures that will be supplied by a specific runtime or integration later.</p>
+<p>APPARATION can support that kind of work, but a placeholder is not the same as a real service, a validated object, or a complete mock implementation.</p>
+<p>Do not use an apparition as though it guarantees that a dependency is functional. Supply a real implementation before invoking behavior that requires one.</p>
+<h2 id="11-practical-design-patterns">11. Practical Design Patterns</h2>
+<h3 id="optional-capabilities">Optional capabilities</h3>
+<p>A feature can check whether a capability exists before using it, rather than forcing that capability to be available in every deployment.</p>
+<p>Use registry checks, resolver methods, or module-loading APIs according to what you need to discover.</p>
+<h3 id="deferred-capability-access">Deferred capability access</h3>
+<p>When a capability may become available later, register work through DEFER, WAITERS, or a Rift instead of relying on a fixed initialization order.</p>
+<h3 id="runtime-selected-implementations">Runtime-selected implementations</h3>
+<p>When multiple implementations can satisfy the same interface, resolve the suitable implementation for the current environment and pass it to the consumer.</p>
+<p>Keep the consumer dependent on the interface it needs rather than on an unnecessarily specific implementation.</p>
+<h3 id="localized-dynamic-dependencies">Localized dynamic dependencies</h3>
+<p>Load an optional module inside the function, class method, or component operation that needs it. This can keep unrelated code from depending on that module at module-evaluation time.</p>
+<h3 id="independent-subsystem-coordination">Independent subsystem coordination</h3>
+<p>Use named Rifts or WAITERS to coordinate subsystems without requiring one subsystem to directly control the other's lifecycle.</p>
+<h3 id="generic-infrastructure-and-scaffolding">Generic infrastructure and scaffolding</h3>
+<p>Use APPARATION where placeholder construction or type-oriented scaffolding is useful, while keeping production behavior dependent on real implementations.</p>
+<p>These patterns can be combined. For example, a resolver may discover an implementation, MODULE_RIFTS may load it, and DEFER may coordinate a consumer that requires the implementation to be available before execution.</p>
+<h2 id="12-diagnostics-and-lifecycle-management">12. Diagnostics and Lifecycle Management</h2>
+<p>RIFT_MAELSTROM exposes inspection and cleanup mechanisms for several of its registries.</p>
+<ul>
+<li>Use <code>RIFTS.inspect()</code> to examine the Rift registry.</li>
+<li>Use <code>DEFER.inspect()</code> to inspect scheduler and dependency state.</li>
+<li>Use <code>RIFTS.reset(name)</code> when an existing named Rift needs a new generation.</li>
+<li>Use <code>RIFTS.delete(name)</code> or <code>RIFTS.clear()</code> when registry entries should be removed.</li>
+<li>Use <code>DEFER.cancel(id)</code> to cancel a pending task.</li>
+<li>Use <code>DEFER.invalidate(key)</code> when a dependency should no longer be considered available.</li>
+<li>Use <code>WAITERS.CANCEL_WAIT(id)</code> to remove a pending readiness registration.</li>
+<li>Use module-cache inspection helpers when investigating dynamically loaded dependencies.</li>
+</ul>
+<p>Cleanup should match the lifecycle of the resource being managed. Removing a registry entry is not the same as canceling every reference, promise, or operation that previously used it.</p>
+<h2 id="13-important-behavioral-distinctions">13. Important Behavioral Distinctions</h2>
+<table>
+<thead>
+<tr>
+<th>Mechanism</th>
+<th>What it establishes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RIFTS.has(name)</code></td>
+<td>A Rift is registered under that name</td>
+</tr>
+<tr>
+<td><code>rift.isOpen</code></td>
+<td>The current Rift generation has been opened</td>
+</tr>
+<tr>
+<td><code>DEFER</code> dependency availability</td>
+<td>A named dependency has a value available to scheduled tasks</td>
+</tr>
+<tr>
+<td><code>WAITERS.READY(key)</code></td>
+<td>A named readiness requirement has been marked ready</td>
+</tr>
+<tr>
+<td><code>MODULE_RIFTS.isLoaded(specifier)</code></td>
+<td>A module is present in the module loader's cache</td>
+</tr>
+<tr>
+<td><code>GATE.open(value)</code></td>
+<td>A one-shot promise gate has been resolved</td>
+</tr>
+<tr>
+<td><code>REGATE.reset()</code></td>
+<td>A new promise-gate generation has begun</td>
+</tr>
+</tbody>
+</table>
+<p>These states are not interchangeable. A module being loaded does not mean its application-level initialization is complete. A dependency being provided does not mean it can never be invalidated. A readiness signal does not itself guarantee that every associated operation succeeded.</p>
+<p>Choose the state that represents the actual condition your code needs.</p>
+<h2 id="14-troubleshooting">14. Troubleshooting</h2>
+<p><strong>A callback never runs.</strong></p>
+<p>Check that every dependency or readiness key is supplied under the exact same name used during registration. For DEFER, verify that the required keys have been provided or resolved. For WAITERS, verify that every required key has been marked ready.</p>
+<p><strong>A Rift exists but a wait is still pending.</strong></p>
+<p><code>RIFTS.has(name)</code> only checks registration. Retrieve the Rift and check <code>isOpen</code>. Open it with <code>rift.open(value)</code> when the corresponding condition has genuinely been met.</p>
+<p><strong>A dependency was invalidated, but already-run work did not execute again.</strong></p>
+<p>Invalidation changes future dependency availability. It does not roll back or rerun completed tasks.</p>
+<p><strong>A dynamic module export is missing.</strong></p>
+<p>Use <code>export(name, specifier)</code> with the explicit source module. Check the module's actual exports and ensure it has loaded successfully.</p>
+<p><strong>A Node module cannot be loaded in a browser.</strong></p>
+<p>NODE_MODULE_RIFTS relies on a Node-compatible CommonJS mechanism. Use an appropriate ESM or platform-specific implementation where that mechanism is unavailable.</p>
+<p><strong>A placeholder looks like a valid object but fails at runtime.</strong></p>
+<p>APPARATION factories may return placeholders rather than complete implementations. Replace the placeholder with a real value or a deliberately implemented test double before relying on its behavior.</p>
+<hr>
+<h2 id="15-design-principle">15. Design Principle</h2>
+<p>RIFT_MAELSTROM is most useful when it removes assumptions that don't need to be fixed in advance.</p>
+<p>A capability can be checked for, requested when needed, delivered when available, or resolved according to the environment. A consumer can coordinate with another subsystem without owning its initialization. A function or component can obtain an optional module from inside its own execution path rather than imposing a module-level dependency on every consumer.</p>
+<p>Initialization is one application of this model—not its limit.</p>
+<p>The larger purpose is to give developers the mechanisms to build <strong>agnostic, dynamically composed systems whose dependencies and capabilities can be discovered and used at runtime</strong>.</p>
+</div>
+<div style="font-size: 9px;  text-align: right">
+<h2 id="-pew-pew---toc-"><span style="font-size: 10.5px;"> ⇦✦──⇦✦──✦──✦──←'pew pew'<span> <span style="font-size: 24px;"> 🧙 [TOC] <span></h2>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[PLATFORM]</span> </strong></summary>
+<ul>
+<li><a href="../platform/TOC.html#TOC">TOC</a></li>
+<li><a href="../platform/ATOM.html#ATOM">ATOM</a></li>
+<li><a href="../platform/CELLS.html#CELLS">CELLS</a></li>
+<li><a href="../platform/CONVERGENCE.html#CONVERGENCE">CONVERGENCE</a></li>
+<li><a href="../platform/FORMS.html#FORMS">FORMS</a></li>
+<li><a href="../platform/GLOBAL_QUAD_KEY_CONTEXT.html#GLOBAL_QUAD_KEY_CONTEXT">GLOBAL_QUAD_KEY_CONTEXT</a></li>
+<li><a href="../platform/PERFORMANCE_DIVISION.html#PERFORMANCE_DIVISION">PERFORMANCE_DIVISION</a></li>
+<li><a href="../platform/REACTIVITY.html#REACTIVITY">REACTIVITY</a></li>
+<li><a href="../platform/ROUTE_COMPONENTS.html#ROUTE_COMPONENTS">ROUTE_COMPONENTS</a></li>
+<li><a href="../platform/SAURON.html#SAURON">SAURON</a></li>
+<li><a href="../platform/SIGNALS.html#SIGNALS">SIGNALS</a></li>
+<li><a href="../platform/STAFF.html#STAFF">STAFF</a></li>
+<li><a href="../platform/THE_WARLOCK_MODE.html#THE_WARLOCK_MODE">THE_WARLOCK_MODE</a></li>
+<li><a href="../platform/THE_WIZARD_MODE.html#THE_WIZARD_MODE">THE_WIZARD_MODE</a></li>
+<li><a href="../platform/WARLOCKS_NECROMANCY_OBSERVATORY.html#WARLOCKS_NECROMANCY_OBSERVATORY">WARLOCKS_NECROMANCY_OBSERVATORY</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[MESSAGE QUEUES / BUSES]</span> </strong></summary>
+<ul>
+<li><a href="../platform/TOC.html#TOC">DISRUPTOR</a></li>
+<li><a href="../platform/ATOM.html#ATOM">STAFF</a></li>
+<li><a href="../platform/CELLS.html#CELLS">CHAINS</a></li>
+<li><a href="../platform/CONVERGENCE.html#CONVERGENCE">XXSR TRICKY</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[PLATFORM PRIMTIVES]</span> </strong></summary>
+<ul>
+<li><a href="../primitives/API_WARDS.html#API_WARDS">API_WARDS</a></li>
+<li><a href="../primitives/APPARATIONS_DQ,md#APPARATIONS_DQ">APPARATIONS_DQ</a></li>
+<li><a href="../primitives/ARCHETYPES.html#ARCHETYPES">ARCHETYPES</a></li>
+<li><a href="../primitives/BATCH.html#BATCH">BATCH</a></li>
+<li><a href="../primitives/BINARY.html#BINARY">BINARY</a></li>
+<li><a href="../primitives/CHAINS.html#CHAINS">CHAINS</a></li>
+<li><a href="../primitives/CHRONO_SHIFT.html#CHRONO_SHIFT">CHRONO_SHIFT</a></li>
+<li><a href="../primitives/CHRONOMANCER.html#CHRONOMANCER">CHRONOMANCER</a></li>
+<li><a href="../primitives/CONJURE_LIBRARIES.html#CONJURE_LIBRARIES">CONJURE_LIBRARIES</a></li>
+<li><a href="../primitives/CONJURE_MIMIC.html#CONJURE_MIMIC">CONJURE_MIMIC</a></li>
+<li><a href="../primitives/CRON.html#CRON">CRON</a></li>
+<li><a href="../primitives/DARK_PORTALS.html#DARK_PORTALS">DARK_PORTALS</a></li>
+<li><a href="../primitives/DUPLEX_STREAMS.html#DUPLEX_STREAMS">DUPLEX_STREAMS</a></li>
+<li><a href="../primitives/EMITTER.html#EMITTER">EMITTER</a></li>
+<li><a href="../primitives/EVOCATIONS.html#EVOCATIONS">EVOCATIONS</a></li>
+<li><a href="../primitives/EXECUTE_MASTER.html#EXECUTE_MASTER">EXECUTE_MASTER</a></li>
+<li><a href="../primitives/GATE_MASTER.html#GATE_MASTER">GATE_MASTER</a></li>
+<li><a href="../primitives/GATES.html#GATES">GATES</a></li>
+<li><a href="../primitives/GLYPH_BINDER.html#GLYPH_BINDER">GLYPH_BINDER</a></li>
+<li><a href="../primitives/GOLEMS.html#GOLEMS">GOLEMS</a></li>
+<li><a href="../primitives/GRIMOIRE.html#GRIMOIRE">GRIMOIRE</a></li>
+<li><a href="../primitives/ILLUSIONIST.html#ILLUSIONIST">ILLUSIONIST</a></li>
+<li><a href="../primitives/INCANTATIONS.html#INCANTATIONS">INCANTATIONS</a></li>
+<li><a href="../primitives/JOBS.html#JOBS">JOBS</a></li>
+<li><a href="../primitives/MACHINES_MACHINE.html#MACHINES_MACHINE">MACHINES_MACHINE</a></li>
+<li><a href="../primitives/MICROTASKS.html#MICROTASKS">MICROTASKS</a></li>
+<li><a href="../primitives/MSGS.html#MSGS">MSGS</a></li>
+<li><a href="../primitives/NO_NO_SQUARE_DQ.html#NO_NO_SQUARE_DQ">NO_NO_SQUARE_DQ</a></li>
+<li><a href="../primitives/PERFORMANCE_TIMER.html#PERFORMANCE_TIMER">PERFORMANCE_TIMER</a></li>
+<li><a href="../primitives/PLINKO_MASTER.html#PLINKO_MASTER">PLINKO_MASTER</a></li>
+<li><a href="../primitives/PRIORITY.html#PRIORITY">PRIORITY</a></li>
+<li><a href="../primitives/RDB.html#RDB">RDB</a></li>
+<li><a href="../primitives/RENDERIVITY_DQ.html#RENDERIVITY_DQ">RENDERIVITY_DQ</a></li>
+<li><a href="../primitives/RETRY_MASTER.html#RETRY_MASTER">RETRY_MASTER</a></li>
+<li><a href="../primitives/RUNE_HTTP.html#RUNE_HTTP">RUNE_HTTP</a></li>
+<li><a href="../primitives/S_CLASS.html#S_CLASS">S_CLASS</a></li>
+<li><a href="../primitives/SCHEDULER.html#SCHEDULER">SCHEDULER</a></li>
+<li><a href="../primitives/SENTINELmd#SENTINELmd">SENTINELmd</a></li>
+<li><a href="../primitives/SESSION_SIGIL.html#SESSION_SIGIL">SESSION_SIGIL</a></li>
+<li><a href="../primitives/SPEELBOOK.html#SPEELBOOK">SPEELBOOK</a></li>
+<li><a href="../primitives/TIERED_QUEUE.html#TIERED_QUEUE">TIERED_QUEUE</a></li>
+<li><a href="../primitives/TIME_MACHINE.html#TIME_MACHINE">TIME_MACHINE</a></li>
+<li><a href="../primitives/TOME_OF_SECRETS.html#TOME_OF_SECRETS">TOME_OF_SECRETS</a></li>
+<li><a href="../primitives/TRANSMOGRIFY.html#TRANSMOGRIFY">TRANSMOGRIFY</a></li>
+<li><a href="../primitives/TYPES_MACHINE.html#TYPES_MACHINE">TYPES_MACHINE</a></li>
+<li><a href="../primitives/TYR.html#TYR">TYR</a></li>
+<li><a href="../primitives/VAULTS.html#VAULTS">VAULTS</a></li>
+<li><a href="../primitives/VENOM.html#VENOM">VENOM</a></li>
+<li><a href="../primitives/WARDS.html#WARDS">WARDS</a></li>
+<li><a href="../primitives/WIZARD_KEEP.html#WIZARD_KEEP">WIZARD_KEEP</a></li>
+<li><a href="../primitives/WORKERS.html#WORKERS">WORKERS</a></li>
+<li><a href="../primitives/WORKFLOW.html#WORKFLOW">WORKFLOW</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[SOLUTIONS]</span> </strong></summary>
+<ul>
+<li><a href="../solutions/BATCH.html#BATCH">BATCH</a></li>
+<li><a href="../solutions/CELLS.html#CELLS">CELLS</a></li>
+<li><a href="../solutions/CHEERIO.html#CHEERIO">CHEERIO</a></li>
+<li><a href="../solutions/CIRCUIT_BREAKER.html#CIRCUIT_BREAKER">CIRCUIT_BREAKER</a></li>
+<li><a href="../solutions/COMPRESSION.html#COMPRESSION">COMPRESSION</a></li>
+<li><a href="../solutions/CONCURRENT.html#CONCURRENT">CONCURRENT</a></li>
+<li><a href="../solutions/CQRS.html#CQRS">CQRS</a></li>
+<li><a href="../solutions/DEBOUNCE.html#DEBOUNCE">DEBOUNCE</a></li>
+<li><a href="../solutions/DEFER.html#DEFER">DEFER</a></li>
+<li><a href="../solutions/DEV_TOOLS.html#DEV_TOOLS">DEV_TOOLS</a></li>
+<li><a href="../solutions/DIFFPATCH.html#DIFFPATCH">DIFFPATCH</a></li>
+<li><a href="../solutions/DISTRBUTED_EXE.html#DISTRBUTED_EXE">DISTRBUTED_EXE</a></li>
+<li><a href="../solutions/DISTRIBUTED_LOGIC_GATES.html#DISTRIBUTED_LOGIC_GATES">DISTRIBUTED_LOGIC_GATES</a></li>
+<li><a href="../solutions/DISTRIBUTED_PORTAL.html#DISTRIBUTED_PORTAL">DISTRIBUTED_PORTAL</a></li>
+<li><a href="../solutions/DISTRIBUTED_REACTIVE_STATE.html#DISTRIBUTED_REACTIVE_STATE">DISTRIBUTED_REACTIVE_STATE</a></li>
+<li><a href="../solutions/DRS.html#DRS">DRS</a></li>
+<li><a href="../solutions/EMPHEMRAL_STATE.html#EMPHEMRAL_STATE">EMPHEMRAL_STATE</a></li>
+<li><a href="../solutions/FULL_TEXT_SEARCH.html#FULL_TEXT_SEARCH">FULL_TEXT_SEARCH</a></li>
+<li><a href="../solutions/HTTP_CLIENT.html#HTTP_CLIENT">HTTP_CLIENT</a></li>
+<li><a href="../solutions/LOGIC_GATES.html#LOGIC_GATES">LOGIC_GATES</a></li>
+<li><a href="../solutions/LONGPOLL.html#LONGPOLL">LONGPOLL</a></li>
+<li><a href="../solutions/LWW.html#LWW">LWW</a></li>
+<li><a href="../solutions/MV.html#MV">MV</a></li>
+<li><a href="../solutions/OPTIMISTIC.html#OPTIMISTIC">OPTIMISTIC</a></li>
+<li><a href="../solutions/OR.html#OR">OR</a></li>
+<li><a href="../solutions/PERFORMANCE_TIMER.html#PERFORMANCE_TIMER">PERFORMANCE_TIMER</a></li>
+<li><a href="../solutions/PN.html#PN">PN</a></li>
+<li><a href="../solutions/QUEUE_TIERED.html#QUEUE_TIERED">QUEUE_TIERED</a></li>
+<li><a href="../solutions/RAFT.html#RAFT">RAFT</a></li>
+<li><a href="../solutions/RATE_LIMIT.html#RATE_LIMIT">RATE_LIMIT</a></li>
+<li><a href="../solutions/REACTIVE_CHAINS.html#REACTIVE_CHAINS">REACTIVE_CHAINS</a></li>
+<li><a href="../solutions/REVERSE_HEART_BEAT_MGR.html#REVERSE_HEART_BEAT_MGR">REVERSE_HEART_BEAT_MGR</a></li>
+<li><a href="../solutions/RIFTS.html#RIFTS">RIFTS</a></li>
+<li><a href="../solutions/RIFT_MAELSTROM.html#RIFT_MAELSTROM">RIFT_MAELSTROM</a></li>
+<li><a href="../solutions/SEMAPHORE.html#SEMAPHORE">SEMAPHORE</a></li>
+<li><a href="../solutions/SEND_SUB.html#SEND_SUB">SEND_SUB</a></li>
+<li><a href="../solutions/SIGNALS.html#SIGNALS">SIGNALS</a></li>
+<li><a href="../solutions/SPREADSHEET.html#SPREADSHEET">SPREADSHEET</a></li>
+<li><a href="../solutions/SSE.html#SSE">SSE</a></li>
+<li><a href="../solutions/STAFF.html#STAFF">STAFF</a></li>
+<li><a href="../solutions/STREAMS.html#STREAMS">STREAMS</a></li>
+<li><a href="../solutions/SWR.html#SWR">SWR</a></li>
+<li><a href="../solutions/TEMPORAL_SHIFT.html#TEMPORAL_SHIFT">TEMPORAL_SHIFT</a></li>
+<li><a href="../solutions/THROTTLE.html#THROTTLE">THROTTLE</a></li>
+<li><a href="../solutions/WIRE_TAPS.html#WIRE_TAPS">WIRE_TAPS</a></li>
+<li><a href="../solutions/WORKSPACE_GLOBAL.html#WORKSPACE_GLOBAL">WORKSPACE_GLOBAL</a></li>
+<li><a href="../solutions/WS.html#WS">WS</a></li>
+<li><a href="../solutions/XXSR.html#XXSR">XXSR</a></li>
+<li><a href="../solutions/YATA.html#YATA">YATA</a></li>
+<li><a href="../solutions/YIMIR.html#YIMIR">YIMIR</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[DATABASES]</span> </strong></summary>
+<ul>
+<li><a href="../databases/BDB.html#BDB">BDB</a></li>
+<li><a href="../databases/BINARY.html#BINARY">BINARY</a></li>
+<li><a href="../databases/COOKIE.html#COOKIE">COOKIE</a></li>
+<li><a href="../databases/GDB.html#GDB">GDB</a></li>
+<li><a href="../databases/GT.html#GT">GT</a></li>
+<li><a href="../databases/HADRON_COLLIDER.html#HADRON_COLLIDER">HADRON_COLLIDER</a></li>
+<li><a href="../databases/IDB_HADRON_COLLIDER.html#IDB_HADRON_COLLIDER">IDB_HADRON_COLLIDER</a></li>
+<li><a href="../databases/IDB_HC_SINK.html#IDB_HC_SINK">IDB_HC_SINK</a></li>
+<li><a href="../databases/IDB_KVDB.html#IDB_KVDB">IDB_KVDB</a></li>
+<li><a href="../databases/IDB_RDB.html#IDB_RDB">IDB_RDB</a></li>
+<li><a href="../databases/KVDB.html#KVDB">KVDB</a></li>
+<li><a href="../databases/LS.html#LS">LS</a></li>
+<li><a href="../databases/MEMORY.html#MEMORY">MEMORY</a></li>
+<li><a href="../databases/RDB.html#RDB">RDB</a></li>
+<li><a href="../databases/REGISTRIES.html#REGISTRIES">REGISTRIES</a></li>
+<li><a href="../databases/SAURON.html#SAURON">SAURON</a></li>
+<li><a href="../databases/SECURE_COOKIE.html#SECURE_COOKIE">SECURE_COOKIE</a></li>
+<li><a href="../databases/SS.html#SS">SS</a></li>
+<li><a href="../databases/TDB.html#TDB">TDB</a></li>
+<li><a href="../databases/VDB.html#VDB">VDB</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[BAG OF TRICKS]</span> </strong></summary>
+<ul>
+<li><a href="../bag_of_tricks/BARRIER.html#BARRIER">BARRIER</a></li>
+<li><a href="../bag_of_tricks/CALL_IF.html#CALL_IF">CALL_IF</a></li>
+<li><a href="../bag_of_tricks/CHAIN_RECHAIN.html#CHAIN_RECHAIN">CHAIN_RECHAIN</a></li>
+<li><a href="../bag_of_tricks/chain.html#chain">chain</a></li>
+<li><a href="../bag_of_tricks/clamp.html#clamp">clamp</a></li>
+<li><a href="../bag_of_tricks/deferred.html#deferred">deferred</a></li>
+<li><a href="../bag_of_tricks/evaluator.html#evaluator">evaluator</a></li>
+<li><a href="../bag_of_tricks/finally.html#finally">finally</a></li>
+<li><a href="../bag_of_tricks/gate.html#gate">gate</a></li>
+<li><a href="../bag_of_tricks/ignore_arg.html#ignore_arg">ignore_arg</a></li>
+<li><a href="../bag_of_tricks/invoke.html#invoke">invoke</a></li>
+<li><a href="../bag_of_tricks/is_defined.html#is_defined">is_defined</a></li>
+<li><a href="../bag_of_tricks/is_not_defined.html#is_not_defined">is_not_defined</a></li>
+<li><a href="../bag_of_tricks/LAZY.html#LAZY">LAZY</a></li>
+<li><a href="../bag_of_tricks/MAYBE_PROMISE.html#MAYBE_PROMISE">MAYBE_PROMISE</a></li>
+<li><a href="../bag_of_tricks/maybe.html#maybe">maybe</a></li>
+<li><a href="../bag_of_tricks/mcr_combo.html#mcr_combo">mcr_combo</a></li>
+<li><a href="../bag_of_tricks/ONCE.html#ONCE">ONCE</a></li>
+<li><a href="../bag_of_tricks/or_default.html#or_default">or_default</a></li>
+<li><a href="../bag_of_tricks/patch_state.html#patch_state">patch_state</a></li>
+<li><a href="../bag_of_tricks/retry_with_backoff.html#retry_with_backoff">retry_with_backoff</a></li>
+<li><a href="../bag_of_tricks/run_with_retry.html#run_with_retry">run_with_retry</a></li>
+<li><a href="../bag_of_tricks/SERIAL_EXECUTOR.html#SERIAL_EXECUTOR">SERIAL_EXECUTOR</a></li>
+<li><a href="../bag_of_tricks/set_keys.html#set_keys">set_keys</a></li>
+<li><a href="../bag_of_tricks/set_prev.html#set_prev">set_prev</a></li>
+<li><a href="../bag_of_tricks/sleep.html#sleep">sleep</a></li>
+<li><a href="../bag_of_tricks/tap.html#tap">tap</a></li>
+<li><a href="../bag_of_tricks/thenable.html#thenable">thenable</a></li>
+<li><a href="../bag_of_tricks/TIMED_PROMISE.html#TIMED_PROMISE">TIMED_PROMISE</a></li>
+<li><a href="../bag_of_tricks/to_promise.html#to_promise">to_promise</a></li>
+<li><a href="../bag_of_tricks/try_catch.html#try_catch">try_catch</a></li>
+<li><a href="../bag_of_tricks/unreachable.html#unreachable">unreachable</a></li>
+<li><a href="../bag_of_tricks/WAIT_AND_PROMISE.html#WAIT_AND_PROMISE">WAIT_AND_PROMISE</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[TODO & IDEAS]</span> </strong></summary>
+<ul>
+<li><a href="TO_DO_AND_IDEAS.html#todo--ideas">TODO &amp; IDEAS</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#the_wizard">[THE_WIZARD]</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#primitives">[PRIMITIVES]</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#next_level_ideas">[NEXT_LEVEL_IDEAS]</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#kvdb">KVDB</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#prxcdb">PRxCDB</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#staff">STAFF</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#--e--mc2--">E = mc^2</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#native-custom-built-solutions">NATIVE, CUSTOM BUILT SOLUTIONS</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#storage-context">STORAGE CONTEXT</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#other">OTHER</a></li>
+</ul>
+</details>
+<br/>
+<pre><code>                          🗨️           ☁️
+                       🌴🌵                             🧙            
+┌──────────┐          ┌──────────────────────────┐
+└──────────┘          └──────────────────────────┘
+              ☁️      
+  🔮        🏜️🌵🏜️🌴🌵                         🏜️
+┌─────────────────────────────┐        ┌─────────┐
+└─────────────────────────────┘        └─────────┘
+
+                                         🏜️🌴🌵
+           ┌──────────────────────────────────────┐
+           └──────────────────────────────────────┘
+         ☁️                  
+           🌴🌴                🏜️🌴                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🏜️🌴🏜️🌵      🌪️                    🧙     🏝️🏜️
+┌─────────────────────────────────────────────────┐
+└─────────────────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️       ☁️                              
+    🌴🌵                                     🌵🏜️
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                            🌵🌴🌴       
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+         🌵🌴                      🌵          🌴
+┌────────────────┐        ┌───────────────────────┐
+└────────────────┘        └───────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                     🌴🌵          🌵🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵          🌵🌵                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+            ☁️          ☁️                     
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+
+  🌵🌴               🌴🌵          🌵🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴          🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+            ☁️          ☁️                     
+  🌴🌵                         🌵🌵          🏜️🌴
+┌──────────┐       ┌───────────────────────────────┐
+└──────────┘       └───────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+            🌵🌴                  🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵          🧙🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️       ☁️                              
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                          🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵      🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+             🌵🌴                                             🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                                🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                    🌵🌴                              🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵                          🌴                     
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                             
+
+  🌴                            🌵 
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵🌴                                       
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                               🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+                                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                 🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                                           🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵                🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌴                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                            🌵             🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                             🌵
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                   ☁️                     
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵   🌴🌴                                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                           🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+  🌵                           
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                  🌵           🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵           🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+   🌵        🌵🌴                             
+┌──────────────────┐        ┌───────────────┐
+└──────────────────┘        └───────────────┘
+                   ☁️          ☁️                     
+🌴                                      🌵        🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵            🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+        🌵🌴                                   🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                           🌵                           
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                            🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+                   ☁️          ☁️                     
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                              🌵🌵
+┌───────────────────┐       ┌────────┐       ┌────┐
+└───────────────────┘       └────────┘       └────┘
+
+                                              🌵🌴                      
+                   ┌──────────────────────────────┐
+                   └──────────────────────────────┘
+                   ☁️          ☁️                     
+  🌴                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵                   🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴              🌵
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                        ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                               🌵🌴                          
+                       ┌──────────────────────────┐
+                       └──────────────────────────┘
+         ☁️                  
+  🌴🌵                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵        🌴                                🌵
+┌────────────────────────┐       ┌────────────────┐
+└────────────────────────┘       └────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+      ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+              ☁️      
+  🔮        🏜️🌵🏜️🌴🌵                         🏜️
+┌─────────────────────────────┐        ┌─────────┐
+└─────────────────────────────┘        └─────────┘
+
+                                         🏜️🌴🌵
+           ┌──────────────────────────────────────┐
+           └──────────────────────────────────────┘
+         ☁️                  
+           🌴🌴                🏜️🌴                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🏜️🌴🏜️🌵      🌪️                    🧙     🏝️🏜️
+┌─────────────────────────────────────────────────┐
+└─────────────────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️       ☁️                              
+    🌴🌵                                     🌵🏜️
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                            🌵🌴🌴       
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+         🌵🌴                      🌵          🌴
+┌────────────────┐        ┌───────────────────────┐
+└────────────────┘        └───────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                     🌴🌵          🌵🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵          🌵🌵                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+            ☁️          ☁️                     
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+
+  🌵🌴               🌴🌵          🌵🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴          🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+            ☁️          ☁️                     
+  🌴🌵                         🌵🌵          🏜️🌴
+┌──────────┐       ┌───────────────────────────────┐
+└──────────┘       └───────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+            🌵🌴                  🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵          🧙🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️       ☁️                              
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                          🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵      🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+             🌵🌴                                             🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                                🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                    🌵🌴                              🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵                          🌴                     
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                             
+
+  🌴                            🌵 
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵🌴                                       
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                               🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+                                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                 🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                                           🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵                🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌴                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                            🌵             🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                             🌵
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                   ☁️                     
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵   🌴🌴                                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                           🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+  🌵                           
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                  🌵           🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵           🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+   🌵        🌵🌴                             
+┌──────────────────┐        ┌───────────────┐
+└──────────────────┘        └───────────────┘
+                   ☁️          ☁️                     
+🌴                                      🌵        🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵            🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+        🌵🌴                                   🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                           🌵                           
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                            🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+                   ☁️          ☁️                     
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                              🌵🌵
+┌───────────────────┐       ┌────────┐       ┌────┐
+└───────────────────┘       └────────┘       └────┘
+
+                                              🌵🌴                      
+                   ┌──────────────────────────────┐
+                   └──────────────────────────────┘
+                   ☁️          ☁️                     
+  🌴                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵                   🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴              🌵
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                        ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                               🌵🌴                          
+                       ┌──────────────────────────┐
+                       └──────────────────────────┘
+         ☁️                  
+  🌴🌵                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵        🌴                                🌵
+┌────────────────────────┐       ┌────────────────┐
+└────────────────────────┘       └────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+      ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+              ☁️      
+  🔮        🏜️🌵🏜️🌴🌵                         🏜️
+┌─────────────────────────────┐        ┌─────────┐
+└─────────────────────────────┘        └─────────┘
+
+                                         🏜️🌴🌵
+           ┌──────────────────────────────────────┐
+           └──────────────────────────────────────┘
+         ☁️                  
+           🌴🌴                🏜️🌴                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🏜️🌴🏜️🌵      🌪️                    🧙     🏝️🏜️
+┌─────────────────────────────────────────────────┐
+└─────────────────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️       ☁️                              
+    🌴🌵                                     🌵🏜️
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                            🌵🌴🌴       
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+         🌵🌴                      🌵          🌴
+┌────────────────┐        ┌───────────────────────┐
+└────────────────┘        └───────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                     🌴🌵          🌵🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵          🌵🌵                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+            ☁️          ☁️                     
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+
+  🌵🌴               🌴🌵          🌵🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴          🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+            ☁️          ☁️                     
+  🌴🌵                         🌵🌵          🏜️🌴
+┌──────────┐       ┌───────────────────────────────┐
+└──────────┘       └───────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+            🌵🌴                  🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵          🧙🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️       ☁️                              
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                          🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵      🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+             🌵🌴                                             🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                                🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                    🌵🌴                              🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵                          🌴                     
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                             
+
+  🌴                            🌵 
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵🌴                                       
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                               🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+                                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                 🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                                           🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵                🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌴                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                            🌵             🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                             🌵
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                   ☁️                     
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵   🌴🌴                                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                           🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+  🌵                           
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                  🌵           🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵           🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+   🌵        🌵🌴                             
+┌──────────────────┐        ┌───────────────┐
+└──────────────────┘        └───────────────┘
+                   ☁️          ☁️                     
+🌴                                      🌵        🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵            🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+        🌵🌴                                   🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                           🌵                           
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                            🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+                   ☁️          ☁️                     
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                              🌵🌵
+┌───────────────────┐       ┌────────┐       ┌────┐
+└───────────────────┘       └────────┘       └────┘
+
+                                              🌵🌴                      
+                   ┌──────────────────────────────┐
+                   └──────────────────────────────┘
+                   ☁️          ☁️                     
+  🌴                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵                   🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴              🌵
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                        ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                               🌵🌴                          
+                       ┌──────────────────────────┐
+                       └──────────────────────────┘
+         ☁️                  
+  🌴🌵                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵        🌴                                🌵
+┌────────────────────────┐       ┌────────────────┐
+└────────────────────────┘       └────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+      ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                  🌵             🌴                         🌵
+┌─────────────────────────────────────────────────┐
+└─────────────────────────────────────────────────┘
+</code></pre>
+</div>
+</div>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>

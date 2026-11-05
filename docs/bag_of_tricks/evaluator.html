@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;evaluator&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="evaluator"><code>evaluator</code></h1>
+<blockquote>
+<p>Classify any JavaScript value by shape. Returns a short string tag — <code>&quot;thenable&quot;</code>, <code>&quot;async-iterable&quot;</code>, <code>&quot;map&quot;</code>, <code>&quot;plainObject&quot;</code>, <code>&quot;number&quot;</code>, etc. — describing what the value <em>is</em>, not what it contains.</p>
+</blockquote>
+<pre><code class="language-ts">evaluator(<span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-number">1</span>))    <span class="hljs-comment">// &quot;thenable&quot;</span>
+evaluator(<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span>* () {}) <span class="hljs-comment">// &quot;async-iterable&quot;</span>
+evaluator(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>())             <span class="hljs-comment">// &quot;map&quot;</span>
+evaluator({ <span class="hljs-attr">a</span>: <span class="hljs-number">1</span> })              <span class="hljs-comment">// &quot;plainObject&quot;</span>
+evaluator(<span class="hljs-number">42</span>)                    <span class="hljs-comment">// &quot;number&quot;</span>
+</code></pre>
+<p>The point: one function that answers &quot;what kind of thing is this?&quot; without a chain of <code>typeof</code> checks at every call site. Useful for dispatch, logging, serialization, and validation.</p>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { evaluator } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+evaluator(<span class="hljs-number">42</span>)                 <span class="hljs-comment">// &quot;number&quot;</span>
+evaluator(<span class="hljs-string">&quot;hi&quot;</span>)               <span class="hljs-comment">// &quot;string&quot;</span>
+evaluator(<span class="hljs-literal">null</span>)               <span class="hljs-comment">// &quot;null&quot;</span>
+evaluator([])                 <span class="hljs-comment">// &quot;iterable&quot;</span>
+evaluator({})                 <span class="hljs-comment">// &quot;object&quot;        — wait, see below</span>
+evaluator(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>())          <span class="hljs-comment">// &quot;map&quot;</span>
+evaluator(<span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>())  <span class="hljs-comment">// &quot;thenable&quot;</span>
+</code></pre>
+<p>That's it. You're done. You now know how to use <code>evaluator</code>.</p>
+<p>The function is a <em>first-match</em> classifier. It walks a list of checks in order and returns the tag for whichever one hits first. The order matters, and that's most of the design.</p>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="signature">Signature</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">evaluator</span>(<span class="hljs-params">v: <span class="hljs-built_in">unknown</span></span>): <span class="hljs-built_in">string</span>
+</code></pre>
+<p>No generic, no overloads. Takes anything and returns a tag string. The tag is not a closed union in the type — it's just <code>string</code> — but the set of possible values is fixed by the code below.</p>
+<h4 id="the-full-tag-list">The full tag list</h4>
+<p>In the order the checks run:</p>
+<table>
+<thead>
+<tr>
+<th>Order</th>
+<th>Tag</th>
+<th>Matches</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>&quot;thenable&quot;</code></td>
+<td>anything with a <code>.then</code> function (Promise, thenable, some libraries' lazy values)</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>&quot;async-iterable&quot;</code></td>
+<td>has <code>[Symbol.asyncIterator]</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>&quot;null&quot;</code></td>
+<td><code>null</code> (typeof is <code>&quot;object&quot;</code>, so it's separate)</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>&quot;string&quot;</code> / <code>&quot;number&quot;</code> / <code>&quot;boolean&quot;</code> / <code>&quot;bigint&quot;</code> / <code>&quot;symbol&quot;</code> / <code>&quot;undefined&quot;</code></td>
+<td>primitives (from <code>typeof v</code>)</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>&quot;function&quot;</code></td>
+<td>functions</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>&quot;array&quot;</code></td>
+<td>TypedArrays and DataViews (<code>ArrayBuffer.isView</code>)</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>&quot;map&quot;</code></td>
+<td><code>instanceof Map</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>&quot;set&quot;</code></td>
+<td><code>instanceof Set</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>&quot;date&quot;</code></td>
+<td><code>instanceof Date</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>&quot;regexp&quot;</code></td>
+<td><code>instanceof RegExp</code></td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>&quot;error&quot;</code></td>
+<td><code>instanceof Error</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>&quot;iterable&quot;</code></td>
+<td>has <code>[Symbol.iterator]</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>&quot;object&quot;</code></td>
+<td>anything else with <code>typeof === &quot;object&quot;</code> (plain record, or fallback)</td>
+</tr>
+</tbody>
+</table>
+<p>That's the set. Some lines in the source run after a <code>return</code> that already fired for any reachable input — see the analysis below.</p>
+<h4 id="why-the-order-is-what-it-is">Why the order is what it is</h4>
+<p>Two axes matter: <strong>async-ness</strong> and <strong>shape</strong>.</p>
+<ol>
+<li><strong>Async first.</strong> <code>thenable</code> and <code>async-iterable</code> are checked before anything else. If a value is a promise or an async iterable, that's the most important thing about it — more than whether it's also an object. So those win.</li>
+<li><strong>Null before object.</strong> <code>typeof null === &quot;object&quot;</code> is a famous JS wart. Null is checked explicitly so it doesn't fall into the <code>&quot;object&quot;</code> bucket.</li>
+<li><strong>Primitives before objects.</strong> <code>typeof</code> returns a definitive string for primitives; no further checks needed.</li>
+<li><strong>Specific classes before generic ones.</strong> <code>Map</code>, <code>Set</code>, <code>Date</code>, <code>RegExp</code>, <code>Error</code> are checked before the generic <code>&quot;object&quot;</code> fallback, so a <code>Map</code> doesn't get classified as a plain object.</li>
+<li><strong>Iterables last before <code>&quot;object&quot;</code>.</strong> Arrays, Strings, Maps, Sets all have <code>Symbol.iterator</code>. But <code>Map</code>, <code>Set</code>, <code>String</code>, <code>Array</code> are all caught earlier — so <code>&quot;iterable&quot;</code> only fires for <em>custom</em> iterables that aren't one of the known types.</li>
+</ol>
+<h4 id="whats-reachable">What's reachable</h4>
+<p>The <code>return</code> statements short-circuit. Some of the checks at the bottom of the function are dead code as written — they can only be reached if the earlier checks missed, and given the earlier checks, they never will. Let me be precise about which ones:</p>
+<ul>
+<li><strong><code>&quot;iterator&quot;</code> (line 13 of the checks)</strong> — unreachable. The earlier <code>&quot;iterable&quot;</code> check uses <code>[Symbol.iterator]</code>, and <code>&quot;iterator&quot;</code> uses the same symbol. If a value has <code>Symbol.iterator</code>, it already returned <code>&quot;iterable&quot;</code>. The <code>&quot;iterator&quot;</code> branch can never fire.</li>
+<li><strong>The primitive re-checks</strong> (<code>string</code>, <code>number</code>, <code>boolean</code>, <code>bigint</code>, <code>symbol</code>, <code>undefined</code> after <code>&quot;iterable&quot;</code>) — unreachable. Primitives are already caught by <code>t !== &quot;object&quot; &amp;&amp; t !== &quot;function&quot;</code> earlier.</li>
+<li><strong><code>&quot;Array&quot;</code> via <code>instanceof Array</code></strong> — unreachable. Arrays have <code>Symbol.iterator</code>, so they hit <code>&quot;iterable&quot;</code> first.</li>
+<li><strong><code>WeakMap</code>, <code>WeakSet</code>, <code>Promise</code>, <code>ArrayBuffer</code></strong> — reachable only if they don't hit an earlier check. <code>Promise</code> has <code>.then</code>, so it returns <code>&quot;thenable&quot;</code> first. <code>ArrayBuffer</code> is <em>not</em> iterable and has no <code>.then</code>, so it reaches this branch. <code>WeakMap</code> / <code>WeakSet</code> are not iterable and have no <code>.then</code>, so they also reach here.</li>
+<li><strong><code>Buffer</code>, <code>URL</code>, <code>URLSearchParams</code></strong> — <code>Buffer</code> is a <code>Uint8Array</code>, so <code>ArrayBuffer.isView</code> catches it and returns <code>&quot;array&quot;</code>. <code>URL</code> has an iterator (it's iterable over search params in modern specs? actually no — URL is not iterable), and <code>URLSearchParams</code> <em>is</em> iterable. So <code>URL</code> reaches its branch; <code>URLSearchParams</code> returns <code>&quot;iterable&quot;</code> before getting there.</li>
+<li><strong><code>&quot;plainObject&quot;</code></strong> — unreachable, because <code>&quot;object&quot;</code> fires earlier.</li>
+</ul>
+<p>So the function returns these tags in practice:</p>
+<p><code>&quot;thenable&quot;</code>, <code>&quot;async-iterable&quot;</code>, <code>&quot;null&quot;</code>, <code>&quot;string&quot;</code>, <code>&quot;number&quot;</code>, <code>&quot;boolean&quot;</code>, <code>&quot;bigint&quot;</code>, <code>&quot;symbol&quot;</code>, <code>&quot;undefined&quot;</code>, <code>&quot;function&quot;</code>, <code>&quot;array&quot;</code>, <code>&quot;map&quot;</code>, <code>&quot;set&quot;</code>, <code>&quot;date&quot;</code>, <code>&quot;regexp&quot;</code>, <code>&quot;error&quot;</code>, <code>&quot;iterable&quot;</code>, <code>&quot;object&quot;</code>, <code>&quot;WeakMap&quot;</code>, <code>&quot;WeakSet&quot;</code>, <code>&quot;ArrayBuffer&quot;</code>, <code>&quot;URL&quot;</code>.</p>
+<p>The unreturnable ones (<code>&quot;iterator&quot;</code>, <code>&quot;Array&quot;</code>, <code>&quot;Promise&quot;</code>, <code>&quot;Buffer&quot;</code>, <code>&quot;URLSearchParams&quot;</code>, <code>&quot;plainObject&quot;</code>) are the tags the author probably <em>wanted</em> to distinguish, but the earlier checks swallow them. If that distinction matters, the checks need to be reordered or narrowed.</p>
+<h4 id="iterable-vs-object"><code>&quot;iterable&quot;</code> vs <code>&quot;object&quot;</code></h4>
+<p>Both are catch-alls for &quot;not one of the known types.&quot; The distinction:</p>
+<ul>
+<li><code>&quot;iterable&quot;</code> — has <code>Symbol.iterator</code>. Arrays (in theory, but caught earlier), custom iterables, <code>URLSearchParams</code>, <code>arguments</code> objects, generators.</li>
+<li><code>&quot;object&quot;</code> — has neither <code>Symbol.iterator</code> nor any other known marker. Plain records, class instances without iteration, <code>Object.create(null)</code>.</li>
+</ul>
+<p>If you're dispatching on the tag, these two are the &quot;unknown, but here's a hint&quot; categories.</p>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Dispatch by kind</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">switch</span> (evaluator(v)) {
+  <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;thenable&quot;</span>: <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> v
+  <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;iterable&quot;</span>: <span class="hljs-keyword">return</span> [...v]
+  <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;map&quot;</span>: <span class="hljs-keyword">return</span> [...v.<span class="hljs-title function_">entries</span>()]
+  <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;set&quot;</span>: <span class="hljs-keyword">return</span> [...v.<span class="hljs-title function_">values</span>()]
+  <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;object&quot;</span>: <span class="hljs-keyword">return</span> <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">entries</span>(v)
+}
+</code></pre>
+<p><strong>Logging</strong></p>
+<pre><code class="language-ts">log.<span class="hljs-title function_">info</span>(<span class="hljs-string">&quot;received&quot;</span>, { <span class="hljs-attr">kind</span>: evaluator(payload), payload })
+</code></pre>
+<p><strong>Validation gate</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">if</span> (evaluator(input) !== <span class="hljs-string">&quot;object&quot;</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;expected a plain object&quot;</span>)
+</code></pre>
+<p><strong>Serialization decisions</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> kind = evaluator(v)
+<span class="hljs-keyword">if</span> (kind === <span class="hljs-string">&quot;date&quot;</span>) <span class="hljs-keyword">return</span> v.<span class="hljs-title function_">toISOString</span>()
+<span class="hljs-keyword">if</span> (kind === <span class="hljs-string">&quot;map&quot;</span>) <span class="hljs-keyword">return</span> <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">fromEntries</span>(v)
+</code></pre>
+<h4 id="behavior">Behavior</h4>
+<ul>
+<li><strong>First match wins.</strong> Once a check hits, the function returns immediately. Later checks never run.</li>
+<li><strong><code>typeof null === &quot;object&quot;</code></strong> is handled explicitly — <code>null</code> gets its own tag, not <code>&quot;object&quot;</code>.</li>
+<li><strong><code>instanceof</code> checks are realm-sensitive.</strong> In a multi-realm environment (iframes, workers, <code>vm</code> contexts), <code>Map</code>, <code>Set</code>, <code>Date</code>, etc. from a different realm will fail their <code>instanceof</code> check. <code>Array.isArray</code> is cross-realm-safe; the <code>instanceof</code> checks are not.</li>
+<li><strong>No <code>valueOf</code> / <code>toString</code> calls.</strong> The classifier doesn't coerce, doesn't serialize. It only inspects shape.</li>
+<li><strong>Thenables win over everything.</strong> A <code>Map</code> with a <code>.then</code> method would be <code>&quot;thenable&quot;</code>, not <code>&quot;map&quot;</code>. This is by design — async-ness takes precedence.</li>
+</ul>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li>
+<p><strong>Many branches are unreachable.</strong> See the analysis above. The function is longer than its runtime behavior. If you're relying on a tag that's listed in the source but never actually returned, you have a bug — test the actual output.</p>
+</li>
+<li>
+<p><strong><code>&quot;iterator&quot;</code> is dead.</strong> The <code>&quot;iterable&quot;</code> check above it uses the same <code>Symbol.iterator</code> symbol. <code>&quot;iterator&quot;</code> can never return.</p>
+</li>
+<li>
+<p><strong><code>&quot;plainObject&quot;</code> is dead.</strong> <code>&quot;object&quot;</code> fires before it. If you see <code>&quot;object&quot;</code>, that's your plain object.</p>
+</li>
+<li>
+<p><strong><code>&quot;Array&quot;</code>, <code>&quot;Buffer&quot;</code>, <code>&quot;Promise&quot;</code>, <code>&quot;URLSearchParams&quot;</code> are dead.</strong> They're all caught by earlier checks:</p>
+<ul>
+<li>Arrays → <code>&quot;iterable&quot;</code> (has <code>Symbol.iterator</code>).</li>
+<li>Buffers → <code>&quot;array&quot;</code> (<code>ArrayBuffer.isView</code>).</li>
+<li>Promises → <code>&quot;thenable&quot;</code>.</li>
+<li><code>URLSearchParams</code> → <code>&quot;iterable&quot;</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>The primitive re-checks in the middle are dead.</strong> The first <code>t !== &quot;object&quot; &amp;&amp; t !== &quot;function&quot;</code> catch-all returns them all.</p>
+</li>
+<li>
+<p><strong><code>instanceof</code> doesn't cross realms.</strong> In Node worker threads, iframes, or <code>vm</code> contexts, an <code>Array</code> created in another realm is not <code>instanceof Array</code> here. <code>Array.isArray</code> is safe; the others aren't. The <code>Map</code>, <code>Set</code>, <code>Date</code>, <code>RegExp</code>, <code>Error</code> checks all share this caveat.</p>
+</li>
+<li>
+<p><strong><code>DataView</code> gets <code>&quot;array&quot;</code>.</strong> <code>ArrayBuffer.isView</code> returns <code>true</code> for <code>DataView</code> as well as TypedArrays. Both come back as <code>&quot;array&quot;</code>. If you need to distinguish, add a check.</p>
+</li>
+<li>
+<p><strong>A <code>Map</code> with a <code>.then</code> returns <code>&quot;thenable&quot;</code>.</strong> Async-ness is checked before shape, always. If your Map accidentally has a <code>.then</code> property, you'll get the wrong tag.</p>
+</li>
+<li>
+<p><strong><code>arguments</code> objects</strong> return <code>&quot;iterable&quot;</code> (they have <code>Symbol.iterator</code> in modern engines). <code>null</code>-prototype objects return <code>&quot;object&quot;</code>.</p>
+</li>
+<li>
+<p><strong>The tag list is not typed.</strong> <code>evaluator</code> returns <code>string</code>, not a union. If you want exhaustive switch checks, wrap it:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">type</span> <span class="hljs-title class_">Kind</span> = <span class="hljs-title class_">ReturnType</span>&lt;<span class="hljs-keyword">typeof</span> evaluator&gt;  <span class="hljs-comment">// string — not helpful</span>
+</code></pre>
+<p>Either add a proper union return type to the function, or define one at the call site.</p>
+</li>
+<li>
+<p><strong>The tag names are inconsistent.</strong> Some are lowercase (<code>&quot;map&quot;</code>, <code>&quot;set&quot;</code>, <code>&quot;date&quot;</code>), some are capitalized (<code>&quot;WeakMap&quot;</code>, <code>&quot;ArrayBuffer&quot;</code>, <code>&quot;URL&quot;</code>). The inconsistency reflects the fact that this function grew organically. If you're matching on tags, use exact strings.</p>
+</li>
+<li>
+<p><strong>Mixed case in the source.</strong> Lines that can't fire are still in the source, which means readers see them and assume they're reachable. If you're maintaining this function, either delete the dead branches or fix the ordering so they fire.</p>
+</li>
+</ul>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not <code>typeof</code>. <code>typeof</code> gives you primitives and <code>&quot;object&quot;</code>/<code>&quot;function&quot;</code> and nothing else. <code>evaluator</code> gives you the shape of the object.</li>
+<li>Not <code>instanceof</code>. <code>instanceof</code> is a single-class check. <code>evaluator</code> is a classifier.</li>
+<li>Not <code>Object.prototype.toString.call(v)</code> — although that's another common approach and it <em>does</em> cross realms. <code>evaluator</code> uses <code>instanceof</code>, which doesn't.</li>
+<li>Not a schema validator. It doesn't check fields, only top-level shape.</li>
+<li>Not a serializer. It tags; it doesn't convert.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p>&quot;What is this?&quot; should have one answer, not a <code>typeof</code> chain at every call site. <code>evaluator</code> gives you that answer as a short tag. The design puts async-ness first and shape second, on the reasoning that a promise is <em>always</em> a promise before it's anything else. The cost is that some distinctions the source appears to make are swallowed by earlier checks — the function returns fewer tags than it names. Read it as a first-match classifier, not a list of every branch.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            
+            
+        </body>
+        </html>

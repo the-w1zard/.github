@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;clamp&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="clamp"><code>clamp</code></h1>
+<blockquote>
+<p>Constrain a number to a range. One line. Returns <code>value</code> if it's already inside <code>[min, max]</code>, otherwise returns the nearest bound.</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hljs-title function_">clamp</span>(<span class="hljs-number">5</span>, <span class="hljs-number">0</span>, <span class="hljs-number">10</span>)     <span class="hljs-comment">// 5</span>
+<span class="hljs-title function_">clamp</span>(-<span class="hljs-number">3</span>, <span class="hljs-number">0</span>, <span class="hljs-number">10</span>)    <span class="hljs-comment">// 0</span>
+<span class="hljs-title function_">clamp</span>(<span class="hljs-number">42</span>, <span class="hljs-number">0</span>, <span class="hljs-number">10</span>)    <span class="hljs-comment">// 10</span>
+</code></pre>
+<p>That's the entire thing. Nothing else to know.</p>
+<hr>
+<h2 id="install">Install</h2>
+<pre><code class="language-bash">npm install clamp
+</code></pre>
+<p>Or copy the one line. Zero dependencies.</p>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { clamp } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;clamp&quot;</span>
+
+<span class="hljs-title function_">clamp</span>(<span class="hljs-number">5</span>, <span class="hljs-number">0</span>, <span class="hljs-number">10</span>)      <span class="hljs-comment">// 5</span>
+<span class="hljs-title function_">clamp</span>(-<span class="hljs-number">100</span>, <span class="hljs-number">0</span>, <span class="hljs-number">10</span>)   <span class="hljs-comment">// 0</span>
+<span class="hljs-title function_">clamp</span>(<span class="hljs-number">100</span>, <span class="hljs-number">0</span>, <span class="hljs-number">10</span>)    <span class="hljs-comment">// 10</span>
+</code></pre>
+<p>That's it. You're done. You now know how to use <code>clamp</code>.</p>
+<p>Real use:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> volume = <span class="hljs-title function_">clamp</span>(userInput, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>)          <span class="hljs-comment">// normalize to 0–1</span>
+<span class="hljs-keyword">const</span> age = <span class="hljs-title function_">clamp</span>(<span class="hljs-built_in">parseInt</span>(input), <span class="hljs-number">18</span>, <span class="hljs-number">120</span>)    <span class="hljs-comment">// enforce bounds</span>
+<span class="hljs-keyword">const</span> opacity = <span class="hljs-title function_">clamp</span>(alpha, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>)           <span class="hljs-comment">// byte range</span>
+</code></pre>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="signature">Signature</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> clamp = (<span class="hljs-attr">value</span>: <span class="hljs-built_in">number</span>, <span class="hljs-attr">min</span>: <span class="hljs-built_in">number</span>, <span class="hljs-attr">max</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">number</span>
+</code></pre>
+<ul>
+<li><code>value</code> — the number to constrain.</li>
+<li><code>min</code> — lower bound (inclusive).</li>
+<li><code>max</code> — upper bound (inclusive).</li>
+<li>Returns <code>value</code> if <code>min &lt;= value &lt;= max</code>, otherwise <code>min</code> or <code>max</code>, whichever is nearer.</li>
+</ul>
+<h4 id="how-it-works">How it works</h4>
+<pre><code class="language-ts"><span class="hljs-title class_">Math</span>.<span class="hljs-title function_">min</span>(max, <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(min, value))
+</code></pre>
+<p><code>Math.max(min, value)</code> floors the value at <code>min</code>. <code>Math.min(max, …)</code> caps it at <code>max</code>. Composed, they produce the constrained result in a single expression with no branches.</p>
+<h4 id="behavior-notes">Behavior notes</h4>
+<ul>
+<li><strong>Bounds are inclusive.</strong> <code>clamp(0, 0, 10)</code> is <code>0</code>. <code>clamp(10, 0, 10)</code> is <code>10</code>. Nothing is off-by-one.</li>
+<li><strong><code>min &gt; max</code> is not guarded.</strong> If you pass <code>clamp(5, 10, 0)</code>, you get <code>0</code> — <code>Math.max(10, 5)</code> is <code>10</code>, then <code>Math.min(0, 10)</code> is <code>0</code>. The function assumes <code>min &lt;= max</code>. It doesn't validate, doesn't throw, doesn't swap. Garbage in, garbage out, fast.</li>
+<li><strong><code>NaN</code> propagates.</strong> <code>clamp(NaN, 0, 10)</code> is <code>NaN</code>. <code>Math.max</code> and <code>Math.min</code> both return <code>NaN</code> if any argument is <code>NaN</code>.</li>
+<li><strong><code>Infinity</code> works as a bound.</strong> <code>clamp(x, -Infinity, Infinity)</code> returns <code>x</code>. Useful for optional bounds.</li>
+<li><strong>Integers aren't enforced.</strong> <code>clamp(3.7, 0, 10)</code> is <code>3.7</code>. This clamps, it doesn't round.</li>
+</ul>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Normalizing user input</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> level = <span class="hljs-title function_">clamp</span>(<span class="hljs-built_in">parseInt</span>(raw), <span class="hljs-number">1</span>, <span class="hljs-number">100</span>)
+</code></pre>
+<p><strong>Clamping RGB / alpha channels</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> r = <span class="hljs-title function_">clamp</span>(channel, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>)
+</code></pre>
+<p><strong>Animation progress</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> t = <span class="hljs-title function_">clamp</span>((now - start) / duration, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
+</code></pre>
+<p><strong>Camera / scroll limits</strong></p>
+<pre><code class="language-ts">scrollY = <span class="hljs-title function_">clamp</span>(scrollY, <span class="hljs-number">0</span>, maxScroll)
+</code></pre>
+<p><strong>Enforcing a range after arithmetic</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> health = <span class="hljs-title function_">clamp</span>(health - damage + heal, <span class="hljs-number">0</span>, maxHealth)
+</code></pre>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li>No argument validation. <code>min &gt; max</code> gives a surprising result rather than an error.</li>
+<li>Does not coerce. Pass numbers. <code>clamp(&quot;5&quot;, 0, 10)</code> will produce <code>&quot;5&quot;</code> via <code>Math.max</code>'s implicit coercion — don't rely on it.</li>
+<li>Not variadic. Exactly three arguments.</li>
+</ul>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            
+            
+        </body>
+        </html>

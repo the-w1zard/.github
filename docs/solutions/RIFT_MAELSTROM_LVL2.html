@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>RIFT MAELSTROM LVL2</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="rift-maelstrom-lvl2">RIFT MAELSTROM LVL2</h1>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p></p>
+<p>Honestly, there wasn't much to change and I had felt that only a single thing was lacking with the original, which is staying as it currently is.</p>
+<ul>
+<li>They all solve different problems, but despite coming to the same returned value... none of them share a registry.</li>
+</ul>
+<p>To accomplish this, I simply banded them all together as a single solution. Pooling their resources together so that when functions like, quickly checking and using or skipping if not, now actually dip into a much larger resource pool.</p>
+<ol>
+<li>
+<p>Rift        — the local shape.  A named slot holding a value that may not have
+landed yet. In-process. Gate promise, claim semantics, listeners.</p>
+</li>
+<li>
+<p>CloudRift   — the cloud shape.  Same contract, but the slot is shared through a
+reactive store: writes broadcast, every reader sees the same record,
+subscriptions fire across all holders of the same label.</p>
+</li>
+<li>
+<p>MAELSTROM   — the everything machine. Owns the registry, owns the shared results
+surface, and carries every solver that ever existed in this lineage —
+each one solving a DIFFERENT problem, all funneling into the SAME
+results registry, all returning through the SAME value contract.</p>
+</li>
+</ol>
+<p>Every solver, and the problem it alone goes about solving:</p>
+<ul>
+<li>get()
+<ul>
+<li>the plain registry read. What is in the slot right now.</li>
+</ul>
+</li>
+<li>place()
+<ul>
+<li>the plain registry write. Put a value in, tag the outcome.</li>
+</ul>
+</li>
+<li>smash_n_grab()
+<ul>
+<li>the bandit. Check the rift, return current; no module but a wait → wait for it; label + module → open the rift with it;  all else fails → nuke it, import, open anyway. Never throws.</li>
+</ul>
+</li>
+<li>create_rift()
+<ul>
+<li>the founder. Open a rift with a module in one move.</li>
+</ul>
+</li>
+<li>use_rift()
+<ul>
+<li>the traveler. Open rift → claimed rift → wait → module import
+→ apparation fallback. The full resolution ladder.</li>
+</ul>
+</li>
+<li>resolve_global_rift()
+<ul>
+<li>the diplomat. Global-slot resolution with a timeout and a
+dignified fallback instead of a rejection.</li>
+</ul>
+</li>
+<li>resolve_rift_initial()
+<ul>
+<li>the bootstrap. First paint value for a rift that may never open.</li>
+</ul>
+</li>
+<li>has()
+<ul>
+<li>the scout. Rift? Loaded module? Blind require? Blind import? Four probes, one boolean.</li>
+</ul>
+</li>
+<li>probe()
+<ul>
+<li>the locally sourced named import. Sync-first named export from
+a local file: cold path returns the fallback with ZERO await,
+one probe per label ever (claim-gated), background import
+fire-and-forget, hot path is a bare property read.</li>
+</ul>
+</li>
+<li>conjure()
+<ul>
+<li>the conjurer. Optional module: import if present, fallback if
+not, cached forever. The cached/uncached pair, safe proxy
+fallback, preferRequire, importPromise, comp_name extraction,
+env-priority selection — all of it.</li>
+</ul>
+</li>
+<li>check()
+<ul>
+<li>the verifier. Does this module exist? One probe, cached in a
+rift, boolean out, no repeated imports ever.</li>
+</ul>
+</li>
+<li>load_module()
+<ul>
+<li>the porter. Async load with inflight dedupe, keyed by resolved
+URL, indexed exports, retry-on-failure.</li>
+</ul>
+</li>
+<li>require_module()
+<ul>
+<li>the porter's sync twin. Blind require, cached, indexed.</li>
+</ul>
+</li>
+<li>export_of()
+<ul>
+<li>the index clerk. Find a named export across every loaded
+module; ambiguous finds throw, never silently guess.</li>
+</ul>
+</li>
+<li>wait_and_promise()
+<ul>
+<li>the patient one. Subscribe FIRST, then re-check isOpen —
+closes the gap where a record opens mid-subscribe.</li>
+</ul>
+</li>
+<li>wait_for()
+<ul>
+<li>the signal waiter. Block until named signals fire.</li>
+</ul>
+</li>
+<li>defer()
+<ul>
+<li>the scheduler. Run a task only when every dependency resolves.
+Drain loop, versioned deps, stats, cancellation.</li>
+</ul>
+</li>
+<li>detect_environment()
+<ul>
+<li>the cartographer. Module level, platform, compilers, bundler,
+adapters — candidate lists scanned through check().</li>
+</ul>
+</li>
+</ul>
+<p>...and every one of them lands its outcome in the SAME shared results registry:</p>
+<p>{ label, solver, store, value, ok, openedAt }</p>
+<p>addressable by the same label across every solver, subscribable from one place, and
+wired into the defer engine so any recorded result releases dependent deferred tasks.</p>
+</div>
+
+            
+            
+        </body>
+        </html>

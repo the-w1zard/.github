@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;retryWithBackoff&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="retrywithbackoff"><code>retryWithBackoff</code></h1>
+<blockquote>
+<p>Retry an async attempt up to N times with exponential backoff, a delay cap, and cooperative cancellation. Returns the first defined value the attempt produces, or <code>undefined</code> if every attempt fails, returns <code>undefined</code>, or the operation is cancelled.</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> user = <span class="hljs-keyword">await</span> <span class="hljs-title function_">retryWithBackoff</span>({
+  <span class="hljs-attr">attempt</span>: <span class="hljs-keyword">async</span> (n) =&gt; <span class="hljs-title function_">fetchUser</span>(id),
+})
+<span class="hljs-comment">// → the user, or undefined if all 4 attempts failed</span>
+</code></pre>
+<p>Built for the React/<code>useEffect</code> case: an <code>isCancelled</code> callback checked at every <code>await</code> boundary, so an unmounted component never resolves into stale state.</p>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { retryWithBackoff } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+<span class="hljs-keyword">import</span> { useEffect, useState } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>
+
+<span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">let</span> cancelled = <span class="hljs-literal">false</span>
+  <span class="hljs-title function_">retryWithBackoff</span>({
+    <span class="hljs-attr">isCancelled</span>: <span class="hljs-function">() =&gt;</span> cancelled,
+    <span class="hljs-attr">attempt</span>: <span class="hljs-keyword">async</span> (n) =&gt; {
+      <span class="hljs-keyword">return</span> <span class="hljs-title function_">fetchData</span>()   <span class="hljs-comment">// whatever you&#x27;re trying to get</span>
+    },
+  }).<span class="hljs-title function_">then</span>(setData)
+  <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> { cancelled = <span class="hljs-literal">true</span> }
+}, [])
+</code></pre>
+<p>That's it. You're done. You now know how to use <code>retryWithBackoff</code>.</p>
+<p>The pattern is always the same:</p>
+<ol>
+<li>Set a <code>cancelled</code> flag in the effect body.</li>
+<li>Pass <code>isCancelled: () =&gt; cancelled</code> to the retry call.</li>
+<li>Flip <code>cancelled</code> in the cleanup function.</li>
+</ol>
+<p>The retry loop checks the flag before each attempt, between attempts, and after the sleep — so once the component unmounts, no further work happens and no stale value is resolved into state.</p>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="signature">Signature</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> retryWithBackoff&lt;T&gt;({
+  attempts?: <span class="hljs-built_in">number</span>,           <span class="hljs-comment">// default 4</span>
+  baseDelayMs?: <span class="hljs-built_in">number</span>,        <span class="hljs-comment">// default 1000</span>
+  maxDelayMs?: <span class="hljs-built_in">number</span>,         <span class="hljs-comment">// default 12000</span>
+  isCancelled?: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">boolean</span>, <span class="hljs-comment">// default () =&gt; false</span>
+  attempt?: <span class="hljs-function">(<span class="hljs-params">n: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-title class_">Promise</span>&lt;T | <span class="hljs-literal">undefined</span>&gt;,
+  onAttemptFailed?: <span class="hljs-function">(<span class="hljs-params">n: <span class="hljs-built_in">number</span>, e: <span class="hljs-built_in">unknown</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>,
+  onGiveUp?: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">void</span>,
+}): <span class="hljs-title class_">Promise</span>&lt;T | <span class="hljs-literal">undefined</span>&gt;
+</code></pre>
+<p>Every option has a default, and the two callbacks have default <code>console.log</code> implementations. You can call it with just <code>{ attempt }</code> and it will retry up to 4 times with 1s / 2s / 4s / 8s delays, capping at 12s.</p>
+<h4 id="what-attempt-must-return">What <code>attempt</code> must return</h4>
+<p><code>attempt(n)</code> receives the attempt number starting at <strong>1</strong> and must return the value you want, or <code>undefined</code> to signal &quot;try again.&quot; This is different from &quot;throw on failure.&quot; Both are supported:</p>
+<ul>
+<li><strong>Return <code>undefined</code></strong> → treated as &quot;not ready, retry.&quot;</li>
+<li><strong>Throw or reject</strong> → <code>onAttemptFailed(n, err)</code> is called, then retry.</li>
+<li><strong>Return anything else</strong> → the value is returned from <code>retryWithBackoff</code> immediately.</li>
+</ul>
+<p>This lets you distinguish &quot;no value yet, keep trying&quot; (return <code>undefined</code>) from &quot;an error happened&quot; (throw), and log them differently.</p>
+<h4 id="how-it-works">How it works</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> n = <span class="hljs-number">1</span>; n &lt;= attempts; n++) {
+  <span class="hljs-keyword">if</span> (isCancelled?.()) <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">const</span> v = <span class="hljs-keyword">await</span> <span class="hljs-title function_">attempt</span>(n)
+    <span class="hljs-keyword">if</span> (v !== <span class="hljs-literal">undefined</span>) <span class="hljs-keyword">return</span> v
+  } <span class="hljs-keyword">catch</span> (err) {
+    onAttemptFailed?.(n, err)
+  }
+  <span class="hljs-keyword">if</span> (n === attempts) <span class="hljs-keyword">break</span>
+  <span class="hljs-keyword">if</span> (isCancelled?.()) <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>
+  <span class="hljs-keyword">await</span> <span class="hljs-title function_">sleep</span>(delay)
+  <span class="hljs-keyword">if</span> (isCancelled?.()) <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>
+  delay = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">min</span>(delay * <span class="hljs-number">2</span>, maxDelay)
+}
+onGiveUp?.()
+<span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>
+</code></pre>
+<p>Walk through the steps:</p>
+<ol>
+<li><strong>Cancellation check before the attempt.</strong> If the operation was cancelled since the last iteration, bail without doing work.</li>
+<li><strong>Run the attempt.</strong> If it returns a defined value, return it. If it returns <code>undefined</code>, fall through to retry. If it throws, log via <code>onAttemptFailed</code> and fall through to retry.</li>
+<li><strong>If this was the last attempt, break.</strong> No point checking cancellation or sleeping.</li>
+<li><strong>Cancellation check after the attempt.</strong> If the caller cancelled while we were awaiting, bail.</li>
+<li><strong>Sleep for <code>delay</code> ms.</strong> Then check cancellation again — the cancellation may have happened during the sleep.</li>
+<li><strong>Double the delay</strong>, capped at <code>maxDelay</code>.</li>
+<li><strong>After the loop, call <code>onGiveUp</code> and return <code>undefined</code>.</strong></li>
+</ol>
+<p>The three cancellation checks — before the attempt, before the sleep, and after the sleep — are the reason this is safe for React. An unmount during any part of the cycle stops the loop on the next check.</p>
+<h4 id="why-three-cancellation-checks">Why three cancellation checks</h4>
+<p>Each <code>await</code> is a potential pause. Between any two checks, the caller can set the cancelled flag. The boundaries that matter:</p>
+<ul>
+<li><strong>Before the attempt:</strong> don't start work that's already been abandoned.</li>
+<li><strong>After the attempt, before the sleep:</strong> the work finished but the caller may have cancelled during it. No point sleeping if we're not going to try again.</li>
+<li><strong>After the sleep:</strong> the flag may have flipped during the sleep. Don't re-enter the loop and start another attempt.</li>
+</ul>
+<p>Without all three, there's a window where the operation would do extra work after cancellation. With all three, cancellation is honored at every meaningful pause.</p>
+<h4 id="delay-schedule">Delay schedule</h4>
+<p>With defaults <code>baseDelayMs = 1000</code>, <code>maxDelayMs = 12000</code>, <code>attempts = 4</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Attempt</th>
+<th>Fails → sleep</th>
+<th>Cumulative wait</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1000ms</td>
+<td>1s</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2000ms</td>
+<td>3s</td>
+</tr>
+<tr>
+<td>3</td>
+<td>4000ms</td>
+<td>7s</td>
+</tr>
+<tr>
+<td>4</td>
+<td>— (last attempt)</td>
+<td>7s total</td>
+</tr>
+</tbody>
+</table>
+<p>With <code>attempts = 10</code>, delays go 1s, 2s, 4s, 8s, 12s, 12s, 12s, 12s, 12s — capped at <code>maxDelayMs</code>.</p>
+<p>The cap is what <code>Math.min(delay * 2, maxDelay)</code> does. Without it, <code>attempts = 20</code> would produce a final delay measured in days.</p>
+<h4 id="undefined-vs-thrown-error"><code>undefined</code> vs thrown error</h4>
+<p>Two different failure signals, treated differently:</p>
+<ul>
+<li><strong><code>attempt</code> returns <code>undefined</code></strong> → silent retry. No <code>onAttemptFailed</code> call. Useful for &quot;not ready yet, keep polling.&quot;</li>
+<li><strong><code>attempt</code> throws</strong> → <code>onAttemptFailed(n, err)</code> is called, then retry. Useful for &quot;something went wrong, log it and try again.&quot;</li>
+</ul>
+<p>You can mix both in a single attempt:</p>
+<pre><code class="language-ts"><span class="hljs-attr">attempt</span>: <span class="hljs-keyword">async</span> (n) =&gt; {
+  <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(url)
+  <span class="hljs-keyword">if</span> (!res.<span class="hljs-property">ok</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">`HTTP <span class="hljs-subst">${res.status}</span>`</span>)   <span class="hljs-comment">// logged</span>
+  <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> res.<span class="hljs-title function_">json</span>()
+  <span class="hljs-keyword">return</span> data.<span class="hljs-property">ready</span> ? data : <span class="hljs-literal">undefined</span>                 <span class="hljs-comment">// silent retry</span>
+}
+</code></pre>
+<p>Both paths lead to retry. The difference is only whether the failure is logged.</p>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Polling until a value is ready</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> job = <span class="hljs-keyword">await</span> <span class="hljs-title function_">retryWithBackoff</span>({
+  <span class="hljs-attr">attempts</span>: <span class="hljs-number">20</span>,
+  <span class="hljs-attr">baseDelayMs</span>: <span class="hljs-number">500</span>,
+  <span class="hljs-attr">maxDelayMs</span>: <span class="hljs-number">5000</span>,
+  <span class="hljs-attr">attempt</span>: <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">const</span> status = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getJobStatus</span>(id)
+    <span class="hljs-keyword">return</span> status.<span class="hljs-property">done</span> ? status.<span class="hljs-property">result</span> : <span class="hljs-literal">undefined</span>
+  },
+})
+</code></pre>
+<p><strong>Effect-scoped fetch with unmount safety</strong></p>
+<pre><code class="language-tsx"><span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">let</span> cancelled = <span class="hljs-literal">false</span>
+  <span class="hljs-title function_">retryWithBackoff</span>({
+    <span class="hljs-attr">isCancelled</span>: <span class="hljs-function">() =&gt;</span> cancelled,
+    <span class="hljs-attr">attempt</span>: <span class="hljs-keyword">async</span> () =&gt; <span class="hljs-title function_">fetchProfile</span>(userId),
+  }).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">p</span> =&gt;</span> { <span class="hljs-keyword">if</span> (!cancelled) <span class="hljs-title function_">setProfile</span>(p) })
+  <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> { cancelled = <span class="hljs-literal">true</span> }
+}, [userId])
+</code></pre>
+<p><strong>Custom failure logging</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">await</span> <span class="hljs-title function_">retryWithBackoff</span>({
+  <span class="hljs-attr">attempt</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">postWebhook</span>(payload),
+  <span class="hljs-attr">onAttemptFailed</span>: <span class="hljs-function">(<span class="hljs-params">n, e</span>) =&gt;</span> log.<span class="hljs-title function_">warn</span>({ <span class="hljs-attr">attempt</span>: n, <span class="hljs-attr">err</span>: e }, <span class="hljs-string">&quot;webhook failed&quot;</span>),
+  <span class="hljs-attr">onGiveUp</span>: <span class="hljs-function">() =&gt;</span> log.<span class="hljs-title function_">error</span>(<span class="hljs-string">&quot;webhook gave up&quot;</span>),
+})
+</code></pre>
+<p><strong>Silencing the default console logs</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">await</span> <span class="hljs-title function_">retryWithBackoff</span>({
+  <span class="hljs-attr">attempt</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">work</span>(),
+  <span class="hljs-attr">onAttemptFailed</span>: <span class="hljs-function">() =&gt;</span> {},   <span class="hljs-comment">// silence</span>
+  <span class="hljs-attr">onGiveUp</span>: <span class="hljs-function">() =&gt;</span> {},          <span class="hljs-comment">// silence</span>
+})
+</code></pre>
+<p><strong>Subclass of retry logic that inspects the final error</strong></p>
+<p>The function doesn't return the final error. If you need it, capture it in a closure:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">let</span> <span class="hljs-attr">lastErr</span>: <span class="hljs-built_in">unknown</span>
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">retryWithBackoff</span>({
+  <span class="hljs-attr">attempt</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">work</span>(),
+  <span class="hljs-attr">onAttemptFailed</span>: <span class="hljs-function">(<span class="hljs-params">_, e</span>) =&gt;</span> { lastErr = e },
+})
+<span class="hljs-comment">// lastErr holds the last error, if you need it</span>
+</code></pre>
+<h4 id="behavior">Behavior</h4>
+<ul>
+<li><strong>First attempt runs immediately.</strong> No delay before attempt 1.</li>
+<li><strong><code>n</code> starts at 1.</strong> <code>attempt(1)</code>, <code>attempt(2)</code>, ... through <code>attempt(attempts)</code>.</li>
+<li><strong>Delay is between attempts only.</strong> After the last attempt, the function returns without sleeping.</li>
+<li><strong><code>onGiveUp</code> runs exactly once</strong> if the loop exhausts. It doesn't run if the function returns early on success or cancellation.</li>
+<li><strong><code>undefined</code> return on: total exhaustion, or cancellation.</strong> These two cases are indistinguishable from the caller's perspective — you can't tell &quot;tried 4 times, all failed&quot; from &quot;cancelled on attempt 2&quot; without extra logging.</li>
+<li><strong><code>maxDelay = maxDelayMs ?? Infinity</code>.</strong> If you pass <code>maxDelayMs = undefined</code>, the cap is Infinity and the delay grows unbounded (subject to <code>Number.MAX_SAFE_INTEGER</code> for the timer).</li>
+<li><strong><code>isCancelled</code> is optional.</strong> Default is <code>() =&gt; false</code>, so the loop never checks. Passing <code>undefined</code> explicitly also works — the <code>isCancelled?.()</code> calls are optional.</li>
+<li><strong><code>attempt</code> is optional and has a default.</strong> The default just logs. Useful only as a placeholder during development.</li>
+<li><strong><code>onAttemptFailed</code> and <code>onGiveUp</code> are optional.</strong> Defaults log to console. Pass a no-op to silence.</li>
+</ul>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li><strong><code>attempt</code> must be a thunk.</strong> Pass <code>attempt: () =&gt; fetchUser(id)</code>, not <code>attempt: fetchUser(id)</code>. If you pass a promise, the first attempt awaits it, and every retry sees the same settled promise. Same rule as every retry helper.</li>
+<li><strong><code>undefined</code> is the &quot;retry&quot; signal.</strong> If your attempt legitimately returns <code>undefined</code> as a valid value, this function treats it as failure and retries. Design your <code>attempt</code> so <code>undefined</code> means &quot;not ready.&quot;</li>
+<li><strong><code>isCancelled</code> returning <code>undefined</code> is falsy.</strong> It's fine — the checks are <code>if (isCancelled?.())</code>, and <code>undefined</code> is falsy. No bug, just worth noting: only truthy returns count as cancelled.</li>
+<li><strong>Cancellation returns <code>undefined</code>, not a distinct cancellation signal.</strong> Callers using <code>isCancelled</code> often want to know <em>why</em> the promise resolved with <code>undefined</code> — cancelled vs. gave up. The function doesn't distinguish. Use <code>onGiveUp</code> as the signal that the loop ran to completion; a cancelled call won't invoke it.</li>
+<li><strong><code>onGiveUp</code> does not fire on cancellation.</strong> Only on exhaust. If you need to know a cancellation happened, log inside your <code>isCancelled</code> implementation, or check the flag after the await returns.</li>
+<li><strong>No jitter.</strong> Every caller retries on the same schedule. For fleets, add jitter — see <code>runWithRetry</code> for the same caveat. This function doesn't.</li>
+<li><strong><code>attempts</code> is not validated.</strong> <code>attempts = 0</code> → the <code>for</code> loop never runs → <code>onGiveUp</code> fires immediately, returns <code>undefined</code>. <code>attempts = -1</code> → same. Not a crash, but the function does nothing useful.</li>
+<li><strong><code>baseDelayMs = 0</code></strong> → every sleep is <code>setTimeout(0)</code>. Effectively immediate retries, which defeats the point of backoff. Intended for tests only.</li>
+<li><strong>The generic <code>T</code> is inferred from <code>attempt</code>.</strong> <code>attempt: () =&gt; fetchUser()</code> gives <code>retryWithBackoff&lt;User&gt;</code>, so the resolved promise is <code>Promise&lt;User | undefined&gt;</code>. Good inference as long as <code>attempt</code> is typed properly. If <code>attempt</code> is <code>any</code>-typed, <code>T</code> collapses to <code>any</code>.</li>
+<li><strong><code>Promise&lt;T | undefined&gt;</code> is honest.</strong> The <code>undefined</code> in the return type is exactly the ambiguous case: it can mean &quot;succeeded with <code>undefined</code>,&quot; &quot;all attempts failed,&quot; or &quot;cancelled.&quot; The type system can't help you here — you have to reason about it.</li>
+<li><strong><code>console.log</code> inside the default callbacks is not structured.</strong> Replace <code>onAttemptFailed</code> and <code>onGiveUp</code> with your logger in production code.</li>
+</ul>
+<h4 id="comparison-with-runwithretry">Comparison with <code>runWithRetry</code></h4>
+<p>Both do exponential backoff with a delay cap. Differences:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>runWithRetry</code></th>
+<th><code>retryWithBackoff</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cancellation</td>
+<td>no</td>
+<td>yes (<code>isCancelled</code>)</td>
+</tr>
+<tr>
+<td>Delay cap</td>
+<td>no (unbounded doubling)</td>
+<td>yes (<code>maxDelayMs</code>)</td>
+</tr>
+<tr>
+<td>Return on give-up</td>
+<td><code>undefined</code></td>
+<td><code>undefined</code></td>
+</tr>
+<tr>
+<td>Error reporting</td>
+<td><code>console.log</code> only</td>
+<td><code>onAttemptFailed</code> callback</td>
+</tr>
+<tr>
+<td>Give-up reporting</td>
+<td><code>console.log</code> only</td>
+<td><code>onGiveUp</code> callback</td>
+</tr>
+<tr>
+<td>Retry signal</td>
+<td>throw only</td>
+<td><code>undefined</code> <strong>or</strong> throw</td>
+</tr>
+<tr>
+<td>Attempt number</td>
+<td>implicit</td>
+<td>passed to <code>attempt(n)</code></td>
+</tr>
+<tr>
+<td>Default attempts</td>
+<td>3</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p>Use <code>runWithRetry</code> for a quick script. Use <code>retryWithBackoff</code> for React effects, long-running operations, or anything where you need cancellation and a delay cap.</p>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not a circuit breaker. It retries every time; it doesn't stop when the downstream is known-broken.</li>
+<li>Not a rate limiter. Backoff delays are between attempts, not a throttle on request rate.</li>
+<li>Not a timeout mechanism. Each attempt is unbounded in duration. Wrap the attempt with <code>timedPromise</code> if you need per-attempt bounds.</li>
+<li>Not a queue. It runs one attempt at a time and finishes.</li>
+<li>Not a cancellation primitive on its own. <code>isCancelled</code> is a convention — the caller provides the flag; this function only checks it at safe points.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p>Retry is easy. Retry that doesn't outlive the thing that requested it is the whole game. <code>retryWithBackoff</code> checks a cancellation flag at every pause — before the attempt, before the sleep, after the sleep — so the loop can't outlive its owner. Everything else (backoff schedule, cap, callbacks) is the usual suspects. Cancellation is the reason the function exists.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>

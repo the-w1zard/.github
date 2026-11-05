@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&DiacriticalGrave;patchState&DiacriticalGrave;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="patchstate"><code>patchState</code></h1>
+<blockquote>
+<p>Merge a partial object into React-style state via the functional updater. Never reads state from the render closure, so no stale-closure bugs. Just <code>{ ...prev, ...patch }</code>, wrapped, named, and ready to call.</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hljs-title function_">patchState</span>(setUser, { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">30</span> })
+<span class="hljs-comment">// → setUser(prev =&gt; ({ ...prev, name: &quot;Alice&quot;, age: 30 }))</span>
+</code></pre>
+<p>The multi-field version of <code>setKey</code>. One call, one spread, one state update.</p>
+<hr>
+<h2 id="usage">Usage</h2>
+<h3 id="-first-time-users--start-here">🟢 First-time users — start here</h3>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { patchState } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;platform&quot;</span>
+
+<span class="hljs-title function_">patchState</span>(setForm, { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">30</span> })
+<span class="hljs-title function_">patchState</span>(setUser, { <span class="hljs-attr">lastSeen</span>: <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>() })
+</code></pre>
+<p>That's it. You're done. You now know how to use <code>patchState</code>.</p>
+<p>It's the same as writing <code>setForm(prev =&gt; ({ ...prev, name: &quot;Alice&quot;, age: 30 }))</code> — but the correct pattern is baked in, so you can't accidentally reach for stale state.</p>
+<h3 id="-everyone-else">🔵 Everyone else</h3>
+<h4 id="signature">Signature</h4>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> patchState&lt;T = <span class="hljs-built_in">any</span>&gt;(<span class="hljs-attr">setState</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">patch</span>: <span class="hljs-title class_">Partial</span>&lt;T&gt;): <span class="hljs-built_in">void</span>
+</code></pre>
+<ul>
+<li><code>setState</code> — a React-style setter. Typed <code>any</code> (see gotchas).</li>
+<li><code>patch</code> — a partial object whose keys are merged over the current state.</li>
+<li>Returns <code>void</code>.</li>
+</ul>
+<p><code>Partial&lt;T&gt;</code> on the patch is the type-level contract: every field is optional, so you can update a subset. The <code>T</code> default is <code>any</code>, but inference from <code>patch</code> usually narrows it if the patch is typed.</p>
+<h4 id="how-it-works">How it works</h4>
+<pre><code class="language-ts"><span class="hljs-title function_">setState</span>(<span class="hljs-function">(<span class="hljs-params">prev: <span class="hljs-built_in">any</span></span>) =&gt;</span> ({ ...prev, ...patch }))
+</code></pre>
+<p>One line. It builds the functional updater and hands it to the setter. <code>prev</code> is whatever the latest state is when React applies the update — never the state captured in the render closure that called <code>patchState</code>.</p>
+<p>The result is a shallow clone of <code>prev</code> with the patch's keys replaced. Fields not mentioned in the patch are unchanged.</p>
+<h4 id="the-point-of-the-functional-form">The point of the functional form</h4>
+<pre><code class="language-ts"><span class="hljs-comment">// ❌ reads stale state if called twice in the same tick, or after an await</span>
+<span class="hljs-title function_">setState</span>({ ...state, <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Alice&quot;</span> })
+
+<span class="hljs-comment">// ✅ always reads the latest state</span>
+<span class="hljs-title function_">setState</span>(<span class="hljs-function"><span class="hljs-params">prev</span> =&gt;</span> ({ ...prev, <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Alice&quot;</span> }))
+</code></pre>
+<p>The direct-object form works in tests and breaks in production. <code>patchState</code> makes the functional form the only form — you can't reach for stale state because the helper never gives you a way to.</p>
+<p>This matters most when:</p>
+<ul>
+<li>The same setter is called twice in one event handler.</li>
+<li>The setter is called after an <code>await</code>.</li>
+<li>A parent re-renders between the call and the state application.</li>
+</ul>
+<p>In all three cases, the direct-object form silently loses the earlier update. <code>patchState</code> never does.</p>
+<h4 id="common-patterns">Common patterns</h4>
+<p><strong>Multi-field form updates</strong></p>
+<pre><code class="language-tsx">&lt;button onClick={<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">patchState</span>(setForm, { <span class="hljs-attr">submitted</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">error</span>: <span class="hljs-literal">undefined</span> })}&gt;
+  <span class="hljs-title class_">Submit</span>
+&lt;/button&gt;
+</code></pre>
+<p><strong>Merging a partial response</strong></p>
+<pre><code class="language-ts"><span class="hljs-title function_">patchState</span>(setUser, { <span class="hljs-attr">lastSeen</span>: <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>(), <span class="hljs-attr">online</span>: <span class="hljs-literal">true</span> })
+</code></pre>
+<p><strong>Resetting a subset of fields</strong></p>
+<pre><code class="language-ts"><span class="hljs-title function_">patchState</span>(setForm, { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-attr">email</span>: <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-attr">error</span>: <span class="hljs-literal">undefined</span> })
+</code></pre>
+<p><strong>Composing two patches</strong></p>
+<pre><code class="language-ts"><span class="hljs-title function_">patchState</span>(setState, { <span class="hljs-attr">a</span>: <span class="hljs-number">1</span> })
+<span class="hljs-title function_">patchState</span>(setState, { <span class="hljs-attr">b</span>: <span class="hljs-number">2</span> })
+<span class="hljs-comment">// both land — the second updater runs against the first&#x27;s result</span>
+</code></pre>
+<p><strong>From inside an async handler</strong></p>
+<pre><code class="language-ts"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">save</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> api.<span class="hljs-title function_">put</span>(data)
+  <span class="hljs-title function_">patchState</span>(setUser, { <span class="hljs-attr">lastSaved</span>: res.<span class="hljs-property">timestamp</span> })
+  <span class="hljs-comment">// still correct even if other updates happened during the await</span>
+}
+</code></pre>
+<h4 id="behavior">Behavior</h4>
+<ul>
+<li><strong>Shallow clone.</strong> <code>{ ...prev, ...patch }</code> creates a new object at the top level. Nested objects from <code>prev</code> are shared by reference unless the patch replaces them.</li>
+<li><strong>Functional updater.</strong> Always reads the latest <code>prev</code>.</li>
+<li><strong>Never mutates <code>prev</code>.</strong></li>
+<li><strong>Fields not in the patch are untouched.</strong> <code>patchState(setState, {})</code> produces <code>{ ...prev }</code> — a shallow clone with no changes. Harmless but wasteful; avoid empty patches.</li>
+<li><strong><code>undefined</code> values in the patch overwrite.</strong> <code>patchState(setState, { error: undefined })</code> sets <code>error</code> to <code>undefined</code>. The key still exists on the object; JSON serialization drops it, but <code>Object.keys</code> and iteration still see it.</li>
+<li><strong>Last writer wins on shared keys.</strong> If two calls in the same tick both touch <code>name</code>, the second one's value is what ends up on the object.</li>
+<li><strong>Synchronous call to the setter.</strong> The updater is built and handed off; React schedules the actual render.</li>
+</ul>
+<h4 id="differences-from-setkey">Differences from <code>setKey</code></h4>
+<p>Both update state via the functional form. The differences:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>setKey</code></th>
+<th><code>patchState</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fields</td>
+<td>one</td>
+<td>many</td>
+</tr>
+<tr>
+<td>Types</td>
+<td><code>key: K</code>, <code>value: T[K]</code></td>
+<td><code>patch: Partial&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td>Argument shape</td>
+<td>two scalars</td>
+<td>one object</td>
+</tr>
+<tr>
+<td>Type inference</td>
+<td>from <code>key</code>/<code>value</code></td>
+<td>from <code>patch</code></td>
+</tr>
+<tr>
+<td>Use when</td>
+<td>one field</td>
+<td>several fields</td>
+</tr>
+</tbody>
+</table>
+<p>Use <code>setKey</code> when you're setting exactly one field — you get per-key type checking on the value. Use <code>patchState</code> when you're updating a group of fields at once and the patch object is natural to write.</p>
+<h4 id="differences-from-setprev">Differences from <code>setPrev</code></h4>
+<p><code>setPrev</code> has two modes: single-key when <code>k</code> is provided, merge when it's not. <code>patchState</code> is only the merge mode. If you're using <code>setPrev</code> without a <code>k</code> every time, <code>patchState</code> is the clearer name for the same behavior.</p>
+<h4 id="gotchas">Gotchas</h4>
+<ul>
+<li>
+<p><strong><code>setState</code> is typed <code>any</code>.</strong> The generic <code>T</code> isn't inferred from the setter's own type, so <code>Partial&lt;T&gt;</code> is often just <code>Partial&lt;any&gt;</code>, which accepts anything. In practice, this means typos in field names may not be caught unless you annotate <code>T</code> explicitly or wrap the helper per store:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> <span class="hljs-title function_">patchForm</span> = (<span class="hljs-params">patch: Partial&lt;Form&gt;</span>) =&gt; patchState&lt;<span class="hljs-title class_">Form</span>&gt;(setForm, patch)
+</code></pre>
+<p>Without that, <code>patchState(setForm, { naem: &quot;x&quot; })</code> compiles and silently adds a <code>naem</code> field to your state.</p>
+</li>
+<li>
+<p><strong>Shallow merge only.</strong> Nested objects at a patched key are replaced wholesale. <code>patchState(setState, { user: { name: &quot;x&quot; } })</code> wipes out any other fields on <code>prev.user</code>. For nested updates, read <code>prev.user</code> inside a functional updater, or use immer.</p>
+</li>
+<li>
+<p><strong>Setting a key to <code>undefined</code> keeps the key.</strong> Patch can't delete keys. If you want to remove a field, produce a new object without it:</p>
+<pre><code class="language-ts"><span class="hljs-title function_">setState</span>(<span class="hljs-function"><span class="hljs-params">prev</span> =&gt;</span> { <span class="hljs-keyword">const</span> { error, ...rest } = prev; <span class="hljs-keyword">return</span> rest })
+</code></pre>
+<p><code>patchState</code> doesn't have a delete mode.</p>
+</li>
+<li>
+<p><strong>Empty patch is a wasteful clone.</strong> <code>patchState(setState, {})</code> creates a new object reference for no reason, which can trigger unnecessary re-renders if state is compared by identity. Guard against empty patches if this is a concern.</p>
+</li>
+<li>
+<p><strong>No return value.</strong> You can't chain <code>patchState</code> calls. Each call is a statement.</p>
+</li>
+<li>
+<p><strong>Requires <code>prev</code> to be an object.</strong> If <code>prev</code> is a primitive, <code>{ ...prev }</code> produces something unexpected. <code>{ ...42 }</code> is <code>{}</code>, <code>{ ...null }</code> is <code>{}</code>. The helper assumes object state.</p>
+</li>
+<li>
+<p><strong>No async awareness.</strong> The helper calls the setter synchronously. If you need to react to the new state, observe the state variable after the next render.</p>
+</li>
+</ul>
+<h4 id="what-this-is-not">What this is <em>not</em></h4>
+<ul>
+<li>Not a reducer. Use <code>useReducer</code> for multi-step state transitions with actions.</li>
+<li>Not immer. No structural sharing beyond the top level. Nested updates replace the branch.</li>
+<li>Not a store. It doesn't hold state; it wraps a React setter.</li>
+<li>Not a key-delete helper. It merges, it doesn't remove.</li>
+</ul>
+<hr>
+<h2 id="philosophy">Philosophy</h2>
+<p><code>setState(prev =&gt; ({ ...prev, ...patch }))</code> is the correct way to update several fields at once, and it's the shape nobody wants to type. <code>patchState</code> gives it a name, bakes in the functional form so stale-closure bugs can't happen, and stays out of the way. One call, one patch object, one state update.</p>
+<hr>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+            
+            
+        </body>
+        </html>

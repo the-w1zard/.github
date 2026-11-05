@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&lt;span style&equals;&quot;font-size&colon; 10&period;5px&semi;&quot;&gt; &#x21e6;&#x2726;&boxh;&boxh;&#x21e6;&#x2726;&boxh;&boxh;&#x2726;&boxh;&boxh;&#x2726;&boxh;&boxh;&larr;&apos;pew pew&apos;&lt;span&gt; &lt;span style&equals;&quot;font-size&colon; 24px&semi;&quot;&gt; &#x1f9d9; &lbrack;TOC&rbrack; &lt;span&gt;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-dark">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:false,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<div style="display: grid; grid-template-columns: 4fr 2fr; gap: 20px;">
+<div>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg><span style="font-size: 24px; font-family: monospace">[THE_WIZARD]</span></p><p></p>
+</div>
+<div class="markdown-alert markdown-alert-tip"><p class="markdown-alert-title"><svg class="octicon octicon-light-bulb mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p><p><span style="font-size: 24px; font-family: monospace">[THE_WIZARD]</span></p>
+</div>
+<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p><p><span style="font-size: 24px; font-family: monospace">[THE_WIZARD]</span></p>
+</div>
+<div class="markdown-alert markdown-alert-warning"><p class="markdown-alert-title"><svg class="octicon octicon-alert mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Warning</p><p><span style="font-size: 24px; font-family: monospace">[THE_WIZARD]</span></p>
+</div>
+<div class="markdown-alert markdown-alert-caution"><p class="markdown-alert-title"><svg class="octicon octicon-stop mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Caution</p><p><span style="font-size: 24px; font-family: monospace">[THE_WIZARD]</span></p>
+</div>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p></p>
+<h3 id="questions"><span style="font-size: 24px; font-family: monospace">[QUESTIONS]</span></h3>
+</div>
+<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p><p><span style="font-size: 24px; font-family: monospace">[PLATFORM_PRIMS][THE_WIZARD]</span></p>
+</div>
+</div>
+<div style="font-size: 9px;  text-align: right">
+<h2 id="-pew-pew---toc-"><span style="font-size: 10.5px;"> ⇦✦──⇦✦──✦──✦──←'pew pew'<span> <span style="font-size: 24px;"> 🧙 [TOC] <span></h2>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[PLATFORM]</span> </strong></summary>
+<ul>
+<li><a href="../platform/TOC.html#TOC">TOC</a></li>
+<li><a href="../platform/ATOM.html#ATOM">ATOM</a></li>
+<li><a href="../platform/CELLS.html#CELLS">CELLS</a></li>
+<li><a href="../platform/CONVERGENCE.html#CONVERGENCE">CONVERGENCE</a></li>
+<li><a href="../platform/FORMS.html#FORMS">FORMS</a></li>
+<li><a href="../platform/GLOBAL_QUAD_KEY_CONTEXT.html#GLOBAL_QUAD_KEY_CONTEXT">GLOBAL_QUAD_KEY_CONTEXT</a></li>
+<li><a href="../platform/PERFORMANCE_DIVISION.html#PERFORMANCE_DIVISION">PERFORMANCE_DIVISION</a></li>
+<li><a href="../platform/REACTIVITY.html#REACTIVITY">REACTIVITY</a></li>
+<li><a href="../platform/ROUTE_COMPONENTS.html#ROUTE_COMPONENTS">ROUTE_COMPONENTS</a></li>
+<li><a href="../platform/SAURON.html#SAURON">SAURON</a></li>
+<li><a href="../platform/SIGNALS.html#SIGNALS">SIGNALS</a></li>
+<li><a href="../platform/STAFF.html#STAFF">STAFF</a></li>
+<li><a href="../platform/THE_WARLOCK_MODE.html#THE_WARLOCK_MODE">THE_WARLOCK_MODE</a></li>
+<li><a href="../platform/THE_WIZARD_MODE.html#THE_WIZARD_MODE">THE_WIZARD_MODE</a></li>
+<li><a href="../platform/WARLOCKS_NECROMANCY_OBSERVATORY.html#WARLOCKS_NECROMANCY_OBSERVATORY">WARLOCKS_NECROMANCY_OBSERVATORY</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[MESSAGE QUEUES / BUSES]</span> </strong></summary>
+<ul>
+<li><a href="../platform/TOC.html#TOC">DISRUPTOR</a></li>
+<li><a href="../platform/ATOM.html#ATOM">STAFF</a></li>
+<li><a href="../platform/CELLS.html#CELLS">CHAINS</a></li>
+<li><a href="../platform/CONVERGENCE.html#CONVERGENCE">XXSR TRICKY</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[PLATFORM PRIMTIVES]</span> </strong></summary>
+<ul>
+<li><a href="../primitives/API_WARDS.html#API_WARDS">API_WARDS</a></li>
+<li><a href="../primitives/APPARATIONS_DQ,md#APPARATIONS_DQ">APPARATIONS_DQ</a></li>
+<li><a href="../primitives/ARCHETYPES.html#ARCHETYPES">ARCHETYPES</a></li>
+<li><a href="../primitives/BATCH.html#BATCH">BATCH</a></li>
+<li><a href="../primitives/BINARY.html#BINARY">BINARY</a></li>
+<li><a href="../primitives/CHAINS.html#CHAINS">CHAINS</a></li>
+<li><a href="../primitives/CHRONO_SHIFT.html#CHRONO_SHIFT">CHRONO_SHIFT</a></li>
+<li><a href="../primitives/CHRONOMANCER.html#CHRONOMANCER">CHRONOMANCER</a></li>
+<li><a href="../primitives/CONJURE_LIBRARIES.html#CONJURE_LIBRARIES">CONJURE_LIBRARIES</a></li>
+<li><a href="../primitives/CONJURE_MIMIC.html#CONJURE_MIMIC">CONJURE_MIMIC</a></li>
+<li><a href="../primitives/CRON.html#CRON">CRON</a></li>
+<li><a href="../primitives/DARK_PORTALS.html#DARK_PORTALS">DARK_PORTALS</a></li>
+<li><a href="../primitives/DUPLEX_STREAMS.html#DUPLEX_STREAMS">DUPLEX_STREAMS</a></li>
+<li><a href="../primitives/EMITTER.html#EMITTER">EMITTER</a></li>
+<li><a href="../primitives/EVOCATIONS.html#EVOCATIONS">EVOCATIONS</a></li>
+<li><a href="../primitives/EXECUTE_MASTER.html#EXECUTE_MASTER">EXECUTE_MASTER</a></li>
+<li><a href="../primitives/GATE_MASTER.html#GATE_MASTER">GATE_MASTER</a></li>
+<li><a href="../primitives/GATES.html#GATES">GATES</a></li>
+<li><a href="../primitives/GLYPH_BINDER.html#GLYPH_BINDER">GLYPH_BINDER</a></li>
+<li><a href="../primitives/GOLEMS.html#GOLEMS">GOLEMS</a></li>
+<li><a href="../primitives/GRIMOIRE.html#GRIMOIRE">GRIMOIRE</a></li>
+<li><a href="../primitives/ILLUSIONIST.html#ILLUSIONIST">ILLUSIONIST</a></li>
+<li><a href="../primitives/INCANTATIONS.html#INCANTATIONS">INCANTATIONS</a></li>
+<li><a href="../primitives/JOBS.html#JOBS">JOBS</a></li>
+<li><a href="../primitives/MACHINES_MACHINE.html#MACHINES_MACHINE">MACHINES_MACHINE</a></li>
+<li><a href="../primitives/MICROTASKS.html#MICROTASKS">MICROTASKS</a></li>
+<li><a href="../primitives/MSGS.html#MSGS">MSGS</a></li>
+<li><a href="../primitives/NO_NO_SQUARE_DQ.html#NO_NO_SQUARE_DQ">NO_NO_SQUARE_DQ</a></li>
+<li><a href="../primitives/PERFORMANCE_TIMER.html#PERFORMANCE_TIMER">PERFORMANCE_TIMER</a></li>
+<li><a href="../primitives/PLINKO_MASTER.html#PLINKO_MASTER">PLINKO_MASTER</a></li>
+<li><a href="../primitives/PRIORITY.html#PRIORITY">PRIORITY</a></li>
+<li><a href="../primitives/RDB.html#RDB">RDB</a></li>
+<li><a href="../primitives/RENDERIVITY_DQ.html#RENDERIVITY_DQ">RENDERIVITY_DQ</a></li>
+<li><a href="../primitives/RETRY_MASTER.html#RETRY_MASTER">RETRY_MASTER</a></li>
+<li><a href="../primitives/RUNE_HTTP.html#RUNE_HTTP">RUNE_HTTP</a></li>
+<li><a href="../primitives/S_CLASS.html#S_CLASS">S_CLASS</a></li>
+<li><a href="../primitives/SCHEDULER.html#SCHEDULER">SCHEDULER</a></li>
+<li><a href="../primitives/SENTINELmd#SENTINELmd">SENTINELmd</a></li>
+<li><a href="../primitives/SESSION_SIGIL.html#SESSION_SIGIL">SESSION_SIGIL</a></li>
+<li><a href="../primitives/SPEELBOOK.html#SPEELBOOK">SPEELBOOK</a></li>
+<li><a href="../primitives/TIERED_QUEUE.html#TIERED_QUEUE">TIERED_QUEUE</a></li>
+<li><a href="../primitives/TIME_MACHINE.html#TIME_MACHINE">TIME_MACHINE</a></li>
+<li><a href="../primitives/TOME_OF_SECRETS.html#TOME_OF_SECRETS">TOME_OF_SECRETS</a></li>
+<li><a href="../primitives/TRANSMOGRIFY.html#TRANSMOGRIFY">TRANSMOGRIFY</a></li>
+<li><a href="../primitives/TYPES_MACHINE.html#TYPES_MACHINE">TYPES_MACHINE</a></li>
+<li><a href="../primitives/TYR.html#TYR">TYR</a></li>
+<li><a href="../primitives/VAULTS.html#VAULTS">VAULTS</a></li>
+<li><a href="../primitives/VENOM.html#VENOM">VENOM</a></li>
+<li><a href="../primitives/WARDS.html#WARDS">WARDS</a></li>
+<li><a href="../primitives/WIZARD_KEEP.html#WIZARD_KEEP">WIZARD_KEEP</a></li>
+<li><a href="../primitives/WORKERS.html#WORKERS">WORKERS</a></li>
+<li><a href="../primitives/WORKFLOW.html#WORKFLOW">WORKFLOW</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[SOLUTIONS]</span> </strong></summary>
+<ul>
+<li><a href="../solutions/BATCH.html#BATCH">BATCH</a></li>
+<li><a href="../solutions/CELLS.html#CELLS">CELLS</a></li>
+<li><a href="../solutions/CHEERIO.html#CHEERIO">CHEERIO</a></li>
+<li><a href="../solutions/CIRCUIT_BREAKER.html#CIRCUIT_BREAKER">CIRCUIT_BREAKER</a></li>
+<li><a href="../solutions/COMPRESSION.html#COMPRESSION">COMPRESSION</a></li>
+<li><a href="../solutions/CONCURRENT.html#CONCURRENT">CONCURRENT</a></li>
+<li><a href="../solutions/CQRS.html#CQRS">CQRS</a></li>
+<li><a href="../solutions/DEBOUNCE.html#DEBOUNCE">DEBOUNCE</a></li>
+<li><a href="../solutions/DEFER.html#DEFER">DEFER</a></li>
+<li><a href="../solutions/DEV_TOOLS.html#DEV_TOOLS">DEV_TOOLS</a></li>
+<li><a href="../solutions/DIFFPATCH.html#DIFFPATCH">DIFFPATCH</a></li>
+<li><a href="../solutions/DISTRBUTED_EXE.html#DISTRBUTED_EXE">DISTRBUTED_EXE</a></li>
+<li><a href="../solutions/DISTRIBUTED_LOGIC_GATES.html#DISTRIBUTED_LOGIC_GATES">DISTRIBUTED_LOGIC_GATES</a></li>
+<li><a href="../solutions/DISTRIBUTED_PORTAL.html#DISTRIBUTED_PORTAL">DISTRIBUTED_PORTAL</a></li>
+<li><a href="../solutions/DISTRIBUTED_REACTIVE_STATE.html#DISTRIBUTED_REACTIVE_STATE">DISTRIBUTED_REACTIVE_STATE</a></li>
+<li><a href="../solutions/DRS.html#DRS">DRS</a></li>
+<li><a href="../solutions/EMPHEMRAL_STATE.html#EMPHEMRAL_STATE">EMPHEMRAL_STATE</a></li>
+<li><a href="../solutions/FULL_TEXT_SEARCH.html#FULL_TEXT_SEARCH">FULL_TEXT_SEARCH</a></li>
+<li><a href="../solutions/HTTP_CLIENT.html#HTTP_CLIENT">HTTP_CLIENT</a></li>
+<li><a href="../solutions/LOGIC_GATES.html#LOGIC_GATES">LOGIC_GATES</a></li>
+<li><a href="../solutions/LONGPOLL.html#LONGPOLL">LONGPOLL</a></li>
+<li><a href="../solutions/LWW.html#LWW">LWW</a></li>
+<li><a href="../solutions/MV.html#MV">MV</a></li>
+<li><a href="../solutions/OPTIMISTIC.html#OPTIMISTIC">OPTIMISTIC</a></li>
+<li><a href="../solutions/OR.html#OR">OR</a></li>
+<li><a href="../solutions/PERFORMANCE_TIMER.html#PERFORMANCE_TIMER">PERFORMANCE_TIMER</a></li>
+<li><a href="../solutions/PN.html#PN">PN</a></li>
+<li><a href="../solutions/QUEUE_TIERED.html#QUEUE_TIERED">QUEUE_TIERED</a></li>
+<li><a href="../solutions/RAFT.html#RAFT">RAFT</a></li>
+<li><a href="../solutions/RATE_LIMIT.html#RATE_LIMIT">RATE_LIMIT</a></li>
+<li><a href="../solutions/REACTIVE_CHAINS.html#REACTIVE_CHAINS">REACTIVE_CHAINS</a></li>
+<li><a href="../solutions/REVERSE_HEART_BEAT_MGR.html#REVERSE_HEART_BEAT_MGR">REVERSE_HEART_BEAT_MGR</a></li>
+<li><a href="../solutions/RIFTS.html#RIFTS">RIFTS</a></li>
+<li><a href="../solutions/RIFT_MAELSTROM.html#RIFT_MAELSTROM">RIFT_MAELSTROM</a></li>
+<li><a href="../solutions/SEMAPHORE.html#SEMAPHORE">SEMAPHORE</a></li>
+<li><a href="../solutions/SEND_SUB.html#SEND_SUB">SEND_SUB</a></li>
+<li><a href="../solutions/SIGNALS.html#SIGNALS">SIGNALS</a></li>
+<li><a href="../solutions/SPREADSHEET.html#SPREADSHEET">SPREADSHEET</a></li>
+<li><a href="../solutions/SSE.html#SSE">SSE</a></li>
+<li><a href="../solutions/STAFF.html#STAFF">STAFF</a></li>
+<li><a href="../solutions/STREAMS.html#STREAMS">STREAMS</a></li>
+<li><a href="../solutions/SWR.html#SWR">SWR</a></li>
+<li><a href="../solutions/TEMPORAL_SHIFT.html#TEMPORAL_SHIFT">TEMPORAL_SHIFT</a></li>
+<li><a href="../solutions/THROTTLE.html#THROTTLE">THROTTLE</a></li>
+<li><a href="../solutions/WIRE_TAPS.html#WIRE_TAPS">WIRE_TAPS</a></li>
+<li><a href="../solutions/WORKSPACE_GLOBAL.html#WORKSPACE_GLOBAL">WORKSPACE_GLOBAL</a></li>
+<li><a href="../solutions/WS.html#WS">WS</a></li>
+<li><a href="../solutions/XXSR.html#XXSR">XXSR</a></li>
+<li><a href="../solutions/YATA.html#YATA">YATA</a></li>
+<li><a href="../solutions/YIMIR.html#YIMIR">YIMIR</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[DATABASES]</span> </strong></summary>
+<ul>
+<li><a href="../databases/BDB.html#BDB">BDB</a></li>
+<li><a href="../databases/BINARY.html#BINARY">BINARY</a></li>
+<li><a href="../databases/COOKIE.html#COOKIE">COOKIE</a></li>
+<li><a href="../databases/GDB.html#GDB">GDB</a></li>
+<li><a href="../databases/GT.html#GT">GT</a></li>
+<li><a href="../databases/HADRON_COLLIDER.html#HADRON_COLLIDER">HADRON_COLLIDER</a></li>
+<li><a href="../databases/IDB_HADRON_COLLIDER.html#IDB_HADRON_COLLIDER">IDB_HADRON_COLLIDER</a></li>
+<li><a href="../databases/IDB_HC_SINK.html#IDB_HC_SINK">IDB_HC_SINK</a></li>
+<li><a href="../databases/IDB_KVDB.html#IDB_KVDB">IDB_KVDB</a></li>
+<li><a href="../databases/IDB_RDB.html#IDB_RDB">IDB_RDB</a></li>
+<li><a href="../databases/KVDB.html#KVDB">KVDB</a></li>
+<li><a href="../databases/LS.html#LS">LS</a></li>
+<li><a href="../databases/MEMORY.html#MEMORY">MEMORY</a></li>
+<li><a href="../databases/RDB.html#RDB">RDB</a></li>
+<li><a href="../databases/REGISTRIES.html#REGISTRIES">REGISTRIES</a></li>
+<li><a href="../databases/SAURON.html#SAURON">SAURON</a></li>
+<li><a href="../databases/SECURE_COOKIE.html#SECURE_COOKIE">SECURE_COOKIE</a></li>
+<li><a href="../databases/SS.html#SS">SS</a></li>
+<li><a href="../databases/TDB.html#TDB">TDB</a></li>
+<li><a href="../databases/VDB.html#VDB">VDB</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[BAG OF TRICKS]</span> </strong></summary>
+<ul>
+<li><a href="../bag_of_tricks/BARRIER.html#BARRIER">BARRIER</a></li>
+<li><a href="../bag_of_tricks/CALL_IF.html#CALL_IF">CALL_IF</a></li>
+<li><a href="../bag_of_tricks/CHAIN_RECHAIN.html#CHAIN_RECHAIN">CHAIN_RECHAIN</a></li>
+<li><a href="../bag_of_tricks/chain.html#chain">chain</a></li>
+<li><a href="../bag_of_tricks/clamp.html#clamp">clamp</a></li>
+<li><a href="../bag_of_tricks/deferred.html#deferred">deferred</a></li>
+<li><a href="../bag_of_tricks/evaluator.html#evaluator">evaluator</a></li>
+<li><a href="../bag_of_tricks/finally.html#finally">finally</a></li>
+<li><a href="../bag_of_tricks/gate.html#gate">gate</a></li>
+<li><a href="../bag_of_tricks/ignore_arg.html#ignore_arg">ignore_arg</a></li>
+<li><a href="../bag_of_tricks/invoke.html#invoke">invoke</a></li>
+<li><a href="../bag_of_tricks/is_defined.html#is_defined">is_defined</a></li>
+<li><a href="../bag_of_tricks/is_not_defined.html#is_not_defined">is_not_defined</a></li>
+<li><a href="../bag_of_tricks/LAZY.html#LAZY">LAZY</a></li>
+<li><a href="../bag_of_tricks/MAYBE_PROMISE.html#MAYBE_PROMISE">MAYBE_PROMISE</a></li>
+<li><a href="../bag_of_tricks/maybe.html#maybe">maybe</a></li>
+<li><a href="../bag_of_tricks/mcr_combo.html#mcr_combo">mcr_combo</a></li>
+<li><a href="../bag_of_tricks/ONCE.html#ONCE">ONCE</a></li>
+<li><a href="../bag_of_tricks/or_default.html#or_default">or_default</a></li>
+<li><a href="../bag_of_tricks/patch_state.html#patch_state">patch_state</a></li>
+<li><a href="../bag_of_tricks/retry_with_backoff.html#retry_with_backoff">retry_with_backoff</a></li>
+<li><a href="../bag_of_tricks/run_with_retry.html#run_with_retry">run_with_retry</a></li>
+<li><a href="../bag_of_tricks/SERIAL_EXECUTOR.html#SERIAL_EXECUTOR">SERIAL_EXECUTOR</a></li>
+<li><a href="../bag_of_tricks/set_keys.html#set_keys">set_keys</a></li>
+<li><a href="../bag_of_tricks/set_prev.html#set_prev">set_prev</a></li>
+<li><a href="../bag_of_tricks/sleep.html#sleep">sleep</a></li>
+<li><a href="../bag_of_tricks/tap.html#tap">tap</a></li>
+<li><a href="../bag_of_tricks/thenable.html#thenable">thenable</a></li>
+<li><a href="../bag_of_tricks/TIMED_PROMISE.html#TIMED_PROMISE">TIMED_PROMISE</a></li>
+<li><a href="../bag_of_tricks/to_promise.html#to_promise">to_promise</a></li>
+<li><a href="../bag_of_tricks/try_catch.html#try_catch">try_catch</a></li>
+<li><a href="../bag_of_tricks/unreachable.html#unreachable">unreachable</a></li>
+<li><a href="../bag_of_tricks/WAIT_AND_PROMISE.html#WAIT_AND_PROMISE">WAIT_AND_PROMISE</a></li>
+</ul>
+</details>
+<details style="font-size: 14.5px;"><summary><strong><span style="font-size: 16px; font-family: monospace">[TODO & IDEAS]</span> </strong></summary>
+<ul>
+<li><a href="TO_DO_AND_IDEAS.html#todo--ideas">TODO &amp; IDEAS</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#the_wizard">[THE_WIZARD]</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#primitives">[PRIMITIVES]</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#next_level_ideas">[NEXT_LEVEL_IDEAS]</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#kvdb">KVDB</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#prxcdb">PRxCDB</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#staff">STAFF</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#--e--mc2--">E = mc^2</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#native-custom-built-solutions">NATIVE, CUSTOM BUILT SOLUTIONS</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#storage-context">STORAGE CONTEXT</a></li>
+<li><a href="TO_DO_AND_IDEAS.html#other">OTHER</a></li>
+</ul>
+</details>
+<br/>
+<pre><code>                          🗨️           ☁️
+                       🌴🌵                             🧙            
+┌──────────┐          ┌──────────────────────────┐
+└──────────┘          └──────────────────────────┘
+              ☁️      
+  🔮        🏜️🌵🏜️🌴🌵                         🏜️
+┌─────────────────────────────┐        ┌─────────┐
+└─────────────────────────────┘        └─────────┘
+
+                                         🏜️🌴🌵
+           ┌──────────────────────────────────────┐
+           └──────────────────────────────────────┘
+         ☁️                  
+           🌴🌴                🏜️🌴                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🏜️🌴🏜️🌵      🌪️                    🧙     🏝️🏜️
+┌─────────────────────────────────────────────────┐
+└─────────────────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️       ☁️                              
+    🌴🌵                                     🌵🏜️
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                            🌵🌴🌴       
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+         🌵🌴                      🌵          🌴
+┌────────────────┐        ┌───────────────────────┐
+└────────────────┘        └───────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                     🌴🌵          🌵🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵          🌵🌵                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+            ☁️          ☁️                     
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+
+  🌵🌴               🌴🌵          🌵🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴          🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+            ☁️          ☁️                     
+  🌴🌵                         🌵🌵          🏜️🌴
+┌──────────┐       ┌───────────────────────────────┐
+└──────────┘       └───────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+            🌵🌴                  🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵          🧙🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️       ☁️                              
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                          🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵      🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+             🌵🌴                                             🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                                🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                    🌵🌴                              🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵                          🌴                     
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                             
+
+  🌴                            🌵 
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵🌴                                       
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                               🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+                                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                 🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                                           🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵                🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌴                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                            🌵             🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                             🌵
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                   ☁️                     
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵   🌴🌴                                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                           🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+  🌵                           
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                  🌵           🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵           🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+   🌵        🌵🌴                             
+┌──────────────────┐        ┌───────────────┐
+└──────────────────┘        └───────────────┘
+                   ☁️          ☁️                     
+🌴                                      🌵        🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵            🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+        🌵🌴                                   🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                           🌵                           
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                            🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+                   ☁️          ☁️                     
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                              🌵🌵
+┌───────────────────┐       ┌────────┐       ┌────┐
+└───────────────────┘       └────────┘       └────┘
+
+                                              🌵🌴                      
+                   ┌──────────────────────────────┐
+                   └──────────────────────────────┘
+                   ☁️          ☁️                     
+  🌴                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵                   🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴              🌵
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                        ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                               🌵🌴                          
+                       ┌──────────────────────────┐
+                       └──────────────────────────┘
+         ☁️                  
+  🌴🌵                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵        🌴                                🌵
+┌────────────────────────┐       ┌────────────────┐
+└────────────────────────┘       └────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+      ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+              ☁️      
+  🔮        🏜️🌵🏜️🌴🌵                         🏜️
+┌─────────────────────────────┐        ┌─────────┐
+└─────────────────────────────┘        └─────────┘
+
+                                         🏜️🌴🌵
+           ┌──────────────────────────────────────┐
+           └──────────────────────────────────────┘
+         ☁️                  
+           🌴🌴                🏜️🌴                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🏜️🌴🏜️🌵      🌪️                    🧙     🏝️🏜️
+┌─────────────────────────────────────────────────┐
+└─────────────────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️       ☁️                              
+    🌴🌵                                     🌵🏜️
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                            🌵🌴🌴       
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+         🌵🌴                      🌵          🌴
+┌────────────────┐        ┌───────────────────────┐
+└────────────────┘        └───────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                     🌴🌵          🌵🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵          🌵🌵                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+            ☁️          ☁️                     
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+
+  🌵🌴               🌴🌵          🌵🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴          🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+            ☁️          ☁️                     
+  🌴🌵                         🌵🌵          🏜️🌴
+┌──────────┐       ┌───────────────────────────────┐
+└──────────┘       └───────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+            🌵🌴                  🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵          🧙🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️       ☁️                              
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                          🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵      🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+             🌵🌴                                             🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                                🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                    🌵🌴                              🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵                          🌴                     
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                             
+
+  🌴                            🌵 
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵🌴                                       
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                               🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+                                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                 🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                                           🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵                🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌴                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                            🌵             🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                             🌵
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                   ☁️                     
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵   🌴🌴                                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                           🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+  🌵                           
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                  🌵           🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵           🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+   🌵        🌵🌴                             
+┌──────────────────┐        ┌───────────────┐
+└──────────────────┘        └───────────────┘
+                   ☁️          ☁️                     
+🌴                                      🌵        🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵            🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+        🌵🌴                                   🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                           🌵                           
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                            🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+                   ☁️          ☁️                     
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                              🌵🌵
+┌───────────────────┐       ┌────────┐       ┌────┐
+└───────────────────┘       └────────┘       └────┘
+
+                                              🌵🌴                      
+                   ┌──────────────────────────────┐
+                   └──────────────────────────────┘
+                   ☁️          ☁️                     
+  🌴                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵                   🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴              🌵
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                        ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                               🌵🌴                          
+                       ┌──────────────────────────┐
+                       └──────────────────────────┘
+         ☁️                  
+  🌴🌵                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵        🌴                                🌵
+┌────────────────────────┐       ┌────────────────┐
+└────────────────────────┘       └────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+      ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+              ☁️      
+  🔮        🏜️🌵🏜️🌴🌵                         🏜️
+┌─────────────────────────────┐        ┌─────────┐
+└─────────────────────────────┘        └─────────┘
+
+                                         🏜️🌴🌵
+           ┌──────────────────────────────────────┐
+           └──────────────────────────────────────┘
+         ☁️                  
+           🌴🌴                🏜️🌴                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🏜️🌴🏜️🌵      🌪️                    🧙     🏝️🏜️
+┌─────────────────────────────────────────────────┐
+└─────────────────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️       ☁️                              
+    🌴🌵                                     🌵🏜️
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                            🌵🌴🌴       
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+         🌵🌴                      🌵          🌴
+┌────────────────┐        ┌───────────────────────┐
+└────────────────┘        └───────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                     🌴🌵          🌵🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵          🌵🌵                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+            ☁️          ☁️                     
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+
+  🌵🌴               🌴🌵          🌵🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴          🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+            ☁️          ☁️                     
+  🌴🌵                         🌵🌵          🏜️🌴
+┌──────────┐       ┌───────────────────────────────┐
+└──────────┘       └───────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+       ┌───────────────────────────────────────────┐
+       └───────────────────────────────────────────┘
+         ☁️                  ☁️        
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+            🌵🌴                  🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵          🧙🌴
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️       ☁️                              
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                          🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵      🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+             🌵🌴                                             🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                                🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                    🌵🌴                              🌵          🌴
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵                          🌴                     
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                             
+
+  🌴                            🌵 
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+  🌵🌴                                       
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                               🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+                                         
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                                 🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                          
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                                           🌵
+┌─────────────────────┐        ┌──────────────────┐
+└─────────────────────┘        └──────────────────┘
+
+  🌴🌵                         🌵                🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+                   ☁️          ☁️                     
+  🌴                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                            🌵             🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+         ☁️                  
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                             🌵
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                          
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                   ☁️                     
+  🌵           🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵   🌴🌴                                          
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴                           🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+  🌵                           
+┌───────────────────────┐        ┌────────────────┐
+└───────────────────────┘        └────────────────┘
+
+  🌴🌵                  🌵           🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵           🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+   🌵        🌵🌴                             
+┌──────────────────┐        ┌───────────────┐
+└──────────────────┘        └───────────────┘
+                   ☁️          ☁️                     
+🌴                                      🌵        🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵            🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+        🌵🌴                                   🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                           🌵                           
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                            🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────────────────┐       ┌────────────────────────┐
+└────────────────┘       └────────────────────────┘
+                   ☁️          ☁️                     
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+         ☁️                  
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+                              🌵🌵
+┌───────────────────┐       ┌────────┐       ┌────┐
+└───────────────────┘       └────────┘       └────┘
+
+                                              🌵🌴                      
+                   ┌──────────────────────────────┐
+                   └──────────────────────────────┘
+                   ☁️          ☁️                     
+  🌴                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵                   🌴                    
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴              🌵
+       ┌────────────────────────────────────┐
+       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+                   ☁️                        ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵🌴                    🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                                               🌵🌴                          
+                       ┌──────────────────────────┐
+                       └──────────────────────────┘
+         ☁️                  
+  🌴🌵                             🌵🌵          🧙🌴
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                    🌵        🌴                                🌵
+┌────────────────────────┐       ┌────────────────┐
+└────────────────────────┘       └────────────────┘
+
+  🌴🌵                         🌵🌵
+┌────┐       ┌────────────────────────────────────┐
+└────┘       └────────────────────────────────────┘
+      ☁️          ☁️                     
+  🌵🌴          🌴🌵                   
+┌────────────────────────────────────┐       ┌────┐
+└────────────────────────────────────┘       └────┘
+
+                  🌵             🌴                         🌵
+┌─────────────────────────────────────────────────┐
+└─────────────────────────────────────────────────┘
+</code></pre>
+</div>
+</div>
+
+            
+            
+        </body>
+        </html>
